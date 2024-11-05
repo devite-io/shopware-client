@@ -12,8 +12,9 @@
     "rootDir": ".",
     "paths": {
       "#types": ["./types"],
-      "#clients/*": ["./src/clients/*"],
-      "#utils/*": ["./src/utils/*"]
+      "#utils": ["./src/utils"],
+      "#clients": ["./src/clients"],
+      "#payloads": ["./src/payloads"]
     }
   },
   "include": ["./src/**/*.ts", "./types/**/*.ts"]

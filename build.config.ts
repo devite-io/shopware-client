@@ -6,7 +6,8 @@ export default defineBuildConfig({
   alias: {
     "#types": resolve(__dirname, "./types"),
     "#utils": resolve(__dirname, "./src/utils"),
-    "#clients": resolve(__dirname, "./src/clients")
+    "#clients": resolve(__dirname, "./src/clients"),
+    "#payloads": resolve(__dirname, "./src/payloads")
   },
   declaration: true,
   rollup: {

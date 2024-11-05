@@ -1,5 +1,6 @@
-import { ClientRequestOptions } from "#types";
-import ProductsClient from "#clients/ProductsClient";
+import { ClientRequestOptions, ClientResponse } from "#types";
+import { ProductsClient } from "#clients";
+import { BinaryPayload, JsonPayload, Payload } from "#payloads";
 
 class ShopwareClient {
   public forProducts(): ProductsClient {
@@ -10,34 +11,40 @@ class ShopwareClient {
    * Sends a request to the Shopware API.
    * @throws {Error} if the request fails
    */
-  public async doRequest(
-    path: string,
-    options: ClientRequestOptions
-  ): Promise<Record<string, any> | ArrayBuffer | string> {
-    const requestBody = !options.body
-      ? undefined
-      : options.body?.constructor.name === "object"
-        ? JSON.stringify(options.body)
-        : typeof options.body === "string"
-          ? (options.body as string)
-          : (options.body as ArrayBuffer);
+  public async doRequest(path: string, options: ClientRequestOptions): Promise<ClientResponse> {
+    const requestBody = options.body?.serialize() || undefined;
     const response = await fetch(path, {
       method: options.method,
       headers: {
-        "Content-Type": "application/json",
+        ...(options.body ? { "Content-Type": options.body.contentType() } : {}),
         ...options.headers
       },
       body: requestBody
     });
 
-    switch (response.headers.get("content-type")) {
-      case "application/json":
-        return response.json();
-      case "application/octet-stream":
-        return response.arrayBuffer();
-      default:
-        return response.text();
+    return {
+      statusCode: response.status,
+      statusMessage: response.statusText,
+      headers: response.headers,
+      body: await this.parseBody(response)
+    };
+  }
+
+  private async parseBody(response: Response): Promise<Payload<any> | undefined> {
+    let body = undefined;
+
+    switch (response.headers.get("Content-Type")) {
+      case BinaryPayload.CONTENT_TYPE:
+        body = new BinaryPayload();
+        break;
+      case JsonPayload.CONTENT_TYPE:
+        body = new JsonPayload();
+        break;
     }
+
+    if (body) body.deserialize(await response.arrayBuffer());
+
+    return body;
   }
 }
 

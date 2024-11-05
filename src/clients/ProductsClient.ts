@@ -1,4 +1,4 @@
-import Client from "#clients/Client";
+import { Client } from "#clients";
 
 class ProductsClient extends Client {}
 
