@@ -1,0 +1,42 @@
+{
+  "name": "@devite/shopware-client",
+  "version": "1.0.0",
+  "description": "Third party API client for Shopware 6.",
+  "repository": "devite-io/shopware-client",
+  "license": "MIT",
+  "author": {
+    "name": "Justus Geramb <justus@devite.io>",
+    "url": "https://www.devite.io"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "export NODE_ENV=production && unbuild && pnpm build:types",
+    "build:types": "tsc --declaration --emitDeclarationOnly",
+    "lint": "eslint src/**/*.ts* --fix && tsc --noEmit",
+    "test": "vitest run --passWithNoTests --typecheck",
+    "test:watch": "vitest watch --typecheck",
+    "release": "pnpm lint && pnpm test && pnpm prepack && changelogen --release && pnpm publish --access=public && git push --follow-tags"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.7",
+    "changelogen": "^0.5.7",
+    "eslint": "^9.14.0",
+    "prettier": "^3.3.3",
+    "tslib": "^2.8.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "unbuild": "^2.0.0",
+    "vitest": "^2.1.4"
+  }
+}
