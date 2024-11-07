@@ -2,7 +2,7 @@ import Payload from "./Payload";
 
 class JsonPayload extends Payload<string> {
   public static CONTENT_TYPE: string = "application/json";
-  private data?: object;
+  public data?: object;
 
   constructor(data?: object) {
     super();
@@ -16,8 +16,8 @@ class JsonPayload extends Payload<string> {
   /**
    * @throws {SyntaxError} if the data is not a valid JSON string
    */
-  public deserialize(data: ArrayBuffer): void {
-    this.data = JSON.parse(data.toString());
+  public async deserialize(data: Blob): Promise<void> {
+    this.data = JSON.parse(await data.text());
   }
 
   public serialize(): string | undefined {

@@ -37,5 +37,8 @@
     "typescript-eslint": "^8.13.0",
     "unbuild": "^2.0.0",
     "vitest": "^2.1.4"
+  },
+  "dependencies": {
+    "ofetch": "^1.4.1"
   }
 }
