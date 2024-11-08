@@ -8,6 +8,3 @@ export type AddressCreateResponse = CustomerAddress;
 
 export type AddressUpdateRequest = CustomerAddressBody;
 export type AddressUpdateResponse = CustomerAddressBody;
-
-export type AddressDeleteRequest = { id: string };
-export type AddressDeleteResponse = { success?: boolean };
