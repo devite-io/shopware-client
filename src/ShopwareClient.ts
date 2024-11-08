@@ -1,5 +1,5 @@
 import { ClientRequestOptions, ClientResponse, HTTPRequestMethod } from "#types";
-import { ProductsClient } from "#clients";
+import { ProductClient } from "#clients";
 import { BinaryPayload, JsonPayload, Payload } from "#payloads";
 import { FetchResponse, ofetch } from "ofetch";
 
@@ -12,8 +12,8 @@ class ShopwareClient {
     this.apiKey = apiKey;
   }
 
-  public forProducts(): ProductsClient {
-    return new ProductsClient(this);
+  public forProducts(): ProductClient {
+    return new ProductClient(this);
   }
 
   /**
