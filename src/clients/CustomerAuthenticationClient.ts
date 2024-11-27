@@ -11,6 +11,7 @@ import {
   CustomerRegistrationConfirmRequest
 } from "#types";
 import { JsonPayload } from "#payloads";
+import { AuthenticationType, JWTEntry } from "../auth";
 
 class CustomerAuthenticationClient extends Client {
   /**
@@ -21,8 +22,11 @@ class CustomerAuthenticationClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
+    if (response.statusCode === 200) {
+      this.client.authStore.getOrCreateEntry(new JWTEntry()).save(response);
+
       return (response.body as JsonPayload).data as CustomerLoginResponse;
+    }
 
     throw new Error(`Failed to login: ${response.statusCode} ${response.statusMessage}`);
   }
@@ -47,10 +51,13 @@ class CustomerAuthenticationClient extends Client {
    * @throws {Error} if the request fails
    */
   public async logout(): Promise<CustomerLogoutResponse> {
-    const response = await this.post("/account/logout");
+    const response = await this.post("/account/logout", await this.withJWT());
 
-    if (response.statusCode === 200)
+    if (response.statusCode === 200) {
+      this.client.authStore.getEntry(AuthenticationType.JWT)?.clear();
+
       return (response.body as JsonPayload).data as CustomerLogoutResponse;
+    }
 
     throw new Error(`Failed to logout: ${response.statusCode} ${response.statusMessage}`);
   }
@@ -80,8 +87,11 @@ class CustomerAuthenticationClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
+    if (response.statusCode === 200) {
+      this.client.authStore.getOrCreateEntry(new JWTEntry()).save(response);
+
       return (response.body as JsonPayload).data as CustomerRegisterResponse;
+    }
 
     throw new Error(`Failed to register: ${response.statusCode} ${response.statusMessage}`);
   }

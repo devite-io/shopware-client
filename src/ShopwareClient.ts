@@ -1,26 +1,34 @@
-import { ClientRequestOptions, ClientResponse, HTTPRequestMethod } from "#types";
-import { ProductClient } from "#clients";
+import { ClientRequestOptions, ClientResponse, HTTPRequestMethod, RequestCacheEntry } from "#types";
+import {
+  AccountClient,
+  AddressClient,
+  CartClient,
+  CategoryClient,
+  ContentClient,
+  ContextClient,
+  CustomerAuthenticationClient,
+  DocumentClient,
+  GatewayClient,
+  NewsletterClient,
+  OrderClient,
+  PaymentClient,
+  ProductClient,
+  SeoClient,
+  SystemClient,
+  WishlistClient
+} from "#clients";
 import { BinaryPayload, JsonPayload, Payload } from "#payloads";
 import { FetchResponse, ofetch } from "ofetch";
-import AccountClient from "./clients/AccountClient";
-import AddressClient from "./clients/AddressClient";
-import CartClient from "./clients/CartClient";
-import CategoryClient from "./clients/CategoryClient";
-import ContentClient from "./clients/ContentClient";
-import ContextClient from "./clients/ContextClient";
-import CustomerAuthenticationClient from "./clients/CustomerAuthenticationClient";
-import DocumentClient from "./clients/DocumentClient";
-import GatewayClient from "./clients/GatewayClient";
-import NewsletterClient from "./clients/NewsletterClient";
-import OrderClient from "./clients/OrderClient";
-import PaymentClient from "./clients/PaymentClient";
-import SeoClient from "./clients/SeoClient";
-import SystemClient from "./clients/SystemClient";
-import WishlistClient from "./clients/WishlistClient";
+import * as crypto from "node:crypto";
+import { AuthenticationEntry, AuthenticationStore, AuthenticationType, ExpiredError } from "./auth";
+import { c } from "ofetch/dist/shared/ofetch.d0b3d489";
 
 class ShopwareClient {
   private readonly baseUrl: string;
   private readonly apiKey: string;
+
+  public readonly authStore: AuthenticationStore = new AuthenticationStore();
+  public readonly cache: Map<string, RequestCacheEntry> = new Map<string, RequestCacheEntry>();
 
   constructor(baseUrl: string, apiKey: string) {
     this.baseUrl = baseUrl;
@@ -32,6 +40,24 @@ class ShopwareClient {
    * @throws {import('ofetch').FetchError} if the request is invalid
    */
   public doRequest(path: string, options?: ClientRequestOptions): Promise<ClientResponse> {
+    const serializedBody: any | undefined = options?.body?.serialize() || undefined;
+    let cacheKey: string | null = null;
+
+    if (options?.maxAge && options.maxAge > 0) {
+      cacheKey =
+        `${options?.method || HTTPRequestMethod.GET}:${path}$` +
+        crypto
+          .createHash("md5")
+          .update(JSON.stringify({ ...options?.headers, body: serializedBody }))
+          .digest("hex");
+
+      const cacheEntry = this.cache.get(cacheKey);
+
+      if (cacheEntry && Date.now() - cacheEntry.cachedAt <= options.maxAge) {
+        return Promise.resolve(cacheEntry.response);
+      }
+    }
+
     return new Promise(async (resolve, reject) =>
       ofetch(this.baseUrl + path, {
         method: options?.method || HTTPRequestMethod.GET,
@@ -40,15 +66,24 @@ class ShopwareClient {
           ...(options?.body ? { "Content-Type": options.body.contentType() } : {}),
           ...options?.headers
         },
-        body: options?.body?.serialize() || undefined,
+        body: serializedBody,
         responseType: "stream",
         onResponse: async ({ response }) => {
-          resolve({
+          const clientResponse: ClientResponse = {
             statusCode: response.status,
             statusMessage: response.statusText,
             headers: response.headers,
             body: await this.parseBody(response)
-          });
+          };
+
+          if (cacheKey) {
+            this.cache.set(cacheKey, {
+              cachedAt: Date.now(),
+              response: clientResponse
+            });
+          }
+
+          resolve(clientResponse);
         },
         onRequestError: ({ error }) => reject(error),
         onResponseError: async ({ response }) => {
@@ -78,6 +113,34 @@ class ShopwareClient {
     if (body && response.body) await body.deserialize(await response.blob());
 
     return body;
+  }
+
+  public async withJWT(options: ClientRequestOptions): Promise<ClientRequestOptions> {
+    const entry: AuthenticationEntry | undefined = this.authStore.getEntry(AuthenticationType.JWT);
+
+    if (!entry) throw new Error("No JWT token available");
+
+    return { ...options, ...entry.load() };
+  }
+
+  public async withOAuth(options: ClientRequestOptions): Promise<ClientRequestOptions> {
+    const entry: AuthenticationEntry | undefined = this.authStore.getEntry(
+      AuthenticationType.OAUTH
+    );
+
+    if (!entry) throw new Error("No OAuth token available");
+
+    try {
+      return { ...options, ...entry.load() };
+    } catch (error) {
+      if (error instanceof ExpiredError) {
+        // TODO: Refresh token
+
+        return { ...options, ...entry.load() };
+      }
+
+      throw error;
+    }
   }
 
   public forAccount(): AccountClient {

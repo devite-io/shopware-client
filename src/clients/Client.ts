@@ -2,7 +2,7 @@ import ShopwareClient from "../ShopwareClient";
 import { ClientRequestOptions, HTTPRequestMethod } from "#types";
 
 class Client {
-  private readonly client: ShopwareClient;
+  protected readonly client: ShopwareClient;
 
   constructor(client: ShopwareClient) {
     this.client = client;
@@ -34,6 +34,14 @@ class Client {
 
   protected options(path: string, options?: ClientRequestOptions) {
     return this.doRequest(HTTPRequestMethod.OPTIONS, path, options);
+  }
+
+  protected async withJWT(options: ClientRequestOptions = {}): Promise<ClientRequestOptions> {
+    return this.client.withJWT(options);
+  }
+
+  protected async withOAuth(options: ClientRequestOptions = {}): Promise<ClientRequestOptions> {
+    return this.client.withOAuth(options);
   }
 }
 
