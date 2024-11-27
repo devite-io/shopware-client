@@ -3,7 +3,7 @@ export type NewsletterConfirmRequest = {
   em: string;
 };
 
-export type NewsletterSubscribeRequest = {
+export type NewsletterUpdateRequest = {
   email: string;
   option: "direct" | "subscribe" | "unsubscribe" | "confirmSubscribe";
   storefrontUrl: string;

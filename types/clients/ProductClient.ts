@@ -55,7 +55,7 @@ export type ProductVariantWithOptionsResponse = {
   };
 };
 
-export type ProductWithCategoryListRequest = ProductListingCriteria & ProductListingFlags;
-export type ProductWithCategoryListResponse = ProductListingResult;
+export type ProductListingListWithCategoryRequest = ProductListingCriteria & ProductListingFlags;
+export type ProductListingListWithCategoryResponse = ProductListingResult;
 
 export type ProductCrossSellingGroupListResponse = Array<CrossSellingElement>;

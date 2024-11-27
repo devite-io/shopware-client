@@ -1,10 +1,10 @@
 import Payload from "./Payload";
 
-class BinaryPayload extends Payload<ArrayBuffer> {
+class BinaryPayload extends Payload<Blob> {
   public static CONTENT_TYPE: string = "application/octet-stream";
-  public data?: ArrayBuffer;
+  public data?: Blob;
 
-  constructor(data?: ArrayBuffer) {
+  constructor(data?: Blob) {
     super();
     this.data = data;
   }
@@ -17,10 +17,10 @@ class BinaryPayload extends Payload<ArrayBuffer> {
    * @throws {SyntaxError} if the data is not a valid JSON string
    */
   public async deserialize(data: Blob): Promise<void> {
-    this.data = await data.arrayBuffer();
+    this.data = data;
   }
 
-  public serialize(): ArrayBuffer | undefined {
+  public serialize(): Blob | undefined {
     return this.data;
   }
 }

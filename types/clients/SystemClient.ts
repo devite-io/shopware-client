@@ -5,7 +5,9 @@ import {
   Currency,
   EntitySearchResult,
   Language,
-  Salutation
+  PaymentMethod,
+  Salutation,
+  ShippingMethod
 } from "../storeApi";
 
 export type CountryListRequest = Criteria;
@@ -22,3 +24,13 @@ export type LanguageListResponse = EntitySearchResult & { elements?: Array<Langu
 
 export type SalutationListRequest = Criteria;
 export type SalutationListResponse = EntitySearchResult & { elements?: Array<Salutation> };
+
+export type ShippingMethodListRequest = Criteria;
+export type ShippingMethodListResponse = EntitySearchResult & { elements?: Array<ShippingMethod> };
+
+export type PaymentMethodListRequest = Criteria & { onlyAvailable?: boolean };
+export type PaymentMethodListResponse = {
+  total?: number;
+  aggregations?: object;
+  elements?: Array<PaymentMethod>;
+};
