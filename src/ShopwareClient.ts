@@ -115,10 +115,12 @@ class ShopwareClient {
     return body;
   }
 
-  public async withJWT(options: ClientRequestOptions): Promise<ClientRequestOptions> {
-    const entry: AuthenticationEntry | undefined = this.authStore.getEntry(AuthenticationType.JWT);
+  public withContextToken(options: ClientRequestOptions): ClientRequestOptions {
+    const entry: AuthenticationEntry | undefined = this.authStore.getEntry(
+      AuthenticationType.CONTEXT_TOKEN
+    );
 
-    if (!entry) throw new Error("No JWT token available");
+    if (!entry) throw new Error("Not authenticated");
 
     return { ...options, ...entry.load() };
   }
@@ -128,7 +130,7 @@ class ShopwareClient {
       AuthenticationType.OAUTH
     );
 
-    if (!entry) throw new Error("No OAuth token available");
+    if (!entry) throw new Error("Not authenticated");
 
     try {
       return { ...options, ...entry.load() };

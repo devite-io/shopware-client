@@ -36,8 +36,8 @@ class Client {
     return this.doRequest(HTTPRequestMethod.OPTIONS, path, options);
   }
 
-  protected async withJWT(options: ClientRequestOptions = {}): Promise<ClientRequestOptions> {
-    return this.client.withJWT(options);
+  protected withContextToken(options: ClientRequestOptions = {}): ClientRequestOptions {
+    return this.client.withContextToken(options);
   }
 
   protected async withOAuth(options: ClientRequestOptions = {}): Promise<ClientRequestOptions> {

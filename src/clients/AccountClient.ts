@@ -29,9 +29,12 @@ class AccountClient extends Client {
   public async getNewsletterRecipientList(
     request: AccountNewsletterRecipientListRequest = {}
   ): Promise<AccountNewsletterRecipientListResponse> {
-    const response = await this.post(`/account/newsletter-recipient`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/account/newsletter-recipient`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountNewsletterRecipientListResponse;
@@ -45,9 +48,12 @@ class AccountClient extends Client {
    * @throws {Error} if the request fails
    */
   public async changeProfile(request: AccountUpdateRequest): Promise<AccountUpdateResponse> {
-    const response = await this.post(`/account/change-profile`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/account/change-profile`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountUpdateResponse;
@@ -61,9 +67,12 @@ class AccountClient extends Client {
   public async changeEmail(
     request: AccountEmailChangeRequest
   ): Promise<AccountEmailChangeResponse> {
-    const response = await this.post(`/account/change-email`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/account/change-email`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountEmailChangeResponse;
@@ -77,9 +86,12 @@ class AccountClient extends Client {
   public async changeLanguage(
     request: AccountLanguageChangeRequest
   ): Promise<AccountLanguageChangeResponse> {
-    const response = await this.post(`/account/change-language`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/account/change-language`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountLanguageChangeResponse;
@@ -93,9 +105,12 @@ class AccountClient extends Client {
   public async changePassword(
     request: AccountPasswordChangeRequest
   ): Promise<AccountPasswordChangeResponse> {
-    const response = await this.post(`/account/change-password`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/account/change-password`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPasswordChangeResponse;
@@ -109,7 +124,10 @@ class AccountClient extends Client {
   public async changePaymentMethod(
     paymentMethodId: string
   ): Promise<AccountPaymentMethodChangeResponse> {
-    const response = await this.post(`/account/change-payment-method/${paymentMethodId}`);
+    const response = await this.post(
+      `/account/change-payment-method/${paymentMethodId}`,
+      this.withContextToken()
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPaymentMethodChangeResponse;
@@ -125,9 +143,12 @@ class AccountClient extends Client {
   public async isCustomerRecoveryExpired(
     request: AccountRecoveryExpiryCheckRequest
   ): Promise<AccountRecoveryExpiryCheckResponse> {
-    const response = await this.post(`/account/customer-recovery-is-expired`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/account/customer-recovery-is-expired`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountRecoveryExpiryCheckResponse;
@@ -141,9 +162,12 @@ class AccountClient extends Client {
    * @throws {Error} if the request fails
    */
   public async getCustomer(request: AccountGetRequest = {}): Promise<AccountGetResponse> {
-    const response = await this.get(`/account/customer`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.get(
+      `/account/customer`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountGetResponse;
@@ -155,7 +179,7 @@ class AccountClient extends Client {
    * @throws {Error} if the request fails
    */
   public async deleteCustomer(): Promise<undefined> {
-    const response = await this.delete(`/account/customer`);
+    const response = await this.delete(`/account/customer`, this.withContextToken());
 
     if (response.statusCode === 200) return undefined;
 
@@ -168,9 +192,12 @@ class AccountClient extends Client {
   public async confirmRecoveryPassword(
     request: AccountPasswordRecoveryRequest
   ): Promise<AccountPasswordRecoveryResponse> {
-    const response = await this.post(`/account/recovery-password-confirm`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/account/recovery-password-confirm`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPasswordRecoveryResponse;
@@ -186,9 +213,12 @@ class AccountClient extends Client {
   public async requestPasswordRecoveryMail(
     request: AccountPasswordRecoveryMailRequest
   ): Promise<AccountPasswordRecoveryMailResponse> {
-    const response = await this.post(`/account/recovery-password`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/account/recovery-password`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPasswordRecoveryMailResponse;

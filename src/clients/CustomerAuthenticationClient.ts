@@ -11,7 +11,7 @@ import {
   CustomerRegistrationConfirmRequest
 } from "#types";
 import { JsonPayload } from "#payloads";
-import { AuthenticationType, JWTEntry } from "../auth";
+import { AuthenticationType, ContextTokenEntry } from "../auth";
 
 class CustomerAuthenticationClient extends Client {
   /**
@@ -23,7 +23,7 @@ class CustomerAuthenticationClient extends Client {
     });
 
     if (response.statusCode === 200) {
-      this.client.authStore.getOrCreateEntry(new JWTEntry()).save(response);
+      this.client.authStore.getOrCreateEntry(new ContextTokenEntry()).save(response);
 
       return (response.body as JsonPayload).data as CustomerLoginResponse;
     }
@@ -51,10 +51,10 @@ class CustomerAuthenticationClient extends Client {
    * @throws {Error} if the request fails
    */
   public async logout(): Promise<CustomerLogoutResponse> {
-    const response = await this.post("/account/logout", await this.withJWT());
+    const response = await this.post("/account/logout", this.withContextToken());
 
     if (response.statusCode === 200) {
-      this.client.authStore.getEntry(AuthenticationType.JWT)?.clear();
+      this.client.authStore.getEntry(AuthenticationType.CONTEXT_TOKEN)?.clear();
 
       return (response.body as JsonPayload).data as CustomerLogoutResponse;
     }
@@ -88,7 +88,7 @@ class CustomerAuthenticationClient extends Client {
     });
 
     if (response.statusCode === 200) {
-      this.client.authStore.getOrCreateEntry(new JWTEntry()).save(response);
+      this.client.authStore.getOrCreateEntry(new ContextTokenEntry()).save(response);
 
       return (response.body as JsonPayload).data as CustomerRegisterResponse;
     }

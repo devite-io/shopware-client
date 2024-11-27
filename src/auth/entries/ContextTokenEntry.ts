@@ -2,11 +2,11 @@ import { AuthenticationEntry } from ".";
 import { ClientRequestOptions, ClientResponse } from "#types";
 import { AuthenticationType, NotSavedError } from "..";
 
-class JWTEntry implements AuthenticationEntry {
+class ContextTokenEntry implements AuthenticationEntry {
   private token: string | null = null;
 
   getType(): AuthenticationType {
-    return AuthenticationType.JWT;
+    return AuthenticationType.CONTEXT_TOKEN;
   }
 
   isSaved(): boolean {
@@ -23,7 +23,7 @@ class JWTEntry implements AuthenticationEntry {
 
   load(): ClientRequestOptions {
     if (!this.isSaved()) {
-      throw new NotSavedError("JWT token is not saved");
+      throw new NotSavedError("Context token is not saved");
     }
 
     return {
@@ -32,4 +32,4 @@ class JWTEntry implements AuthenticationEntry {
   }
 }
 
-export default JWTEntry;
+export default ContextTokenEntry;

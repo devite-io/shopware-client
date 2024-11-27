@@ -1,5 +1,5 @@
 enum AuthenticationType {
-  JWT = "jwt",
+  CONTEXT_TOKEN = "context_token",
   OAUTH = "oauth"
 }
 

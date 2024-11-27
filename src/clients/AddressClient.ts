@@ -14,7 +14,7 @@ class AddressClient extends Client {
    * @throws {Error} if the request fails
    */
   public async deleteAddress(addressId: string): Promise<undefined> {
-    const response = await this.delete(`/account/address/${addressId}`);
+    const response = await this.delete(`/account/address/${addressId}`, this.withContextToken());
 
     if (response.statusCode === 200) return undefined;
 
@@ -28,9 +28,12 @@ class AddressClient extends Client {
     addressId: string,
     request: AddressUpdateRequest
   ): Promise<AddressUpdateResponse> {
-    const response = await this.put(`/account/address/${addressId}`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.put(
+      `/account/address/${addressId}`,
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressUpdateResponse;
@@ -42,9 +45,12 @@ class AddressClient extends Client {
    * @throws {Error} if the request fails
    */
   public async getAddressList(request: AddressListRequest = {}): Promise<AddressListResponse> {
-    const response = await this.post("/account/list-address", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/account/list-address",
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressListResponse;
@@ -58,7 +64,10 @@ class AddressClient extends Client {
    * @throws {Error} if the request fails
    */
   public async changeDefaultShippingAddress(addressId: string): Promise<undefined> {
-    const response = await this.post(`/account/address/default-shipping/${addressId}`);
+    const response = await this.post(
+      `/account/address/default-shipping/${addressId}`,
+      this.withContextToken()
+    );
 
     if (response.statusCode === 200) return undefined;
 
@@ -71,7 +80,10 @@ class AddressClient extends Client {
    * @throws {Error} if the request fails
    */
   public async changeDefaultBillingAddress(addressId: string): Promise<undefined> {
-    const response = await this.post(`/account/address/default-billing/${addressId}`);
+    const response = await this.post(
+      `/account/address/default-billing/${addressId}`,
+      this.withContextToken()
+    );
 
     if (response.statusCode === 200) return undefined;
 
@@ -84,9 +96,12 @@ class AddressClient extends Client {
    * @throws {Error} if the request fails
    */
   public async createAddress(request: AddressCreateRequest): Promise<AddressCreateResponse> {
-    const response = await this.post("/account/address", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/account/address",
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressCreateResponse;

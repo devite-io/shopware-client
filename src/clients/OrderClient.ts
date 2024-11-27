@@ -17,9 +17,12 @@ class OrderClient extends Client {
    * @throws {Error} if the request fails
    */
   public async cancelOrder(request: OrderCancelRequest): Promise<OrderCancelResponse> {
-    const response = await this.post("/order/state/cancel", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/order/state/cancel",
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderCancelResponse;
@@ -31,9 +34,12 @@ class OrderClient extends Client {
    * @throws {Error} if the request fails
    */
   public async getOrderList(request: OrderListRequest = {}): Promise<OrderListResponse> {
-    const response = await this.post("/order", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/order",
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderListResponse;
@@ -47,9 +53,12 @@ class OrderClient extends Client {
   public async updateOrderPaymentMethod(
     request: OrderUpdatePaymentMethodRequest
   ): Promise<OrderUpdatePaymentMethodResponse> {
-    const response = await this.post("/order/payment", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/order/payment",
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderUpdatePaymentMethodResponse;
@@ -66,7 +75,10 @@ class OrderClient extends Client {
     downloadId: string,
     orderId: string
   ): Promise<OrderDownloadFileResponse> {
-    const response = await this.get(`/order/download/${orderId}/${downloadId}`);
+    const response = await this.get(
+      `/order/download/${orderId}/${downloadId}`,
+      this.withContextToken()
+    );
 
     if (response.statusCode === 200)
       return (response.body as BinaryPayload).data as OrderDownloadFileResponse;
@@ -82,9 +94,12 @@ class OrderClient extends Client {
   public async createOrderFromCart(
     request: OrderFromCartRequest = {}
   ): Promise<OrderFromCartResponse> {
-    const response = await this.post("/checkout/order", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/checkout/order",
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderFromCartResponse;

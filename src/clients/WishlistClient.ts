@@ -14,7 +14,10 @@ class WishlistClient extends Client {
    * @throws {Error} if the request fails
    */
   public async addProductToWishlist(productId: string): Promise<WishlistProductAddResponse> {
-    const response = await this.post(`/customer/wishlist/add/${productId}`);
+    const response = await this.post(
+      `/customer/wishlist/add/${productId}`,
+      this.withContextToken()
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WishlistProductAddResponse;
@@ -28,9 +31,12 @@ class WishlistClient extends Client {
    * @throws {Error} if the request fails
    */
   public async getWishlist(request: WishlistGetRequest = {}): Promise<WishlistGetResponse> {
-    const response = await this.post("/customer/wishlist", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/customer/wishlist",
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WishlistGetResponse;
@@ -44,9 +50,12 @@ class WishlistClient extends Client {
   public async mergeOrCreateWishlist(
     request: WishlistMergeOrCreateRequest
   ): Promise<WishlistMergeOrCreateResponse> {
-    const response = await this.post("/customer/wishlist/merge", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/customer/wishlist/merge",
+      this.withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WishlistMergeOrCreateResponse;
@@ -62,7 +71,10 @@ class WishlistClient extends Client {
   public async removeProductFromWishlist(
     productId: string
   ): Promise<WishlistProductRemoveResponse> {
-    const response = await this.delete(`/customer/wishlist/delete/${productId}`);
+    const response = await this.delete(
+      `/customer/wishlist/delete/${productId}`,
+      this.withContextToken()
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WishlistProductRemoveResponse;
