@@ -1,5 +1,5 @@
 import { AuthenticationEntry } from "./entries";
-import { AuthenticationType } from ".";
+import AuthenticationType from "./AuthenticationType";
 
 class AuthenticationStore {
   private entries: Map<AuthenticationType, AuthenticationEntry> = new Map<

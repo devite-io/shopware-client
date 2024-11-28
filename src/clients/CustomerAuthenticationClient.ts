@@ -11,7 +11,7 @@ import {
   CustomerRegistrationConfirmRequest
 } from "#types";
 import { JsonPayload } from "#payloads";
-import { AuthenticationType, ContextTokenEntry } from "../auth";
+import { AuthenticationType, ContextTokenEntry } from "#auth";
 
 class CustomerAuthenticationClient extends Client {
   /**

@@ -20,7 +20,7 @@ import {
 import { BinaryPayload, JsonPayload, Payload } from "#payloads";
 import { FetchResponse, ofetch } from "ofetch";
 import * as crypto from "node:crypto";
-import { AuthenticationEntry, AuthenticationStore, AuthenticationType, ExpiredError } from "./auth";
+import { AuthenticationEntry, AuthenticationStore, AuthenticationType, ExpiredError } from "#auth";
 
 class ShopwareClient {
   private readonly baseUrl: string;
