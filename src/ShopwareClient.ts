@@ -21,7 +21,6 @@ import { BinaryPayload, JsonPayload, Payload } from "#payloads";
 import { FetchResponse, ofetch } from "ofetch";
 import * as crypto from "node:crypto";
 import { AuthenticationEntry, AuthenticationStore, AuthenticationType, ExpiredError } from "./auth";
-import { c } from "ofetch/dist/shared/ofetch.d0b3d489";
 
 class ShopwareClient {
   private readonly baseUrl: string;
