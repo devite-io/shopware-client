@@ -4,9 +4,19 @@ import { JsonPayload } from "#payloads";
 import { AuthenticationType, ExpiredError, NotSavedError } from "..";
 
 class OAuthEntry implements AuthenticationEntry {
-  private accessToken: string | null = null;
-  private refreshToken: string | null = null;
-  private expiresAt: number | null = null;
+  public accessToken: string | null = null;
+  public refreshToken: string | null = null;
+  public expiresAt: number | null = null;
+
+  constructor(
+    accessToken: string | null = null,
+    refreshToken: string | null = null,
+    expiresAt: number | null = null
+  ) {
+    this.accessToken = accessToken;
+    this.refreshToken = refreshToken;
+    this.expiresAt = expiresAt;
+  }
 
   getType(): AuthenticationType {
     return AuthenticationType.OAUTH;
@@ -26,6 +36,7 @@ class OAuthEntry implements AuthenticationEntry {
   clear(): void {
     this.accessToken = null;
     this.refreshToken = null;
+    this.expiresAt = null;
   }
 
   /** @throws {ExpiredError} if the authentication data has expired */

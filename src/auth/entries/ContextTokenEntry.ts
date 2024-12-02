@@ -3,7 +3,11 @@ import { ClientRequestOptions, ClientResponse } from "#types";
 import { AuthenticationType, NotSavedError } from "..";
 
 class ContextTokenEntry implements AuthenticationEntry {
-  private token: string | null = null;
+  public token: string | null = null;
+
+  constructor(token: string | null = null) {
+    this.token = token;
+  }
 
   getType(): AuthenticationType {
     return AuthenticationType.CONTEXT_TOKEN;
