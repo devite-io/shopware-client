@@ -18,5 +18,5 @@
       "#auth": ["./src/auth"]
     }
   },
-  "include": ["./src/**/*.ts", "./types/**/*.ts"]
+  "include": ["./src/**/*.ts", "./tests/**/*.ts", "./types/**/*.ts"]
 }
