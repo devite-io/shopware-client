@@ -22,6 +22,8 @@ import { FetchResponse, ofetch } from "ofetch";
 import * as crypto from "node:crypto";
 import { AuthenticationEntry, AuthenticationStore, AuthenticationType, ExpiredError } from "#auth";
 
+export *  from '#types';
+
 class ShopwareClient {
   private readonly baseUrl: string;
   private readonly apiKey: string;
