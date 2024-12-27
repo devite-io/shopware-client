@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.0.0...v1.0.1)
+
+### 🩹 Fixes
+
+- Module exports ([1f0cda7](https://github.com/devite-io/shopware-client/commit/1f0cda7))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.0.0
 
 
