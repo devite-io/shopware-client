@@ -2,6 +2,7 @@ import { AuthenticationEntry } from ".";
 import { ClientResponse } from "#types";
 import { JsonPayload } from "#payloads";
 import { AuthenticationType, ExpiredError, NotSavedError } from "..";
+import { OAuthResponseBody } from "#types";
 
 class OAuthEntry implements AuthenticationEntry {
   public accessToken: string | null = null;
@@ -27,10 +28,10 @@ class OAuthEntry implements AuthenticationEntry {
   }
 
   save(response: ClientResponse): void {
-    const jsonBody = (response.body as JsonPayload).data;
-    this.accessToken = jsonBody?.access_token || null;
-    this.refreshToken = jsonBody?.refresh_token || null;
-    this.expiresAt = Date.now() + (jsonBody?.expires_in || 0) * 1_000;
+    const jsonBody = (response.body as JsonPayload).data as OAuthResponseBody;
+    this.accessToken = jsonBody.access_token || null;
+    this.refreshToken = jsonBody.refresh_token || null;
+    this.expiresAt = Date.now() + (jsonBody.expires_in || 0) * 1_000;
   }
 
   clear(): void {

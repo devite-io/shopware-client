@@ -1,3 +1,4 @@
+export * from "./auth";
 export * from "./clients";
 export * from "./storeApi";
 export { HTTPRequestMethod } from "./HTTPRequestMethod";
