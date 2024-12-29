@@ -1,6 +1,10 @@
-import { Client } from "#clients";
-import { ContextGetResponse, ContextUpdateRequest, ContextUpdateResponse } from "#types";
-import { JsonPayload } from "#payloads";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
+import {
+  ContextGetResponse,
+  ContextUpdateRequest,
+  ContextUpdateResponse
+} from "#types/clients/ContextClient";
 
 class ContextClient extends Client {
   /**

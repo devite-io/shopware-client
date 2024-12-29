@@ -1,4 +1,7 @@
-import { Criteria, EntitySearchResult, Order, StateMachineState } from "../storeApi";
+import { StateMachineState } from "#types/storeApi/StateMachineState";
+import { Order } from "#types/storeApi/order/Order";
+import { Criteria } from "#types/storeApi/query/Criteria";
+import { EntitySearchResult } from "#types/storeApi/EntitySearchResult";
 
 export type OrderCancelRequest = { orderId: string };
 export type OrderCancelResponse = StateMachineState;

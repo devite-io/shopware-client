@@ -1,4 +1,4 @@
-import { CustomerAddressBody } from ".";
+import { CustomerAddressBody } from "./CustomerAddressBody";
 
 export type CustomerAddress = CustomerAddressBody & {
   id: string;

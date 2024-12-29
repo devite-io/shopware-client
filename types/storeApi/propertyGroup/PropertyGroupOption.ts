@@ -1,6 +1,6 @@
 import { GenericRecord } from "../GenericRecord";
-import { Media } from "../media";
-import { PropertyGroup } from ".";
+import { PropertyGroup } from "#types/storeApi/propertyGroup/PropertyGroup";
+import { Media } from "#types/storeApi/media/Media";
 
 export type PropertyGroupOption = {
   id: string;

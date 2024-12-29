@@ -1,4 +1,5 @@
-import { PaymentMethod, ShippingMethod } from "../storeApi";
+import { PaymentMethod } from "#types/storeApi/PaymentMethod";
+import { ShippingMethod } from "#types/storeApi/shippingMethod/ShippingMethod";
 
 export type GatewayCheckoutResponse = {
   paymentMethods?: {

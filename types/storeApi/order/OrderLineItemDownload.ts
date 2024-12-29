@@ -1,6 +1,6 @@
 import { GenericRecord } from "../GenericRecord";
-import { OrderLineItem } from ".";
-import { Media } from "../media";
+import { OrderLineItem } from "./OrderLineItem";
+import { Media } from "#types/storeApi/media/Media";
 
 export type OrderLineItemDownload = {
   id: string;

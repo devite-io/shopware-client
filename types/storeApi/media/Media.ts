@@ -1,5 +1,5 @@
 import { GenericRecord } from "../GenericRecord";
-import { MediaThumbnail } from ".";
+import { MediaThumbnail } from "./MediaThumbnail";
 
 export type Media = {
   apiAlias: "media";

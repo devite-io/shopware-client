@@ -1,9 +1,10 @@
 import { GenericRecord } from "../GenericRecord";
-import { CustomerAddress, CustomerGroup } from ".";
-import { Language } from "../locale";
 import { PaymentMethod } from "../PaymentMethod";
 import { Salutation } from "../Salutation";
 import { Tag } from "../Tag";
+import { CustomerGroup } from "./CustomerGroup";
+import { CustomerAddress } from "./CustomerAddress";
+import { Language } from "#types/storeApi/locale/Language";
 
 export type Customer = {
   apiAlias: "customer";

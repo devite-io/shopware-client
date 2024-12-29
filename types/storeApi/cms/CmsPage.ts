@@ -1,6 +1,7 @@
 import { GenericRecord } from "../GenericRecord";
-import { CmsSection, LandingPage } from "./";
-import { Media } from "../media";
+import { CmsSection } from "#types/storeApi/cms/CmsSection";
+import { Media } from "#types/storeApi/media/Media";
+import { LandingPage } from "#types/storeApi/cms/LandingPage";
 
 export type CmsPage = {
   apiAlias: "cms_page";

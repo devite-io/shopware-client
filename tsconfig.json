@@ -6,17 +6,15 @@
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "removeComments": true,
+    "declaration": true,
     "outDir": "./dist",
-    "rootDir": ".",
+    "baseUrl": "./",
     "paths": {
-      "#types": ["./types"],
-      "#utils": ["./src/utils"],
-      "#clients": ["./src/clients"],
-      "#payloads": ["./src/payloads"],
-      "#auth": ["./src/auth"]
+      "#types/*": ["types/*"],
+      "#clients/*": ["src/clients/*"],
+      "#payloads/*": ["src/payloads/*"],
+      "#auth/*": ["src/auth/*"]
     }
   },
-  "include": ["./src/**/*.ts", "./types/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

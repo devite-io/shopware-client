@@ -1,4 +1,4 @@
-import { Filters } from "../filter";
+import { Filters } from "#types/storeApi/filter/Filters";
 
 export type AggregationFilter = {
   name: string;

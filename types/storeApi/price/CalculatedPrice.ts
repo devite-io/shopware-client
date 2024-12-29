@@ -1,4 +1,6 @@
-import { CartListPrice, CartPriceReference, CartRegulationPrice } from ".";
+import { CartPriceReference } from "./CartPriceReference";
+import { CartListPrice } from "./CartListPrice";
+import { CartRegulationPrice } from "./CartRegulationPrice";
 
 export type CalculatedPrice = {
   unitPrice: number;

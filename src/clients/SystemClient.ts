@@ -1,4 +1,5 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
 import {
   CountryListRequest,
   CountryListResponse,
@@ -14,8 +15,7 @@ import {
   SalutationListResponse,
   ShippingMethodListRequest,
   ShippingMethodListResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/SystemClient";
 
 class SystemClient extends Client {
   /**

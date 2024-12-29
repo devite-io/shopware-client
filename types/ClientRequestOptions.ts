@@ -1,5 +1,5 @@
-import { HTTPRequestMethod } from ".";
-import { Payload } from "#payloads";
+import Payload from "#payloads/Payload";
+import HTTPRequestMethod from "../src/HTTPRequestMethod";
 
 export type ClientRequestOptions = {
   /** @default HTTPRequestMethod.GET */

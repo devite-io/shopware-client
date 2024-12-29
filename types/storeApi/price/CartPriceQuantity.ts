@@ -1,4 +1,4 @@
-import { CartListPrice } from ".";
+import { CartListPrice } from "./CartListPrice";
 
 export type CartPriceQuantity = {
   apiAlias: "cart_price_quantity";

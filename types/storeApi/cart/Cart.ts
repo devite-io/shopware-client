@@ -1,5 +1,7 @@
-import { CalculatedPrice } from "../price";
-import { CartDelivery, CartError, CartItems } from ".";
+import { CartItems } from "./CartItems";
+import { CartError } from "./CartError";
+import { CartDelivery } from "./CartDelivery";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
 
 export type Cart = {
   name?: string;

@@ -1,5 +1,6 @@
-import { AuthenticationType } from "..";
-import { ClientRequestOptions, ClientResponse } from "#types";
+import AuthenticationType from "#auth/AuthenticationType";
+import { ClientResponse } from "#types/ClientResponse";
+import { ClientRequestOptions } from "#types/ClientRequestOptions";
 
 interface AuthenticationEntry {
   getType(): AuthenticationType;

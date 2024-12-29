@@ -1,5 +1,6 @@
 import ShopwareClient from "../ShopwareClient";
-import { ClientRequestOptions, HTTPRequestMethod } from "#types";
+import HTTPRequestMethod from "../HTTPRequestMethod";
+import { ClientRequestOptions } from "#types/ClientRequestOptions";
 
 class Client {
   protected readonly client: ShopwareClient;

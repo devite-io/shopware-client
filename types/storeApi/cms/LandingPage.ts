@@ -1,6 +1,6 @@
 import { GenericRecord } from "../GenericRecord";
-import { CmsPage } from ".";
-import { SeoUrlEntity } from "../seo";
+import { CmsPage } from "./CmsPage";
+import { SeoUrlEntity } from "#types/storeApi/seo/SeoUrlEntity";
 
 export type LandingPage = {
   apiAlias: "landing_page";

@@ -1,4 +1,4 @@
-import { Sort } from "../query";
+import { Sort } from "#types/storeApi/query/Sort";
 
 export type AggregationTerms = {
   name: string;

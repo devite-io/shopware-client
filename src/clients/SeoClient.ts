@@ -1,11 +1,11 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
 import {
   SeoRouteListRequest,
   SeoRouteListResponse,
   SitemapDownloadResponse,
   SitemapListResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/SeoClient";
 
 class SeoClient extends Client {
   /**

@@ -1,5 +1,5 @@
 import { GenericRecord } from "../GenericRecord";
-import { CmsBlock } from ".";
+import { CmsBlock } from "./CmsBlock";
 
 export type CmsSlot = {
   id: string;

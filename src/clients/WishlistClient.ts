@@ -1,4 +1,5 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
 import {
   WishlistGetRequest,
   WishlistGetResponse,
@@ -6,8 +7,7 @@ import {
   WishlistMergeOrCreateResponse,
   WishlistProductAddResponse,
   WishlistProductRemoveResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/WishlistClient";
 
 class WishlistClient extends Client {
   /**

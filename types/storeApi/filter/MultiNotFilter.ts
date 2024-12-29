@@ -1,4 +1,4 @@
-import { Filters } from ".";
+import { Filters } from "./Filters";
 
 export type MultiNotFilter = {
   type: "multi" | "not";

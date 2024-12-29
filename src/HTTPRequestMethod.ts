@@ -1,4 +1,4 @@
-export enum HTTPRequestMethod {
+enum HTTPRequestMethod {
   GET = "GET",
   POST = "POST",
   DELETE = "DELETE",
@@ -6,3 +6,5 @@ export enum HTTPRequestMethod {
   PUT = "PUT",
   OPTIONS = "OPTIONS"
 }
+
+export default HTTPRequestMethod;

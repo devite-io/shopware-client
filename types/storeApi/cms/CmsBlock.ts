@@ -1,6 +1,8 @@
-import { BackgroundMediaMode, CmsSlot, Visibility } from ".";
 import { GenericRecord } from "../GenericRecord";
-import { Media } from "../media";
+import { BackgroundMediaMode } from "./BackgroundMediaMode";
+import { Visibility } from "./Visibility";
+import { CmsSlot } from "./CmsSlot";
+import { Media } from "../media/Media";
 
 export type CmsBlock = {
   apiAlias: "cms_block";

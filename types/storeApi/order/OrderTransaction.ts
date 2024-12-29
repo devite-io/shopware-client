@@ -1,8 +1,8 @@
-import { CalculatedPrice } from "../price";
 import { GenericRecord } from "../GenericRecord";
 import { StateMachineState } from "../StateMachineState";
 import { PaymentMethod } from "../PaymentMethod";
-import { OrderTransactionCapture } from ".";
+import { OrderTransactionCapture } from "./OrderTransactionCapture";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
 
 export type OrderTransaction = {
   id: string;

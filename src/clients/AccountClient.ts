@@ -1,4 +1,5 @@
-import { Client } from "#clients";
+import JsonPayload from "#payloads/JsonPayload";
+import Client from "#clients/Client";
 import {
   AccountEmailChangeRequest,
   AccountEmailChangeResponse,
@@ -19,8 +20,7 @@ import {
   AccountRecoveryExpiryCheckResponse,
   AccountUpdateRequest,
   AccountUpdateResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/AccountClient";
 
 class AccountClient extends Client {
   /**

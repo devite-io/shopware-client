@@ -1,8 +1,9 @@
-import { LineItemPayload } from "../lineItem";
-import { CartPriceQuantity } from "../price";
-import { GenericRecord } from "../GenericRecord";
-import { Media } from "../media";
-import { OrderDeliveryPosition, OrderLineItemDownload } from ".";
+import { OrderDeliveryPosition } from "./OrderDeliveryPosition";
+import { OrderLineItemDownload } from "./OrderLineItemDownload";
+import { LineItemPayload } from "#types/storeApi/lineItem/LineItemPayload";
+import { CartPriceQuantity } from "#types/storeApi/price/CartPriceQuantity";
+import { GenericRecord } from "#types/storeApi/GenericRecord";
+import { Media } from "#types/storeApi/media/Media";
 
 export type OrderLineItem = {
   apiAlias: "order_line_item";

@@ -1,4 +1,4 @@
-import { Payload } from "#payloads";
+import Payload from "#payloads/Payload";
 
 export type ClientResponse = {
   statusCode: number;

@@ -1,6 +1,6 @@
-import { Client } from "#clients";
-import { GatewayCheckoutResponse } from "#types";
-import { JsonPayload } from "#payloads";
+import JsonPayload from "#payloads/JsonPayload";
+import Client from "#clients/Client";
+import { GatewayCheckoutResponse } from "#types/clients/GatewayClient";
 
 class GatewayClient extends Client {
   /**

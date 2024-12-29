@@ -1,4 +1,7 @@
-import { CmsPage, LandingPage, Media, ProductListingCriteria } from "../storeApi";
+import { ProductListingCriteria } from "../storeApi/query/product/ProductListingCriteria";
+import { CmsPage } from "../storeApi/cms/CmsPage";
+import { LandingPage } from "../storeApi/cms/LandingPage";
+import { Media } from "../storeApi/media/Media";
 
 export type CMSPageResolveRequest = { slots?: string } & ProductListingCriteria;
 export type CMSPageResolveResponse = CmsPage;

@@ -1,6 +1,6 @@
-import { Client } from "#clients";
-import { DocumentDownloadRequest, DocumentDownloadResponse } from "#types";
-import { JsonPayload } from "#payloads";
+import JsonPayload from "#payloads/JsonPayload";
+import Client from "#clients/Client";
+import { DocumentDownloadRequest, DocumentDownloadResponse } from "#types/clients/DocumentClient";
 
 class DocumentClient extends Client {
   /**

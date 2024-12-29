@@ -1,5 +1,5 @@
-import { CalculatedPrice } from "../price";
 import { GenericRecord } from "../GenericRecord";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
 
 export type OrderDeliveryPosition = {
   id: string;

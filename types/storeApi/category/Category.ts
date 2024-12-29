@@ -1,8 +1,8 @@
 import { GenericRecord } from "../GenericRecord";
-import { Media } from "../media";
 import { Tag } from "../Tag";
-import { CmsPage } from "../cms";
-import { SeoUrlEntity } from "../seo";
+import { CmsPage } from "#types/storeApi/cms/CmsPage";
+import { Media } from "#types/storeApi/media/Media";
+import { SeoUrlEntity } from "#types/storeApi/seo/SeoUrlEntity";
 
 export type Category = {
   apiAlias: "category";

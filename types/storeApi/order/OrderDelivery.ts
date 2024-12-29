@@ -1,7 +1,8 @@
-import { CalculatedPrice } from "../price";
-import { StateMachineState } from "../StateMachineState";
-import { OrderAddress, OrderDeliveryPosition } from ".";
-import { ShippingMethod } from "../shippingMethod";
+import { OrderAddress } from "./OrderAddress";
+import { OrderDeliveryPosition } from "./OrderDeliveryPosition";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
+import { StateMachineState } from "#types/storeApi/StateMachineState";
+import { ShippingMethod } from "#types/storeApi/shippingMethod/ShippingMethod";
 
 export type OrderDelivery = {
   id: string;

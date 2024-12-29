@@ -1,6 +1,6 @@
-import { CartDeliveryDate } from ".";
-import { LineItem } from "../lineItem";
-import { CalculatedPrice } from "../price";
+import { CartDeliveryDate } from "./CartDeliveryDate";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
+import { LineItem } from "#types/storeApi/lineItem/LineItem";
 
 export type CartDeliveryPosition = {
   deliveryDate?: CartDeliveryDate;

@@ -1,4 +1,6 @@
-import { Customer, CustomerAddress, CustomerGroup } from "../storeApi";
+import { CustomerAddress } from "#types/storeApi/customer/CustomerAddress";
+import { Customer } from "#types/storeApi/customer/Customer";
+import { CustomerGroup } from "#types/storeApi/customer/CustomerGroup";
 
 export type CustomerLoginRequest = {
   username: string;

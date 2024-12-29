@@ -1,6 +1,6 @@
-import { Links } from "../link";
-import { GenericRecord } from "../GenericRecord";
-import { CalculatedPrice } from "../price";
+import { GenericRecord } from "#types/storeApi/GenericRecord";
+import { Links } from "#types/storeApi/link/Links";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
 
 export type LineItemPayload = {
   type: string;

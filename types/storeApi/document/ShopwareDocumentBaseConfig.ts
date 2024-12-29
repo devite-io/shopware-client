@@ -1,5 +1,5 @@
 import { GenericRecord } from "../GenericRecord";
-import { Media } from "../media";
+import { Media } from "../media/Media";
 
 export type ShopwareDocumentBaseConfig = {
   id: string;

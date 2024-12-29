@@ -1,6 +1,6 @@
 import { GenericRecord } from "../GenericRecord";
-import { Product } from ".";
-import { Media } from "../media";
+import { Media } from "#types/storeApi/media/Media";
+import { Product } from "#types/storeApi/product/Product";
 
 export type ProductDownload = {
   id: string;

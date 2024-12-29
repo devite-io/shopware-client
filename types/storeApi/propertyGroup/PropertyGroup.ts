@@ -1,5 +1,5 @@
 import { GenericRecord } from "../GenericRecord";
-import { PropertyGroupOption } from ".";
+import { PropertyGroupOption } from "#types/storeApi/propertyGroup/PropertyGroupOption";
 
 export type PropertyGroup = {
   id: string;

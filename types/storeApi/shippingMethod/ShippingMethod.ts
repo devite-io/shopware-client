@@ -1,10 +1,10 @@
 import { GenericRecord } from "../GenericRecord";
 import { DeliveryTime } from "../DeliveryTime";
 import { Rule } from "../Rule";
-import { ShippingMethodPrice } from ".";
-import { Media } from "../media";
 import { Tag } from "../Tag";
 import { Tax } from "../Tax";
+import { ShippingMethodPrice } from "#types/storeApi/shippingMethod/ShippingMethodPrice";
+import { Media } from "#types/storeApi/media/Media";
 
 export type ShippingMethod = {
   id: string;

@@ -1,4 +1,4 @@
-import { CartDeliveryTime } from ".";
+import { CartDeliveryTime } from "./CartDeliveryTime";
 
 export type CartDeliveryInformation = {
   apiAlias: "cart_delivery_information";

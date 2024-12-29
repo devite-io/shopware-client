@@ -1,4 +1,5 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
 import {
   AddressCreateRequest,
   AddressCreateResponse,
@@ -6,8 +7,7 @@ import {
   AddressListResponse,
   AddressUpdateRequest,
   AddressUpdateResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/AddressClient";
 
 class AddressClient extends Client {
   /**

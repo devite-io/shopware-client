@@ -1,6 +1,7 @@
 import { GenericRecord } from "../GenericRecord";
-import { Country, CountryState } from "../country";
 import { Salutation } from "../Salutation";
+import { Country } from "#types/storeApi/country/Country";
+import { CountryState } from "#types/storeApi/country/CountryState";
 
 export type CustomerAddressBody = {
   countryId: string;

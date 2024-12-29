@@ -1,6 +1,7 @@
-import { CalculatedPrice } from "../price";
 import { GenericRecord } from "../GenericRecord";
-import { OrderLineItem, OrderTransactionCaptureRefund } from ".";
+import { OrderTransactionCaptureRefund } from "./OrderTransactionCaptureRefund";
+import { OrderLineItem } from "./OrderLineItem";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
 
 export type OrderTransactionCaptureRefundPosition = {
   id: string;

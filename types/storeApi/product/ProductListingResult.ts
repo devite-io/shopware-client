@@ -1,5 +1,5 @@
 import { EntitySearchResult } from "../EntitySearchResult";
-import { Product } from ".";
+import { Product } from "#types/storeApi/product/Product";
 
 export type ProductListingResult = EntitySearchResult & {
   apiAlias: "product_listing";

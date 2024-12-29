@@ -1,4 +1,7 @@
-import { Client } from "#clients";
+import JsonPayload from "#payloads/JsonPayload";
+import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
+import Client from "#clients/Client";
+import AuthenticationType from "#auth/AuthenticationType";
 import {
   CustomerLoginImitateRequest,
   CustomerLoginImitateResponse,
@@ -9,9 +12,7 @@ import {
   CustomerRegisterRequest,
   CustomerRegisterResponse,
   CustomerRegistrationConfirmRequest
-} from "#types";
-import { JsonPayload } from "#payloads";
-import { AuthenticationType, ContextTokenEntry } from "#auth";
+} from "#types/clients/CustomerAuthenticationClient";
 
 class CustomerAuthenticationClient extends Client {
   /**

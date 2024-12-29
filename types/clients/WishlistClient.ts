@@ -1,4 +1,5 @@
-import { Criteria, ProductListingResult } from "../storeApi";
+import { ProductListingResult } from "#types/storeApi/product/ProductListingResult";
+import { Criteria } from "#types/storeApi/query/Criteria";
 
 export type WishlistGetRequest = Criteria;
 export type WishlistGetResponse = {

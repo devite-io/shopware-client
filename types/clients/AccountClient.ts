@@ -1,4 +1,5 @@
-import { Criteria, Customer } from "../storeApi";
+import { Criteria } from "../storeApi/query/Criteria";
+import { Customer } from "../storeApi/customer/Customer";
 
 export type AccountEmailChangeRequest = {
   email: string;

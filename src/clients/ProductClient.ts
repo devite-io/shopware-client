@@ -1,4 +1,5 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
 import {
   ProductCrossSellingGroupListResponse,
   ProductListingListWithCategoryRequest,
@@ -16,8 +17,7 @@ import {
   ProductSingleResponse,
   ProductVariantWithOptionsRequest,
   ProductVariantWithOptionsResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/ProductClient";
 
 class ProductClient extends Client {
   /**

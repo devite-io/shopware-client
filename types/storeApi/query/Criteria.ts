@@ -1,7 +1,9 @@
-import { Filters } from "../filter";
-import { Include, Query, Sort } from ".";
-import { Aggregations } from "../aggregation";
 import { TotalCountMode } from "../TotalCountMode";
+import { Filters } from "#types/storeApi/filter/Filters";
+import { Query } from "#types/storeApi/query/Query";
+import { Sort } from "#types/storeApi/query/Sort";
+import { Aggregations } from "#types/storeApi/aggregation/Aggregations";
+import { Include } from "#types/storeApi/query/Include";
 
 export type Criteria = {
   page?: number;

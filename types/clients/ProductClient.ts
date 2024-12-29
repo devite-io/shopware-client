@@ -1,14 +1,12 @@
-import {
-  Criteria,
-  CrossSellingElement,
-  EntitySearchResult,
-  Product,
-  ProductListingCriteria,
-  ProductListingFlags,
-  ProductListingResult,
-  ProductReview,
-  PropertyGroup
-} from "../storeApi";
+import { EntitySearchResult } from "#types/storeApi/EntitySearchResult";
+import { Criteria } from "#types/storeApi/query/Criteria";
+import { Product } from "#types/storeApi/product/Product";
+import { ProductReview } from "#types/storeApi/product/ProductReview";
+import { ProductListingCriteria } from "#types/storeApi/query/product/ProductListingCriteria";
+import { ProductListingFlags } from "#types/storeApi/query/product/ProductListingFlags";
+import { ProductListingResult } from "#types/storeApi/product/ProductListingResult";
+import { PropertyGroup } from "#types/storeApi/propertyGroup/PropertyGroup";
+import { CrossSellingElement } from "#types/storeApi/product/crossSelling/CrossSellingElement";
 
 export type ProductListRequest = Criteria;
 export type ProductListResponse = EntitySearchResult & { elements?: Array<Product> };

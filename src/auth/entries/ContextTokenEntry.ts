@@ -1,6 +1,8 @@
-import { AuthenticationEntry } from ".";
-import { ClientRequestOptions, ClientResponse } from "#types";
-import { AuthenticationType, NotSavedError } from "..";
+import NotSavedError from "#auth/errors/NotSavedError";
+import AuthenticationType from "#auth/AuthenticationType";
+import AuthenticationEntry from "#auth/entries/AuthenticationEntry";
+import { ClientResponse } from "#types/ClientResponse";
+import { ClientRequestOptions } from "#types/ClientRequestOptions";
 
 class ContextTokenEntry implements AuthenticationEntry {
   public token: string | null = null;

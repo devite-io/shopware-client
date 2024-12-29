@@ -1,9 +1,9 @@
-import { Currency } from "../Currency";
-import { SalesChannel } from ".";
-import { Customer } from "../customer";
 import { PaymentMethod } from "../PaymentMethod";
-import { CartDeliveryShippingLocation } from "../cart";
-import { ShippingMethod } from "../shippingMethod";
+import { SalesChannel } from "#types/storeApi/salesChannel/SalesChannel";
+import { Currency } from "#types/storeApi/Currency";
+import { Customer } from "#types/storeApi/customer/Customer";
+import { CartDeliveryShippingLocation } from "#types/storeApi/cart/CartDeliveryShippingLocation";
+import { ShippingMethod } from "#types/storeApi/shippingMethod/ShippingMethod";
 
 export type SalesChannelContext = {
   token?: string;

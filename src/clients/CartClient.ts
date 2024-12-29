@@ -1,4 +1,5 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
 import {
   CartAddItemsRequest,
   CartAddItemsResponse,
@@ -8,8 +9,7 @@ import {
   CartRemoveItemsResponse,
   CartUpdateItemsRequest,
   CartUpdateItemsResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/CartClient";
 
 class CartClient extends Client {
   /**

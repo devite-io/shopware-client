@@ -1,4 +1,5 @@
-import { Cart, LineItem } from "../storeApi";
+import { LineItem } from "../storeApi/lineItem/LineItem";
+import { Cart } from "../storeApi/cart/Cart";
 
 export type CartAddItemsRequest = { items?: Array<LineItem> };
 export type CartAddItemsResponse = Cart;

@@ -1,7 +1,9 @@
-import { ProductMedia } from "../media";
-import { CartDeliveryInformation } from "../cart";
-import { LineItemPayload, LineItemType } from ".";
-import { CalculatedPrice, CartPriceQuantity } from "../price";
+import { LineItemPayload } from "./LineItemPayload";
+import { LineItemType } from "./LineItemType";
+import { CartPriceQuantity } from "#types/storeApi/price/CartPriceQuantity";
+import { ProductMedia } from "#types/storeApi/media/ProductMedia";
+import { CartDeliveryInformation } from "#types/storeApi/cart/CartDeliveryInformation";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
 
 export type LineItem = {
   children?: Array<LineItem>;

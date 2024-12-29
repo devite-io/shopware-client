@@ -1,5 +1,5 @@
-import { ProductCrossSelling } from ".";
 import { Product } from "../Product";
+import { ProductCrossSelling } from "#types/storeApi/product/crossSelling/ProductCrossSelling";
 
 export type CrossSellingElement = {
   apiAlias: "cross_selling_element";

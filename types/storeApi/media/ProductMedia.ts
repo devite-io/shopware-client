@@ -1,5 +1,6 @@
 import { GenericRecord } from "../GenericRecord";
-import { Media, MediaThumbnail } from ".";
+import { MediaThumbnail } from "./MediaThumbnail";
+import { Media } from "./Media";
 
 export type ProductMedia = {
   id: string;

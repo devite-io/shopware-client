@@ -1,4 +1,5 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
 import {
   CMSPageResolveResponse,
   ContactFormSubmitRequest,
@@ -7,8 +8,7 @@ import {
   LandingPageResolveResponse,
   MediaEntityResolveRequest,
   MediaEntityResolveResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/ContentClient";
 
 class ContentClient extends Client {
   /**

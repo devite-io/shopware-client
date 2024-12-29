@@ -1,6 +1,6 @@
 import { GenericRecord } from "../GenericRecord";
-import { Media } from "../media";
-import { PropertyGroupOption } from "../propertyGroup";
+import { PropertyGroupOption } from "#types/storeApi/propertyGroup/PropertyGroupOption";
+import { Media } from "#types/storeApi/media/Media";
 
 export type ProductConfiguratorSetting = {
   id: string;

@@ -1,14 +1,12 @@
-import {
-  Country,
-  CountryState,
-  Criteria,
-  Currency,
-  EntitySearchResult,
-  Language,
-  PaymentMethod,
-  Salutation,
-  ShippingMethod
-} from "../storeApi";
+import { Criteria } from "#types/storeApi/query/Criteria";
+import { EntitySearchResult } from "#types/storeApi/EntitySearchResult";
+import { Country } from "#types/storeApi/country/Country";
+import { CountryState } from "#types/storeApi/country/CountryState";
+import { Currency } from "#types/storeApi/Currency";
+import { Language } from "#types/storeApi/locale/Language";
+import { Salutation } from "#types/storeApi/Salutation";
+import { ShippingMethod } from "#types/storeApi/shippingMethod/ShippingMethod";
+import { PaymentMethod } from "#types/storeApi/PaymentMethod";
 
 export type CountryListRequest = Criteria;
 export type CountryListResponse = EntitySearchResult & { elements?: Array<Country> };

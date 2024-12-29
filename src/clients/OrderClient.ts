@@ -1,4 +1,6 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
+import BinaryPayload from "#payloads/BinaryPayload";
 import {
   OrderCancelRequest,
   OrderCancelResponse,
@@ -9,8 +11,7 @@ import {
   OrderListResponse,
   OrderUpdatePaymentMethodRequest,
   OrderUpdatePaymentMethodResponse
-} from "#types";
-import { BinaryPayload, JsonPayload } from "#payloads";
+} from "#types/clients/OrderClient";
 
 class OrderClient extends Client {
   /**

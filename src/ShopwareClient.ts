@@ -1,28 +1,32 @@
-import { ClientRequestOptions, ClientResponse, HTTPRequestMethod, RequestCacheEntry } from "#types";
-import {
-  AccountClient,
-  AddressClient,
-  CartClient,
-  CategoryClient,
-  ContentClient,
-  ContextClient,
-  CustomerAuthenticationClient,
-  DocumentClient,
-  GatewayClient,
-  NewsletterClient,
-  OrderClient,
-  PaymentClient,
-  ProductClient,
-  SeoClient,
-  SystemClient,
-  WishlistClient
-} from "#clients";
-import { BinaryPayload, JsonPayload, Payload } from "#payloads";
 import { FetchResponse, ofetch } from "ofetch";
 import * as crypto from "node:crypto";
-import { AuthenticationEntry, AuthenticationStore, AuthenticationType, ExpiredError } from "#auth";
-
-export *  from '#types';
+import AuthenticationStore from "#auth/AuthenticationStore";
+import HTTPRequestMethod from "./HTTPRequestMethod";
+import Payload from "#payloads/Payload";
+import BinaryPayload from "#payloads/BinaryPayload";
+import JsonPayload from "#payloads/JsonPayload";
+import AuthenticationEntry from "#auth/entries/AuthenticationEntry";
+import AuthenticationType from "#auth/AuthenticationType";
+import ExpiredError from "#auth/errors/ExpiredError";
+import AccountClient from "#clients/AccountClient";
+import AddressClient from "#clients/AddressClient";
+import CartClient from "#clients/CartClient";
+import CategoryClient from "#clients/CategoryClient";
+import ContentClient from "#clients/ContentClient";
+import ContextClient from "#clients/ContextClient";
+import CustomerAuthenticationClient from "#clients/CustomerAuthenticationClient";
+import DocumentClient from "#clients/DocumentClient";
+import GatewayClient from "#clients/GatewayClient";
+import NewsletterClient from "#clients/NewsletterClient";
+import OrderClient from "#clients/OrderClient";
+import PaymentClient from "#clients/PaymentClient";
+import ProductClient from "#clients/ProductClient";
+import SeoClient from "#clients/SeoClient";
+import SystemClient from "#clients/SystemClient";
+import WishlistClient from "#clients/WishlistClient";
+import { RequestCacheEntry } from "#types/RequestCacheEntry";
+import { ClientRequestOptions } from "#types/ClientRequestOptions";
+import { ClientResponse } from "#types/ClientResponse";
 
 class ShopwareClient {
   private readonly baseUrl: string;

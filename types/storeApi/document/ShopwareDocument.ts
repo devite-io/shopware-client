@@ -1,7 +1,7 @@
 import { GenericRecord } from "../GenericRecord";
-import { ShopwareDocumentType } from ".";
-import { Order } from "../order";
-import { Media } from "../media";
+import { ShopwareDocumentType } from "./ShopwareDocumentType";
+import { Media } from "#types/storeApi/media/Media";
+import { Order } from "#types/storeApi/order/Order";
 
 export type ShopwareDocument = {
   id: string;

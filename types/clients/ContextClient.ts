@@ -1,4 +1,4 @@
-import { SalesChannelContext } from "../storeApi";
+import { SalesChannelContext } from "../storeApi/salesChannel/SalesChannelContext";
 
 export type ContextGetRequest = { id: string };
 export type ContextGetResponse = SalesChannelContext;

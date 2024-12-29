@@ -1,6 +1,7 @@
 import { Criteria } from "../Criteria";
-import { Filters, SimpleFilter } from "../../filter";
 import { Sort } from "../Sort";
+import { SimpleFilter } from "#types/storeApi/filter/SimpleFilter";
+import { Filters } from "#types/storeApi/filter/Filters";
 
 export type ProductListingCriteria = Criteria & {
   order?: string;

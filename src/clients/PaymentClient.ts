@@ -1,6 +1,9 @@
-import { Client } from "#clients";
-import { OrderPaymentInitiateRequest, OrderPaymentInitiateResponse } from "#types";
-import { JsonPayload } from "#payloads";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
+import {
+  OrderPaymentInitiateRequest,
+  OrderPaymentInitiateResponse
+} from "#types/clients/PaymentClient";
 
 class PaymentClient extends Client {
   /**

@@ -1,4 +1,5 @@
-import { Client } from "#clients";
+import Client from "#clients/Client";
+import JsonPayload from "#payloads/JsonPayload";
 import {
   CategoryListRequest,
   CategoryListResponse,
@@ -6,8 +7,7 @@ import {
   CategorySingleResponse,
   NavigationMenuRequest,
   NavigationMenuResponse
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/CategoryClient";
 
 class CategoryClient extends Client {
   /**

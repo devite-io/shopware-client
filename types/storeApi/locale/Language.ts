@@ -1,5 +1,5 @@
 import { GenericRecord } from "../GenericRecord";
-import { Locale } from ".";
+import { Locale } from "./Locale";
 
 export type Language = {
   id: string;

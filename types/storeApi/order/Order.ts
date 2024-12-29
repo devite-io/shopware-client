@@ -1,11 +1,15 @@
-import { CalculatedPrice } from "../price";
-import { GenericRecord } from "../GenericRecord";
-import { StateMachineState } from "../StateMachineState";
-import { OrderAddress, OrderCustomer, OrderDelivery, OrderLineItem, OrderTransaction } from ".";
-import { Currency } from "../Currency";
-import { Language } from "../locale";
-import { ShopwareDocument } from "../document";
 import { Tag } from "../Tag";
+import { OrderCustomer } from "./OrderCustomer";
+import { OrderAddress } from "./OrderAddress";
+import { OrderDelivery } from "./OrderDelivery";
+import { OrderLineItem } from "./OrderLineItem";
+import { OrderTransaction } from "./OrderTransaction";
+import { GenericRecord } from "#types/storeApi/GenericRecord";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
+import { StateMachineState } from "#types/storeApi/StateMachineState";
+import { Currency } from "#types/storeApi/Currency";
+import { Language } from "#types/storeApi/locale/Language";
+import { ShopwareDocument } from "#types/storeApi/document/ShopwareDocument";
 
 export type Order = {
   id: string;

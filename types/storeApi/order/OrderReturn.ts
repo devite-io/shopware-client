@@ -1,4 +1,4 @@
-import { CalculatedPrice } from "../price";
+import { CalculatedPrice } from "../price/CalculatedPrice";
 
 export type OrderReturn = {
   id?: string;

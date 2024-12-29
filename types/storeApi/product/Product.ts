@@ -1,22 +1,22 @@
-import { GenericRecord } from "../GenericRecord";
-import { CalculatedPrice } from "../price";
-import {
-  ProductConfiguratorSetting,
-  ProductCrossSelling,
-  ProductDownload,
-  ProductManufacturer,
-  ProductReview,
-  ProductStream
-} from ".";
 import { DeliveryTime } from "../DeliveryTime";
 import { Tax } from "../Tax";
 import { Unit } from "../Unit";
-import { Media, ProductMedia } from "../media";
-import { CmsPage } from "../cms";
-import { Category, MainCategory } from "../category";
-import { SeoUrlEntity } from "../seo";
-import { PropertyGroupOption } from "../propertyGroup";
 import { Tag } from "../Tag";
+import { GenericRecord } from "#types/storeApi/GenericRecord";
+import { CalculatedPrice } from "#types/storeApi/price/CalculatedPrice";
+import { ProductDownload } from "#types/storeApi/product/ProductDownload";
+import { ProductManufacturer } from "#types/storeApi/product/ProductManufacturer";
+import { ProductMedia } from "#types/storeApi/media/ProductMedia";
+import { CmsPage } from "#types/storeApi/cms/CmsPage";
+import { Media } from "#types/storeApi/media/Media";
+import { ProductCrossSelling } from "#types/storeApi/product/crossSelling/ProductCrossSelling";
+import { ProductConfiguratorSetting } from "#types/storeApi/product/ProductConfiguratorSetting";
+import { ProductReview } from "#types/storeApi/product/ProductReview";
+import { MainCategory } from "#types/storeApi/category/MainCategory";
+import { SeoUrlEntity } from "#types/storeApi/seo/SeoUrlEntity";
+import { PropertyGroupOption } from "#types/storeApi/propertyGroup/PropertyGroupOption";
+import { ProductStream } from "#types/storeApi/product/ProductStream";
+import { Category } from "#types/storeApi/category/Category";
 
 export type Product = {
   apiAlias: "product";

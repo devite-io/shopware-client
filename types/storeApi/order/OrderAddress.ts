@@ -1,4 +1,4 @@
-import { CustomerAddressBody } from "../customer";
+import { CustomerAddressBody } from "#types/storeApi/customer/CustomerAddressBody";
 
 export type OrderAddress = CustomerAddressBody & {
   id: string;

@@ -1,5 +1,5 @@
-import { Price } from "../price";
 import { GenericRecord } from "../GenericRecord";
+import { Price } from "#types/storeApi/price/Price";
 
 export type ShippingMethodPrice = {
   id: string;

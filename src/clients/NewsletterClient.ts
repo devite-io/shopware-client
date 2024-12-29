@@ -1,10 +1,10 @@
-import { Client } from "#clients";
+import JsonPayload from "#payloads/JsonPayload";
+import Client from "#clients/Client";
 import {
   NewsletterConfirmRequest,
   NewsletterUnsubscribeRequest,
   NewsletterUpdateRequest
-} from "#types";
-import { JsonPayload } from "#payloads";
+} from "#types/clients/NewsletterClient";
 
 class NewsletterClient extends Client {
   /**

@@ -1,5 +1,5 @@
 import { GenericRecord } from "../GenericRecord";
-import { CountryState } from ".";
+import { CountryState } from "./CountryState";
 
 export type Country = {
   id: string;
