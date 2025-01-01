@@ -1,0 +1,34 @@
+import { Order as StoreApiOrder } from "#types/api/store/order/Order";
+import { Rounding } from "#types/api/global/Rounding";
+import { StateMachineState } from "../stateMachine/StateMachineState";
+import { OrderCustomer } from "./OrderCustomer";
+import { Currency } from "../currency/Currency";
+import { Language } from "../locale/Language";
+import { SalesChannel } from "../salesChannel/SalesChannel";
+import { OrderAddress } from "./OrderAddress";
+import { OrderDelivery } from "./delivery/OrderDelivery";
+import { OrderLineItem } from "./lineItem/OrderLineItem";
+import { OrderTransaction } from "./transaction/OrderTransaction";
+import { ShopwareDocument } from "../document/ShopwareDocument";
+import { Tag } from "../Tag";
+import { User } from "../user/User";
+
+export type Order = StoreApiOrder & {
+  readonly autoIncrement: number;
+  itemRounding: Rounding;
+  totalRounding: Rounding;
+  stateMachineState?: StateMachineState;
+  orderCustomer?: OrderCustomer;
+  currency?: Currency;
+  language?: Language;
+  salesChannel?: SalesChannel;
+  addresses?: Array<OrderAddress>;
+  billingAddress?: OrderAddress;
+  deliveries?: Array<OrderDelivery>;
+  lineItems?: Array<OrderLineItem>;
+  transactions?: Array<OrderTransaction>;
+  documents?: Array<ShopwareDocument>;
+  tags?: Array<Tag>;
+  createdBy?: User;
+  updatedBy?: User;
+};

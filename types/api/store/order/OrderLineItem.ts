@@ -1,0 +1,45 @@
+import { LineItemPayload } from "../lineItem/LineItemPayload";
+import { CartPriceQuantity } from "../price/cart/CartPriceQuantity";
+import { GenericRecord } from "#types/api/global/GenericRecord";
+import { Media } from "../media/Media";
+import { OrderDeliveryPosition } from "./delivery/OrderDeliveryPosition";
+import { OrderLineItemDownload } from "./OrderLineItemDownload";
+
+export interface OrderLineItem {
+  apiAlias: "order_line_item";
+  id: string;
+  versionId?: string;
+  orderId: string;
+  orderVersionId?: string;
+  productId?: string;
+  productVersionId?: string;
+  promotionId?: string;
+  parentId?: string;
+  parentVersionId?: string;
+  coverId?: string;
+  identifier: string;
+  referencedId?: string;
+  quantity: number;
+  label: string;
+  payload?: LineItemPayload;
+  good?: boolean;
+  removable?: boolean;
+  stackable?: boolean;
+  position?: number;
+  states: Array<string>;
+  priceDefinition?: CartPriceQuantity;
+  unitPrice?: number;
+  totalPrice?: number;
+  description?: string;
+  type?: string;
+  customFields?: GenericRecord;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  cover?: Media;
+  orderDeliveryPositions?: Array<OrderDeliveryPosition>;
+  downloads?: Array<OrderLineItemDownload>;
+  parent?: OrderLineItem;
+  children: Array<OrderLineItem>;
+  extensions?: object;
+  translated?: object;
+}

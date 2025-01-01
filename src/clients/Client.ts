@@ -1,6 +1,7 @@
-import ShopwareClient from "../ShopwareClient";
-import HTTPRequestMethod from "../HTTPRequestMethod";
+import ShopwareClient from "./ShopwareClient";
+import HTTPRequestMethod from "#http/HTTPRequestMethod";
 import { ClientRequestOptions } from "#types/ClientRequestOptions";
+import StoreShopwareClient from "./StoreShopwareClient";
 
 class Client {
   protected readonly client: ShopwareClient;
@@ -38,11 +39,11 @@ class Client {
   }
 
   protected withContextToken(options: ClientRequestOptions = {}): ClientRequestOptions {
-    return this.client.withContextToken(options);
-  }
+    if (this.client instanceof StoreShopwareClient) {
+      return (this.client as StoreShopwareClient).withContextToken(options);
+    }
 
-  protected async withOAuth(options: ClientRequestOptions = {}): Promise<ClientRequestOptions> {
-    return this.client.withOAuth(options);
+    return options;
   }
 }
 

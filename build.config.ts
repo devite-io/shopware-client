@@ -1,14 +1,9 @@
-import { resolve } from "node:path";
 import { defineBuildConfig } from "unbuild";
+import getTSConfigPaths from "./tsconfig_paths";
 
 export default defineBuildConfig({
   entries: ["./src/index"],
-  alias: {
-    "#types": resolve(__dirname, "./types"),
-    "#clients": resolve(__dirname, "./src/clients"),
-    "#payloads": resolve(__dirname, "./src/payloads"),
-    "#auth": resolve(__dirname, "./src/auth")
-  },
+  alias: getTSConfigPaths(),
   declaration: true,
   rollup: {
     cjsBridge: true,

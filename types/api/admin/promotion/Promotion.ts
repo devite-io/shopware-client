@@ -1,0 +1,45 @@
+import { GenericRecord } from "#types/api/global/GenericRecord";
+import { PromotionSetGroup } from "./PromotionSetGroup";
+import { PromotionSalesChannel } from "./PromotionSalesChannel";
+import { PromotionDiscount } from "./discount/PromotionDiscount";
+import { PromotionIndividualCode } from "./PromotionIndividualCode";
+import { PromotionPersonaRule } from "./rule/PromotionPersonaRule";
+import { PromotionPersonaCustomer } from "./PromotionPersonaCustomer";
+import { PromotionOrderRule } from "./rule/PromotionOrderRule";
+import { PromotionCartRule } from "./rule/PromotionCartRule";
+import { OrderLineItem } from "../order/lineItem/OrderLineItem";
+
+export interface Promotion {
+  id: string;
+  name: string;
+  active?: boolean;
+  validFrom?: string;
+  validUntil?: string;
+  maxRedemptionsGlobal?: number;
+  maxRedemptionsPerCustomer?: number;
+  priority?: number;
+  exclusive?: boolean;
+  code?: string;
+  useCodes?: boolean;
+  useIndividualCodes?: boolean;
+  individualCodePattern?: string;
+  useSetGroups?: boolean;
+  customerRestriction?: boolean;
+  preventCombination?: boolean;
+  readonly orderCount?: number;
+  readonly orderPerCustomerCount?: number;
+  exclusionIds?: Array<string>;
+  customFields?: GenericRecord;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  translated?: object;
+  setgroups?: Array<PromotionSetGroup>;
+  salesChannels?: Array<PromotionSalesChannel>;
+  discounts?: Array<PromotionDiscount>;
+  individualCodes?: Array<PromotionIndividualCode>;
+  personaRules?: Array<PromotionPersonaRule>;
+  personaCustomers?: Array<PromotionPersonaCustomer>;
+  orderRules?: Array<PromotionOrderRule>;
+  cartRules?: Array<PromotionCartRule>;
+  orderLineItems?: Array<OrderLineItem>;
+}

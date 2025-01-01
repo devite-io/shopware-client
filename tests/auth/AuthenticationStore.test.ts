@@ -1,5 +1,7 @@
 import { expect, test } from "vitest";
-import { AuthenticationStore, AuthenticationType, ContextTokenEntry } from "#auth";
+import AuthenticationStore from "#auth/AuthenticationStore";
+import AuthenticationType from "#auth/AuthenticationType";
+import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
 
 test("getOrCreateEntry to create new entry", () => {
   const store = new AuthenticationStore();

@@ -13,8 +13,9 @@
       "#types/*": ["types/*"],
       "#clients/*": ["src/clients/*"],
       "#payloads/*": ["src/payloads/*"],
-      "#auth/*": ["src/auth/*"]
+      "#auth/*": ["src/auth/*"],
+      "#http/*": ["src/http/*"]
     }
   },
-  "include": ["src/**/*.ts"]
+  "include": ["types/**/*.ts"]
 }

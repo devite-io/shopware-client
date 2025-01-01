@@ -1,6 +1,6 @@
 import { ClientResponse } from "./ClientResponse";
 
-export type RequestCacheEntry = {
+export interface RequestCacheEntry {
   cachedAt: number;
   response: ClientResponse;
-};
+}

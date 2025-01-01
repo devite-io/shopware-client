@@ -1,6 +1,8 @@
 import { afterAll, beforeAll, expect, test, vi } from "vitest";
-import { ExpiredError, NotSavedError, OAuthEntry } from "#auth";
-import { JsonPayload } from "#payloads";
+import OAuthEntry from "#auth/entries/OAuthEntry";
+import JsonPayload from "#payloads/JsonPayload";
+import NotSavedError from "#auth/errors/NotSavedError";
+import ExpiredError from "#auth/errors/ExpiredError";
 
 function getTestEntry() {
   return new OAuthEntry("token", "refresh", Date.now() + 3600 * 1000);

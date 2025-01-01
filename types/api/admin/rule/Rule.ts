@@ -1,0 +1,32 @@
+import { Rule as StoreApiRule } from "#types/api/store/Rule";
+import { RuleCondition } from "./RuleCondition";
+import { ProductPrice } from "../product/ProductPrice";
+import { ShippingMethodPrice } from "../shippingMethod/ShippingMethodPrice";
+import { ShippingMethod } from "../shippingMethod/ShippingMethod";
+import { PaymentMethod } from "../paymentMethod/PaymentMethod";
+import { Promotion } from "../promotion/Promotion";
+import { FlowSequence } from "../flow/FlowSequence";
+import { TaxProvider } from "../tax/TaxProvider";
+import { Tag } from "../Tag";
+import { PromotionDiscount } from "../promotion/discount/PromotionDiscount";
+import { PromotionSetGroup } from "../promotion/PromotionSetGroup";
+
+export type Rule = StoreApiRule & {
+  priority?: number;
+  readonly invalid?: boolean;
+  readonly areas?: Array<object>;
+  conditions?: Array<RuleCondition>;
+  productPrices?: Array<ProductPrice>;
+  shippingMethodPrices?: Array<ShippingMethodPrice>;
+  shippingMethodPriceCalculations?: Array<ShippingMethodPrice>;
+  shippingMethods?: Array<ShippingMethod>;
+  paymentMethods?: Array<PaymentMethod>;
+  personaPromotions?: Array<Promotion>;
+  flowSequences?: Array<FlowSequence>;
+  taxProviders?: Array<TaxProvider>;
+  tags?: Array<Tag>;
+  orderPromotions?: Array<Promotion>;
+  cartPromotions?: Array<Promotion>;
+  promotionDiscounts?: Array<PromotionDiscount>;
+  promotionSetGroups?: Array<PromotionSetGroup>;
+};
