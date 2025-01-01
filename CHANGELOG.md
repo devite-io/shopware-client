@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v1.1.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.0.1...v1.1.0)
+
+### 🚀 Enhancements
+
+- Implement admin api ([1a14497](https://github.com/devite-io/shopware-client/commit/1a14497))
+
+### 🩹 Fixes
+
+- Type exports ([e0a922d](https://github.com/devite-io/shopware-client/commit/e0a922d))
+
+### 🏡 Chore
+
+- Automatically include tsconfig paths ([12255dc](https://github.com/devite-io/shopware-client/commit/12255dc))
+- Ignore os files ([c8c620f](https://github.com/devite-io/shopware-client/commit/c8c620f))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.0.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.0.0...v1.0.1)
