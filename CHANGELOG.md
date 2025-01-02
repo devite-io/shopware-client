@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.1.3
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.1.2...v1.1.3)
+
+### 🩹 Fixes
+
+- IsSaved check for client authentication ([3f2d115](https://github.com/devite-io/shopware-client/commit/3f2d115))
+- Don't override options headers ([fe938a5](https://github.com/devite-io/shopware-client/commit/fe938a5))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.1.2
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.1.1...v1.1.2)
