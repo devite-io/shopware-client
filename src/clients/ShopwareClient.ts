@@ -81,9 +81,10 @@ class ShopwareClient {
   }
 
   private async parseBody(response: FetchResponse<Blob>): Promise<Payload<any> | undefined> {
+    const contentType = response.headers.get("Content-Type")?.split(";")[0];
     let payload = undefined;
 
-    switch (response.headers.get("Content-Type")) {
+    switch (contentType) {
       case BinaryPayload.CONTENT_TYPE:
         payload = new BinaryPayload();
         break;
