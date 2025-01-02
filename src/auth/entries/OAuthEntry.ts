@@ -26,7 +26,7 @@ class OAuthEntry implements AuthenticationEntry {
   }
 
   isSaved(): boolean {
-    return this.accessToken !== null && this.refreshToken !== null && this.expiresAt !== null;
+    return this.accessToken !== null && this.expiresAt !== null;
   }
 
   save(response: ClientResponse): void {
