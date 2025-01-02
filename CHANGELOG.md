@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v1.1.2
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.1.1...v1.1.2)
+
+### 🩹 Fixes
+
+- Circular dependencies ([43b439d](https://github.com/devite-io/shopware-client/commit/43b439d))
+- Reading body twice ([5a176e7](https://github.com/devite-io/shopware-client/commit/5a176e7))
+- Support charset descriptors ([dcd35d7](https://github.com/devite-io/shopware-client/commit/dcd35d7))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.1.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.1.0...v1.1.1)
