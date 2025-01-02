@@ -40,7 +40,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFiles(limit?: number, page?: number, query?: string): Promise<FileListResponse> {
-    const response = await this.get(`/-file`, {
+    const response = await this.get(`/import-export-file`, {
       query: { limit, page, query },
       headers: { Accept: "application/json" }
     });
@@ -57,7 +57,7 @@ class DeliveryTimeClient extends Client {
     request: FileCreateRequest,
     responseDetails?: "basic" | "detail"
   ): Promise<FileCreateResponse> {
-    const response = await this.post(`/-file`, {
+    const response = await this.post(`/import-export-file`, {
       query: { _response: responseDetails },
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
@@ -73,7 +73,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchFiles(request: FileListSearchRequest): Promise<FileListSearchResponse> {
-    const response = await this.get(`/search/-file`, {
+    const response = await this.get(`/search/import-export-file`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -90,7 +90,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFile(id: string): Promise<FileSingleResponse> {
-    const response = await this.get(`/-file/${id}`, { headers: { Accept: "application/json" } });
+    const response = await this.get(`/import-export-file/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FileSingleResponse;
@@ -102,7 +104,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async deleteFile(id: string): Promise<void> {
-    const response = await this.delete(`/-file/${id}`);
+    const response = await this.delete(`/import-export-file/${id}`);
 
     if (response.statusCode === 204) return;
 
@@ -117,7 +119,7 @@ class DeliveryTimeClient extends Client {
     request: FileUpdateRequest,
     responseDetails?: "basic" | "detail"
   ): Promise<FileUpdateResponse> {
-    const response = await this.patch(`/-file/${id}`, {
+    const response = await this.patch(`/import-export-file/${id}`, {
       query: { _response: responseDetails },
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
@@ -133,7 +135,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFileAggregate(request: FileAggregationRequest): Promise<FileAggregationResponse> {
-    const response = await this.post(`/aggregate/-file`, {
+    const response = await this.post(`/aggregate/import-export-file`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
