@@ -5,12 +5,12 @@ import {
   CustomerLoginRequest,
   CustomerLoginResponse,
   CustomerLogoutResponse
-} from "#types/clients/store/CustomerAuthenticationClient";
+} from "#types/clients/store/CustomerAuthClient";
 import JsonPayload from "#payloads/JsonPayload";
 import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
 import AuthenticationType from "#auth/AuthenticationType";
 
-class CustomerAuthenticationClient extends Client {
+class CustomerAuthClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
@@ -60,4 +60,4 @@ class CustomerAuthenticationClient extends Client {
   }
 }
 
-export default CustomerAuthenticationClient;
+export default CustomerAuthClient;

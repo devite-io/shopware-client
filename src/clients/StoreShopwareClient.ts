@@ -9,7 +9,7 @@ import CartClient from "./store/CartClient";
 import CategoryClient from "./store/CategoryClient";
 import ContentClient from "./store/ContentClient";
 import ContextClient from "./store/ContextClient";
-import CustomerAuthenticationClient from "./store/CustomerAuthenticationClient";
+import CustomerAuthClient from "./store/CustomerAuthClient";
 import DocumentClient from "./store/DocumentClient";
 import GatewayClient from "./store/GatewayClient";
 import NewsletterClient from "./store/NewsletterClient";
@@ -76,8 +76,8 @@ class StoreShopwareClient extends ShopwareClient {
     return new ContextClient(this);
   }
 
-  public forCustomerAuthentication(): CustomerAuthenticationClient {
-    return new CustomerAuthenticationClient(this);
+  public forCustomerAuth(): CustomerAuthClient {
+    return new CustomerAuthClient(this);
   }
 
   public forDocument(): DocumentClient {
