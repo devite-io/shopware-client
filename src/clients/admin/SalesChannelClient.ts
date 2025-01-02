@@ -54,7 +54,10 @@ class SalesChannelClient extends Client {
     page?: number,
     query?: string
   ): Promise<SalesChannelListResponse> {
-    const response = await this.get(`/sales-channel`, { query: { limit, page, query } });
+    const response = await this.get(`/sales-channel`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListResponse;
@@ -73,6 +76,7 @@ class SalesChannelClient extends Client {
   ): Promise<SalesChannelCreateResponse> {
     const response = await this.post(`/sales-channel`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -90,7 +94,10 @@ class SalesChannelClient extends Client {
   public async searchSalesChannels(
     request: SalesChannelListSearchRequest
   ): Promise<SalesChannelListSearchResponse> {
-    const response = await this.get(`/search/sales-channel`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/sales-channel`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListSearchResponse;
@@ -104,7 +111,9 @@ class SalesChannelClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSalesChannel(id: string): Promise<SalesChannelSingleResponse> {
-    const response = await this.get(`/sales-channel/${id}`);
+    const response = await this.get(`/sales-channel/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelSingleResponse;
@@ -137,6 +146,7 @@ class SalesChannelClient extends Client {
   ): Promise<SalesChannelUpdateResponse> {
     const response = await this.patch(`/sales-channel/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -155,6 +165,7 @@ class SalesChannelClient extends Client {
     request: SalesChannelAggregationRequest
   ): Promise<SalesChannelAggregationResponse> {
     const response = await this.post(`/aggregate/sales-channel`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -176,7 +187,10 @@ class SalesChannelClient extends Client {
     page?: number,
     query?: string
   ): Promise<AnalyticsListResponse> {
-    const response = await this.get(`/sales-channel-analytics`, { query: { limit, page, query } });
+    const response = await this.get(`/sales-channel-analytics`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AnalyticsListResponse;
@@ -195,6 +209,7 @@ class SalesChannelClient extends Client {
   ): Promise<AnalyticsCreateResponse> {
     const response = await this.post(`/sales-channel-analytics`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -211,6 +226,7 @@ class SalesChannelClient extends Client {
     request: AnalyticsListSearchRequest
   ): Promise<AnalyticsListSearchResponse> {
     const response = await this.get(`/search/sales-channel-analytics`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -226,7 +242,9 @@ class SalesChannelClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getAnalytics(id: string): Promise<AnalyticsSingleResponse> {
-    const response = await this.get(`/sales-channel-analytics/${id}`);
+    const response = await this.get(`/sales-channel-analytics/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AnalyticsSingleResponse;
@@ -255,6 +273,7 @@ class SalesChannelClient extends Client {
   ): Promise<AnalyticsUpdateResponse> {
     const response = await this.patch(`/sales-channel-analytics/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -271,6 +290,7 @@ class SalesChannelClient extends Client {
     request: AnalyticsAggregationRequest
   ): Promise<AnalyticsAggregationResponse> {
     const response = await this.post(`/aggregate/sales-channel-analytics`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -292,7 +312,10 @@ class SalesChannelClient extends Client {
     page?: number,
     query?: string
   ): Promise<DomainListResponse> {
-    const response = await this.get(`/sales-channel-domain`, { query: { limit, page, query } });
+    const response = await this.get(`/sales-channel-domain`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DomainListResponse;
@@ -311,6 +334,7 @@ class SalesChannelClient extends Client {
   ): Promise<DomainCreateResponse> {
     const response = await this.post(`/sales-channel-domain`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -325,6 +349,7 @@ class SalesChannelClient extends Client {
    */
   public async searchDomains(request: DomainListSearchRequest): Promise<DomainListSearchResponse> {
     const response = await this.get(`/search/sales-channel-domain`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -340,7 +365,9 @@ class SalesChannelClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDomain(id: string): Promise<DomainSingleResponse> {
-    const response = await this.get(`/sales-channel-domain/${id}`);
+    const response = await this.get(`/sales-channel-domain/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DomainSingleResponse;
@@ -369,6 +396,7 @@ class SalesChannelClient extends Client {
   ): Promise<DomainUpdateResponse> {
     const response = await this.patch(`/sales-channel-domain/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -385,6 +413,7 @@ class SalesChannelClient extends Client {
     request: DomainAggregationRequest
   ): Promise<DomainAggregationResponse> {
     const response = await this.post(`/aggregate/sales-channel-domain`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -400,7 +429,10 @@ class SalesChannelClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTypes(limit?: number, page?: number, query?: string): Promise<TypeListResponse> {
-    const response = await this.get(`/sales-channel-type`, { query: { limit, page, query } });
+    const response = await this.get(`/sales-channel-type`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as TypeListResponse;
 
@@ -416,6 +448,7 @@ class SalesChannelClient extends Client {
   ): Promise<TypeCreateResponse> {
     const response = await this.post(`/sales-channel-type`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -430,6 +463,7 @@ class SalesChannelClient extends Client {
    */
   public async searchTypes(request: TypeListSearchRequest): Promise<TypeListSearchResponse> {
     const response = await this.get(`/search/sales-channel-type`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -443,7 +477,9 @@ class SalesChannelClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getType(id: string): Promise<TypeSingleResponse> {
-    const response = await this.get(`/sales-channel-type/${id}`);
+    const response = await this.get(`/sales-channel-type/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeSingleResponse;
@@ -472,6 +508,7 @@ class SalesChannelClient extends Client {
   ): Promise<TypeUpdateResponse> {
     const response = await this.patch(`/sales-channel-type/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -486,6 +523,7 @@ class SalesChannelClient extends Client {
    */
   public async getTypeAggregate(request: TypeAggregationRequest): Promise<TypeAggregationResponse> {
     const response = await this.post(`/aggregate/sales-channel-type`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

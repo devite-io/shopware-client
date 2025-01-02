@@ -74,7 +74,10 @@ class PromotionClient extends Client {
     page?: number,
     query?: string
   ): Promise<PromotionListResponse> {
-    const response = await this.get(`/promotion`, { query: { limit, page, query } });
+    const response = await this.get(`/promotion`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionListResponse;
@@ -93,6 +96,7 @@ class PromotionClient extends Client {
   ): Promise<PromotionCreateResponse> {
     const response = await this.post(`/promotion`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -108,7 +112,10 @@ class PromotionClient extends Client {
   public async searchPromotions(
     request: PromotionListSearchRequest
   ): Promise<PromotionListSearchResponse> {
-    const response = await this.get(`/search/promotion`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/promotion`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionListSearchResponse;
@@ -122,7 +129,9 @@ class PromotionClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getPromotion(id: string): Promise<PromotionSingleResponse> {
-    const response = await this.get(`/promotion/${id}`);
+    const response = await this.get(`/promotion/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionSingleResponse;
@@ -151,6 +160,7 @@ class PromotionClient extends Client {
   ): Promise<PromotionUpdateResponse> {
     const response = await this.patch(`/promotion/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -167,6 +177,7 @@ class PromotionClient extends Client {
     request: PromotionAggregationRequest
   ): Promise<PromotionAggregationResponse> {
     const response = await this.post(`/aggregate/promotion`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -188,7 +199,10 @@ class PromotionClient extends Client {
     page?: number,
     query?: string
   ): Promise<DiscountListResponse> {
-    const response = await this.get(`/promotion-discount`, { query: { limit, page, query } });
+    const response = await this.get(`/promotion-discount`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountListResponse;
@@ -207,6 +221,7 @@ class PromotionClient extends Client {
   ): Promise<DiscountCreateResponse> {
     const response = await this.post(`/promotion-discount`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -223,6 +238,7 @@ class PromotionClient extends Client {
     request: DiscountListSearchRequest
   ): Promise<DiscountListSearchResponse> {
     const response = await this.get(`/search/promotion-discount`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -238,7 +254,9 @@ class PromotionClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDiscount(id: string): Promise<DiscountSingleResponse> {
-    const response = await this.get(`/promotion-discount/${id}`);
+    const response = await this.get(`/promotion-discount/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountSingleResponse;
@@ -267,6 +285,7 @@ class PromotionClient extends Client {
   ): Promise<DiscountUpdateResponse> {
     const response = await this.patch(`/promotion-discount/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -283,6 +302,7 @@ class PromotionClient extends Client {
     request: DiscountAggregationRequest
   ): Promise<DiscountAggregationResponse> {
     const response = await this.post(`/aggregate/promotion-discount`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -304,7 +324,10 @@ class PromotionClient extends Client {
     page?: number,
     query?: string
   ): Promise<DiscountPriceListResponse> {
-    const response = await this.get(`/promotion-discount-price`, { query: { limit, page, query } });
+    const response = await this.get(`/promotion-discount-price`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountPriceListResponse;
@@ -323,6 +346,7 @@ class PromotionClient extends Client {
   ): Promise<DiscountPriceCreateResponse> {
     const response = await this.post(`/promotion-discount-price`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -341,6 +365,7 @@ class PromotionClient extends Client {
     request: DiscountPriceListSearchRequest
   ): Promise<DiscountPriceListSearchResponse> {
     const response = await this.get(`/search/promotion-discount-price`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -356,7 +381,9 @@ class PromotionClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDiscountPrice(id: string): Promise<DiscountPriceSingleResponse> {
-    const response = await this.get(`/promotion-discount-price/${id}`);
+    const response = await this.get(`/promotion-discount-price/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountPriceSingleResponse;
@@ -389,6 +416,7 @@ class PromotionClient extends Client {
   ): Promise<DiscountPriceUpdateResponse> {
     const response = await this.patch(`/promotion-discount-price/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -407,6 +435,7 @@ class PromotionClient extends Client {
     request: DiscountPriceAggregationRequest
   ): Promise<DiscountPriceAggregationResponse> {
     const response = await this.post(`/aggregate/promotion-discount-price`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -429,7 +458,8 @@ class PromotionClient extends Client {
     query?: string
   ): Promise<IndividualCodeListResponse> {
     const response = await this.get(`/promotion-individual-code`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -449,6 +479,7 @@ class PromotionClient extends Client {
   ): Promise<IndividualCodeCreateResponse> {
     const response = await this.post(`/promotion-individual-code`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -467,6 +498,7 @@ class PromotionClient extends Client {
     request: IndividualCodeListSearchRequest
   ): Promise<IndividualCodeListSearchResponse> {
     const response = await this.get(`/search/promotion-individual-code`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -482,7 +514,9 @@ class PromotionClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getIndividualCode(id: string): Promise<IndividualCodeSingleResponse> {
-    const response = await this.get(`/promotion-individual-code/${id}`);
+    const response = await this.get(`/promotion-individual-code/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IndividualCodeSingleResponse;
@@ -515,6 +549,7 @@ class PromotionClient extends Client {
   ): Promise<IndividualCodeUpdateResponse> {
     const response = await this.patch(`/promotion-individual-code/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -533,6 +568,7 @@ class PromotionClient extends Client {
     request: IndividualCodeAggregationRequest
   ): Promise<IndividualCodeAggregationResponse> {
     const response = await this.post(`/aggregate/promotion-individual-code`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -554,7 +590,10 @@ class PromotionClient extends Client {
     page?: number,
     query?: string
   ): Promise<SalesChannelListResponse> {
-    const response = await this.get(`/promotion-sales-channel`, { query: { limit, page, query } });
+    const response = await this.get(`/promotion-sales-channel`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListResponse;
@@ -573,6 +612,7 @@ class PromotionClient extends Client {
   ): Promise<SalesChannelCreateResponse> {
     const response = await this.post(`/promotion-sales-channel`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -591,6 +631,7 @@ class PromotionClient extends Client {
     request: SalesChannelListSearchRequest
   ): Promise<SalesChannelListSearchResponse> {
     const response = await this.get(`/search/promotion-sales-channel`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -606,7 +647,9 @@ class PromotionClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSalesChannel(id: string): Promise<SalesChannelSingleResponse> {
-    const response = await this.get(`/promotion-sales-channel/${id}`);
+    const response = await this.get(`/promotion-sales-channel/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelSingleResponse;
@@ -639,6 +682,7 @@ class PromotionClient extends Client {
   ): Promise<SalesChannelUpdateResponse> {
     const response = await this.patch(`/promotion-sales-channel/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -657,6 +701,7 @@ class PromotionClient extends Client {
     request: SalesChannelAggregationRequest
   ): Promise<SalesChannelAggregationResponse> {
     const response = await this.post(`/aggregate/promotion-sales-channel`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -678,7 +723,10 @@ class PromotionClient extends Client {
     page?: number,
     query?: string
   ): Promise<SetGroupListResponse> {
-    const response = await this.get(`/promotion-setgroup`, { query: { limit, page, query } });
+    const response = await this.get(`/promotion-setgroup`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetGroupListResponse;
@@ -697,6 +745,7 @@ class PromotionClient extends Client {
   ): Promise<SetGroupCreateResponse> {
     const response = await this.post(`/promotion-setgroup`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -713,6 +762,7 @@ class PromotionClient extends Client {
     request: SetGroupListSearchRequest
   ): Promise<SetGroupListSearchResponse> {
     const response = await this.get(`/search/promotion-setgroup`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -728,7 +778,9 @@ class PromotionClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSetGroup(id: string): Promise<SetGroupSingleResponse> {
-    const response = await this.get(`/promotion-setgroup/${id}`);
+    const response = await this.get(`/promotion-setgroup/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetGroupSingleResponse;
@@ -757,6 +809,7 @@ class PromotionClient extends Client {
   ): Promise<SetGroupUpdateResponse> {
     const response = await this.patch(`/promotion-setgroup/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -773,6 +826,7 @@ class PromotionClient extends Client {
     request: SetGroupAggregationRequest
   ): Promise<SetGroupAggregationResponse> {
     const response = await this.post(`/aggregate/promotion-setgroup`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

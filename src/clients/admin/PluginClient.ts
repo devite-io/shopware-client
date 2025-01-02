@@ -22,7 +22,10 @@ class PluginClient extends Client {
     page?: number,
     query?: string
   ): Promise<PluginListResponse> {
-    const response = await this.get(`/plugin`, { query: { limit, page, query } });
+    const response = await this.get(`/plugin`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginListResponse;
@@ -41,6 +44,7 @@ class PluginClient extends Client {
   ): Promise<PluginCreateResponse> {
     const response = await this.post(`/plugin`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -54,7 +58,10 @@ class PluginClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchPlugins(request: PluginListSearchRequest): Promise<PluginListSearchResponse> {
-    const response = await this.get(`/search/plugin`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/plugin`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginListSearchResponse;
@@ -68,7 +75,7 @@ class PluginClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getPlugin(id: string): Promise<PluginSingleResponse> {
-    const response = await this.get(`/plugin/${id}`);
+    const response = await this.get(`/plugin/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginSingleResponse;
@@ -97,6 +104,7 @@ class PluginClient extends Client {
   ): Promise<PluginUpdateResponse> {
     const response = await this.patch(`/plugin/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -113,6 +121,7 @@ class PluginClient extends Client {
     request: PluginAggregationRequest
   ): Promise<PluginAggregationResponse> {
     const response = await this.post(`/aggregate/plugin`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

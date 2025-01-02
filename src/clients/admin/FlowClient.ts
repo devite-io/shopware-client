@@ -40,7 +40,10 @@ class FlowClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFlows(limit?: number, page?: number, query?: string): Promise<FlowListResponse> {
-    const response = await this.get(`/flow`, { query: { limit, page, query } });
+    const response = await this.get(`/flow`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as FlowListResponse;
 
@@ -56,6 +59,7 @@ class FlowClient extends Client {
   ): Promise<FlowCreateResponse> {
     const response = await this.post(`/flow`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -69,7 +73,10 @@ class FlowClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchFlows(request: FlowListSearchRequest): Promise<FlowListSearchResponse> {
-    const response = await this.get(`/search/flow`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/flow`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowListSearchResponse;
@@ -81,7 +88,7 @@ class FlowClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFlow(id: string): Promise<FlowSingleResponse> {
-    const response = await this.get(`/flow/${id}`);
+    const response = await this.get(`/flow/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSingleResponse;
@@ -110,6 +117,7 @@ class FlowClient extends Client {
   ): Promise<FlowUpdateResponse> {
     const response = await this.patch(`/flow/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -124,6 +132,7 @@ class FlowClient extends Client {
    */
   public async getFlowAggregate(request: FlowAggregationRequest): Promise<FlowAggregationResponse> {
     const response = await this.post(`/aggregate/flow`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -143,7 +152,10 @@ class FlowClient extends Client {
     page?: number,
     query?: string
   ): Promise<FlowSequenceListResponse> {
-    const response = await this.get(`/flow-sequence`, { query: { limit, page, query } });
+    const response = await this.get(`/flow-sequence`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceListResponse;
@@ -162,6 +174,7 @@ class FlowClient extends Client {
   ): Promise<FlowSequenceCreateResponse> {
     const response = await this.post(`/flow-sequence`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -179,7 +192,10 @@ class FlowClient extends Client {
   public async searchFlowSequences(
     request: FlowSequenceListSearchRequest
   ): Promise<FlowSequenceListSearchResponse> {
-    const response = await this.get(`/search/flow-sequence`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/flow-sequence`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceListSearchResponse;
@@ -193,7 +209,9 @@ class FlowClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFlowSequence(id: string): Promise<FlowSequenceSingleResponse> {
-    const response = await this.get(`/flow-sequence/${id}`);
+    const response = await this.get(`/flow-sequence/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceSingleResponse;
@@ -226,6 +244,7 @@ class FlowClient extends Client {
   ): Promise<FlowSequenceUpdateResponse> {
     const response = await this.patch(`/flow-sequence/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -244,6 +263,7 @@ class FlowClient extends Client {
     request: FlowSequenceAggregationRequest
   ): Promise<FlowSequenceAggregationResponse> {
     const response = await this.post(`/aggregate/flow-sequence`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -265,7 +285,10 @@ class FlowClient extends Client {
     page?: number,
     query?: string
   ): Promise<FlowTemplateListResponse> {
-    const response = await this.get(`/flow-template`, { query: { limit, page, query } });
+    const response = await this.get(`/flow-template`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateListResponse;
@@ -284,6 +307,7 @@ class FlowClient extends Client {
   ): Promise<FlowTemplateCreateResponse> {
     const response = await this.post(`/flow-template`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -301,7 +325,10 @@ class FlowClient extends Client {
   public async searchFlowTemplates(
     request: FlowTemplateListSearchRequest
   ): Promise<FlowTemplateListSearchResponse> {
-    const response = await this.get(`/search/flow-template`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/flow-template`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateListSearchResponse;
@@ -315,7 +342,9 @@ class FlowClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFlowTemplate(id: string): Promise<FlowTemplateSingleResponse> {
-    const response = await this.get(`/flow-template/${id}`);
+    const response = await this.get(`/flow-template/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateSingleResponse;
@@ -348,6 +377,7 @@ class FlowClient extends Client {
   ): Promise<FlowTemplateUpdateResponse> {
     const response = await this.patch(`/flow-template/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -366,6 +396,7 @@ class FlowClient extends Client {
     request: FlowTemplateAggregationRequest
   ): Promise<FlowTemplateAggregationResponse> {
     const response = await this.post(`/aggregate/flow-template`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

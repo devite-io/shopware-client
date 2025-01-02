@@ -50,7 +50,10 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTaxes(limit?: number, page?: number, query?: string): Promise<TaxListResponse> {
-    const response = await this.get(`/tax`, { query: { limit, page, query } });
+    const response = await this.get(`/tax`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as TaxListResponse;
 
@@ -66,6 +69,7 @@ class TaxClient extends Client {
   ): Promise<TaxCreateResponse> {
     const response = await this.post(`/tax`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -79,7 +83,10 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchTaxes(request: TaxListSearchRequest): Promise<TaxListSearchResponse> {
-    const response = await this.get(`/search/tax`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/tax`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TaxListSearchResponse;
@@ -91,7 +98,7 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTax(id: string): Promise<TaxSingleResponse> {
-    const response = await this.get(`/tax/${id}`);
+    const response = await this.get(`/tax/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TaxSingleResponse;
@@ -120,6 +127,7 @@ class TaxClient extends Client {
   ): Promise<TaxUpdateResponse> {
     const response = await this.patch(`/tax/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -134,6 +142,7 @@ class TaxClient extends Client {
    */
   public async getTaxAggregate(request: TaxAggregationRequest): Promise<TaxAggregationResponse> {
     const response = await this.post(`/aggregate/tax`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -153,7 +162,10 @@ class TaxClient extends Client {
     page?: number,
     query?: string
   ): Promise<ProviderListResponse> {
-    const response = await this.get(`/tax-provider`, { query: { limit, page, query } });
+    const response = await this.get(`/tax-provider`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderListResponse;
@@ -172,6 +184,7 @@ class TaxClient extends Client {
   ): Promise<ProviderCreateResponse> {
     const response = await this.post(`/tax-provider`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -187,7 +200,10 @@ class TaxClient extends Client {
   public async searchProviders(
     request: ProviderListSearchRequest
   ): Promise<ProviderListSearchResponse> {
-    const response = await this.get(`/search/tax-provider`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/tax-provider`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderListSearchResponse;
@@ -201,7 +217,9 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getProvider(id: string): Promise<ProviderSingleResponse> {
-    const response = await this.get(`/tax-provider/${id}`);
+    const response = await this.get(`/tax-provider/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderSingleResponse;
@@ -230,6 +248,7 @@ class TaxClient extends Client {
   ): Promise<ProviderUpdateResponse> {
     const response = await this.patch(`/tax-provider/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -246,6 +265,7 @@ class TaxClient extends Client {
     request: ProviderAggregationRequest
   ): Promise<ProviderAggregationResponse> {
     const response = await this.post(`/aggregate/tax-provider`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -263,7 +283,10 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRules(limit?: number, page?: number, query?: string): Promise<RuleListResponse> {
-    const response = await this.get(`/tax-rule`, { query: { limit, page, query } });
+    const response = await this.get(`/tax-rule`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as RuleListResponse;
 
@@ -279,6 +302,7 @@ class TaxClient extends Client {
   ): Promise<RuleCreateResponse> {
     const response = await this.post(`/tax-rule`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -292,7 +316,10 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchRules(request: RuleListSearchRequest): Promise<RuleListSearchResponse> {
-    const response = await this.get(`/search/tax-rule`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/tax-rule`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleListSearchResponse;
@@ -304,7 +331,7 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRule(id: string): Promise<RuleSingleResponse> {
-    const response = await this.get(`/tax-rule/${id}`);
+    const response = await this.get(`/tax-rule/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleSingleResponse;
@@ -333,6 +360,7 @@ class TaxClient extends Client {
   ): Promise<RuleUpdateResponse> {
     const response = await this.patch(`/tax-rule/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -347,6 +375,7 @@ class TaxClient extends Client {
    */
   public async getRuleAggregate(request: RuleAggregationRequest): Promise<RuleAggregationResponse> {
     const response = await this.post(`/aggregate/tax-rule`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -366,7 +395,10 @@ class TaxClient extends Client {
     page?: number,
     query?: string
   ): Promise<RuleTypeListResponse> {
-    const response = await this.get(`/tax-rule-type`, { query: { limit, page, query } });
+    const response = await this.get(`/tax-rule-type`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeListResponse;
@@ -385,6 +417,7 @@ class TaxClient extends Client {
   ): Promise<RuleTypeCreateResponse> {
     const response = await this.post(`/tax-rule-type`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -400,7 +433,10 @@ class TaxClient extends Client {
   public async searchRuleTypes(
     request: RuleTypeListSearchRequest
   ): Promise<RuleTypeListSearchResponse> {
-    const response = await this.get(`/search/tax-rule-type`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/tax-rule-type`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeListSearchResponse;
@@ -414,7 +450,9 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRuleType(id: string): Promise<RuleTypeSingleResponse> {
-    const response = await this.get(`/tax-rule-type/${id}`);
+    const response = await this.get(`/tax-rule-type/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeSingleResponse;
@@ -443,6 +481,7 @@ class TaxClient extends Client {
   ): Promise<RuleTypeUpdateResponse> {
     const response = await this.patch(`/tax-rule-type/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -459,6 +498,7 @@ class TaxClient extends Client {
     request: RuleTypeAggregationRequest
   ): Promise<RuleTypeAggregationResponse> {
     const response = await this.post(`/aggregate/tax-rule-type`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

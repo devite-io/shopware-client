@@ -40,7 +40,10 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFiles(limit?: number, page?: number, query?: string): Promise<FileListResponse> {
-    const response = await this.get(`/-file`, { query: { limit, page, query } });
+    const response = await this.get(`/-file`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as FileListResponse;
 
@@ -56,6 +59,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<FileCreateResponse> {
     const response = await this.post(`/-file`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -70,6 +74,7 @@ class DeliveryTimeClient extends Client {
    */
   public async searchFiles(request: FileListSearchRequest): Promise<FileListSearchResponse> {
     const response = await this.get(`/search/-file`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -85,7 +90,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFile(id: string): Promise<FileSingleResponse> {
-    const response = await this.get(`/-file/${id}`);
+    const response = await this.get(`/-file/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FileSingleResponse;
@@ -114,6 +119,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<FileUpdateResponse> {
     const response = await this.patch(`/-file/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -128,6 +134,7 @@ class DeliveryTimeClient extends Client {
    */
   public async getFileAggregate(request: FileAggregationRequest): Promise<FileAggregationResponse> {
     const response = await this.post(`/aggregate/-file`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -143,7 +150,10 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getLogs(limit?: number, page?: number, query?: string): Promise<LogListResponse> {
-    const response = await this.get(`/import-export-log`, { query: { limit, page, query } });
+    const response = await this.get(`/import-export-log`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as LogListResponse;
 
@@ -159,6 +169,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<LogCreateResponse> {
     const response = await this.post(`/import-export-log`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -173,6 +184,7 @@ class DeliveryTimeClient extends Client {
    */
   public async searchLogs(request: LogListSearchRequest): Promise<LogListSearchResponse> {
     const response = await this.get(`/search/import-export-log`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -186,7 +198,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getLog(id: string): Promise<LogSingleResponse> {
-    const response = await this.get(`/import-export-log/${id}`);
+    const response = await this.get(`/import-export-log/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogSingleResponse;
@@ -215,6 +229,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<LogUpdateResponse> {
     const response = await this.patch(`/import-export-log/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -229,6 +244,7 @@ class DeliveryTimeClient extends Client {
    */
   public async getLogAggregate(request: LogAggregationRequest): Promise<LogAggregationResponse> {
     const response = await this.post(`/aggregate/import-export-log`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -248,7 +264,10 @@ class DeliveryTimeClient extends Client {
     page?: number,
     query?: string
   ): Promise<ProfileListResponse> {
-    const response = await this.get(`/import-export-profile`, { query: { limit, page, query } });
+    const response = await this.get(`/import-export-profile`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProfileListResponse;
@@ -267,6 +286,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<ProfileCreateResponse> {
     const response = await this.post(`/import-export-profile`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -283,6 +303,7 @@ class DeliveryTimeClient extends Client {
     request: ProfileListSearchRequest
   ): Promise<ProfileListSearchResponse> {
     const response = await this.get(`/search/import-export-profile`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -298,7 +319,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getProfile(id: string): Promise<ProfileSingleResponse> {
-    const response = await this.get(`/import-export-profile/${id}`);
+    const response = await this.get(`/import-export-profile/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProfileSingleResponse;
@@ -327,6 +350,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<ProfileUpdateResponse> {
     const response = await this.patch(`/import-export-profile/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -343,6 +367,7 @@ class DeliveryTimeClient extends Client {
     request: ProfileAggregationRequest
   ): Promise<ProfileAggregationResponse> {
     const response = await this.post(`/aggregate/import-export-profile`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

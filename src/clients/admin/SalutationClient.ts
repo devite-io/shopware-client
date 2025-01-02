@@ -22,7 +22,10 @@ class SalutationClient extends Client {
     page?: number,
     query?: string
   ): Promise<SalutationListResponse> {
-    const response = await this.get(`/salutation`, { query: { limit, page, query } });
+    const response = await this.get(`/salutation`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationListResponse;
@@ -41,6 +44,7 @@ class SalutationClient extends Client {
   ): Promise<SalutationCreateResponse> {
     const response = await this.post(`/salutation`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -58,7 +62,10 @@ class SalutationClient extends Client {
   public async searchSalutations(
     request: SalutationListSearchRequest
   ): Promise<SalutationListSearchResponse> {
-    const response = await this.get(`/search/salutation`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/salutation`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationListSearchResponse;
@@ -72,7 +79,9 @@ class SalutationClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSalutation(id: string): Promise<SalutationSingleResponse> {
-    const response = await this.get(`/salutation/${id}`);
+    const response = await this.get(`/salutation/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationSingleResponse;
@@ -103,6 +112,7 @@ class SalutationClient extends Client {
   ): Promise<SalutationUpdateResponse> {
     const response = await this.patch(`/salutation/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -121,6 +131,7 @@ class SalutationClient extends Client {
     request: SalutationAggregationRequest
   ): Promise<SalutationAggregationResponse> {
     const response = await this.post(`/aggregate/salutation`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

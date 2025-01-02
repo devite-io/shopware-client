@@ -121,7 +121,10 @@ class MediaClient extends Client {
     page?: number,
     query?: string
   ): Promise<MediaListResponse> {
-    const response = await this.get(`/media`, { query: { limit, page, query } });
+    const response = await this.get(`/media`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaListResponse;
@@ -138,6 +141,7 @@ class MediaClient extends Client {
   ): Promise<MediaCreateResponse> {
     const response = await this.post(`/media`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -151,7 +155,10 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchMedia(request: MediaListSearchRequest): Promise<MediaListSearchResponse> {
-    const response = await this.get(`/search/media`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/media`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaListSearchResponse;
@@ -163,7 +170,7 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getMedia(id: string): Promise<MediaSingleResponse> {
-    const response = await this.get(`/media/${id}`);
+    const response = await this.get(`/media/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaSingleResponse;
@@ -192,6 +199,7 @@ class MediaClient extends Client {
   ): Promise<MediaUpdateResponse> {
     const response = await this.patch(`/media/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -208,6 +216,7 @@ class MediaClient extends Client {
     request: MediaAggregationRequest
   ): Promise<MediaAggregationResponse> {
     const response = await this.post(`/aggregate/media`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -227,7 +236,10 @@ class MediaClient extends Client {
     page?: number,
     query?: string
   ): Promise<DefaultFolderListResponse> {
-    const response = await this.get(`/media-default-folder`, { query: { limit, page, query } });
+    const response = await this.get(`/media-default-folder`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DefaultFolderListResponse;
@@ -246,6 +258,7 @@ class MediaClient extends Client {
   ): Promise<DefaultFolderCreateResponse> {
     const response = await this.post(`/media-default-folder`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -264,6 +277,7 @@ class MediaClient extends Client {
     request: DefaultFolderListSearchRequest
   ): Promise<DefaultFolderListSearchResponse> {
     const response = await this.get(`/search/media-default-folder`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -279,7 +293,9 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDefaultFolder(id: string): Promise<DefaultFolderSingleResponse> {
-    const response = await this.get(`/media-default-folder/${id}`);
+    const response = await this.get(`/media-default-folder/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DefaultFolderSingleResponse;
@@ -312,6 +328,7 @@ class MediaClient extends Client {
   ): Promise<DefaultFolderUpdateResponse> {
     const response = await this.patch(`/media-default-folder/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -330,6 +347,7 @@ class MediaClient extends Client {
     request: DefaultFolderAggregationRequest
   ): Promise<DefaultFolderAggregationResponse> {
     const response = await this.post(`/aggregate/media-default-folder`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -351,7 +369,10 @@ class MediaClient extends Client {
     page?: number,
     query?: string
   ): Promise<FolderListResponse> {
-    const response = await this.get(`/media-folder`, { query: { limit, page, query } });
+    const response = await this.get(`/media-folder`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderListResponse;
@@ -370,6 +391,7 @@ class MediaClient extends Client {
   ): Promise<FolderCreateResponse> {
     const response = await this.post(`/media-folder`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -383,7 +405,10 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchFolders(request: FolderListSearchRequest): Promise<FolderListSearchResponse> {
-    const response = await this.get(`/search/media-folder`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/media-folder`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderListSearchResponse;
@@ -397,7 +422,9 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFolder(id: string): Promise<FolderSingleResponse> {
-    const response = await this.get(`/media-folder/${id}`);
+    const response = await this.get(`/media-folder/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderSingleResponse;
@@ -426,6 +453,7 @@ class MediaClient extends Client {
   ): Promise<FolderUpdateResponse> {
     const response = await this.patch(`/media-folder/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -442,6 +470,7 @@ class MediaClient extends Client {
     request: FolderAggregationRequest
   ): Promise<FolderAggregationResponse> {
     const response = await this.post(`/aggregate/media-folder`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -462,7 +491,8 @@ class MediaClient extends Client {
     query?: string
   ): Promise<FolderConfigListResponse> {
     const response = await this.get(`/media-folder-configuration`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -482,6 +512,7 @@ class MediaClient extends Client {
   ): Promise<FolderConfigCreateResponse> {
     const response = await this.post(`/media-folder-configuration`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -500,6 +531,7 @@ class MediaClient extends Client {
     request: FolderConfigListSearchRequest
   ): Promise<FolderConfigListSearchResponse> {
     const response = await this.get(`/search/media-folder-configuration`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -515,7 +547,9 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFolderConfig(id: string): Promise<FolderConfigSingleResponse> {
-    const response = await this.get(`/media-folder-configuration/${id}`);
+    const response = await this.get(`/media-folder-configuration/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderConfigSingleResponse;
@@ -548,6 +582,7 @@ class MediaClient extends Client {
   ): Promise<FolderConfigUpdateResponse> {
     const response = await this.patch(`/media-folder-configuration/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -566,6 +601,7 @@ class MediaClient extends Client {
     request: FolderConfigAggregationRequest
   ): Promise<FolderConfigAggregationResponse> {
     const response = await this.post(`/aggregate/media-folder-configuration`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -587,7 +623,10 @@ class MediaClient extends Client {
     page?: number,
     query?: string
   ): Promise<ThumbnailListResponse> {
-    const response = await this.get(`/media-thumbnail`, { query: { limit, page, query } });
+    const response = await this.get(`/media-thumbnail`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailListResponse;
@@ -606,6 +645,7 @@ class MediaClient extends Client {
   ): Promise<ThumbnailCreateResponse> {
     const response = await this.post(`/media-thumbnail`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -621,7 +661,10 @@ class MediaClient extends Client {
   public async searchThumbnails(
     request: ThumbnailListSearchRequest
   ): Promise<ThumbnailListSearchResponse> {
-    const response = await this.get(`/search/media-thumbnail`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/media-thumbnail`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailListSearchResponse;
@@ -635,7 +678,9 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getThumbnail(id: string): Promise<ThumbnailSingleResponse> {
-    const response = await this.get(`/media-thumbnail/${id}`);
+    const response = await this.get(`/media-thumbnail/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSingleResponse;
@@ -664,6 +709,7 @@ class MediaClient extends Client {
   ): Promise<ThumbnailUpdateResponse> {
     const response = await this.patch(`/media-thumbnail/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -680,6 +726,7 @@ class MediaClient extends Client {
     request: ThumbnailAggregationRequest
   ): Promise<ThumbnailAggregationResponse> {
     const response = await this.post(`/aggregate/media-thumbnail`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -701,7 +748,10 @@ class MediaClient extends Client {
     page?: number,
     query?: string
   ): Promise<ThumbnailSizeListResponse> {
-    const response = await this.get(`/media-thumbnail-size`, { query: { limit, page, query } });
+    const response = await this.get(`/media-thumbnail-size`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSizeListResponse;
@@ -720,6 +770,7 @@ class MediaClient extends Client {
   ): Promise<ThumbnailSizeCreateResponse> {
     const response = await this.post(`/media-thumbnail-size`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -738,6 +789,7 @@ class MediaClient extends Client {
     request: ThumbnailSizeListSearchRequest
   ): Promise<ThumbnailSizeListSearchResponse> {
     const response = await this.get(`/search/media-thumbnail-size`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -753,7 +805,9 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getThumbnailSize(id: string): Promise<ThumbnailSizeSingleResponse> {
-    const response = await this.get(`/media-thumbnail-size/${id}`);
+    const response = await this.get(`/media-thumbnail-size/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSizeSingleResponse;
@@ -786,6 +840,7 @@ class MediaClient extends Client {
   ): Promise<ThumbnailSizeUpdateResponse> {
     const response = await this.patch(`/media-thumbnail-size/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -804,6 +859,7 @@ class MediaClient extends Client {
     request: ThumbnailSizeAggregationRequest
   ): Promise<ThumbnailSizeAggregationResponse> {
     const response = await this.post(`/aggregate/media-thumbnail-size`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

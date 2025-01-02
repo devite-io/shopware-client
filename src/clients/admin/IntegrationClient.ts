@@ -22,7 +22,10 @@ class IntegrationClient extends Client {
     page?: number,
     query?: string
   ): Promise<IntegrationListResponse> {
-    const response = await this.get(`/integration`, { query: { limit, page, query } });
+    const response = await this.get(`/integration`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationListResponse;
@@ -41,6 +44,7 @@ class IntegrationClient extends Client {
   ): Promise<IntegrationCreateResponse> {
     const response = await this.post(`/integration`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -58,7 +62,10 @@ class IntegrationClient extends Client {
   public async searchIntegrations(
     request: IntegrationListSearchRequest
   ): Promise<IntegrationListSearchResponse> {
-    const response = await this.get(`/search/integration`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/integration`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationListSearchResponse;
@@ -72,7 +79,9 @@ class IntegrationClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getIntegration(id: string): Promise<IntegrationSingleResponse> {
-    const response = await this.get(`/integration/${id}`);
+    const response = await this.get(`/integration/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationSingleResponse;
@@ -105,6 +114,7 @@ class IntegrationClient extends Client {
   ): Promise<IntegrationUpdateResponse> {
     const response = await this.patch(`/integration/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -123,6 +133,7 @@ class IntegrationClient extends Client {
     request: IntegrationAggregationRequest
   ): Promise<IntegrationAggregationResponse> {
     const response = await this.post(`/aggregate/integration`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

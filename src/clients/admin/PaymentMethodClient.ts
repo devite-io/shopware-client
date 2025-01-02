@@ -22,7 +22,10 @@ class PaymentMethodClient extends Client {
     page?: number,
     query?: string
   ): Promise<PaymentMethodListResponse> {
-    const response = await this.get(`/payment-method`, { query: { limit, page, query } });
+    const response = await this.get(`/payment-method`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListResponse;
@@ -41,6 +44,7 @@ class PaymentMethodClient extends Client {
   ): Promise<PaymentMethodCreateResponse> {
     const response = await this.post(`/payment-method`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -58,7 +62,10 @@ class PaymentMethodClient extends Client {
   public async searchPaymentMethods(
     request: PaymentMethodListSearchRequest
   ): Promise<PaymentMethodListSearchResponse> {
-    const response = await this.get(`/search/payment-method`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/payment-method`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListSearchResponse;
@@ -72,7 +79,9 @@ class PaymentMethodClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getPaymentMethod(id: string): Promise<PaymentMethodSingleResponse> {
-    const response = await this.get(`/payment-method/${id}`);
+    const response = await this.get(`/payment-method/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodSingleResponse;
@@ -105,6 +114,7 @@ class PaymentMethodClient extends Client {
   ): Promise<PaymentMethodUpdateResponse> {
     const response = await this.patch(`/payment-method/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -123,6 +133,7 @@ class PaymentMethodClient extends Client {
     request: PaymentMethodAggregationRequest
   ): Promise<PaymentMethodAggregationResponse> {
     const response = await this.post(`/aggregate/payment-method`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

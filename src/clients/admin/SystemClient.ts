@@ -63,7 +63,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getBusinessEvents(): Promise<BusinessEventsResponse> {
-    const response = await this.get(`/_info/events.json`);
+    const response = await this.get(`/_info/events.json`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BusinessEventsResponse;
@@ -77,7 +79,7 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getShopwareVersion(): Promise<ShopwareVersionResponse> {
-    const response = await this.get(`/_info/version`);
+    const response = await this.get(`/_info/version`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShopwareVersionResponse;
@@ -105,7 +107,8 @@ class SystemClient extends Client {
    */
   public async getHealthReport(verbose?: boolean): Promise<HealthReportResponse> {
     const response = await this.get(`/_info/system-health-check`, {
-      query: { verbose }
+      query: { verbose },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -120,7 +123,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFlowBuilderActions(): Promise<FlowBuilderActionsResponse> {
-    const response = await this.get(`/_info/flow-actions.json`);
+    const response = await this.get(`/_info/flow-actions.json`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowBuilderActionsResponse;
@@ -134,7 +139,7 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getApiConfig(): Promise<ApiConfigResponse> {
-    const response = await this.get(`/_info/config`);
+    const response = await this.get(`/_info/config`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ApiConfigResponse;
@@ -148,9 +153,7 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async index(request: IndexRequest): Promise<void> {
-    const response = await this.post(`/_action/index`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(`/_action/index`, { body: new JsonPayload(request) });
 
     if (response.statusCode === 204) return;
 
@@ -165,6 +168,7 @@ class SystemClient extends Client {
     request: IndexIterationRequest
   ): Promise<IndexIterationResponse> {
     const response = await this.post(`/_action/indexing/${indexerName}`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -178,7 +182,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCacheInfo(): Promise<CacheInfoResponse> {
-    const response = await this.get(`/_action/cache_info`);
+    const response = await this.get(`/_action/cache_info`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CacheInfoResponse;
@@ -206,6 +212,7 @@ class SystemClient extends Client {
     request: MessageQueueConsumptionRequest
   ): Promise<MessageQueueConsumptionResponse> {
     const response = await this.post(`/_action/message-queue/consume`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -221,7 +228,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async runScheduledTasks(): Promise<ScheduledTaskRunResponse> {
-    const response = await this.post(`/_action/scheduled-task/run`);
+    const response = await this.post(`/_action/scheduled-task/run`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskRunResponse;
@@ -235,7 +244,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getMinScheduledTaskInterval(): Promise<ScheduledTaskMinIntervalResponse> {
-    const response = await this.get(`/_action/scheduled-task/min-run-interval`);
+    const response = await this.get(`/_action/scheduled-task/min-run-interval`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskMinIntervalResponse;
@@ -305,7 +316,10 @@ class SystemClient extends Client {
     page?: number,
     query?: string
   ): Promise<LogEntryListResponse> {
-    const response = await this.get(`/log-entry`, { query: { limit, page, query } });
+    const response = await this.get(`/log-entry`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntryListResponse;
@@ -324,6 +338,7 @@ class SystemClient extends Client {
   ): Promise<LogEntryCreateResponse> {
     const response = await this.post(`/log-entry`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -339,7 +354,10 @@ class SystemClient extends Client {
   public async searchLogEntries(
     request: LogEntryListSearchRequest
   ): Promise<LogEntryListSearchResponse> {
-    const response = await this.get(`/search/log-entry`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/log-entry`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntryListSearchResponse;
@@ -353,7 +371,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getLogEntry(id: string): Promise<LogEntrySingleResponse> {
-    const response = await this.get(`/log-entry/${id}`);
+    const response = await this.get(`/log-entry/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntrySingleResponse;
@@ -382,6 +402,7 @@ class SystemClient extends Client {
   ): Promise<LogEntryUpdateResponse> {
     const response = await this.patch(`/log-entry/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -398,6 +419,7 @@ class SystemClient extends Client {
     request: LogEntryAggregationRequest
   ): Promise<LogEntryAggregationResponse> {
     const response = await this.post(`/aggregate/log-entry`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -419,7 +441,10 @@ class SystemClient extends Client {
     page?: number,
     query?: string
   ): Promise<NotificationListResponse> {
-    const response = await this.get(`/notification`, { query: { limit, page, query } });
+    const response = await this.get(`/notification`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationListResponse;
@@ -438,6 +463,7 @@ class SystemClient extends Client {
   ): Promise<NotificationCreateResponse> {
     const response = await this.post(`/notification`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -455,7 +481,10 @@ class SystemClient extends Client {
   public async searchNotifications(
     request: NotificationListSearchRequest
   ): Promise<NotificationListSearchResponse> {
-    const response = await this.get(`/search/notification`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/notification`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationListSearchResponse;
@@ -469,7 +498,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getNotification(id: string): Promise<NotificationSingleResponse> {
-    const response = await this.get(`/notification/${id}`);
+    const response = await this.get(`/notification/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationSingleResponse;
@@ -502,6 +533,7 @@ class SystemClient extends Client {
   ): Promise<NotificationUpdateResponse> {
     const response = await this.patch(`/notification/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -520,6 +552,7 @@ class SystemClient extends Client {
     request: NotificationAggregationRequest
   ): Promise<NotificationAggregationResponse> {
     const response = await this.post(`/aggregate/notification`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -541,7 +574,10 @@ class SystemClient extends Client {
     page?: number,
     query?: string
   ): Promise<ConfigEntryListResponse> {
-    const response = await this.get(`/system-config`, { query: { limit, page, query } });
+    const response = await this.get(`/system-config`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntryListResponse;
@@ -560,6 +596,7 @@ class SystemClient extends Client {
   ): Promise<ConfigEntryCreateResponse> {
     const response = await this.post(`/system-config`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -577,7 +614,10 @@ class SystemClient extends Client {
   public async searchConfigEntries(
     request: ConfigEntryListSearchRequest
   ): Promise<ConfigEntryListSearchResponse> {
-    const response = await this.get(`/search/system-config`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/system-config`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntryListSearchResponse;
@@ -591,7 +631,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getConfigEntry(id: string): Promise<ConfigEntrySingleResponse> {
-    const response = await this.get(`/system-config/${id}`);
+    const response = await this.get(`/system-config/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntrySingleResponse;
@@ -624,6 +666,7 @@ class SystemClient extends Client {
   ): Promise<ConfigEntryUpdateResponse> {
     const response = await this.patch(`/system-config/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -642,6 +685,7 @@ class SystemClient extends Client {
     request: ConfigEntryAggregationRequest
   ): Promise<ConfigEntryAggregationResponse> {
     const response = await this.post(`/aggregate/system-config`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -663,7 +707,10 @@ class SystemClient extends Client {
     page?: number,
     query?: string
   ): Promise<ScheduledTaskListResponse> {
-    const response = await this.get(`/scheduled-task`, { query: { limit, page, query } });
+    const response = await this.get(`/scheduled-task`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskListResponse;
@@ -682,6 +729,7 @@ class SystemClient extends Client {
   ): Promise<ScheduledTaskCreateResponse> {
     const response = await this.post(`/scheduled-task`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -699,7 +747,10 @@ class SystemClient extends Client {
   public async searchScheduledTasks(
     request: ScheduledTaskListSearchRequest
   ): Promise<ScheduledTaskListSearchResponse> {
-    const response = await this.get(`/search/scheduled-task`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/scheduled-task`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskListSearchResponse;
@@ -713,7 +764,9 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getScheduledTask(id: string): Promise<ScheduledTaskSingleResponse> {
-    const response = await this.get(`/scheduled-task/${id}`);
+    const response = await this.get(`/scheduled-task/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskSingleResponse;
@@ -746,6 +799,7 @@ class SystemClient extends Client {
   ): Promise<ScheduledTaskUpdateResponse> {
     const response = await this.patch(`/scheduled-task/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -764,6 +818,7 @@ class SystemClient extends Client {
     request: ScheduledTaskAggregationRequest
   ): Promise<ScheduledTaskAggregationResponse> {
     const response = await this.post(`/aggregate/scheduled-task`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

@@ -22,7 +22,10 @@ class SecurityClient extends Client {
     page?: number,
     query?: string
   ): Promise<AclRoleListResponse> {
-    const response = await this.get(`/acl-role`, { query: { limit, page, query } });
+    const response = await this.get(`/acl-role`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleListResponse;
@@ -41,6 +44,7 @@ class SecurityClient extends Client {
   ): Promise<AclRoleCreateResponse> {
     const response = await this.post(`/acl-role`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -56,7 +60,10 @@ class SecurityClient extends Client {
   public async searchAclRoles(
     request: AclRoleListSearchRequest
   ): Promise<AclRoleListSearchResponse> {
-    const response = await this.get(`/search/acl-role`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/acl-role`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleListSearchResponse;
@@ -70,7 +77,7 @@ class SecurityClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getAclRole(id: string): Promise<AclRoleSingleResponse> {
-    const response = await this.get(`/acl-role/${id}`);
+    const response = await this.get(`/acl-role/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleSingleResponse;
@@ -99,6 +106,7 @@ class SecurityClient extends Client {
   ): Promise<AclRoleUpdateResponse> {
     const response = await this.patch(`/acl-role/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -115,6 +123,7 @@ class SecurityClient extends Client {
     request: AclRoleAggregationRequest
   ): Promise<AclRoleAggregationResponse> {
     const response = await this.post(`/aggregate/acl-role`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

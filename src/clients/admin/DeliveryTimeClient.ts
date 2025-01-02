@@ -22,7 +22,10 @@ class DeliveryTimeClient extends Client {
     page?: number,
     query?: string
   ): Promise<DeliveryTimeListResponse> {
-    const response = await this.get(`/delivery-time`, { query: { limit, page, query } });
+    const response = await this.get(`/delivery-time`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeListResponse;
@@ -41,6 +44,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<DeliveryTimeCreateResponse> {
     const response = await this.post(`/delivery-time`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -58,7 +62,10 @@ class DeliveryTimeClient extends Client {
   public async searchDeliveryTimes(
     request: DeliveryTimeListSearchRequest
   ): Promise<DeliveryTimeListSearchResponse> {
-    const response = await this.get(`/search/delivery-time`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/delivery-time`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeListSearchResponse;
@@ -72,7 +79,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDeliveryTime(id: string): Promise<DeliveryTimeSingleResponse> {
-    const response = await this.get(`/delivery-time/${id}`);
+    const response = await this.get(`/delivery-time/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeSingleResponse;
@@ -105,6 +114,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<DeliveryTimeUpdateResponse> {
     const response = await this.patch(`/delivery-time/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -123,6 +133,7 @@ class DeliveryTimeClient extends Client {
     request: DeliveryTimeAggregationRequest
   ): Promise<DeliveryTimeAggregationResponse> {
     const response = await this.post(`/aggregate/delivery-time`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

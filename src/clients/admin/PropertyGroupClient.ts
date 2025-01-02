@@ -34,7 +34,10 @@ class PropertyGroupClient extends Client {
     page?: number,
     query?: string
   ): Promise<PropertyGroupListResponse> {
-    const response = await this.get(`/property-group`, { query: { limit, page, query } });
+    const response = await this.get(`/property-group`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupListResponse;
@@ -53,6 +56,7 @@ class PropertyGroupClient extends Client {
   ): Promise<PropertyGroupCreateResponse> {
     const response = await this.post(`/property-group`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -70,7 +74,10 @@ class PropertyGroupClient extends Client {
   public async searchPropertyGroups(
     request: PropertyGroupListSearchRequest
   ): Promise<PropertyGroupListSearchResponse> {
-    const response = await this.get(`/search/property-group`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/property-group`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupListSearchResponse;
@@ -84,7 +91,9 @@ class PropertyGroupClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getPropertyGroup(id: string): Promise<PropertyGroupSingleResponse> {
-    const response = await this.get(`/property-group/${id}`);
+    const response = await this.get(`/property-group/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupSingleResponse;
@@ -117,6 +126,7 @@ class PropertyGroupClient extends Client {
   ): Promise<PropertyGroupUpdateResponse> {
     const response = await this.patch(`/property-group/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -135,6 +145,7 @@ class PropertyGroupClient extends Client {
     request: PropertyGroupAggregationRequest
   ): Promise<PropertyGroupAggregationResponse> {
     const response = await this.post(`/aggregate/property-group`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -156,7 +167,10 @@ class PropertyGroupClient extends Client {
     page?: number,
     query?: string
   ): Promise<OptionListResponse> {
-    const response = await this.get(`/property-group-option`, { query: { limit, page, query } });
+    const response = await this.get(`/property-group-option`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OptionListResponse;
@@ -175,6 +189,7 @@ class PropertyGroupClient extends Client {
   ): Promise<OptionCreateResponse> {
     const response = await this.post(`/property-group-option`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -189,6 +204,7 @@ class PropertyGroupClient extends Client {
    */
   public async searchOptions(request: OptionListSearchRequest): Promise<OptionListSearchResponse> {
     const response = await this.get(`/search/property-group-option`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -204,7 +220,9 @@ class PropertyGroupClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getOption(id: string): Promise<OptionSingleResponse> {
-    const response = await this.get(`/property-group-option/${id}`);
+    const response = await this.get(`/property-group-option/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OptionSingleResponse;
@@ -233,6 +251,7 @@ class PropertyGroupClient extends Client {
   ): Promise<OptionUpdateResponse> {
     const response = await this.patch(`/property-group-option/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -249,6 +268,7 @@ class PropertyGroupClient extends Client {
     request: OptionAggregationRequest
   ): Promise<OptionAggregationResponse> {
     const response = await this.post(`/aggregate/property-group-option`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

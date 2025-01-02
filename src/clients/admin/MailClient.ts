@@ -47,6 +47,7 @@ class MailClient extends Client {
    */
   public async sendMail(request: MailSendRequest): Promise<MailSendResponse> {
     const response = await this.post(`/_action/mail-template/send`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -73,6 +74,7 @@ class MailClient extends Client {
    */
   public async previewTemplate(request: TemplatePreviewRequest): Promise<TemplatePreviewResponse> {
     const response = await this.post(`/_action/mail-template/build`, {
+      headers: { Accept: "text/html" },
       body: new JsonPayload(request)
     });
 
@@ -92,7 +94,10 @@ class MailClient extends Client {
     page?: number,
     query?: string
   ): Promise<HeaderFooterListResponse> {
-    const response = await this.get(`/header-footer`, { query: { limit, page, query } });
+    const response = await this.get(`/header-footer`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterListResponse;
@@ -111,6 +116,7 @@ class MailClient extends Client {
   ): Promise<HeaderFooterCreateResponse> {
     const response = await this.post(`/header-footer`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -128,7 +134,10 @@ class MailClient extends Client {
   public async searchHeaderFooters(
     request: HeaderFooterListSearchRequest
   ): Promise<HeaderFooterListSearchResponse> {
-    const response = await this.get(`/search/header-footer`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/header-footer`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterListSearchResponse;
@@ -142,7 +151,9 @@ class MailClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getHeaderFooter(id: string): Promise<HeaderFooterSingleResponse> {
-    const response = await this.get(`/header-footer/${id}`);
+    const response = await this.get(`/header-footer/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterSingleResponse;
@@ -175,6 +186,7 @@ class MailClient extends Client {
   ): Promise<HeaderFooterUpdateResponse> {
     const response = await this.patch(`/header-footer/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -193,6 +205,7 @@ class MailClient extends Client {
     request: HeaderFooterAggregationRequest
   ): Promise<HeaderFooterAggregationResponse> {
     const response = await this.post(`/aggregate/header-footer`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -214,7 +227,10 @@ class MailClient extends Client {
     page?: number,
     query?: string
   ): Promise<TemplateListResponse> {
-    const response = await this.get(`/template`, { query: { limit, page, query } });
+    const response = await this.get(`/template`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateListResponse;
@@ -233,6 +249,7 @@ class MailClient extends Client {
   ): Promise<TemplateCreateResponse> {
     const response = await this.post(`/template`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -248,7 +265,10 @@ class MailClient extends Client {
   public async searchTemplates(
     request: TemplateListSearchRequest
   ): Promise<TemplateListSearchResponse> {
-    const response = await this.get(`/search/template`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/template`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateListSearchResponse;
@@ -262,7 +282,7 @@ class MailClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTemplate(id: string): Promise<TemplateSingleResponse> {
-    const response = await this.get(`/template/${id}`);
+    const response = await this.get(`/template/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateSingleResponse;
@@ -291,6 +311,7 @@ class MailClient extends Client {
   ): Promise<TemplateUpdateResponse> {
     const response = await this.patch(`/template/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -307,6 +328,7 @@ class MailClient extends Client {
     request: TemplateAggregationRequest
   ): Promise<TemplateAggregationResponse> {
     const response = await this.post(`/aggregate/template`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -328,7 +350,10 @@ class MailClient extends Client {
     page?: number,
     query?: string
   ): Promise<TemplateTypeListResponse> {
-    const response = await this.get(`/template-type`, { query: { limit, page, query } });
+    const response = await this.get(`/template-type`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeListResponse;
@@ -347,6 +372,7 @@ class MailClient extends Client {
   ): Promise<TemplateTypeCreateResponse> {
     const response = await this.post(`/template-type`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -364,7 +390,10 @@ class MailClient extends Client {
   public async searchTemplateTypes(
     request: TemplateTypeListSearchRequest
   ): Promise<TemplateTypeListSearchResponse> {
-    const response = await this.get(`/search/template-type`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/template-type`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeListSearchResponse;
@@ -378,7 +407,9 @@ class MailClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTemplateType(id: string): Promise<TemplateTypeSingleResponse> {
-    const response = await this.get(`/template-type/${id}`);
+    const response = await this.get(`/template-type/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeSingleResponse;
@@ -411,6 +442,7 @@ class MailClient extends Client {
   ): Promise<TemplateTypeUpdateResponse> {
     const response = await this.patch(`/template-type/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -429,6 +461,7 @@ class MailClient extends Client {
     request: TemplateTypeAggregationRequest
   ): Promise<TemplateTypeAggregationResponse> {
     const response = await this.post(`/aggregate/template-type`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

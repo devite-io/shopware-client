@@ -204,7 +204,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<ProductListResponse> {
-    const response = await this.get(`/product`, { query: { limit, page, query } });
+    const response = await this.get(`/product`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductListResponse;
@@ -223,6 +226,7 @@ class ProductClient extends Client {
   ): Promise<ProductCreateResponse> {
     const response = await this.post(`/product`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -238,7 +242,10 @@ class ProductClient extends Client {
   public async searchProducts(
     request: ProductListSearchRequest
   ): Promise<ProductListSearchResponse> {
-    const response = await this.get(`/search/product`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/product`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductListSearchResponse;
@@ -252,7 +259,7 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getProduct(id: string): Promise<ProductSingleResponse> {
-    const response = await this.get(`/product/${id}`);
+    const response = await this.get(`/product/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductSingleResponse;
@@ -281,6 +288,7 @@ class ProductClient extends Client {
   ): Promise<ProductUpdateResponse> {
     const response = await this.patch(`/product/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -297,6 +305,7 @@ class ProductClient extends Client {
     request: ProductAggregationRequest
   ): Promise<ProductAggregationResponse> {
     const response = await this.post(`/aggregate/product`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -319,7 +328,8 @@ class ProductClient extends Client {
     query?: string
   ): Promise<ConfiguratorSettingListResponse> {
     const response = await this.get(`/product-configurator-setting`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -339,6 +349,7 @@ class ProductClient extends Client {
   ): Promise<ConfiguratorSettingCreateResponse> {
     const response = await this.post(`/product-configurator-setting`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -357,6 +368,7 @@ class ProductClient extends Client {
     request: ConfiguratorSettingListSearchRequest
   ): Promise<ConfiguratorSettingListSearchResponse> {
     const response = await this.get(`/search/product-configurator-setting`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -372,7 +384,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getConfiguratorSetting(id: string): Promise<ConfiguratorSettingSingleResponse> {
-    const response = await this.get(`/product-configurator-setting/${id}`);
+    const response = await this.get(`/product-configurator-setting/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfiguratorSettingSingleResponse;
@@ -405,6 +419,7 @@ class ProductClient extends Client {
   ): Promise<ConfiguratorSettingUpdateResponse> {
     const response = await this.patch(`/product-configurator-setting/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -423,6 +438,7 @@ class ProductClient extends Client {
     request: ConfiguratorSettingAggregationRequest
   ): Promise<ConfiguratorSettingAggregationResponse> {
     const response = await this.post(`/aggregate/product-configurator-setting`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -444,7 +460,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<CrossSellingListResponse> {
-    const response = await this.get(`/product-cross-selling`, { query: { limit, page, query } });
+    const response = await this.get(`/product-cross-selling`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingListResponse;
@@ -463,6 +482,7 @@ class ProductClient extends Client {
   ): Promise<CrossSellingCreateResponse> {
     const response = await this.post(`/product-cross-selling`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -481,6 +501,7 @@ class ProductClient extends Client {
     request: CrossSellingListSearchRequest
   ): Promise<CrossSellingListSearchResponse> {
     const response = await this.get(`/search/product-cross-selling`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -496,7 +517,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCrossSelling(id: string): Promise<CrossSellingSingleResponse> {
-    const response = await this.get(`/product-cross-selling/${id}`);
+    const response = await this.get(`/product-cross-selling/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingSingleResponse;
@@ -529,6 +552,7 @@ class ProductClient extends Client {
   ): Promise<CrossSellingUpdateResponse> {
     const response = await this.patch(`/product-cross-selling/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -547,6 +571,7 @@ class ProductClient extends Client {
     request: CrossSellingAggregationRequest
   ): Promise<CrossSellingAggregationResponse> {
     const response = await this.post(`/aggregate/product-cross-selling`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -569,7 +594,8 @@ class ProductClient extends Client {
     query?: string
   ): Promise<CrossSellingAssignedProductListResponse> {
     const response = await this.get(`/product-cross-selling-assigned-product`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -589,6 +615,7 @@ class ProductClient extends Client {
   ): Promise<CrossSellingAssignedProductCreateResponse> {
     const response = await this.post(`/product-cross-selling-assigned-product`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -607,6 +634,7 @@ class ProductClient extends Client {
     request: CrossSellingAssignedProductListSearchRequest
   ): Promise<CrossSellingAssignedProductListSearchResponse> {
     const response = await this.get(`/search/product-cross-selling-assigned-product`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -624,7 +652,9 @@ class ProductClient extends Client {
   public async getCrossSellingAssignedProduct(
     id: string
   ): Promise<CrossSellingAssignedProductSingleResponse> {
-    const response = await this.get(`/product-cross-selling-assigned-product/${id}`);
+    const response = await this.get(`/product-cross-selling-assigned-product/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAssignedProductSingleResponse;
@@ -657,6 +687,7 @@ class ProductClient extends Client {
   ): Promise<CrossSellingAssignedProductUpdateResponse> {
     const response = await this.patch(`/product-cross-selling-assigned-product/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -675,6 +706,7 @@ class ProductClient extends Client {
     request: CrossSellingAssignedProductAggregationRequest
   ): Promise<CrossSellingAssignedProductAggregationResponse> {
     const response = await this.post(`/aggregate/product-cross-selling-assigned-product`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -696,7 +728,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<DownloadListResponse> {
-    const response = await this.get(`/product-download`, { query: { limit, page, query } });
+    const response = await this.get(`/product-download`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadListResponse;
@@ -715,6 +750,7 @@ class ProductClient extends Client {
   ): Promise<DownloadCreateResponse> {
     const response = await this.post(`/product-download`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -730,7 +766,10 @@ class ProductClient extends Client {
   public async searchDownloads(
     request: DownloadListSearchRequest
   ): Promise<DownloadListSearchResponse> {
-    const response = await this.get(`/search/product-download`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/product-download`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadListSearchResponse;
@@ -744,7 +783,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDownload(id: string): Promise<DownloadSingleResponse> {
-    const response = await this.get(`/product-download/${id}`);
+    const response = await this.get(`/product-download/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadSingleResponse;
@@ -773,6 +814,7 @@ class ProductClient extends Client {
   ): Promise<DownloadUpdateResponse> {
     const response = await this.patch(`/product-download/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -789,6 +831,7 @@ class ProductClient extends Client {
     request: DownloadAggregationRequest
   ): Promise<DownloadAggregationResponse> {
     const response = await this.post(`/aggregate/product-download`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -810,7 +853,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<ExportListResponse> {
-    const response = await this.get(`/product-export`, { query: { limit, page, query } });
+    const response = await this.get(`/product-export`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportListResponse;
@@ -829,6 +875,7 @@ class ProductClient extends Client {
   ): Promise<ExportCreateResponse> {
     const response = await this.post(`/product-export`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -842,7 +889,10 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchExports(request: ExportListSearchRequest): Promise<ExportListSearchResponse> {
-    const response = await this.get(`/search/product-export`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/product-export`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportListSearchResponse;
@@ -856,7 +906,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getExport(id: string): Promise<ExportSingleResponse> {
-    const response = await this.get(`/product-export/${id}`);
+    const response = await this.get(`/product-export/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportSingleResponse;
@@ -885,6 +937,7 @@ class ProductClient extends Client {
   ): Promise<ExportUpdateResponse> {
     const response = await this.patch(`/product-export/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -901,6 +954,7 @@ class ProductClient extends Client {
     request: ExportAggregationRequest
   ): Promise<ExportAggregationResponse> {
     const response = await this.post(`/aggregate/product-export`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -920,7 +974,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<FeatureSetListResponse> {
-    const response = await this.get(`/product-feature-set`, { query: { limit, page, query } });
+    const response = await this.get(`/product-feature-set`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FeatureSetListResponse;
@@ -939,6 +996,7 @@ class ProductClient extends Client {
   ): Promise<FeatureSetCreateResponse> {
     const response = await this.post(`/product-feature-set`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -957,6 +1015,7 @@ class ProductClient extends Client {
     request: FeatureSetListSearchRequest
   ): Promise<FeatureSetListSearchResponse> {
     const response = await this.get(`/search/product-feature-set`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -972,7 +1031,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFeatureSet(id: string): Promise<FeatureSetSingleResponse> {
-    const response = await this.get(`/product-feature-set/${id}`);
+    const response = await this.get(`/product-feature-set/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FeatureSetSingleResponse;
@@ -1005,6 +1066,7 @@ class ProductClient extends Client {
   ): Promise<FeatureSetUpdateResponse> {
     const response = await this.patch(`/product-feature-set/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1023,6 +1085,7 @@ class ProductClient extends Client {
     request: FeatureSetAggregationRequest
   ): Promise<FeatureSetAggregationResponse> {
     const response = await this.post(`/aggregate/product-feature-set`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1045,7 +1108,8 @@ class ProductClient extends Client {
     query?: string
   ): Promise<KeywordDictionaryListResponse> {
     const response = await this.get(`/product-keyword-dictionary`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -1065,6 +1129,7 @@ class ProductClient extends Client {
   ): Promise<KeywordDictionaryCreateResponse> {
     const response = await this.post(`/product-keyword-dictionary`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1083,6 +1148,7 @@ class ProductClient extends Client {
     request: KeywordDictionaryListSearchRequest
   ): Promise<KeywordDictionaryListSearchResponse> {
     const response = await this.get(`/search/product-keyword-dictionary`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1098,7 +1164,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getKeywordDictionary(id: string): Promise<KeywordDictionarySingleResponse> {
-    const response = await this.get(`/product-keyword-dictionary/${id}`);
+    const response = await this.get(`/product-keyword-dictionary/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as KeywordDictionarySingleResponse;
@@ -1131,6 +1199,7 @@ class ProductClient extends Client {
   ): Promise<KeywordDictionaryUpdateResponse> {
     const response = await this.patch(`/product-keyword-dictionary/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1149,6 +1218,7 @@ class ProductClient extends Client {
     request: KeywordDictionaryAggregationRequest
   ): Promise<KeywordDictionaryAggregationResponse> {
     const response = await this.post(`/aggregate/product-keyword-dictionary`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1170,7 +1240,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<ManufacturerListResponse> {
-    const response = await this.get(`/product-manufacturer`, { query: { limit, page, query } });
+    const response = await this.get(`/product-manufacturer`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ManufacturerListResponse;
@@ -1189,6 +1262,7 @@ class ProductClient extends Client {
   ): Promise<ManufacturerCreateResponse> {
     const response = await this.post(`/product-manufacturer`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1207,6 +1281,7 @@ class ProductClient extends Client {
     request: ManufacturerListSearchRequest
   ): Promise<ManufacturerListSearchResponse> {
     const response = await this.get(`/search/product-manufacturer`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1222,7 +1297,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getManufacturer(id: string): Promise<ManufacturerSingleResponse> {
-    const response = await this.get(`/product-manufacturer/${id}`);
+    const response = await this.get(`/product-manufacturer/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ManufacturerSingleResponse;
@@ -1255,6 +1332,7 @@ class ProductClient extends Client {
   ): Promise<ManufacturerUpdateResponse> {
     const response = await this.patch(`/product-manufacturer/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1273,6 +1351,7 @@ class ProductClient extends Client {
     request: ManufacturerAggregationRequest
   ): Promise<ManufacturerAggregationResponse> {
     const response = await this.post(`/aggregate/product-manufacturer`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1294,7 +1373,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<MediaListResponse> {
-    const response = await this.get(`/product-media`, { query: { limit, page, query } });
+    const response = await this.get(`/product-media`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaListResponse;
@@ -1311,6 +1393,7 @@ class ProductClient extends Client {
   ): Promise<MediaCreateResponse> {
     const response = await this.post(`/product-media`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1324,7 +1407,10 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchMedia(request: MediaListSearchRequest): Promise<MediaListSearchResponse> {
-    const response = await this.get(`/search/product-media`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/product-media`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaListSearchResponse;
@@ -1336,7 +1422,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getMedia(id: string): Promise<MediaSingleResponse> {
-    const response = await this.get(`/product-media/${id}`);
+    const response = await this.get(`/product-media/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaSingleResponse;
@@ -1365,6 +1453,7 @@ class ProductClient extends Client {
   ): Promise<MediaUpdateResponse> {
     const response = await this.patch(`/product-media/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1381,6 +1470,7 @@ class ProductClient extends Client {
     request: MediaAggregationRequest
   ): Promise<MediaAggregationResponse> {
     const response = await this.post(`/aggregate/product-media`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1400,7 +1490,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<PriceListResponse> {
-    const response = await this.get(`/product-price`, { query: { limit, page, query } });
+    const response = await this.get(`/product-price`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceListResponse;
@@ -1417,6 +1510,7 @@ class ProductClient extends Client {
   ): Promise<PriceCreateResponse> {
     const response = await this.post(`/product-price`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1430,7 +1524,10 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchPrices(request: PriceListSearchRequest): Promise<PriceListSearchResponse> {
-    const response = await this.get(`/search/product-price`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/product-price`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceListSearchResponse;
@@ -1444,7 +1541,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getPrice(id: string): Promise<PriceSingleResponse> {
-    const response = await this.get(`/product-price/${id}`);
+    const response = await this.get(`/product-price/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceSingleResponse;
@@ -1473,6 +1572,7 @@ class ProductClient extends Client {
   ): Promise<PriceUpdateResponse> {
     const response = await this.patch(`/product-price/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1489,6 +1589,7 @@ class ProductClient extends Client {
     request: PriceAggregationRequest
   ): Promise<PriceAggregationResponse> {
     const response = await this.post(`/aggregate/product-price`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1508,7 +1609,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<ReviewListResponse> {
-    const response = await this.get(`/product-review`, { query: { limit, page, query } });
+    const response = await this.get(`/product-review`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewListResponse;
@@ -1527,6 +1631,7 @@ class ProductClient extends Client {
   ): Promise<ReviewCreateResponse> {
     const response = await this.post(`/product-review`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1540,7 +1645,10 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchReviews(request: ReviewListSearchRequest): Promise<ReviewListSearchResponse> {
-    const response = await this.get(`/search/product-review`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/product-review`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewListSearchResponse;
@@ -1554,7 +1662,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getReview(id: string): Promise<ReviewSingleResponse> {
-    const response = await this.get(`/product-review/${id}`);
+    const response = await this.get(`/product-review/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewSingleResponse;
@@ -1583,6 +1693,7 @@ class ProductClient extends Client {
   ): Promise<ReviewUpdateResponse> {
     const response = await this.patch(`/product-review/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1599,6 +1710,7 @@ class ProductClient extends Client {
     request: ReviewAggregationRequest
   ): Promise<ReviewAggregationResponse> {
     const response = await this.post(`/aggregate/product-review`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1618,7 +1730,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<SearchConfigListResponse> {
-    const response = await this.get(`/product-search-config`, { query: { limit, page, query } });
+    const response = await this.get(`/product-search-config`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigListResponse;
@@ -1637,6 +1752,7 @@ class ProductClient extends Client {
   ): Promise<SearchConfigCreateResponse> {
     const response = await this.post(`/product-search-config`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1655,6 +1771,7 @@ class ProductClient extends Client {
     request: SearchConfigListSearchRequest
   ): Promise<SearchConfigListSearchResponse> {
     const response = await this.get(`/search/product-search-config`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1670,7 +1787,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSearchConfig(id: string): Promise<SearchConfigSingleResponse> {
-    const response = await this.get(`/product-search-config/${id}`);
+    const response = await this.get(`/product-search-config/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigSingleResponse;
@@ -1703,6 +1822,7 @@ class ProductClient extends Client {
   ): Promise<SearchConfigUpdateResponse> {
     const response = await this.patch(`/product-search-config/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1721,6 +1841,7 @@ class ProductClient extends Client {
     request: SearchConfigAggregationRequest
   ): Promise<SearchConfigAggregationResponse> {
     const response = await this.post(`/aggregate/product-search-config`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1743,7 +1864,8 @@ class ProductClient extends Client {
     query?: string
   ): Promise<SearchConfigFieldListResponse> {
     const response = await this.get(`/product-search-config-field`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -1763,6 +1885,7 @@ class ProductClient extends Client {
   ): Promise<SearchConfigFieldCreateResponse> {
     const response = await this.post(`/product-search-config-field`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1781,6 +1904,7 @@ class ProductClient extends Client {
     request: SearchConfigFieldListSearchRequest
   ): Promise<SearchConfigFieldListSearchResponse> {
     const response = await this.get(`/search/product-search-config-field`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1796,7 +1920,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSearchConfigField(id: string): Promise<SearchConfigFieldSingleResponse> {
-    const response = await this.get(`/product-search-config-field/${id}`);
+    const response = await this.get(`/product-search-config-field/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigFieldSingleResponse;
@@ -1829,6 +1955,7 @@ class ProductClient extends Client {
   ): Promise<SearchConfigFieldUpdateResponse> {
     const response = await this.patch(`/product-search-config-field/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1847,6 +1974,7 @@ class ProductClient extends Client {
     request: SearchConfigFieldAggregationRequest
   ): Promise<SearchConfigFieldAggregationResponse> {
     const response = await this.post(`/aggregate/product-search-config-field`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1868,7 +1996,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<SearchKeywordListResponse> {
-    const response = await this.get(`/product-search-keyword`, { query: { limit, page, query } });
+    const response = await this.get(`/product-search-keyword`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchKeywordListResponse;
@@ -1887,6 +2018,7 @@ class ProductClient extends Client {
   ): Promise<SearchKeywordCreateResponse> {
     const response = await this.post(`/product-search-keyword`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1905,6 +2037,7 @@ class ProductClient extends Client {
     request: SearchKeywordListSearchRequest
   ): Promise<SearchKeywordListSearchResponse> {
     const response = await this.get(`/search/product-search-keyword`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1920,7 +2053,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSearchKeyword(id: string): Promise<SearchKeywordSingleResponse> {
-    const response = await this.get(`/product-search-keyword/${id}`);
+    const response = await this.get(`/product-search-keyword/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchKeywordSingleResponse;
@@ -1953,6 +2088,7 @@ class ProductClient extends Client {
   ): Promise<SearchKeywordUpdateResponse> {
     const response = await this.patch(`/product-search-keyword/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1971,6 +2107,7 @@ class ProductClient extends Client {
     request: SearchKeywordAggregationRequest
   ): Promise<SearchKeywordAggregationResponse> {
     const response = await this.post(`/aggregate/product-search-keyword`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1992,7 +2129,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<SortingListResponse> {
-    const response = await this.get(`/product-sorting`, { query: { limit, page, query } });
+    const response = await this.get(`/product-sorting`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingListResponse;
@@ -2011,6 +2151,7 @@ class ProductClient extends Client {
   ): Promise<SortingCreateResponse> {
     const response = await this.post(`/product-sorting`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2026,7 +2167,10 @@ class ProductClient extends Client {
   public async searchSortings(
     request: SortingListSearchRequest
   ): Promise<SortingListSearchResponse> {
-    const response = await this.get(`/search/product-sorting`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/product-sorting`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingListSearchResponse;
@@ -2040,7 +2184,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSorting(id: string): Promise<SortingSingleResponse> {
-    const response = await this.get(`/product-sorting/${id}`);
+    const response = await this.get(`/product-sorting/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingSingleResponse;
@@ -2069,6 +2215,7 @@ class ProductClient extends Client {
   ): Promise<SortingUpdateResponse> {
     const response = await this.patch(`/product-sorting/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2085,6 +2232,7 @@ class ProductClient extends Client {
     request: SortingAggregationRequest
   ): Promise<SortingAggregationResponse> {
     const response = await this.post(`/aggregate/product-sorting`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2106,7 +2254,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<StreamListResponse> {
-    const response = await this.get(`/product-stream`, { query: { limit, page, query } });
+    const response = await this.get(`/product-stream`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamListResponse;
@@ -2125,6 +2276,7 @@ class ProductClient extends Client {
   ): Promise<StreamCreateResponse> {
     const response = await this.post(`/product-stream`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2138,7 +2290,10 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchStreams(request: StreamListSearchRequest): Promise<StreamListSearchResponse> {
-    const response = await this.get(`/search/product-stream`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/product-stream`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamListSearchResponse;
@@ -2152,7 +2307,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getStream(id: string): Promise<StreamSingleResponse> {
-    const response = await this.get(`/product-stream/${id}`);
+    const response = await this.get(`/product-stream/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamSingleResponse;
@@ -2181,6 +2338,7 @@ class ProductClient extends Client {
   ): Promise<StreamUpdateResponse> {
     const response = await this.patch(`/product-stream/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2197,6 +2355,7 @@ class ProductClient extends Client {
     request: StreamAggregationRequest
   ): Promise<StreamAggregationResponse> {
     const response = await this.post(`/aggregate/product-stream`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2216,7 +2375,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<StreamFilterListResponse> {
-    const response = await this.get(`/product-stream-filter`, { query: { limit, page, query } });
+    const response = await this.get(`/product-stream-filter`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamFilterListResponse;
@@ -2235,6 +2397,7 @@ class ProductClient extends Client {
   ): Promise<StreamFilterCreateResponse> {
     const response = await this.post(`/product-stream-filter`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2253,6 +2416,7 @@ class ProductClient extends Client {
     request: StreamFilterListSearchRequest
   ): Promise<StreamFilterListSearchResponse> {
     const response = await this.get(`/search/product-stream-filter`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2268,7 +2432,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getStreamFilter(id: string): Promise<StreamFilterSingleResponse> {
-    const response = await this.get(`/product-stream-filter/${id}`);
+    const response = await this.get(`/product-stream-filter/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamFilterSingleResponse;
@@ -2301,6 +2467,7 @@ class ProductClient extends Client {
   ): Promise<StreamFilterUpdateResponse> {
     const response = await this.patch(`/product-stream-filter/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2319,6 +2486,7 @@ class ProductClient extends Client {
     request: StreamFilterAggregationRequest
   ): Promise<StreamFilterAggregationResponse> {
     const response = await this.post(`/aggregate/product-stream-filter`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2340,7 +2508,10 @@ class ProductClient extends Client {
     page?: number,
     query?: string
   ): Promise<VisibilityListResponse> {
-    const response = await this.get(`/product-visibility`, { query: { limit, page, query } });
+    const response = await this.get(`/product-visibility`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as VisibilityListResponse;
@@ -2359,6 +2530,7 @@ class ProductClient extends Client {
   ): Promise<VisibilityCreateResponse> {
     const response = await this.post(`/product-visibility`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2377,6 +2549,7 @@ class ProductClient extends Client {
     request: VisibilityListSearchRequest
   ): Promise<VisibilityListSearchResponse> {
     const response = await this.get(`/search/product-visibility`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2392,7 +2565,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getVisibility(id: string): Promise<VisibilitySingleResponse> {
-    const response = await this.get(`/product-visibility/${id}`);
+    const response = await this.get(`/product-visibility/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as VisibilitySingleResponse;
@@ -2423,6 +2598,7 @@ class ProductClient extends Client {
   ): Promise<VisibilityUpdateResponse> {
     const response = await this.patch(`/product-visibility/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -2441,6 +2617,7 @@ class ProductClient extends Client {
     request: VisibilityAggregationRequest
   ): Promise<VisibilityAggregationResponse> {
     const response = await this.post(`/aggregate/product-visibility`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

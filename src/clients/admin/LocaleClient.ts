@@ -34,7 +34,10 @@ class LocaleClient extends Client {
     page?: number,
     query?: string
   ): Promise<LocaleListResponse> {
-    const response = await this.get(`/locale`, { query: { limit, page, query } });
+    const response = await this.get(`/locale`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleListResponse;
@@ -53,6 +56,7 @@ class LocaleClient extends Client {
   ): Promise<LocaleCreateResponse> {
     const response = await this.post(`/locale`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -66,7 +70,10 @@ class LocaleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchLocales(request: LocaleListSearchRequest): Promise<LocaleListSearchResponse> {
-    const response = await this.get(`/search/locale`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/locale`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleListSearchResponse;
@@ -80,7 +87,7 @@ class LocaleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getLocale(id: string): Promise<LocaleSingleResponse> {
-    const response = await this.get(`/locale/${id}`);
+    const response = await this.get(`/locale/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleSingleResponse;
@@ -109,6 +116,7 @@ class LocaleClient extends Client {
   ): Promise<LocaleUpdateResponse> {
     const response = await this.patch(`/locale/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -125,6 +133,7 @@ class LocaleClient extends Client {
     request: LocaleAggregationRequest
   ): Promise<LocaleAggregationResponse> {
     const response = await this.post(`/aggregate/locale`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -144,7 +153,10 @@ class LocaleClient extends Client {
     page?: number,
     query?: string
   ): Promise<LanguageListResponse> {
-    const response = await this.get(`/language`, { query: { limit, page, query } });
+    const response = await this.get(`/language`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageListResponse;
@@ -163,6 +175,7 @@ class LocaleClient extends Client {
   ): Promise<LanguageCreateResponse> {
     const response = await this.post(`/language`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -178,7 +191,10 @@ class LocaleClient extends Client {
   public async searchLanguages(
     request: LanguageListSearchRequest
   ): Promise<LanguageListSearchResponse> {
-    const response = await this.get(`/search/language`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/language`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageListSearchResponse;
@@ -192,7 +208,7 @@ class LocaleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getLanguage(id: string): Promise<LanguageSingleResponse> {
-    const response = await this.get(`/language/${id}`);
+    const response = await this.get(`/language/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageSingleResponse;
@@ -221,6 +237,7 @@ class LocaleClient extends Client {
   ): Promise<LanguageUpdateResponse> {
     const response = await this.patch(`/language/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -237,6 +254,7 @@ class LocaleClient extends Client {
     request: LanguageAggregationRequest
   ): Promise<LanguageAggregationResponse> {
     const response = await this.post(`/aggregate/language`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

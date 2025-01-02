@@ -44,7 +44,10 @@ class DeliveryTimeClient extends Client {
     page?: number,
     query?: string
   ): Promise<StateMachineListResponse> {
-    const response = await this.get(`/state-machine`, { query: { limit, page, query } });
+    const response = await this.get(`/state-machine`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineListResponse;
@@ -63,6 +66,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<StateMachineCreateResponse> {
     const response = await this.post(`/state-machine`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -80,7 +84,10 @@ class DeliveryTimeClient extends Client {
   public async searchStateMachines(
     request: StateMachineListSearchRequest
   ): Promise<StateMachineListSearchResponse> {
-    const response = await this.get(`/search/state-machine`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/state-machine`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineListSearchResponse;
@@ -94,7 +101,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getStateMachine(id: string): Promise<StateMachineSingleResponse> {
-    const response = await this.get(`/state-machine/${id}`);
+    const response = await this.get(`/state-machine/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineSingleResponse;
@@ -127,6 +136,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<StateMachineUpdateResponse> {
     const response = await this.patch(`/state-machine/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -145,6 +155,7 @@ class DeliveryTimeClient extends Client {
     request: StateMachineAggregationRequest
   ): Promise<StateMachineAggregationResponse> {
     const response = await this.post(`/aggregate/state-machine`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -166,7 +177,10 @@ class DeliveryTimeClient extends Client {
     page?: number,
     query?: string
   ): Promise<StateListResponse> {
-    const response = await this.get(`/state-machine-state`, { query: { limit, page, query } });
+    const response = await this.get(`/state-machine-state`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListResponse;
@@ -183,6 +197,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<StateCreateResponse> {
     const response = await this.post(`/state-machine-state`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -197,6 +212,7 @@ class DeliveryTimeClient extends Client {
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
     const response = await this.get(`/search/state-machine-state`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -212,7 +228,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getState(id: string): Promise<StateSingleResponse> {
-    const response = await this.get(`/state-machine-state/${id}`);
+    const response = await this.get(`/state-machine-state/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateSingleResponse;
@@ -241,6 +259,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<StateUpdateResponse> {
     const response = await this.patch(`/state-machine-state/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -257,6 +276,7 @@ class DeliveryTimeClient extends Client {
     request: StateAggregationRequest
   ): Promise<StateAggregationResponse> {
     const response = await this.post(`/aggregate/state-machine-state`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -276,7 +296,10 @@ class DeliveryTimeClient extends Client {
     page?: number,
     query?: string
   ): Promise<TransitionListResponse> {
-    const response = await this.get(`/state-machine-transition`, { query: { limit, page, query } });
+    const response = await this.get(`/state-machine-transition`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransitionListResponse;
@@ -295,6 +318,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<TransitionCreateResponse> {
     const response = await this.post(`/state-machine-transition`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -313,6 +337,7 @@ class DeliveryTimeClient extends Client {
     request: TransitionListSearchRequest
   ): Promise<TransitionListSearchResponse> {
     const response = await this.get(`/search/state-machine-transition`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -328,7 +353,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTransition(id: string): Promise<TransitionSingleResponse> {
-    const response = await this.get(`/state-machine-transition/${id}`);
+    const response = await this.get(`/state-machine-transition/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransitionSingleResponse;
@@ -359,6 +386,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<TransitionUpdateResponse> {
     const response = await this.patch(`/state-machine-transition/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -377,6 +405,7 @@ class DeliveryTimeClient extends Client {
     request: TransitionAggregationRequest
   ): Promise<TransitionAggregationResponse> {
     const response = await this.post(`/aggregate/state-machine-transition`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

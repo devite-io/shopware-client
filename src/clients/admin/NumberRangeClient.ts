@@ -54,7 +54,10 @@ class NumberRangeClient extends Client {
     page?: number,
     query?: string
   ): Promise<RangeListResponse> {
-    const response = await this.get(`/number-range`, { query: { limit, page, query } });
+    const response = await this.get(`/number-range`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeListResponse;
@@ -71,6 +74,7 @@ class NumberRangeClient extends Client {
   ): Promise<RangeCreateResponse> {
     const response = await this.post(`/number-range`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -84,7 +88,10 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchRanges(request: RangeListSearchRequest): Promise<RangeListSearchResponse> {
-    const response = await this.get(`/search/number-range`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/number-range`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeListSearchResponse;
@@ -98,7 +105,9 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRange(id: string): Promise<RangeSingleResponse> {
-    const response = await this.get(`/number-range/${id}`);
+    const response = await this.get(`/number-range/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeSingleResponse;
@@ -127,6 +136,7 @@ class NumberRangeClient extends Client {
   ): Promise<RangeUpdateResponse> {
     const response = await this.patch(`/number-range/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -143,6 +153,7 @@ class NumberRangeClient extends Client {
     request: RangeAggregationRequest
   ): Promise<RangeAggregationResponse> {
     const response = await this.post(`/aggregate/number-range`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -163,7 +174,8 @@ class NumberRangeClient extends Client {
     query?: string
   ): Promise<SalesChannelListResponse> {
     const response = await this.get(`/number-range-sales-channel`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -183,6 +195,7 @@ class NumberRangeClient extends Client {
   ): Promise<SalesChannelCreateResponse> {
     const response = await this.post(`/number-range-sales-channel`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -201,6 +214,7 @@ class NumberRangeClient extends Client {
     request: SalesChannelListSearchRequest
   ): Promise<SalesChannelListSearchResponse> {
     const response = await this.get(`/search/number-range-sales-channel`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -216,7 +230,9 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSalesChannel(id: string): Promise<SalesChannelSingleResponse> {
-    const response = await this.get(`/number-range-sales-channel/${id}`);
+    const response = await this.get(`/number-range-sales-channel/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelSingleResponse;
@@ -249,6 +265,7 @@ class NumberRangeClient extends Client {
   ): Promise<SalesChannelUpdateResponse> {
     const response = await this.patch(`/number-range-sales-channel/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -267,6 +284,7 @@ class NumberRangeClient extends Client {
     request: SalesChannelAggregationRequest
   ): Promise<SalesChannelAggregationResponse> {
     const response = await this.post(`/aggregate/number-range-sales-channel`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -288,7 +306,10 @@ class NumberRangeClient extends Client {
     page?: number,
     query?: string
   ): Promise<StateListResponse> {
-    const response = await this.get(`/number-range-state`, { query: { limit, page, query } });
+    const response = await this.get(`/number-range-state`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListResponse;
@@ -305,6 +326,7 @@ class NumberRangeClient extends Client {
   ): Promise<StateCreateResponse> {
     const response = await this.post(`/number-range-state`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -319,6 +341,7 @@ class NumberRangeClient extends Client {
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
     const response = await this.get(`/search/number-range-state`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -334,7 +357,9 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getState(id: string): Promise<StateSingleResponse> {
-    const response = await this.get(`/number-range-state/${id}`);
+    const response = await this.get(`/number-range-state/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateSingleResponse;
@@ -363,6 +388,7 @@ class NumberRangeClient extends Client {
   ): Promise<StateUpdateResponse> {
     const response = await this.patch(`/number-range-state/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -379,6 +405,7 @@ class NumberRangeClient extends Client {
     request: StateAggregationRequest
   ): Promise<StateAggregationResponse> {
     const response = await this.post(`/aggregate/number-range-state`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -394,7 +421,10 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTypes(limit?: number, page?: number, query?: string): Promise<TypeListResponse> {
-    const response = await this.get(`/number-range-type`, { query: { limit, page, query } });
+    const response = await this.get(`/number-range-type`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as TypeListResponse;
 
@@ -410,6 +440,7 @@ class NumberRangeClient extends Client {
   ): Promise<TypeCreateResponse> {
     const response = await this.post(`/number-range-type`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -424,6 +455,7 @@ class NumberRangeClient extends Client {
    */
   public async searchTypes(request: TypeListSearchRequest): Promise<TypeListSearchResponse> {
     const response = await this.get(`/search/number-range-type`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -437,7 +469,9 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getType(id: string): Promise<TypeSingleResponse> {
-    const response = await this.get(`/number-range-type/${id}`);
+    const response = await this.get(`/number-range-type/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeSingleResponse;
@@ -466,6 +500,7 @@ class NumberRangeClient extends Client {
   ): Promise<TypeUpdateResponse> {
     const response = await this.patch(`/number-range-type/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -480,6 +515,7 @@ class NumberRangeClient extends Client {
    */
   public async getTypeAggregate(request: TypeAggregationRequest): Promise<TypeAggregationResponse> {
     const response = await this.post(`/aggregate/number-range-type`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

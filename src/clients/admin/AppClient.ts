@@ -110,7 +110,10 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getApps(limit?: number, page?: number, query?: string): Promise<AppListResponse> {
-    const response = await this.get(`/app`, { query: { limit, page, query } });
+    const response = await this.get(`/app`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as AppListResponse;
 
@@ -126,6 +129,7 @@ class AppClient extends Client {
   ): Promise<AppCreateResponse> {
     const response = await this.post(`/app`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -139,7 +143,10 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchApps(request: AppListSearchRequest): Promise<AppListSearchResponse> {
-    const response = await this.get(`/search/app`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/app`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AppListSearchResponse;
@@ -151,7 +158,7 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getApp(id: string): Promise<AppSingleResponse> {
-    const response = await this.get(`/app/${id}`);
+    const response = await this.get(`/app/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AppSingleResponse;
@@ -180,6 +187,7 @@ class AppClient extends Client {
   ): Promise<AppUpdateResponse> {
     const response = await this.patch(`/app/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -194,6 +202,7 @@ class AppClient extends Client {
    */
   public async getAppAggregate(request: AppAggregationRequest): Promise<AppAggregationResponse> {
     const response = await this.post(`/aggregate/app`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -213,7 +222,10 @@ class AppClient extends Client {
     page?: number,
     query?: string
   ): Promise<ActionButtonListResponse> {
-    const response = await this.get(`/app-action-button`, { query: { limit, page, query } });
+    const response = await this.get(`/app-action-button`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ActionButtonListResponse;
@@ -232,6 +244,7 @@ class AppClient extends Client {
   ): Promise<ActionButtonCreateResponse> {
     const response = await this.post(`/app-action-button`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -248,6 +261,7 @@ class AppClient extends Client {
     request: ActionButtonListSearchRequest
   ): Promise<ActionButtonListSearchResponse> {
     const response = await this.get(`/search/app-action-button`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -263,7 +277,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getActionButton(id: string): Promise<ActionButtonSingleResponse> {
-    const response = await this.get(`/app-action-button/${id}`);
+    const response = await this.get(`/app-action-button/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ActionButtonSingleResponse;
@@ -296,6 +312,7 @@ class AppClient extends Client {
   ): Promise<ActionButtonUpdateResponse> {
     const response = await this.patch(`/app-action-button/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -314,6 +331,7 @@ class AppClient extends Client {
     request: ActionButtonAggregationRequest
   ): Promise<ActionButtonAggregationResponse> {
     const response = await this.post(`/aggregate/app-action-button`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -336,7 +354,8 @@ class AppClient extends Client {
     query?: string
   ): Promise<AdminSnippetListResponse> {
     const response = await this.get(`/app-administration-snippet`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -356,6 +375,7 @@ class AppClient extends Client {
   ): Promise<AdminSnippetCreateResponse> {
     const response = await this.post(`/app-administration-snippet`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -372,6 +392,7 @@ class AppClient extends Client {
     request: AdminSnippetListSearchRequest
   ): Promise<AdminSnippetListSearchResponse> {
     const response = await this.get(`/search/app-administration-snippet`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -387,7 +408,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getAdminSnippet(id: string): Promise<AdminSnippetSingleResponse> {
-    const response = await this.get(`/app-administration-snippet/${id}`);
+    const response = await this.get(`/app-administration-snippet/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AdminSnippetSingleResponse;
@@ -420,6 +443,7 @@ class AppClient extends Client {
   ): Promise<AdminSnippetUpdateResponse> {
     const response = await this.patch(`/app-administration-snippet/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -438,6 +462,7 @@ class AppClient extends Client {
     request: AdminSnippetAggregationRequest
   ): Promise<AdminSnippetAggregationResponse> {
     const response = await this.post(`/aggregate/app-administration-snippet`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -459,7 +484,10 @@ class AppClient extends Client {
     page?: number,
     query?: string
   ): Promise<CmsBlockListResponse> {
-    const response = await this.get(`/app-cms-block`, { query: { limit, page, query } });
+    const response = await this.get(`/app-cms-block`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockListResponse;
@@ -478,6 +506,7 @@ class AppClient extends Client {
   ): Promise<CmsBlockCreateResponse> {
     const response = await this.post(`/app-cms-block`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -494,6 +523,7 @@ class AppClient extends Client {
     request: CmsBlockListSearchRequest
   ): Promise<CmsBlockListSearchResponse> {
     const response = await this.get(`/search/app-cms-block`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -509,7 +539,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCmsBlock(id: string): Promise<CmsBlockSingleResponse> {
-    const response = await this.get(`/app-cms-block/${id}`);
+    const response = await this.get(`/app-cms-block/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockSingleResponse;
@@ -538,6 +570,7 @@ class AppClient extends Client {
   ): Promise<CmsBlockUpdateResponse> {
     const response = await this.patch(`/app-cms-block/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -554,6 +587,7 @@ class AppClient extends Client {
     request: CmsBlockAggregationRequest
   ): Promise<CmsBlockAggregationResponse> {
     const response = await this.post(`/aggregate/app-cms-block`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -575,7 +609,10 @@ class AppClient extends Client {
     page?: number,
     query?: string
   ): Promise<FlowActionListResponse> {
-    const response = await this.get(`/app-flow-action`, { query: { limit, page, query } });
+    const response = await this.get(`/app-flow-action`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowActionListResponse;
@@ -594,6 +631,7 @@ class AppClient extends Client {
   ): Promise<FlowActionCreateResponse> {
     const response = await this.post(`/app-flow-action`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -610,6 +648,7 @@ class AppClient extends Client {
     request: FlowActionListSearchRequest
   ): Promise<FlowActionListSearchResponse> {
     const response = await this.get(`/search/app-flow-action`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -625,7 +664,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFlowAction(id: string): Promise<FlowActionSingleResponse> {
-    const response = await this.get(`/app-flow-action/${id}`);
+    const response = await this.get(`/app-flow-action/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowActionSingleResponse;
@@ -658,6 +699,7 @@ class AppClient extends Client {
   ): Promise<FlowActionUpdateResponse> {
     const response = await this.patch(`/app-flow-action/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -676,6 +718,7 @@ class AppClient extends Client {
     request: FlowActionAggregationRequest
   ): Promise<FlowActionAggregationResponse> {
     const response = await this.post(`/aggregate/app-flow-action`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -697,7 +740,10 @@ class AppClient extends Client {
     page?: number,
     query?: string
   ): Promise<FlowEventListResponse> {
-    const response = await this.get(`/app-flow-event`, { query: { limit, page, query } });
+    const response = await this.get(`/app-flow-event`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowEventListResponse;
@@ -716,6 +762,7 @@ class AppClient extends Client {
   ): Promise<FlowEventCreateResponse> {
     const response = await this.post(`/app-flow-event`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -732,6 +779,7 @@ class AppClient extends Client {
     request: FlowEventListSearchRequest
   ): Promise<FlowEventListSearchResponse> {
     const response = await this.get(`/search/app-flow-event`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -747,7 +795,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getFlowEvent(id: string): Promise<FlowEventSingleResponse> {
-    const response = await this.get(`/app-flow-event/${id}`);
+    const response = await this.get(`/app-flow-event/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowEventSingleResponse;
@@ -778,6 +828,7 @@ class AppClient extends Client {
   ): Promise<FlowEventUpdateResponse> {
     const response = await this.patch(`/app-flow-event/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -796,6 +847,7 @@ class AppClient extends Client {
     request: FlowEventAggregationRequest
   ): Promise<FlowEventAggregationResponse> {
     const response = await this.post(`/aggregate/app-flow-event`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -817,7 +869,10 @@ class AppClient extends Client {
     page?: number,
     query?: string
   ): Promise<PaymentMethodListResponse> {
-    const response = await this.get(`/app-payment-method`, { query: { limit, page, query } });
+    const response = await this.get(`/app-payment-method`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListResponse;
@@ -836,6 +891,7 @@ class AppClient extends Client {
   ): Promise<PaymentMethodCreateResponse> {
     const response = await this.post(`/app-payment-method`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -852,6 +908,7 @@ class AppClient extends Client {
     request: PaymentMethodListSearchRequest
   ): Promise<PaymentMethodListSearchResponse> {
     const response = await this.get(`/search/app-payment-method`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -867,7 +924,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getPaymentMethod(id: string): Promise<PaymentMethodSingleResponse> {
-    const response = await this.get(`/app-payment-method/${id}`);
+    const response = await this.get(`/app-payment-method/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodSingleResponse;
@@ -900,6 +959,7 @@ class AppClient extends Client {
   ): Promise<PaymentMethodUpdateResponse> {
     const response = await this.patch(`/app-payment-method/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -918,6 +978,7 @@ class AppClient extends Client {
     request: PaymentMethodAggregationRequest
   ): Promise<PaymentMethodAggregationResponse> {
     const response = await this.post(`/aggregate/app-payment-method`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -939,7 +1000,10 @@ class AppClient extends Client {
     page?: number,
     query?: string
   ): Promise<ScriptConditionListResponse> {
-    const response = await this.get(`/app-script-condition`, { query: { limit, page, query } });
+    const response = await this.get(`/app-script-condition`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptConditionListResponse;
@@ -958,6 +1022,7 @@ class AppClient extends Client {
   ): Promise<ScriptConditionCreateResponse> {
     const response = await this.post(`/app-script-condition`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -974,6 +1039,7 @@ class AppClient extends Client {
     request: ScriptConditionListSearchRequest
   ): Promise<ScriptConditionListSearchResponse> {
     const response = await this.get(`/search/app-script-condition`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -989,7 +1055,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getScriptCondition(id: string): Promise<ScriptConditionSingleResponse> {
-    const response = await this.get(`/app-script-condition/${id}`);
+    const response = await this.get(`/app-script-condition/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptConditionSingleResponse;
@@ -1022,6 +1090,7 @@ class AppClient extends Client {
   ): Promise<ScriptConditionUpdateResponse> {
     const response = await this.patch(`/app-script-condition/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1040,6 +1109,7 @@ class AppClient extends Client {
     request: ScriptConditionAggregationRequest
   ): Promise<ScriptConditionAggregationResponse> {
     const response = await this.post(`/aggregate/app-script-condition`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1061,7 +1131,10 @@ class AppClient extends Client {
     page?: number,
     query?: string
   ): Promise<ShippingMethodListResponse> {
-    const response = await this.get(`/app-shipping-method`, { query: { limit, page, query } });
+    const response = await this.get(`/app-shipping-method`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListResponse;
@@ -1080,6 +1153,7 @@ class AppClient extends Client {
   ): Promise<ShippingMethodCreateResponse> {
     const response = await this.post(`/app-shipping-method`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1096,6 +1170,7 @@ class AppClient extends Client {
     request: ShippingMethodListSearchRequest
   ): Promise<ShippingMethodListSearchResponse> {
     const response = await this.get(`/search/app-shipping-method`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1111,7 +1186,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getShippingMethod(id: string): Promise<ShippingMethodSingleResponse> {
-    const response = await this.get(`/app-shipping-method/${id}`);
+    const response = await this.get(`/app-shipping-method/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodSingleResponse;
@@ -1144,6 +1221,7 @@ class AppClient extends Client {
   ): Promise<ShippingMethodUpdateResponse> {
     const response = await this.patch(`/app-shipping-method/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1162,6 +1240,7 @@ class AppClient extends Client {
     request: ShippingMethodAggregationRequest
   ): Promise<ShippingMethodAggregationResponse> {
     const response = await this.post(`/aggregate/app-shipping-method`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1183,7 +1262,10 @@ class AppClient extends Client {
     page?: number,
     query?: string
   ): Promise<TemplateListResponse> {
-    const response = await this.get(`/app-template`, { query: { limit, page, query } });
+    const response = await this.get(`/app-template`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateListResponse;
@@ -1202,6 +1284,7 @@ class AppClient extends Client {
   ): Promise<TemplateCreateResponse> {
     const response = await this.post(`/app-template`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1218,6 +1301,7 @@ class AppClient extends Client {
     request: TemplateListSearchRequest
   ): Promise<TemplateListSearchResponse> {
     const response = await this.get(`/search/app-template`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1233,7 +1317,9 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTemplate(id: string): Promise<TemplateSingleResponse> {
-    const response = await this.get(`/app-template/${id}`);
+    const response = await this.get(`/app-template/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateSingleResponse;
@@ -1262,6 +1348,7 @@ class AppClient extends Client {
   ): Promise<TemplateUpdateResponse> {
     const response = await this.patch(`/app-template/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1278,6 +1365,7 @@ class AppClient extends Client {
     request: TemplateAggregationRequest
   ): Promise<TemplateAggregationResponse> {
     const response = await this.post(`/aggregate/app-template`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

@@ -34,7 +34,10 @@ class DeliveryTimeClient extends Client {
     page?: number,
     query?: string
   ): Promise<SnippetListResponse> {
-    const response = await this.get(`/snippet`, { query: { limit, page, query } });
+    const response = await this.get(`/snippet`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetListResponse;
@@ -53,6 +56,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<SnippetCreateResponse> {
     const response = await this.post(`/snippet`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -68,7 +72,10 @@ class DeliveryTimeClient extends Client {
   public async searchSnippets(
     request: SnippetListSearchRequest
   ): Promise<SnippetListSearchResponse> {
-    const response = await this.get(`/search/snippet`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/snippet`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetListSearchResponse;
@@ -82,7 +89,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSnippet(id: string): Promise<SnippetSingleResponse> {
-    const response = await this.get(`/snippet/${id}`);
+    const response = await this.get(`/snippet/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetSingleResponse;
@@ -111,6 +118,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<SnippetUpdateResponse> {
     const response = await this.patch(`/snippet/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -127,6 +135,7 @@ class DeliveryTimeClient extends Client {
     request: SnippetAggregationRequest
   ): Promise<SnippetAggregationResponse> {
     const response = await this.post(`/aggregate/snippet`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -144,7 +153,10 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSets(limit?: number, page?: number, query?: string): Promise<SetListResponse> {
-    const response = await this.get(`/snippet-set`, { query: { limit, page, query } });
+    const response = await this.get(`/snippet-set`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as SetListResponse;
 
@@ -162,6 +174,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<SetCreateResponse> {
     const response = await this.post(`/snippet-set`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -177,7 +190,10 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchSets(request: SetListSearchRequest): Promise<SetListSearchResponse> {
-    const response = await this.get(`/search/snippet-set`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/snippet-set`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetListSearchResponse;
@@ -191,7 +207,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getSet(id: string): Promise<SetSingleResponse> {
-    const response = await this.get(`/snippet-set/${id}`);
+    const response = await this.get(`/snippet-set/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetSingleResponse;
@@ -224,6 +242,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<SetUpdateResponse> {
     const response = await this.patch(`/snippet-set/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -240,6 +259,7 @@ class DeliveryTimeClient extends Client {
    */
   public async getSetAggregate(request: SetAggregationRequest): Promise<SetAggregationResponse> {
     const response = await this.post(`/aggregate/snippet-set`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

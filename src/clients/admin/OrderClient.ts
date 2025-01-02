@@ -128,6 +128,7 @@ class OrderClient extends Client {
    */
   public async downloadMerged(request: DownloadMergedRequest): Promise<DownloadMergedResponse> {
     const response = await this.post(`/_action/order/document/download`, {
+      headers: { Accept: "application/octet-stream" },
       body: new JsonPayload(request)
     });
 
@@ -166,7 +167,8 @@ class OrderClient extends Client {
     download?: boolean
   ): Promise<DownloadResponse> {
     const response = await this.get(`/_action/document/${id}/download/${deepLinkCode}`, {
-      query: { download }
+      query: { download },
+      headers: { Accept: "application/octet-stream" }
     });
 
     if (response.statusCode === 200)
@@ -185,7 +187,7 @@ class OrderClient extends Client {
   public async refundTransactionCapture(refundId: string): Promise<void> {
     const response = await this.post(`/_action/order_transaction_capture_refund/${refundId}`);
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 204) return;
 
     throw new Error(
       `Failed to refund transaction capture: ${response.statusCode} ${response.statusMessage}`
@@ -205,7 +207,10 @@ class OrderClient extends Client {
   ): Promise<StateTransitionResponse> {
     const response = await this.post(
       `/_action/order_transaction/${transactionId}/state/${transition}`,
-      { body: new JsonPayload(request) }
+      {
+        headers: { Accept: "application/json" },
+        body: new JsonPayload(request)
+      }
     );
 
     if (response.statusCode === 200)
@@ -228,6 +233,7 @@ class OrderClient extends Client {
     request: StateTransitionRequest
   ) {
     const response = await this.post(`/_action/order/${orderId}/state/${transition}`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -249,6 +255,7 @@ class OrderClient extends Client {
     request: StateTransitionRequest
   ) {
     const response = await this.post(`/_action/order_delivery/${deliveryId}/state/${transition}`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -270,7 +277,10 @@ class OrderClient extends Client {
     page?: number,
     query?: string
   ): Promise<OrderListResponse> {
-    const response = await this.get(`/order`, { query: { limit, page, query } });
+    const response = await this.get(`/order`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderListResponse;
@@ -287,6 +297,7 @@ class OrderClient extends Client {
   ): Promise<OrderCreateResponse> {
     const response = await this.post(`/order`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -300,7 +311,10 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchOrders(request: OrderListSearchRequest): Promise<OrderListSearchResponse> {
-    const response = await this.get(`/search/order`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/order`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderListSearchResponse;
@@ -314,7 +328,7 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getOrder(id: string): Promise<OrderSingleResponse> {
-    const response = await this.get(`/order/${id}`);
+    const response = await this.get(`/order/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderSingleResponse;
@@ -343,6 +357,7 @@ class OrderClient extends Client {
   ): Promise<OrderUpdateResponse> {
     const response = await this.patch(`/order/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -359,6 +374,7 @@ class OrderClient extends Client {
     request: OrderAggregationRequest
   ): Promise<OrderAggregationResponse> {
     const response = await this.post(`/aggregate/order`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -378,7 +394,10 @@ class OrderClient extends Client {
     page?: number,
     query?: string
   ): Promise<AddressListResponse> {
-    const response = await this.get(`/order-address`, { query: { limit, page, query } });
+    const response = await this.get(`/order-address`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressListResponse;
@@ -397,6 +416,7 @@ class OrderClient extends Client {
   ): Promise<AddressCreateResponse> {
     const response = await this.post(`/order-address`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -412,7 +432,10 @@ class OrderClient extends Client {
   public async searchAddresses(
     request: AddressListSearchRequest
   ): Promise<AddressListSearchResponse> {
-    const response = await this.get(`/search/order-address`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/order-address`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressListSearchResponse;
@@ -426,7 +449,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getAddress(id: string): Promise<AddressSingleResponse> {
-    const response = await this.get(`/order-address/${id}`);
+    const response = await this.get(`/order-address/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressSingleResponse;
@@ -455,6 +480,7 @@ class OrderClient extends Client {
   ): Promise<AddressUpdateResponse> {
     const response = await this.patch(`/order-address/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -471,6 +497,7 @@ class OrderClient extends Client {
     request: AddressAggregationRequest
   ): Promise<AddressAggregationResponse> {
     const response = await this.post(`/aggregate/order-address`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -492,7 +519,10 @@ class OrderClient extends Client {
     page?: number,
     query?: string
   ): Promise<CustomerListResponse> {
-    const response = await this.get(`/order-customer`, { query: { limit, page, query } });
+    const response = await this.get(`/order-customer`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerListResponse;
@@ -511,6 +541,7 @@ class OrderClient extends Client {
   ): Promise<CustomerCreateResponse> {
     const response = await this.post(`/order-customer`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -526,7 +557,10 @@ class OrderClient extends Client {
   public async searchCustomers(
     request: CustomerListSearchRequest
   ): Promise<CustomerListSearchResponse> {
-    const response = await this.get(`/search/order-customer`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/order-customer`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerListSearchResponse;
@@ -540,7 +574,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCustomer(id: string): Promise<CustomerSingleResponse> {
-    const response = await this.get(`/order-customer/${id}`);
+    const response = await this.get(`/order-customer/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerSingleResponse;
@@ -569,6 +605,7 @@ class OrderClient extends Client {
   ): Promise<CustomerUpdateResponse> {
     const response = await this.patch(`/order-customer/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -585,6 +622,7 @@ class OrderClient extends Client {
     request: CustomerAggregationRequest
   ): Promise<CustomerAggregationResponse> {
     const response = await this.post(`/aggregate/order-customer`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -606,7 +644,10 @@ class OrderClient extends Client {
     page?: number,
     query?: string
   ): Promise<DeliveryListResponse> {
-    const response = await this.get(`/order-delivery`, { query: { limit, page, query } });
+    const response = await this.get(`/order-delivery`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryListResponse;
@@ -625,6 +666,7 @@ class OrderClient extends Client {
   ): Promise<DeliveryCreateResponse> {
     const response = await this.post(`/order-delivery`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -640,7 +682,10 @@ class OrderClient extends Client {
   public async searchDeliveries(
     request: DeliveryListSearchRequest
   ): Promise<DeliveryListSearchResponse> {
-    const response = await this.get(`/search/order-delivery`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/order-delivery`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryListSearchResponse;
@@ -654,7 +699,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDelivery(id: string): Promise<DeliverySingleResponse> {
-    const response = await this.get(`/order-delivery/${id}`);
+    const response = await this.get(`/order-delivery/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliverySingleResponse;
@@ -683,6 +730,7 @@ class OrderClient extends Client {
   ): Promise<DeliveryUpdateResponse> {
     const response = await this.patch(`/order-delivery/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -699,6 +747,7 @@ class OrderClient extends Client {
     request: DeliveryAggregationRequest
   ): Promise<DeliveryAggregationResponse> {
     const response = await this.post(`/aggregate/order-delivery`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -720,7 +769,10 @@ class OrderClient extends Client {
     page?: number,
     query?: string
   ): Promise<DeliveryPositionListResponse> {
-    const response = await this.get(`/order-delivery-position`, { query: { limit, page, query } });
+    const response = await this.get(`/order-delivery-position`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryPositionListResponse;
@@ -739,6 +791,7 @@ class OrderClient extends Client {
   ): Promise<DeliveryPositionCreateResponse> {
     const response = await this.post(`/order-delivery-position`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -757,6 +810,7 @@ class OrderClient extends Client {
     request: DeliveryPositionListSearchRequest
   ): Promise<DeliveryPositionListSearchResponse> {
     const response = await this.get(`/search/order-delivery-position`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -772,7 +826,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDeliveryPosition(id: string): Promise<DeliveryPositionSingleResponse> {
-    const response = await this.get(`/order-delivery-position/${id}`);
+    const response = await this.get(`/order-delivery-position/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryPositionSingleResponse;
@@ -805,6 +861,7 @@ class OrderClient extends Client {
   ): Promise<DeliveryPositionUpdateResponse> {
     const response = await this.patch(`/order-delivery-position/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -823,6 +880,7 @@ class OrderClient extends Client {
     request: DeliveryPositionAggregationRequest
   ): Promise<DeliveryPositionAggregationResponse> {
     const response = await this.post(`/aggregate/order-delivery-position`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -844,7 +902,10 @@ class OrderClient extends Client {
     page?: number,
     query?: string
   ): Promise<LineItemListResponse> {
-    const response = await this.get(`/order-line-item`, { query: { limit, page, query } });
+    const response = await this.get(`/order-line-item`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemListResponse;
@@ -863,6 +924,7 @@ class OrderClient extends Client {
   ): Promise<LineItemCreateResponse> {
     const response = await this.post(`/order-line-item`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -878,7 +940,10 @@ class OrderClient extends Client {
   public async searchLineItems(
     request: LineItemListSearchRequest
   ): Promise<LineItemListSearchResponse> {
-    const response = await this.get(`/search/order-line-item`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/order-line-item`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemListSearchResponse;
@@ -892,7 +957,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getLineItem(id: string): Promise<LineItemSingleResponse> {
-    const response = await this.get(`/order-line-item/${id}`);
+    const response = await this.get(`/order-line-item/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemSingleResponse;
@@ -921,6 +988,7 @@ class OrderClient extends Client {
   ): Promise<LineItemUpdateResponse> {
     const response = await this.patch(`/order-line-item/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -937,6 +1005,7 @@ class OrderClient extends Client {
     request: LineItemAggregationRequest
   ): Promise<LineItemAggregationResponse> {
     const response = await this.post(`/aggregate/order-line-item`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -958,7 +1027,10 @@ class OrderClient extends Client {
     page?: number,
     query?: string
   ): Promise<LineItemDownloadListResponse> {
-    const response = await this.get(`/order-line-item-download`, { query: { limit, page, query } });
+    const response = await this.get(`/order-line-item-download`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemDownloadListResponse;
@@ -977,6 +1049,7 @@ class OrderClient extends Client {
   ): Promise<LineItemDownloadCreateResponse> {
     const response = await this.post(`/order-line-item-download`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -995,6 +1068,7 @@ class OrderClient extends Client {
     request: LineItemDownloadListSearchRequest
   ): Promise<LineItemDownloadListSearchResponse> {
     const response = await this.get(`/search/order-line-item-download`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1010,7 +1084,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getLineItemDownload(id: string): Promise<LineItemDownloadSingleResponse> {
-    const response = await this.get(`/order-line-item-download/${id}`);
+    const response = await this.get(`/order-line-item-download/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemDownloadSingleResponse;
@@ -1043,6 +1119,7 @@ class OrderClient extends Client {
   ): Promise<LineItemDownloadUpdateResponse> {
     const response = await this.patch(`/order-line-item-download/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1061,6 +1138,7 @@ class OrderClient extends Client {
     request: LineItemDownloadAggregationRequest
   ): Promise<LineItemDownloadAggregationResponse> {
     const response = await this.post(`/aggregate/order-line-item-download`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1082,7 +1160,10 @@ class OrderClient extends Client {
     page?: number,
     query?: string
   ): Promise<TransactionListResponse> {
-    const response = await this.get(`/order-transaction`, { query: { limit, page, query } });
+    const response = await this.get(`/order-transaction`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionListResponse;
@@ -1101,6 +1182,7 @@ class OrderClient extends Client {
   ): Promise<TransactionCreateResponse> {
     const response = await this.post(`/order-transaction`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1119,6 +1201,7 @@ class OrderClient extends Client {
     request: TransactionListSearchRequest
   ): Promise<TransactionListSearchResponse> {
     const response = await this.get(`/search/order-transaction`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1134,7 +1217,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTransaction(id: string): Promise<TransactionSingleResponse> {
-    const response = await this.get(`/order-transaction/${id}`);
+    const response = await this.get(`/order-transaction/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionSingleResponse;
@@ -1167,6 +1252,7 @@ class OrderClient extends Client {
   ): Promise<TransactionUpdateResponse> {
     const response = await this.patch(`/order-transaction/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1185,6 +1271,7 @@ class OrderClient extends Client {
     request: TransactionAggregationRequest
   ): Promise<TransactionAggregationResponse> {
     const response = await this.post(`/aggregate/order-transaction`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1207,7 +1294,8 @@ class OrderClient extends Client {
     query?: string
   ): Promise<TransactionCaptureListResponse> {
     const response = await this.get(`/order-transaction-capture`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -1227,6 +1315,7 @@ class OrderClient extends Client {
   ): Promise<TransactionCaptureCreateResponse> {
     const response = await this.post(`/order-transaction-capture`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1245,6 +1334,7 @@ class OrderClient extends Client {
     request: TransactionCaptureListSearchRequest
   ): Promise<TransactionCaptureListSearchResponse> {
     const response = await this.get(`/search/order-transaction-capture`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1260,7 +1350,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTransactionCapture(id: string): Promise<TransactionCaptureSingleResponse> {
-    const response = await this.get(`/order-transaction-capture/${id}`);
+    const response = await this.get(`/order-transaction-capture/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureSingleResponse;
@@ -1293,6 +1385,7 @@ class OrderClient extends Client {
   ): Promise<TransactionCaptureUpdateResponse> {
     const response = await this.patch(`/order-transaction-capture/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1311,6 +1404,7 @@ class OrderClient extends Client {
     request: TransactionCaptureAggregationRequest
   ): Promise<TransactionCaptureAggregationResponse> {
     const response = await this.post(`/aggregate/order-transaction-capture`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1333,7 +1427,8 @@ class OrderClient extends Client {
     query?: string
   ): Promise<TransactionCaptureRefundListResponse> {
     const response = await this.get(`/order-transaction-capture-refund`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -1353,6 +1448,7 @@ class OrderClient extends Client {
   ): Promise<TransactionCaptureRefundCreateResponse> {
     const response = await this.post(`/order-transaction-capture-refund`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1371,6 +1467,7 @@ class OrderClient extends Client {
     request: TransactionCaptureRefundListSearchRequest
   ): Promise<TransactionCaptureRefundListSearchResponse> {
     const response = await this.get(`/search/order-transaction-capture-refund`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1388,7 +1485,9 @@ class OrderClient extends Client {
   public async getTransactionCaptureRefund(
     id: string
   ): Promise<TransactionCaptureRefundSingleResponse> {
-    const response = await this.get(`/order-transaction-capture-refund/${id}`);
+    const response = await this.get(`/order-transaction-capture-refund/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundSingleResponse;
@@ -1421,6 +1520,7 @@ class OrderClient extends Client {
   ): Promise<TransactionCaptureRefundUpdateResponse> {
     const response = await this.patch(`/order-transaction-capture-refund/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1439,6 +1539,7 @@ class OrderClient extends Client {
     request: TransactionCaptureRefundAggregationRequest
   ): Promise<TransactionCaptureRefundAggregationResponse> {
     const response = await this.post(`/aggregate/order-transaction-capture-refund`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1461,7 +1562,8 @@ class OrderClient extends Client {
     query?: string
   ): Promise<TransactionCaptureRefundPositionListResponse> {
     const response = await this.get(`/order-transaction-capture-refund-position`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -1481,6 +1583,7 @@ class OrderClient extends Client {
   ): Promise<TransactionCaptureRefundPositionCreateResponse> {
     const response = await this.post(`/order-transaction-capture-refund-position`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1499,6 +1602,7 @@ class OrderClient extends Client {
     request: TransactionCaptureRefundPositionListSearchRequest
   ): Promise<TransactionCaptureRefundPositionListSearchResponse> {
     const response = await this.get(`/search/order-transaction-capture-refund-position`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1517,7 +1621,9 @@ class OrderClient extends Client {
   public async getTransactionCaptureRefundPosition(
     id: string
   ): Promise<TransactionCaptureRefundPositionSingleResponse> {
-    const response = await this.get(`/order-transaction-capture-refund-position/${id}`);
+    const response = await this.get(`/order-transaction-capture-refund-position/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundPositionSingleResponse;
@@ -1550,6 +1656,7 @@ class OrderClient extends Client {
   ): Promise<TransactionCaptureRefundPositionUpdateResponse> {
     const response = await this.patch(`/order-transaction-capture-refund-position/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -1568,6 +1675,7 @@ class OrderClient extends Client {
     request: TransactionCaptureRefundPositionAggregationRequest
   ): Promise<TransactionCaptureRefundPositionAggregationResponse> {
     const response = await this.post(`/aggregate/order-transaction-capture-refund-position`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

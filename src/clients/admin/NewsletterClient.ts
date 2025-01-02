@@ -22,7 +22,10 @@ class NewsletterClient extends Client {
     page?: number,
     query?: string
   ): Promise<RecipientListResponse> {
-    const response = await this.get(`/newsletter-recipient`, { query: { limit, page, query } });
+    const response = await this.get(`/newsletter-recipient`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecipientListResponse;
@@ -41,6 +44,7 @@ class NewsletterClient extends Client {
   ): Promise<RecipientCreateResponse> {
     const response = await this.post(`/newsletter-recipient`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -57,6 +61,7 @@ class NewsletterClient extends Client {
     request: RecipientListSearchRequest
   ): Promise<RecipientListSearchResponse> {
     const response = await this.get(`/search/newsletter-recipient`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -72,7 +77,9 @@ class NewsletterClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRecipient(id: string): Promise<RecipientSingleResponse> {
-    const response = await this.get(`/newsletter-recipient/${id}`);
+    const response = await this.get(`/newsletter-recipient/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecipientSingleResponse;
@@ -101,6 +108,7 @@ class NewsletterClient extends Client {
   ): Promise<RecipientUpdateResponse> {
     const response = await this.patch(`/newsletter-recipient/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -117,6 +125,7 @@ class NewsletterClient extends Client {
     request: RecipientAggregationRequest
   ): Promise<RecipientAggregationResponse> {
     const response = await this.post(`/aggregate/newsletter-recipient`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

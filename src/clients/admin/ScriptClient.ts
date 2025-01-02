@@ -22,7 +22,10 @@ class ScriptClient extends Client {
     page?: number,
     query?: string
   ): Promise<ScriptListResponse> {
-    const response = await this.get(`/script`, { query: { limit, page, query } });
+    const response = await this.get(`/script`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptListResponse;
@@ -41,6 +44,7 @@ class ScriptClient extends Client {
   ): Promise<ScriptCreateResponse> {
     const response = await this.post(`/script`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -54,7 +58,10 @@ class ScriptClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchScripts(request: ScriptListSearchRequest): Promise<ScriptListSearchResponse> {
-    const response = await this.get(`/search/script`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/script`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptListSearchResponse;
@@ -68,7 +75,7 @@ class ScriptClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getScript(id: string): Promise<ScriptSingleResponse> {
-    const response = await this.get(`/script/${id}`);
+    const response = await this.get(`/script/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptSingleResponse;
@@ -97,6 +104,7 @@ class ScriptClient extends Client {
   ): Promise<ScriptUpdateResponse> {
     const response = await this.patch(`/script/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -113,6 +121,7 @@ class ScriptClient extends Client {
     request: ScriptAggregationRequest
   ): Promise<ScriptAggregationResponse> {
     const response = await this.post(`/aggregate/script`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

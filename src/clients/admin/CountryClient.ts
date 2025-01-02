@@ -34,7 +34,10 @@ class CountryClient extends Client {
     page?: number,
     query?: string
   ): Promise<CountryListResponse> {
-    const response = await this.get(`/country`, { query: { limit, page, query } });
+    const response = await this.get(`/country`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryListResponse;
@@ -53,6 +56,7 @@ class CountryClient extends Client {
   ): Promise<CountryCreateResponse> {
     const response = await this.post(`/country`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -68,7 +72,10 @@ class CountryClient extends Client {
   public async searchCountries(
     request: CountryListSearchRequest
   ): Promise<CountryListSearchResponse> {
-    const response = await this.get(`/search/country`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/country`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryListSearchResponse;
@@ -82,7 +89,7 @@ class CountryClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCountry(id: string): Promise<CountrySingleResponse> {
-    const response = await this.get(`/country/${id}`);
+    const response = await this.get(`/country/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountrySingleResponse;
@@ -111,6 +118,7 @@ class CountryClient extends Client {
   ): Promise<CountryUpdateResponse> {
     const response = await this.patch(`/country/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -127,6 +135,7 @@ class CountryClient extends Client {
     request: CountryAggregationRequest
   ): Promise<CountryAggregationResponse> {
     const response = await this.post(`/aggregate/cms-block`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -148,7 +157,10 @@ class CountryClient extends Client {
     page?: number,
     query?: string
   ): Promise<StateListResponse> {
-    const response = await this.get(`/country-state`, { query: { limit, page, query } });
+    const response = await this.get(`/country-state`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListResponse;
@@ -165,6 +177,7 @@ class CountryClient extends Client {
   ): Promise<StateCreateResponse> {
     const response = await this.post(`/country-state`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -178,7 +191,10 @@ class CountryClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
-    const response = await this.get(`/search/country-state`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/country-state`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListSearchResponse;
@@ -192,7 +208,9 @@ class CountryClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getState(id: string): Promise<StateSingleResponse> {
-    const response = await this.get(`/country-state/${id}`);
+    const response = await this.get(`/country-state/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateSingleResponse;
@@ -221,6 +239,7 @@ class CountryClient extends Client {
   ): Promise<StateUpdateResponse> {
     const response = await this.patch(`/country-state/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -237,6 +256,7 @@ class CountryClient extends Client {
     request: StateAggregationRequest
   ): Promise<StateAggregationResponse> {
     const response = await this.post(`/aggregate/country-state`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

@@ -75,6 +75,7 @@ class CustomerClient extends Client {
     request: ImpersonationTokenRequest
   ): Promise<ImpersonationTokenResponse> {
     const response = await this.post(`/_proxy/generate-imitate-customer-token`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -96,7 +97,10 @@ class CustomerClient extends Client {
     page?: number,
     query?: string
   ): Promise<CustomerListResponse> {
-    const response = await this.get(`/customer`, { query: { limit, page, query } });
+    const response = await this.get(`/customer`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerListResponse;
@@ -115,6 +119,7 @@ class CustomerClient extends Client {
   ): Promise<CustomerCreateResponse> {
     const response = await this.post(`/customer`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -130,7 +135,10 @@ class CustomerClient extends Client {
   public async searchCustomers(
     request: CustomerListSearchRequest
   ): Promise<CustomerListSearchResponse> {
-    const response = await this.get(`/search/customer`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/customer`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerListSearchResponse;
@@ -144,7 +152,7 @@ class CustomerClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCustomer(id: string): Promise<CustomerSingleResponse> {
-    const response = await this.get(`/customer/${id}`);
+    const response = await this.get(`/customer/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerSingleResponse;
@@ -173,6 +181,7 @@ class CustomerClient extends Client {
   ): Promise<CustomerUpdateResponse> {
     const response = await this.patch(`/customer/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -189,6 +198,7 @@ class CustomerClient extends Client {
     request: CustomerAggregationRequest
   ): Promise<CustomerAggregationResponse> {
     const response = await this.post(`/aggregate/customer`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -210,7 +220,10 @@ class CustomerClient extends Client {
     page?: number,
     query?: string
   ): Promise<AddressListResponse> {
-    const response = await this.get(`/address`, { query: { limit, page, query } });
+    const response = await this.get(`/address`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressListResponse;
@@ -229,6 +242,7 @@ class CustomerClient extends Client {
   ): Promise<AddressCreateResponse> {
     const response = await this.post(`/address`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -244,7 +258,10 @@ class CustomerClient extends Client {
   public async searchAddresses(
     request: AddressListSearchRequest
   ): Promise<AddressListSearchResponse> {
-    const response = await this.get(`/search/address`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/address`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressListSearchResponse;
@@ -258,7 +275,7 @@ class CustomerClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getAddress(id: string): Promise<AddressSingleResponse> {
-    const response = await this.get(`/address/${id}`);
+    const response = await this.get(`/address/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressSingleResponse;
@@ -287,6 +304,7 @@ class CustomerClient extends Client {
   ): Promise<AddressUpdateResponse> {
     const response = await this.patch(`/address/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -303,6 +321,7 @@ class CustomerClient extends Client {
     request: AddressAggregationRequest
   ): Promise<AddressAggregationResponse> {
     const response = await this.post(`/aggregate/address`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -324,7 +343,10 @@ class CustomerClient extends Client {
     page?: number,
     query?: string
   ): Promise<GroupListResponse> {
-    const response = await this.get(`/customer-group`, { query: { limit, page, query } });
+    const response = await this.get(`/customer-group`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as GroupListResponse;
@@ -341,6 +363,7 @@ class CustomerClient extends Client {
   ): Promise<GroupCreateResponse> {
     const response = await this.post(`/customer-group`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -354,7 +377,10 @@ class CustomerClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchGroups(request: GroupListSearchRequest): Promise<GroupListSearchResponse> {
-    const response = await this.get(`/search/customer-group`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/customer-group`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as GroupListSearchResponse;
@@ -368,7 +394,9 @@ class CustomerClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getGroup(id: string): Promise<GroupSingleResponse> {
-    const response = await this.get(`/customer-group/${id}`);
+    const response = await this.get(`/customer-group/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as GroupSingleResponse;
@@ -397,6 +425,7 @@ class CustomerClient extends Client {
   ): Promise<GroupUpdateResponse> {
     const response = await this.patch(`/customer-group/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -413,6 +442,7 @@ class CustomerClient extends Client {
     request: GroupAggregationRequest
   ): Promise<GroupAggregationResponse> {
     const response = await this.post(`/aggregate/customer-group`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -432,7 +462,10 @@ class CustomerClient extends Client {
     page?: number,
     query?: string
   ): Promise<RecoveryListResponse> {
-    const response = await this.get(`/customer-recovery`, { query: { limit, page, query } });
+    const response = await this.get(`/customer-recovery`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoveryListResponse;
@@ -451,6 +484,7 @@ class CustomerClient extends Client {
   ): Promise<RecoveryCreateResponse> {
     const response = await this.post(`/customer-recovery`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -467,6 +501,7 @@ class CustomerClient extends Client {
     request: RecoveryListSearchRequest
   ): Promise<RecoveryListSearchResponse> {
     const response = await this.get(`/search/customer-recovery`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -482,7 +517,9 @@ class CustomerClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRecovery(id: string): Promise<RecoverySingleResponse> {
-    const response = await this.get(`/customer-recovery/${id}`);
+    const response = await this.get(`/customer-recovery/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoverySingleResponse;
@@ -511,6 +548,7 @@ class CustomerClient extends Client {
   ): Promise<RecoveryUpdateResponse> {
     const response = await this.patch(`/customer-recovery/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -527,6 +565,7 @@ class CustomerClient extends Client {
     request: RecoveryAggregationRequest
   ): Promise<RecoveryAggregationResponse> {
     const response = await this.post(`/aggregate/customer-recovery`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -548,7 +587,10 @@ class CustomerClient extends Client {
     page?: number,
     query?: string
   ): Promise<WishlistListResponse> {
-    const response = await this.get(`/customer-wishlist`, { query: { limit, page, query } });
+    const response = await this.get(`/customer-wishlist`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WishlistListResponse;
@@ -567,6 +609,7 @@ class CustomerClient extends Client {
   ): Promise<WishlistCreateResponse> {
     const response = await this.post(`/customer-wishlist`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -583,6 +626,7 @@ class CustomerClient extends Client {
     request: WishlistListSearchRequest
   ): Promise<WishlistListSearchResponse> {
     const response = await this.get(`/search/customer-wishlist`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -598,7 +642,9 @@ class CustomerClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getWishlist(id: string): Promise<WishlistSingleResponse> {
-    const response = await this.get(`/customer-wishlist/${id}`);
+    const response = await this.get(`/customer-wishlist/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WishlistSingleResponse;
@@ -627,6 +673,7 @@ class CustomerClient extends Client {
   ): Promise<WishlistUpdateResponse> {
     const response = await this.patch(`/customer-wishlist/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -643,6 +690,7 @@ class CustomerClient extends Client {
     request: WishlistAggregationRequest
   ): Promise<WishlistAggregationResponse> {
     const response = await this.post(`/aggregate/customer-wishlist`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -665,7 +713,8 @@ class CustomerClient extends Client {
     query?: string
   ): Promise<WishlistProductListResponse> {
     const response = await this.get(`/customer-wishlist-product`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -685,6 +734,7 @@ class CustomerClient extends Client {
   ): Promise<WishlistProductCreateResponse> {
     const response = await this.post(`/customer-wishlist-product`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -703,6 +753,7 @@ class CustomerClient extends Client {
     request: WishlistProductListSearchRequest
   ): Promise<WishlistProductListSearchResponse> {
     const response = await this.get(`/search/customer-wishlist-product`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -718,7 +769,9 @@ class CustomerClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getWishlistProduct(id: string): Promise<WishlistProductSingleResponse> {
-    const response = await this.get(`/customer-wishlist-product/${id}`);
+    const response = await this.get(`/customer-wishlist-product/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WishlistProductSingleResponse;
@@ -751,6 +804,7 @@ class CustomerClient extends Client {
   ): Promise<WishlistProductUpdateResponse> {
     const response = await this.patch(`/customer-wishlist-product/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -769,6 +823,7 @@ class CustomerClient extends Client {
     request: WishlistProductAggregationRequest
   ): Promise<WishlistProductAggregationResponse> {
     const response = await this.post(`/aggregate/customer-wishlist-product`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

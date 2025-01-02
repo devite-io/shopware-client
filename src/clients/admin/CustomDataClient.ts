@@ -54,7 +54,10 @@ class CustomDataClient extends Client {
     page?: number,
     query?: string
   ): Promise<CustomEntityListResponse> {
-    const response = await this.get(`/custom-entity`, { query: { limit, page, query } });
+    const response = await this.get(`/custom-entity`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntityListResponse;
@@ -73,6 +76,7 @@ class CustomDataClient extends Client {
   ): Promise<CustomEntityCreateResponse> {
     const response = await this.post(`/custom-entity`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -90,7 +94,10 @@ class CustomDataClient extends Client {
   public async searchCustomEntities(
     request: CustomEntityListSearchRequest
   ): Promise<CustomEntityListSearchResponse> {
-    const response = await this.get(`/search/custom-entity`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/custom-entity`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntityListSearchResponse;
@@ -104,7 +111,9 @@ class CustomDataClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCustomEntity(id: string): Promise<CustomEntitySingleResponse> {
-    const response = await this.get(`/custom-entity/${id}`);
+    const response = await this.get(`/custom-entity/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntitySingleResponse;
@@ -137,6 +146,7 @@ class CustomDataClient extends Client {
   ): Promise<CustomEntityUpdateResponse> {
     const response = await this.patch(`/custom-entity/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -155,6 +165,7 @@ class CustomDataClient extends Client {
     request: CustomEntityAggregationRequest
   ): Promise<CustomEntityAggregationResponse> {
     const response = await this.post(`/aggregate/custom-entity`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -176,7 +187,10 @@ class CustomDataClient extends Client {
     page?: number,
     query?: string
   ): Promise<CustomFieldListResponse> {
-    const response = await this.get(`/custom-field`, { query: { limit, page, query } });
+    const response = await this.get(`/custom-field`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldListResponse;
@@ -195,6 +209,7 @@ class CustomDataClient extends Client {
   ): Promise<CustomFieldCreateResponse> {
     const response = await this.post(`/custom-field`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -212,7 +227,10 @@ class CustomDataClient extends Client {
   public async searchCustomFields(
     request: CustomFieldListSearchRequest
   ): Promise<CustomFieldListSearchResponse> {
-    const response = await this.get(`/search/custom-field`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/custom-field`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldListSearchResponse;
@@ -226,7 +244,9 @@ class CustomDataClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCustomField(id: string): Promise<CustomFieldSingleResponse> {
-    const response = await this.get(`/custom-field/${id}`);
+    const response = await this.get(`/custom-field/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSingleResponse;
@@ -259,6 +279,7 @@ class CustomDataClient extends Client {
   ): Promise<CustomFieldUpdateResponse> {
     const response = await this.patch(`/custom-field/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -277,6 +298,7 @@ class CustomDataClient extends Client {
     request: CustomFieldAggregationRequest
   ): Promise<CustomFieldAggregationResponse> {
     const response = await this.post(`/aggregate/custom-field`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -298,7 +320,10 @@ class CustomDataClient extends Client {
     page?: number,
     query?: string
   ): Promise<CustomFieldSetListResponse> {
-    const response = await this.get(`/custom-field-set`, { query: { limit, page, query } });
+    const response = await this.get(`/custom-field-set`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetListResponse;
@@ -317,6 +342,7 @@ class CustomDataClient extends Client {
   ): Promise<CustomFieldSetCreateResponse> {
     const response = await this.post(`/custom-field-set`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -334,7 +360,10 @@ class CustomDataClient extends Client {
   public async searchCustomFieldSets(
     request: CustomFieldSetListSearchRequest
   ): Promise<CustomFieldSetListSearchResponse> {
-    const response = await this.get(`/search/custom-field-set`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/custom-field-set`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetListSearchResponse;
@@ -348,7 +377,9 @@ class CustomDataClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCustomFieldSet(id: string): Promise<CustomFieldSetSingleResponse> {
-    const response = await this.get(`/custom-field-set/${id}`);
+    const response = await this.get(`/custom-field-set/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetSingleResponse;
@@ -381,6 +412,7 @@ class CustomDataClient extends Client {
   ): Promise<CustomFieldSetUpdateResponse> {
     const response = await this.patch(`/custom-field-set/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -399,6 +431,7 @@ class CustomDataClient extends Client {
     request: CustomFieldSetAggregationRequest
   ): Promise<CustomFieldSetAggregationResponse> {
     const response = await this.post(`/aggregate/custom-field-set`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -421,7 +454,8 @@ class CustomDataClient extends Client {
     query?: string
   ): Promise<CustomFieldSetRelationListResponse> {
     const response = await this.get(`/custom-field-set-relation`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -441,6 +475,7 @@ class CustomDataClient extends Client {
   ): Promise<CustomFieldSetRelationCreateResponse> {
     const response = await this.post(`/custom-field-set-relation`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -459,6 +494,7 @@ class CustomDataClient extends Client {
     request: CustomFieldSetRelationListSearchRequest
   ): Promise<CustomFieldSetRelationListSearchResponse> {
     const response = await this.get(`/search/custom-field-set-relation`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -476,7 +512,9 @@ class CustomDataClient extends Client {
   public async getCustomFieldSetRelation(
     id: string
   ): Promise<CustomFieldSetRelationSingleResponse> {
-    const response = await this.get(`/custom-field-set-relation/${id}`);
+    const response = await this.get(`/custom-field-set-relation/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetRelationSingleResponse;
@@ -509,6 +547,7 @@ class CustomDataClient extends Client {
   ): Promise<CustomFieldSetRelationUpdateResponse> {
     const response = await this.patch(`/custom-field-set-relation/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -527,6 +566,7 @@ class CustomDataClient extends Client {
     request: CustomFieldSetRelationAggregationRequest
   ): Promise<CustomFieldSetRelationAggregationResponse> {
     const response = await this.post(`/aggregate/custom-field-set-relation`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

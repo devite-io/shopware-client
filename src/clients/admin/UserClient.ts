@@ -50,7 +50,10 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getUsers(limit?: number, page?: number, query?: string): Promise<UserListResponse> {
-    const response = await this.get(`/user`, { query: { limit, page, query } });
+    const response = await this.get(`/user`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as UserListResponse;
 
@@ -66,6 +69,7 @@ class UserClient extends Client {
   ): Promise<UserCreateResponse> {
     const response = await this.post(`/user`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -79,7 +83,10 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchUsers(request: UserListSearchRequest): Promise<UserListSearchResponse> {
-    const response = await this.get(`/search/user`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/user`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UserListSearchResponse;
@@ -91,7 +98,7 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getUser(id: string): Promise<UserSingleResponse> {
-    const response = await this.get(`/user/${id}`);
+    const response = await this.get(`/user/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UserSingleResponse;
@@ -120,6 +127,7 @@ class UserClient extends Client {
   ): Promise<UserUpdateResponse> {
     const response = await this.patch(`/user/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -134,6 +142,7 @@ class UserClient extends Client {
    */
   public async getUserAggregate(request: UserAggregationRequest): Promise<UserAggregationResponse> {
     const response = await this.post(`/aggregate/user`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -153,7 +162,10 @@ class UserClient extends Client {
     page?: number,
     query?: string
   ): Promise<AccessKeyListResponse> {
-    const response = await this.get(`/user-access-key`, { query: { limit, page, query } });
+    const response = await this.get(`/user-access-key`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeyListResponse;
@@ -172,6 +184,7 @@ class UserClient extends Client {
   ): Promise<AccessKeyCreateResponse> {
     const response = await this.post(`/user-access-key`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -189,7 +202,10 @@ class UserClient extends Client {
   public async searchAccessKeys(
     request: AccessKeyListSearchRequest
   ): Promise<AccessKeyListSearchResponse> {
-    const response = await this.get(`/search/user-access-key`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/user-access-key`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeyListSearchResponse;
@@ -203,7 +219,9 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getAccessKey(id: string): Promise<AccessKeySingleResponse> {
-    const response = await this.get(`/user-access-key/${id}`);
+    const response = await this.get(`/user-access-key/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeySingleResponse;
@@ -234,6 +252,7 @@ class UserClient extends Client {
   ): Promise<AccessKeyUpdateResponse> {
     const response = await this.patch(`/user-access-key/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -252,6 +271,7 @@ class UserClient extends Client {
     request: AccessKeyAggregationRequest
   ): Promise<AccessKeyAggregationResponse> {
     const response = await this.post(`/aggregate/user-access-key`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -273,7 +293,10 @@ class UserClient extends Client {
     page?: number,
     query?: string
   ): Promise<ConfigListResponse> {
-    const response = await this.get(`/user-config`, { query: { limit, page, query } });
+    const response = await this.get(`/user-config`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigListResponse;
@@ -292,6 +315,7 @@ class UserClient extends Client {
   ): Promise<ConfigCreateResponse> {
     const response = await this.post(`/user-config`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -305,7 +329,10 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchConfigs(request: ConfigListSearchRequest): Promise<ConfigListSearchResponse> {
-    const response = await this.get(`/search/user-config`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/user-config`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigListSearchResponse;
@@ -319,7 +346,9 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getConfig(id: string): Promise<ConfigSingleResponse> {
-    const response = await this.get(`/user-config/${id}`);
+    const response = await this.get(`/user-config/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigSingleResponse;
@@ -348,6 +377,7 @@ class UserClient extends Client {
   ): Promise<ConfigUpdateResponse> {
     const response = await this.patch(`/user-config/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -364,6 +394,7 @@ class UserClient extends Client {
     request: ConfigAggregationRequest
   ): Promise<ConfigAggregationResponse> {
     const response = await this.post(`/aggregate/user-config`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -383,7 +414,10 @@ class UserClient extends Client {
     page?: number,
     query?: string
   ): Promise<RecoveryListResponse> {
-    const response = await this.get(`/user-recovery`, { query: { limit, page, query } });
+    const response = await this.get(`/user-recovery`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoveryListResponse;
@@ -402,6 +436,7 @@ class UserClient extends Client {
   ): Promise<RecoveryCreateResponse> {
     const response = await this.post(`/user-recovery`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -417,7 +452,10 @@ class UserClient extends Client {
   public async searchRecoveries(
     request: RecoveryListSearchRequest
   ): Promise<RecoveryListSearchResponse> {
-    const response = await this.get(`/search/user-recovery`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/user-recovery`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoveryListSearchResponse;
@@ -431,7 +469,9 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRecovery(id: string): Promise<RecoverySingleResponse> {
-    const response = await this.get(`/user-recovery/${id}`);
+    const response = await this.get(`/user-recovery/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoverySingleResponse;
@@ -460,6 +500,7 @@ class UserClient extends Client {
   ): Promise<RecoveryUpdateResponse> {
     const response = await this.patch(`/user-recovery/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -476,6 +517,7 @@ class UserClient extends Client {
     request: RecoveryAggregationRequest
   ): Promise<RecoveryAggregationResponse> {
     const response = await this.post(`/aggregate/user-recovery`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

@@ -61,7 +61,8 @@ class DocumentClient extends Client {
     preview?: boolean
   ): Promise<NumberReservationResponse> {
     const response = await this.post(`/_action/number-range/reserve/${type}/${salesChannelId}`, {
-      query: { preview }
+      query: { preview },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -81,6 +82,7 @@ class DocumentClient extends Client {
   ): Promise<UploadResponse> {
     const response = await this.post(`/_action/document/${id}/upload`, {
       query: { extension, fileName },
+      headers: { Accept: "application/json" },
       body: new BinaryPayload(contents)
     });
 
@@ -102,6 +104,7 @@ class DocumentClient extends Client {
   ): Promise<UploadResponse> {
     const response = await this.post(`/_action/document/${id}/upload`, {
       query: { extension, fileName },
+      headers: { Accept: "application/json" },
       body: new JsonPayload({ url })
     });
 
@@ -122,7 +125,10 @@ class DocumentClient extends Client {
     page?: number,
     query?: string
   ): Promise<DocumentListResponse> {
-    const response = await this.get(`/document`, { query: { limit, page, query } });
+    const response = await this.get(`/document`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentListResponse;
@@ -141,6 +147,7 @@ class DocumentClient extends Client {
   ): Promise<DocumentCreateResponse> {
     const response = await this.post(`/document`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -156,7 +163,10 @@ class DocumentClient extends Client {
   public async searchDocuments(
     request: DocumentListSearchRequest
   ): Promise<DocumentListSearchResponse> {
-    const response = await this.get(`/search/document`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/document`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentListSearchResponse;
@@ -170,7 +180,7 @@ class DocumentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDocument(id: string): Promise<DocumentSingleResponse> {
-    const response = await this.get(`/document/${id}`);
+    const response = await this.get(`/document/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentSingleResponse;
@@ -199,6 +209,7 @@ class DocumentClient extends Client {
   ): Promise<DocumentUpdateResponse> {
     const response = await this.patch(`/document/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -215,6 +226,7 @@ class DocumentClient extends Client {
     request: DocumentAggregationRequest
   ): Promise<DocumentAggregationResponse> {
     const response = await this.post(`/aggregate/document`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -236,7 +248,10 @@ class DocumentClient extends Client {
     page?: number,
     query?: string
   ): Promise<BaseConfigListResponse> {
-    const response = await this.get(`/document-base-config`, { query: { limit, page, query } });
+    const response = await this.get(`/document-base-config`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigListResponse;
@@ -255,6 +270,7 @@ class DocumentClient extends Client {
   ): Promise<BaseConfigCreateResponse> {
     const response = await this.post(`/document-base-config`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -273,6 +289,7 @@ class DocumentClient extends Client {
     request: BaseConfigListSearchRequest
   ): Promise<BaseConfigListSearchResponse> {
     const response = await this.get(`/search/document-base-config`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -288,7 +305,9 @@ class DocumentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getBaseConfig(id: string): Promise<BaseConfigSingleResponse> {
-    const response = await this.get(`/document-base-config/${id}`);
+    const response = await this.get(`/document-base-config/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSingleResponse;
@@ -321,6 +340,7 @@ class DocumentClient extends Client {
   ): Promise<BaseConfigUpdateResponse> {
     const response = await this.patch(`/document-base-config/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -339,6 +359,7 @@ class DocumentClient extends Client {
     request: BaseConfigAggregationRequest
   ): Promise<BaseConfigAggregationResponse> {
     const response = await this.post(`/aggregate/document-base-config`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -361,7 +382,8 @@ class DocumentClient extends Client {
     query?: string
   ): Promise<BaseConfigSalesChannelListResponse> {
     const response = await this.get(`/document-base-config-sales-channel`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -381,6 +403,7 @@ class DocumentClient extends Client {
   ): Promise<BaseConfigSalesChannelCreateResponse> {
     const response = await this.post(`/document-base-config-sales-channel`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -399,6 +422,7 @@ class DocumentClient extends Client {
     request: BaseConfigSalesChannelListSearchRequest
   ): Promise<BaseConfigSalesChannelListSearchResponse> {
     const response = await this.get(`/search/document-base-config-sales-channel`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -416,7 +440,9 @@ class DocumentClient extends Client {
   public async getBaseConfigSalesChannel(
     id: string
   ): Promise<BaseConfigSalesChannelSingleResponse> {
-    const response = await this.get(`/document-base-config-sales-channel/${id}`);
+    const response = await this.get(`/document-base-config-sales-channel/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSalesChannelSingleResponse;
@@ -449,6 +475,7 @@ class DocumentClient extends Client {
   ): Promise<BaseConfigSalesChannelUpdateResponse> {
     const response = await this.patch(`/document-base-config-sales-channel/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -467,6 +494,7 @@ class DocumentClient extends Client {
     request: BaseConfigSalesChannelAggregationRequest
   ): Promise<BaseConfigSalesChannelAggregationResponse> {
     const response = await this.post(`/aggregate/document-base-config-sales-channel`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -488,7 +516,10 @@ class DocumentClient extends Client {
     page?: number,
     query?: string
   ): Promise<DocumentTypeListResponse> {
-    const response = await this.get(`/document-type`, { query: { limit, page, query } });
+    const response = await this.get(`/document-type`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeListResponse;
@@ -507,6 +538,7 @@ class DocumentClient extends Client {
   ): Promise<DocumentTypeCreateResponse> {
     const response = await this.post(`/document-type`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -524,7 +556,10 @@ class DocumentClient extends Client {
   public async searchDocumentTypes(
     request: DocumentTypeListSearchRequest
   ): Promise<DocumentTypeListSearchResponse> {
-    const response = await this.get(`/search/document-type`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/document-type`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeListSearchResponse;
@@ -538,7 +573,9 @@ class DocumentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getDocumentType(id: string): Promise<DocumentTypeSingleResponse> {
-    const response = await this.get(`/document-type/${id}`);
+    const response = await this.get(`/document-type/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeSingleResponse;
@@ -571,6 +608,7 @@ class DocumentClient extends Client {
   ): Promise<DocumentTypeUpdateResponse> {
     const response = await this.patch(`/document-type/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -589,6 +627,7 @@ class DocumentClient extends Client {
     request: DocumentTypeAggregationRequest
   ): Promise<DocumentTypeAggregationResponse> {
     const response = await this.post(`/aggregate/document-type`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

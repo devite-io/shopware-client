@@ -34,7 +34,10 @@ class WebhookClient extends Client {
     page?: number,
     query?: string
   ): Promise<WebhookListResponse> {
-    const response = await this.get(`/webhook`, { query: { limit, page, query } });
+    const response = await this.get(`/webhook`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookListResponse;
@@ -53,6 +56,7 @@ class WebhookClient extends Client {
   ): Promise<WebhookCreateResponse> {
     const response = await this.post(`/webhook`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -68,7 +72,10 @@ class WebhookClient extends Client {
   public async searchWebhooks(
     request: WebhookListSearchRequest
   ): Promise<WebhookListSearchResponse> {
-    const response = await this.get(`/search/webhook`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/webhook`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookListSearchResponse;
@@ -82,7 +89,7 @@ class WebhookClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getWebhook(id: string): Promise<WebhookSingleResponse> {
-    const response = await this.get(`/webhook/${id}`);
+    const response = await this.get(`/webhook/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookSingleResponse;
@@ -111,6 +118,7 @@ class WebhookClient extends Client {
   ): Promise<WebhookUpdateResponse> {
     const response = await this.patch(`/webhook/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -127,6 +135,7 @@ class WebhookClient extends Client {
     request: WebhookAggregationRequest
   ): Promise<WebhookAggregationResponse> {
     const response = await this.post(`/aggregate/webhook`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -148,7 +157,10 @@ class WebhookClient extends Client {
     page?: number,
     query?: string
   ): Promise<EventLogListResponse> {
-    const response = await this.get(`/webhook-event-log`, { query: { limit, page, query } });
+    const response = await this.get(`/webhook-event-log`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as EventLogListResponse;
@@ -167,6 +179,7 @@ class WebhookClient extends Client {
   ): Promise<EventLogCreateResponse> {
     const response = await this.post(`/webhook-event-log`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -183,6 +196,7 @@ class WebhookClient extends Client {
     request: EventLogListSearchRequest
   ): Promise<EventLogListSearchResponse> {
     const response = await this.get(`/search/webhook-event-log`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -198,7 +212,9 @@ class WebhookClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getEventLog(id: string): Promise<EventLogSingleResponse> {
-    const response = await this.get(`/webhook-event-log/${id}`);
+    const response = await this.get(`/webhook-event-log/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as EventLogSingleResponse;
@@ -227,6 +243,7 @@ class WebhookClient extends Client {
   ): Promise<EventLogUpdateResponse> {
     const response = await this.patch(`/webhook-event-log/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -243,6 +260,7 @@ class WebhookClient extends Client {
     request: EventLogAggregationRequest
   ): Promise<EventLogAggregationResponse> {
     const response = await this.post(`/aggregate/webhook-event-log`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

@@ -34,7 +34,10 @@ class CategoryClient extends Client {
     page?: number,
     query?: string
   ): Promise<CategoryListResponse> {
-    const response = await this.get(`/category`, { query: { limit, page, query } });
+    const response = await this.get(`/category`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategoryListResponse;
@@ -53,6 +56,7 @@ class CategoryClient extends Client {
   ): Promise<CategoryCreateResponse> {
     const response = await this.post(`/category`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -68,7 +72,10 @@ class CategoryClient extends Client {
   public async searchCategories(
     request: CategoryListSearchRequest
   ): Promise<CategoryListSearchResponse> {
-    const response = await this.get(`/search/category`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/category`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategoryListSearchResponse;
@@ -82,7 +89,7 @@ class CategoryClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCategory(id: string): Promise<CategorySingleResponse> {
-    const response = await this.get(`/category/${id}`);
+    const response = await this.get(`/category/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategorySingleResponse;
@@ -111,6 +118,7 @@ class CategoryClient extends Client {
   ): Promise<CategoryUpdateResponse> {
     const response = await this.patch(`/category/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -127,6 +135,7 @@ class CategoryClient extends Client {
     request: CategoryAggregationRequest
   ): Promise<CategoryAggregationResponse> {
     const response = await this.post(`/aggregate/category`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -148,7 +157,10 @@ class CategoryClient extends Client {
     page?: number,
     query?: string
   ): Promise<MainCategoryListResponse> {
-    const response = await this.get(`/main-category`, { query: { limit, page, query } });
+    const response = await this.get(`/main-category`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategoryListResponse;
@@ -167,6 +179,7 @@ class CategoryClient extends Client {
   ): Promise<MainCategoryCreateResponse> {
     const response = await this.post(`/main-category`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -184,7 +197,10 @@ class CategoryClient extends Client {
   public async searchMainCategories(
     request: MainCategoryListSearchRequest
   ): Promise<MainCategoryListSearchResponse> {
-    const response = await this.get(`/search/main-category`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/main-category`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategoryListSearchResponse;
@@ -198,7 +214,9 @@ class CategoryClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getMainCategory(id: string): Promise<MainCategorySingleResponse> {
-    const response = await this.get(`/main-category/${id}`);
+    const response = await this.get(`/main-category/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategorySingleResponse;
@@ -231,6 +249,7 @@ class CategoryClient extends Client {
   ): Promise<MainCategoryUpdateResponse> {
     const response = await this.patch(`/main-category/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -249,6 +268,7 @@ class CategoryClient extends Client {
     request: MainCategoryAggregationRequest
   ): Promise<MainCategoryAggregationResponse> {
     const response = await this.post(`/aggregate/main-category`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

@@ -34,7 +34,10 @@ class CountryClient extends Client {
     page?: number,
     query?: string
   ): Promise<CurrencyListResponse> {
-    const response = await this.get(`/currency`, { query: { limit, page, query } });
+    const response = await this.get(`/currency`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencyListResponse;
@@ -53,6 +56,7 @@ class CountryClient extends Client {
   ): Promise<CurrencyCreateResponse> {
     const response = await this.post(`/currency`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -68,7 +72,10 @@ class CountryClient extends Client {
   public async searchCurrencies(
     request: CurrencyListSearchRequest
   ): Promise<CurrencyListSearchResponse> {
-    const response = await this.get(`/search/currency`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/currency`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencyListSearchResponse;
@@ -82,7 +89,7 @@ class CountryClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCurrency(id: string): Promise<CurrencySingleResponse> {
-    const response = await this.get(`/currency/${id}`);
+    const response = await this.get(`/currency/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencySingleResponse;
@@ -111,6 +118,7 @@ class CountryClient extends Client {
   ): Promise<CurrencyUpdateResponse> {
     const response = await this.patch(`/currency/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -127,6 +135,7 @@ class CountryClient extends Client {
     request: CurrencyAggregationRequest
   ): Promise<CurrencyAggregationResponse> {
     const response = await this.post(`/aggregate/cms-block`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -149,7 +158,8 @@ class CountryClient extends Client {
     query?: string
   ): Promise<CountryRoundingListResponse> {
     const response = await this.get(`/currency-country-rounding`, {
-      query: { limit, page, query }
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
     });
 
     if (response.statusCode === 200)
@@ -169,6 +179,7 @@ class CountryClient extends Client {
   ): Promise<CountryRoundingCreateResponse> {
     const response = await this.post(`/currency-country-rounding`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -187,6 +198,7 @@ class CountryClient extends Client {
     request: CountryRoundingListSearchRequest
   ): Promise<CountryRoundingListSearchResponse> {
     const response = await this.get(`/search/currency-country-rounding`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -202,7 +214,9 @@ class CountryClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCountryRounding(id: string): Promise<CountryRoundingSingleResponse> {
-    const response = await this.get(`/currency-country-rounding/${id}`);
+    const response = await this.get(`/currency-country-rounding/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryRoundingSingleResponse;
@@ -235,6 +249,7 @@ class CountryClient extends Client {
   ): Promise<CountryRoundingUpdateResponse> {
     const response = await this.patch(`/currency-country-rounding/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -253,6 +268,7 @@ class CountryClient extends Client {
     request: CountryRoundingAggregationRequest
   ): Promise<CountryRoundingAggregationResponse> {
     const response = await this.post(`/aggregate/currency-country-rounding`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

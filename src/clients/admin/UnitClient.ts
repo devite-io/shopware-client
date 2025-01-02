@@ -18,7 +18,10 @@ class UnitClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getUnits(limit?: number, page?: number, query?: string): Promise<UnitListResponse> {
-    const response = await this.get(`/unit`, { query: { limit, page, query } });
+    const response = await this.get(`/unit`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as UnitListResponse;
 
@@ -34,6 +37,7 @@ class UnitClient extends Client {
   ): Promise<UnitCreateResponse> {
     const response = await this.post(`/unit`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -47,7 +51,10 @@ class UnitClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchUnits(request: UnitListSearchRequest): Promise<UnitListSearchResponse> {
-    const response = await this.get(`/search/unit`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/unit`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UnitListSearchResponse;
@@ -59,7 +66,7 @@ class UnitClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getUnit(id: string): Promise<UnitSingleResponse> {
-    const response = await this.get(`/unit/${id}`);
+    const response = await this.get(`/unit/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UnitSingleResponse;
@@ -88,6 +95,7 @@ class UnitClient extends Client {
   ): Promise<UnitUpdateResponse> {
     const response = await this.patch(`/unit/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -102,6 +110,7 @@ class UnitClient extends Client {
    */
   public async getUnitAggregate(request: UnitAggregationRequest): Promise<UnitAggregationResponse> {
     const response = await this.post(`/aggregate/unit`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

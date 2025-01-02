@@ -34,7 +34,10 @@ class ShippingMethodClient extends Client {
     page?: number,
     query?: string
   ): Promise<ShippingMethodListResponse> {
-    const response = await this.get(`/shipping-method`, { query: { limit, page, query } });
+    const response = await this.get(`/shipping-method`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListResponse;
@@ -53,6 +56,7 @@ class ShippingMethodClient extends Client {
   ): Promise<ShippingMethodCreateResponse> {
     const response = await this.post(`/shipping-method`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -70,7 +74,10 @@ class ShippingMethodClient extends Client {
   public async searchShippingMethods(
     request: ShippingMethodListSearchRequest
   ): Promise<ShippingMethodListSearchResponse> {
-    const response = await this.get(`/search/shipping-method`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/shipping-method`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListSearchResponse;
@@ -84,7 +91,9 @@ class ShippingMethodClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getShippingMethod(id: string): Promise<ShippingMethodSingleResponse> {
-    const response = await this.get(`/shipping-method/${id}`);
+    const response = await this.get(`/shipping-method/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodSingleResponse;
@@ -117,6 +126,7 @@ class ShippingMethodClient extends Client {
   ): Promise<ShippingMethodUpdateResponse> {
     const response = await this.patch(`/shipping-method/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -135,6 +145,7 @@ class ShippingMethodClient extends Client {
     request: ShippingMethodAggregationRequest
   ): Promise<ShippingMethodAggregationResponse> {
     const response = await this.post(`/aggregate/shipping-method`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -156,7 +167,10 @@ class ShippingMethodClient extends Client {
     page?: number,
     query?: string
   ): Promise<PriceListResponse> {
-    const response = await this.get(`/shipping-method-price`, { query: { limit, page, query } });
+    const response = await this.get(`/shipping-method-price`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceListResponse;
@@ -175,6 +189,7 @@ class ShippingMethodClient extends Client {
   ): Promise<PriceCreateResponse> {
     const response = await this.post(`/shipping-method-price`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -191,6 +206,7 @@ class ShippingMethodClient extends Client {
    */
   public async searchPrices(request: PriceListSearchRequest): Promise<PriceListSearchResponse> {
     const response = await this.get(`/search/shipping-method-price`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -206,7 +222,9 @@ class ShippingMethodClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getPrice(id: string): Promise<PriceSingleResponse> {
-    const response = await this.get(`/shipping-method-price/${id}`);
+    const response = await this.get(`/shipping-method-price/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceSingleResponse;
@@ -235,6 +253,7 @@ class ShippingMethodClient extends Client {
   ): Promise<PriceUpdateResponse> {
     const response = await this.patch(`/shipping-method-price/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -251,6 +270,7 @@ class ShippingMethodClient extends Client {
     request: PriceAggregationRequest
   ): Promise<PriceAggregationResponse> {
     const response = await this.post(`/aggregate/shipping-method-price`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

@@ -30,7 +30,10 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getUrls(limit?: number, page?: number, query?: string): Promise<UrlListResponse> {
-    const response = await this.get(`/seo-url`, { query: { limit, page, query } });
+    const response = await this.get(`/seo-url`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as UrlListResponse;
 
@@ -46,6 +49,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<UrlCreateResponse> {
     const response = await this.post(`/seo-url`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -59,7 +63,10 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchUrls(request: UrlListSearchRequest): Promise<UrlListSearchResponse> {
-    const response = await this.get(`/search/seo-url`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/seo-url`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlListSearchResponse;
@@ -71,7 +78,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getUrl(id: string): Promise<UrlSingleResponse> {
-    const response = await this.get(`/seo-url/${id}`);
+    const response = await this.get(`/seo-url/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlSingleResponse;
@@ -100,6 +107,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<UrlUpdateResponse> {
     const response = await this.patch(`/seo-url/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -114,6 +122,7 @@ class DeliveryTimeClient extends Client {
    */
   public async getUrlAggregate(request: UrlAggregationRequest): Promise<UrlAggregationResponse> {
     const response = await this.post(`/aggregate/seo-url`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -133,7 +142,10 @@ class DeliveryTimeClient extends Client {
     page?: number,
     query?: string
   ): Promise<UrlTemplateListResponse> {
-    const response = await this.get(`/seo-url-template`, { query: { limit, page, query } });
+    const response = await this.get(`/seo-url-template`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateListResponse;
@@ -152,6 +164,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<UrlTemplateCreateResponse> {
     const response = await this.post(`/seo-url-template`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -169,7 +182,10 @@ class DeliveryTimeClient extends Client {
   public async searchUrlTemplates(
     request: UrlTemplateListSearchRequest
   ): Promise<UrlTemplateListSearchResponse> {
-    const response = await this.get(`/search/seo-url-template`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/seo-url-template`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateListSearchResponse;
@@ -183,7 +199,9 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getUrlTemplate(id: string): Promise<UrlTemplateSingleResponse> {
-    const response = await this.get(`/seo-url-template/${id}`);
+    const response = await this.get(`/seo-url-template/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateSingleResponse;
@@ -216,6 +234,7 @@ class DeliveryTimeClient extends Client {
   ): Promise<UrlTemplateUpdateResponse> {
     const response = await this.patch(`/seo-url-template/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -234,6 +253,7 @@ class DeliveryTimeClient extends Client {
     request: UrlTemplateAggregationRequest
   ): Promise<UrlTemplateAggregationResponse> {
     const response = await this.post(`/aggregate/seo-url-template`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

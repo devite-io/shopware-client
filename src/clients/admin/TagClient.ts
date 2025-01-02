@@ -18,7 +18,10 @@ class TagClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTags(limit?: number, page?: number, query?: string): Promise<TagListResponse> {
-    const response = await this.get(`/tag`, { query: { limit, page, query } });
+    const response = await this.get(`/tag`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as TagListResponse;
 
@@ -34,6 +37,7 @@ class TagClient extends Client {
   ): Promise<TagCreateResponse> {
     const response = await this.post(`/tag`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -47,7 +51,10 @@ class TagClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchTags(request: TagListSearchRequest): Promise<TagListSearchResponse> {
-    const response = await this.get(`/search/tag`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/tag`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TagListSearchResponse;
@@ -59,7 +66,7 @@ class TagClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTag(id: string): Promise<TagSingleResponse> {
-    const response = await this.get(`/tag/${id}`);
+    const response = await this.get(`/tag/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TagSingleResponse;
@@ -88,6 +95,7 @@ class TagClient extends Client {
   ): Promise<TagUpdateResponse> {
     const response = await this.patch(`/tag/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -102,6 +110,7 @@ class TagClient extends Client {
    */
   public async getTagAggregate(request: TagAggregationRequest): Promise<TagAggregationResponse> {
     const response = await this.post(`/aggregate/tag`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

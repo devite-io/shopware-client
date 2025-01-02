@@ -30,7 +30,10 @@ class RuleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRules(limit?: number, page?: number, query?: string): Promise<RuleListResponse> {
-    const response = await this.get(`/rule`, { query: { limit, page, query } });
+    const response = await this.get(`/rule`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as RuleListResponse;
 
@@ -46,6 +49,7 @@ class RuleClient extends Client {
   ): Promise<RuleCreateResponse> {
     const response = await this.post(`/rule`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -59,7 +63,10 @@ class RuleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchRules(request: RuleListSearchRequest): Promise<RuleListSearchResponse> {
-    const response = await this.get(`/search/rule`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/rule`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleListSearchResponse;
@@ -71,7 +78,7 @@ class RuleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getRule(id: string): Promise<RuleSingleResponse> {
-    const response = await this.get(`/rule/${id}`);
+    const response = await this.get(`/rule/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleSingleResponse;
@@ -100,6 +107,7 @@ class RuleClient extends Client {
   ): Promise<RuleUpdateResponse> {
     const response = await this.patch(`/rule/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -114,6 +122,7 @@ class RuleClient extends Client {
    */
   public async getRuleAggregate(request: RuleAggregationRequest): Promise<RuleAggregationResponse> {
     const response = await this.post(`/aggregate/rule`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -133,7 +142,10 @@ class RuleClient extends Client {
     page?: number,
     query?: string
   ): Promise<ConditionListResponse> {
-    const response = await this.get(`/rule-condition`, { query: { limit, page, query } });
+    const response = await this.get(`/rule-condition`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConditionListResponse;
@@ -152,6 +164,7 @@ class RuleClient extends Client {
   ): Promise<ConditionCreateResponse> {
     const response = await this.post(`/rule-condition`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -168,6 +181,7 @@ class RuleClient extends Client {
     request: ConditionListSearchRequest
   ): Promise<ConditionListSearchResponse> {
     const response = await this.get(`/search/rule-condition`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -183,7 +197,9 @@ class RuleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCondition(id: string): Promise<ConditionSingleResponse> {
-    const response = await this.get(`/rule-condition/${id}`);
+    const response = await this.get(`/rule-condition/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConditionSingleResponse;
@@ -212,6 +228,7 @@ class RuleClient extends Client {
   ): Promise<ConditionUpdateResponse> {
     const response = await this.patch(`/rule-condition/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -228,6 +245,7 @@ class RuleClient extends Client {
     request: ConditionAggregationRequest
   ): Promise<ConditionAggregationResponse> {
     const response = await this.post(`/aggregate/rule-condition`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 

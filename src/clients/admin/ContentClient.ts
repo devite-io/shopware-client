@@ -74,7 +74,10 @@ class ContentClient extends Client {
     page?: number,
     query?: string
   ): Promise<CmsBlockListResponse> {
-    const response = await this.get(`/cms-block`, { query: { limit, page, query } });
+    const response = await this.get(`/cms-block`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockListResponse;
@@ -93,6 +96,7 @@ class ContentClient extends Client {
   ): Promise<CmsBlockCreateResponse> {
     const response = await this.post(`/cms-block`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -108,7 +112,10 @@ class ContentClient extends Client {
   public async searchCmsBlocks(
     request: CmsBlockListSearchRequest
   ): Promise<CmsBlockListSearchResponse> {
-    const response = await this.get(`/search/cms-block`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/cms-block`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockListSearchResponse;
@@ -122,7 +129,9 @@ class ContentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCmsBlock(id: string): Promise<CmsBlockSingleResponse> {
-    const response = await this.get(`/cms-block/${id}`);
+    const response = await this.get(`/cms-block/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockSingleResponse;
@@ -151,6 +160,7 @@ class ContentClient extends Client {
   ): Promise<CmsBlockUpdateResponse> {
     const response = await this.patch(`/cms-block/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -167,6 +177,7 @@ class ContentClient extends Client {
     request: CmsBlockAggregationRequest
   ): Promise<CmsBlockAggregationResponse> {
     const response = await this.post(`/aggregate/cms-block`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -188,7 +199,10 @@ class ContentClient extends Client {
     page?: number,
     query?: string
   ): Promise<CmsPageListResponse> {
-    const response = await this.get(`/cms-page`, { query: { limit, page, query } });
+    const response = await this.get(`/cms-page`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageListResponse;
@@ -207,6 +221,7 @@ class ContentClient extends Client {
   ): Promise<CmsPageCreateResponse> {
     const response = await this.post(`/cms-page`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -222,7 +237,10 @@ class ContentClient extends Client {
   public async searchCmsPages(
     request: CmsPageListSearchRequest
   ): Promise<CmsPageListSearchResponse> {
-    const response = await this.get(`/search/cms-page`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/cms-page`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageListSearchResponse;
@@ -236,7 +254,7 @@ class ContentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCmsPage(id: string): Promise<CmsPageSingleResponse> {
-    const response = await this.get(`/cms-page/${id}`);
+    const response = await this.get(`/cms-page/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageSingleResponse;
@@ -265,6 +283,7 @@ class ContentClient extends Client {
   ): Promise<CmsPageUpdateResponse> {
     const response = await this.patch(`/cms-page/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -281,6 +300,7 @@ class ContentClient extends Client {
     request: CmsPageAggregationRequest
   ): Promise<CmsPageAggregationResponse> {
     const response = await this.post(`/aggregate/cms-page`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -302,7 +322,10 @@ class ContentClient extends Client {
     page?: number,
     query?: string
   ): Promise<CmsSectionListResponse> {
-    const response = await this.get(`/cms-section`, { query: { limit, page, query } });
+    const response = await this.get(`/cms-section`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionListResponse;
@@ -321,6 +344,7 @@ class ContentClient extends Client {
   ): Promise<CmsSectionCreateResponse> {
     const response = await this.post(`/cms-section`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -338,7 +362,10 @@ class ContentClient extends Client {
   public async searchCmsSections(
     request: CmsSectionListSearchRequest
   ): Promise<CmsSectionListSearchResponse> {
-    const response = await this.get(`/search/cms-section`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/cms-section`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionListSearchResponse;
@@ -352,7 +379,9 @@ class ContentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCmsSection(id: string): Promise<CmsSectionSingleResponse> {
-    const response = await this.get(`/cms-section/${id}`);
+    const response = await this.get(`/cms-section/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionSingleResponse;
@@ -385,6 +414,7 @@ class ContentClient extends Client {
   ): Promise<CmsSectionUpdateResponse> {
     const response = await this.patch(`/cms-section/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -403,6 +433,7 @@ class ContentClient extends Client {
     request: CmsSectionAggregationRequest
   ): Promise<CmsSectionAggregationResponse> {
     const response = await this.post(`/aggregate/cms-section`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -424,7 +455,10 @@ class ContentClient extends Client {
     page?: number,
     query?: string
   ): Promise<CmsSlotListResponse> {
-    const response = await this.get(`/cms-slot`, { query: { limit, page, query } });
+    const response = await this.get(`/cms-slot`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotListResponse;
@@ -443,6 +477,7 @@ class ContentClient extends Client {
   ): Promise<CmsSlotCreateResponse> {
     const response = await this.post(`/cms-slot`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -458,7 +493,10 @@ class ContentClient extends Client {
   public async searchCmsSlots(
     request: CmsSlotListSearchRequest
   ): Promise<CmsSlotListSearchResponse> {
-    const response = await this.get(`/search/cms-slot`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/cms-slot`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotListSearchResponse;
@@ -472,7 +510,7 @@ class ContentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCmsSlot(id: string): Promise<CmsSlotSingleResponse> {
-    const response = await this.get(`/cms-slot/${id}`);
+    const response = await this.get(`/cms-slot/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotSingleResponse;
@@ -501,6 +539,7 @@ class ContentClient extends Client {
   ): Promise<CmsSlotUpdateResponse> {
     const response = await this.patch(`/cms-slot/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -517,6 +556,7 @@ class ContentClient extends Client {
     request: CmsSlotAggregationRequest
   ): Promise<CmsSlotAggregationResponse> {
     const response = await this.post(`/aggregate/cms-slot`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -538,7 +578,10 @@ class ContentClient extends Client {
     page?: number,
     query?: string
   ): Promise<LandingPageListResponse> {
-    const response = await this.get(`/landing-page`, { query: { limit, page, query } });
+    const response = await this.get(`/landing-page`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageListResponse;
@@ -557,6 +600,7 @@ class ContentClient extends Client {
   ): Promise<LandingPageCreateResponse> {
     const response = await this.post(`/landing-page`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -574,7 +618,10 @@ class ContentClient extends Client {
   public async searchLandingPages(
     request: LandingPageListSearchRequest
   ): Promise<LandingPageListSearchResponse> {
-    const response = await this.get(`/search/landing-page`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/landing-page`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageListSearchResponse;
@@ -588,7 +635,9 @@ class ContentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getLandingPage(id: string): Promise<LandingPageSingleResponse> {
-    const response = await this.get(`/landing-page/${id}`);
+    const response = await this.get(`/landing-page/${id}`, {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageSingleResponse;
@@ -621,6 +670,7 @@ class ContentClient extends Client {
   ): Promise<LandingPageUpdateResponse> {
     const response = await this.patch(`/landing-page/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -639,6 +689,7 @@ class ContentClient extends Client {
     request: LandingPageAggregationRequest
   ): Promise<LandingPageAggregationResponse> {
     const response = await this.post(`/aggregate/landing-page`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -660,7 +711,10 @@ class ContentClient extends Client {
     page?: number,
     query?: string
   ): Promise<ThemeListResponse> {
-    const response = await this.get(`/theme`, { query: { limit, page, query } });
+    const response = await this.get(`/theme`, {
+      query: { limit, page, query },
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeListResponse;
@@ -677,6 +731,7 @@ class ContentClient extends Client {
   ): Promise<ThemeCreateResponse> {
     const response = await this.post(`/theme`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -690,7 +745,10 @@ class ContentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchThemes(request: ThemeListSearchRequest): Promise<ThemeListSearchResponse> {
-    const response = await this.get(`/search/theme`, { body: new JsonPayload(request) });
+    const response = await this.get(`/search/theme`, {
+      headers: { Accept: "application/json" },
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeListSearchResponse;
@@ -704,7 +762,7 @@ class ContentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTheme(id: string): Promise<ThemeSingleResponse> {
-    const response = await this.get(`/theme/${id}`);
+    const response = await this.get(`/theme/${id}`, { headers: { Accept: "application/json" } });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeSingleResponse;
@@ -733,6 +791,7 @@ class ContentClient extends Client {
   ): Promise<ThemeUpdateResponse> {
     const response = await this.patch(`/theme/${id}`, {
       query: { _response: responseDetails },
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
@@ -749,6 +808,7 @@ class ContentClient extends Client {
     request: ThemeAggregationRequest
   ): Promise<ThemeAggregationResponse> {
     const response = await this.post(`/aggregate/theme`, {
+      headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
 
