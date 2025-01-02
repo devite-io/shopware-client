@@ -1,4 +1,5 @@
-import Client from "#clients/Client";
+import Client from "../Client";
+import type StoreShopwareClient from "../StoreShopwareClient";
 import {
   AccountEmailChangeRequest,
   AccountEmailChangeResponse,
@@ -36,7 +37,7 @@ class AccountClient extends Client {
   ): Promise<AccountNewsletterRecipientListResponse> {
     const response = await this.post(
       `/account/newsletter-recipient`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -55,7 +56,7 @@ class AccountClient extends Client {
   public async changeProfile(request: AccountUpdateRequest): Promise<AccountUpdateResponse> {
     const response = await this.post(
       `/account/change-profile`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -74,7 +75,7 @@ class AccountClient extends Client {
   ): Promise<AccountEmailChangeResponse> {
     const response = await this.post(
       `/account/change-email`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -93,7 +94,7 @@ class AccountClient extends Client {
   ): Promise<AccountLanguageChangeResponse> {
     const response = await this.post(
       `/account/change-language`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -112,7 +113,7 @@ class AccountClient extends Client {
   ): Promise<AccountPasswordChangeResponse> {
     const response = await this.post(
       `/account/change-password`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -131,7 +132,7 @@ class AccountClient extends Client {
   ): Promise<AccountPaymentMethodChangeResponse> {
     const response = await this.post(
       `/account/change-payment-method/${paymentMethodId}`,
-      this.withContextToken()
+      (this.client as StoreShopwareClient).withContextToken()
     );
 
     if (response.statusCode === 200)
@@ -150,7 +151,7 @@ class AccountClient extends Client {
   ): Promise<AccountRecoveryExpiryCheckResponse> {
     const response = await this.post(
       `/account/customer-recovery-is-expired`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -169,7 +170,7 @@ class AccountClient extends Client {
   public async getCustomer(request: AccountGetRequest = {}): Promise<AccountGetResponse> {
     const response = await this.get(
       `/account/customer`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -184,7 +185,10 @@ class AccountClient extends Client {
    * @throws {Error} if the request failed
    */
   public async deleteCustomer(): Promise<undefined> {
-    const response = await this.delete(`/account/customer`, this.withContextToken());
+    const response = await this.delete(
+      `/account/customer`,
+      (this.client as StoreShopwareClient).withContextToken()
+    );
 
     if (response.statusCode === 200) return undefined;
 
@@ -199,7 +203,7 @@ class AccountClient extends Client {
   ): Promise<AccountPasswordRecoveryResponse> {
     const response = await this.post(
       `/account/recovery-password-confirm`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -220,7 +224,7 @@ class AccountClient extends Client {
   ): Promise<AccountPasswordRecoveryMailResponse> {
     const response = await this.post(
       `/account/recovery-password`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );

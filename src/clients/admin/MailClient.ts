@@ -1,6 +1,6 @@
 import JsonPayload from "#payloads/JsonPayload";
 import HtmlPayload from "#payloads/HtmlPayload";
-import Client from "#clients/Client";
+import Client from "../Client";
 import {
   ContentValidationRequest,
   HeaderFooterAggregationRequest,

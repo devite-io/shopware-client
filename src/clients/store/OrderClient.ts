@@ -1,4 +1,5 @@
-import Client from "#clients/Client";
+import Client from "../Client";
+import type StoreShopwareClient from "../StoreShopwareClient";
 import {
   OrderCancelRequest,
   OrderCancelResponse,
@@ -40,7 +41,7 @@ class OrderClient extends Client {
   public async cancel(request: OrderCancelRequest): Promise<OrderCancelResponse> {
     const response = await this.post(
       "/order/state/cancel",
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -57,7 +58,7 @@ class OrderClient extends Client {
   public async getOrders(request: OrderListRequest = {}): Promise<OrderListResponse> {
     const response = await this.post(
       "/order",
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -76,7 +77,7 @@ class OrderClient extends Client {
   ): Promise<OrderUpdatePaymentMethodResponse> {
     const response = await this.post(
       "/order/payment",
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -98,7 +99,7 @@ class OrderClient extends Client {
   ): Promise<OrderDownloadFileResponse> {
     const response = await this.get(
       `/order/download/${orderId}/${downloadId}`,
-      this.withContextToken()
+      (this.client as StoreShopwareClient).withContextToken()
     );
 
     if (response.statusCode === 200)
@@ -115,7 +116,7 @@ class OrderClient extends Client {
   public async createFromCart(request: OrderFromCartRequest = {}): Promise<OrderFromCartResponse> {
     const response = await this.post(
       "/checkout/order",
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );

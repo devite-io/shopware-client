@@ -1,7 +1,6 @@
 import ShopwareClient from "./ShopwareClient";
 import HTTPRequestMethod from "#http/HTTPRequestMethod";
 import { ClientRequestOptions } from "#types/ClientRequestOptions";
-import StoreShopwareClient from "./StoreShopwareClient";
 
 class Client {
   protected readonly client: ShopwareClient;
@@ -36,14 +35,6 @@ class Client {
 
   protected options(path: string, options?: ClientRequestOptions) {
     return this.doRequest(HTTPRequestMethod.OPTIONS, path, options);
-  }
-
-  protected withContextToken(options: ClientRequestOptions = {}): ClientRequestOptions {
-    if (this.client instanceof StoreShopwareClient) {
-      return (this.client as StoreShopwareClient).withContextToken(options);
-    }
-
-    return options;
   }
 }
 

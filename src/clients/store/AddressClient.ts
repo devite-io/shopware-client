@@ -1,4 +1,5 @@
-import Client from "#clients/Client";
+import Client from "../Client";
+import type StoreShopwareClient from "../StoreShopwareClient";
 import {
   AddressCreateRequest,
   AddressCreateResponse,
@@ -16,7 +17,7 @@ class AddressClient extends Client {
   public async createAddress(request: AddressCreateRequest): Promise<AddressCreateResponse> {
     const response = await this.post(
       "/account/address",
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -31,7 +32,10 @@ class AddressClient extends Client {
    * @throws {Error} if the request failed
    */
   public async deleteAddress(addressId: string): Promise<void> {
-    const response = await this.delete(`/account/address/${addressId}`, this.withContextToken());
+    const response = await this.delete(
+      `/account/address/${addressId}`,
+      (this.client as StoreShopwareClient).withContextToken()
+    );
 
     if (response.statusCode === 200) return;
 
@@ -47,7 +51,7 @@ class AddressClient extends Client {
   ): Promise<AddressUpdateResponse> {
     const response = await this.put(
       `/account/address/${addressId}`,
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -64,7 +68,7 @@ class AddressClient extends Client {
   public async getAddresses(request: AddressListRequest = {}): Promise<AddressListResponse> {
     const response = await this.post(
       "/account/list-address",
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -83,7 +87,7 @@ class AddressClient extends Client {
   public async changeDefaultShippingAddress(addressId: string): Promise<void> {
     const response = await this.post(
       `/account/address/default-shipping/${addressId}`,
-      this.withContextToken()
+      (this.client as StoreShopwareClient).withContextToken()
     );
 
     if (response.statusCode === 200) return;
@@ -99,7 +103,7 @@ class AddressClient extends Client {
   public async changeDefaultBillingAddress(addressId: string): Promise<void> {
     const response = await this.post(
       `/account/address/default-billing/${addressId}`,
-      this.withContextToken()
+      (this.client as StoreShopwareClient).withContextToken()
     );
 
     if (response.statusCode === 200) return;

@@ -1,5 +1,5 @@
 import JsonPayload from "#payloads/JsonPayload";
-import Client from "#clients/Client";
+import Client from "../Client";
 import {
   DefaultFolderAggregationRequest,
   DefaultFolderAggregationResponse,

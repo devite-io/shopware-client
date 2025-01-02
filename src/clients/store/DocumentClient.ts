@@ -1,4 +1,4 @@
-import Client from "#clients/Client";
+import Client from "../Client";
 import {
   DocumentDownloadRequest,
   DocumentDownloadResponse

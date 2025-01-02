@@ -1,4 +1,5 @@
-import Client from "#clients/Client";
+import Client from "../Client";
+import type StoreShopwareClient from "../StoreShopwareClient";
 import {
   CustomerLoginImitateRequest,
   CustomerLoginImitateResponse,
@@ -48,7 +49,10 @@ class CustomerAuthClient extends Client {
    * @throws {Error} if the request failed
    */
   public async logout(): Promise<CustomerLogoutResponse> {
-    const response = await this.post("/account/logout", this.withContextToken());
+    const response = await this.post(
+      "/account/logout",
+      (this.client as StoreShopwareClient).withContextToken()
+    );
 
     if (response.statusCode === 200) {
       this.client.authStore.getEntry(AuthenticationType.CONTEXT_TOKEN)?.clear();

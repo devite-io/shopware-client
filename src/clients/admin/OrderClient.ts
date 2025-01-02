@@ -1,6 +1,6 @@
 import JsonPayload from "#payloads/JsonPayload";
 import BinaryPayload from "#payloads/BinaryPayload";
-import Client from "#clients/Client";
+import Client from "../Client";
 import {
   AddressAggregationRequest,
   AddressAggregationResponse,

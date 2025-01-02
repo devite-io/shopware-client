@@ -1,4 +1,5 @@
-import Client from "#clients/Client";
+import Client from "../Client";
+import type StoreShopwareClient from "../StoreShopwareClient";
 import {
   WishlistGetRequest,
   WishlistGetResponse,
@@ -16,7 +17,7 @@ class WishlistClient extends Client {
   public async getWishlist(request: WishlistGetRequest = {}): Promise<WishlistGetResponse> {
     const response = await this.post(
       "/customer/wishlist",
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -35,7 +36,7 @@ class WishlistClient extends Client {
   ): Promise<WishlistMergeOrCreateResponse> {
     const response = await this.post(
       "/customer/wishlist/merge",
-      this.withContextToken({
+      (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
       })
     );
@@ -54,7 +55,7 @@ class WishlistClient extends Client {
   public async addProductToWishlist(productId: string): Promise<WishlistProductAddResponse> {
     const response = await this.post(
       `/customer/wishlist/add/${productId}`,
-      this.withContextToken()
+      (this.client as StoreShopwareClient).withContextToken()
     );
 
     if (response.statusCode === 200)
@@ -73,7 +74,7 @@ class WishlistClient extends Client {
   ): Promise<WishlistProductRemoveResponse> {
     const response = await this.delete(
       `/customer/wishlist/delete/${productId}`,
-      this.withContextToken()
+      (this.client as StoreShopwareClient).withContextToken()
     );
 
     if (response.statusCode === 200)

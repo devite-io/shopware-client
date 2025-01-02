@@ -1,4 +1,4 @@
-import Client from "#clients/Client";
+import Client from "../Client";
 import { GatewayCheckoutResponse } from "#types/clients/store/GatewayClient";
 import JsonPayload from "#payloads/JsonPayload";
 
