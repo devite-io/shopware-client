@@ -23,7 +23,7 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getProductListingByCategory(
+  public async getListingByCategory(
     categoryId: string,
     request: ProductListingListWithCategoryRequest = {}
   ): Promise<ProductListingListWithCategoryResponse> {
@@ -43,9 +43,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCrossSellingGroupsForProduct(
-    productId: string
+    id: string
   ): Promise<ProductCrossSellingGroupListResponse> {
-    const response = await this.post(`/product/${productId}/cross-selling`);
+    const response = await this.post(`/product/${id}/cross-selling`);
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductCrossSellingGroupListResponse;
@@ -59,11 +59,11 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getProduct(
-    productId: string,
+    id: string,
     includeSeoUrls: boolean,
     request: ProductSingleRequest = {}
   ): Promise<ProductSingleResponse> {
-    const response = await this.post(`/product/${productId}`, {
+    const response = await this.post(`/product/${id}`, {
       headers: { "sw-include-seo-urls": includeSeoUrls.toString() },
       body: new JsonPayload(request)
     });
@@ -94,10 +94,10 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getReviewsForProduct(
-    productId: string,
+    id: string,
     request: ProductReviewListRequest = {}
   ): Promise<ProductReviewListResponse> {
-    const response = await this.post(`/product/${productId}/reviews`, {
+    const response = await this.post(`/product/${id}/reviews`, {
       body: new JsonPayload(request)
     });
 
@@ -112,11 +112,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async saveReviewForProduct(
-    productId: string,
-    request: ProductReviewSaveRequest
-  ): Promise<void> {
-    const response = await this.post(`/product/${productId}/review`, {
+  public async saveReviewForProduct(id: string, request: ProductReviewSaveRequest): Promise<void> {
+    const response = await this.post(`/product/${id}/review`, {
       body: new JsonPayload(request)
     });
 
@@ -130,11 +127,11 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async findProductVariantWithOptions(
-    productId: string,
+  public async findVariantWithOptions(
+    id: string,
     request: ProductVariantWithOptionsRequest
   ): Promise<ProductVariantWithOptionsResponse> {
-    const response = await this.post(`/product/${productId}/find-variant`, {
+    const response = await this.post(`/product/${id}/find-variant`, {
       body: new JsonPayload(request)
     });
 
@@ -145,8 +142,6 @@ class ProductClient extends Client {
       `Failed to find product variant: ${response.statusCode} ${response.statusMessage}`
     );
   }
-
-  // search products,get search suggestions
 
   /**
    * @throws {Error} if the request failed

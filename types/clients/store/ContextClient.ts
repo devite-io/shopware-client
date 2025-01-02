@@ -1,8 +1,5 @@
 import { SalesChannelContext } from "#types/api/store/salesChannel/SalesChannelContext";
 
-export interface ContextGetRequest {
-  id: string;
-}
 export type ContextGetResponse = SalesChannelContext;
 
 export interface ContextUpdateRequest {

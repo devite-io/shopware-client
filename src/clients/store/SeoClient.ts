@@ -11,7 +11,7 @@ class SeoClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSeoRoutes(request: SeoRouteListRequest = {}): Promise<SeoRouteListResponse> {
+  public async getRoutes(request: SeoRouteListRequest = {}): Promise<SeoRouteListResponse> {
     const response = await this.post("/seo-url", {
       body: new JsonPayload(request)
     });

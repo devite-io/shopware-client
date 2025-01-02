@@ -9,12 +9,12 @@ class DocumentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  async downloadDocument(
+  async download(
+    id: string,
     deepLinkCode: string,
-    documentId: string,
     request: DocumentDownloadRequest
   ): Promise<DocumentDownloadResponse> {
-    const response = await this.post(`/document/download/${deepLinkCode}/${documentId}`, {
+    const response = await this.post(`/document/download/${deepLinkCode}/${id}`, {
       body: new JsonPayload(request)
     });
 

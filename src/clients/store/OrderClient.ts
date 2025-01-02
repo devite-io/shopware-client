@@ -37,7 +37,7 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async cancelOrder(request: OrderCancelRequest): Promise<OrderCancelResponse> {
+  public async cancel(request: OrderCancelRequest): Promise<OrderCancelResponse> {
     const response = await this.post(
       "/order/state/cancel",
       this.withContextToken({
@@ -71,7 +71,7 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async updateOrderPaymentMethod(
+  public async updatePaymentMethod(
     request: OrderUpdatePaymentMethodRequest
   ): Promise<OrderUpdatePaymentMethodResponse> {
     const response = await this.post(
@@ -112,9 +112,7 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async createOrderFromCart(
-    request: OrderFromCartRequest = {}
-  ): Promise<OrderFromCartResponse> {
+  public async createFromCart(request: OrderFromCartRequest = {}): Promise<OrderFromCartResponse> {
     const response = await this.post(
       "/checkout/order",
       this.withContextToken({

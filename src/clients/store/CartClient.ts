@@ -41,7 +41,7 @@ class CartClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async addLineItemsToCart(request: CartAddItemsRequest): Promise<CartAddItemsResponse> {
+  public async addLineItems(request: CartAddItemsRequest): Promise<CartAddItemsResponse> {
     const response = await this.post("/checkout/cart/line-item", {
       body: new JsonPayload(request)
     });
@@ -57,9 +57,7 @@ class CartClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async removeLineItemsFromCart(
-    request: CartRemoveItemsRequest
-  ): Promise<CartRemoveItemsResponse> {
+  public async removeLineItems(request: CartRemoveItemsRequest): Promise<CartRemoveItemsResponse> {
     const response = await this.post("/checkout/cart/line-item/delete", {
       body: new JsonPayload(request)
     });
@@ -75,9 +73,7 @@ class CartClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async updateLineItemsInCart(
-    request: CartUpdateItemsRequest
-  ): Promise<CartUpdateItemsResponse> {
+  public async updateLineItems(request: CartUpdateItemsRequest): Promise<CartUpdateItemsResponse> {
     const response = await this.patch("/checkout/cart/line-item", {
       body: new JsonPayload(request)
     });
