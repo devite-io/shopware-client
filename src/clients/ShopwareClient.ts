@@ -49,7 +49,7 @@ class ShopwareClient {
           ...options?.headers
         },
         body: serializedBody,
-        responseType: "stream",
+        responseType: "blob",
         onResponse: async ({ response }) => {
           const clientResponse: ClientResponse = {
             statusCode: response.status,
@@ -81,23 +81,23 @@ class ShopwareClient {
   }
 
   private async parseBody(response: FetchResponse<Blob>): Promise<Payload<any> | undefined> {
-    let body = undefined;
+    let payload = undefined;
 
     switch (response.headers.get("Content-Type")) {
       case BinaryPayload.CONTENT_TYPE:
-        body = new BinaryPayload();
+        payload = new BinaryPayload();
         break;
       case JsonPayload.CONTENT_TYPE:
-        body = new JsonPayload();
+        payload = new JsonPayload();
         break;
       case HtmlPayload.CONTENT_TYPE:
-        body = new HtmlPayload();
+        payload = new HtmlPayload();
         break;
     }
 
-    if (body && response.body) await body.deserialize(await response.blob());
+    if (payload && response._data) await payload.deserialize(response._data);
 
-    return body;
+    return payload;
   }
 }
 
