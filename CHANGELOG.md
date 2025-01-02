@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v1.1.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.1.0...v1.1.1)
+
+### 🩹 Fixes
+
+- Prevent name collisions for client types ([e5545a3](https://github.com/devite-io/shopware-client/commit/e5545a3))
+- Request specific response type ([0e61ea7](https://github.com/devite-io/shopware-client/commit/0e61ea7))
+- Request paths for import export files ([a8f9058](https://github.com/devite-io/shopware-client/commit/a8f9058))
+
+### 💅 Refactors
+
+- Adjust function names to match the admin api client structure ([8e5a69d](https://github.com/devite-io/shopware-client/commit/8e5a69d))
+
+### 🏡 Chore
+
+- Update dependencies ([26b8ea3](https://github.com/devite-io/shopware-client/commit/26b8ea3))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.1.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.0.1...v1.1.0)
