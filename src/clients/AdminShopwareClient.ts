@@ -103,8 +103,10 @@ class AdminShopwareClient extends ShopwareClient {
 
     if (!entry) throw new Error("Not authenticated");
 
+    let entryHeaders;
+
     try {
-      return { ...options, ...entry.load() };
+      entryHeaders = entry.load().headers;
     } catch (error) {
       if (error instanceof ExpiredError && entry.refreshToken) {
         const refreshResponse = await super.doRequest("/oauth/token", {
@@ -118,11 +120,17 @@ class AdminShopwareClient extends ShopwareClient {
 
         entry.save(refreshResponse);
 
-        return { ...options, ...entry.load() };
-      }
-
-      throw error;
+        entryHeaders = entry.load().headers;
+      } else throw error;
     }
+
+    return {
+      ...options,
+      headers: {
+        ...options.headers,
+        ...entryHeaders
+      }
+    };
   }
 
   public forApp(): AppClient {

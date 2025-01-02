@@ -37,6 +37,7 @@ class StoreShopwareClient extends ShopwareClient {
     return super.doRequest(path, {
       ...options,
       headers: {
+        ...options?.headers,
         "sw-access-key": this.apiKey
       }
     });
@@ -49,7 +50,13 @@ class StoreShopwareClient extends ShopwareClient {
 
     if (!entry) throw new Error("Not authenticated");
 
-    return { ...options, ...entry.load() };
+    return {
+      ...options,
+      headers: {
+        ...options.headers,
+        ...entry.load().headers
+      }
+    };
   }
 
   public forAccount(): AccountClient {
