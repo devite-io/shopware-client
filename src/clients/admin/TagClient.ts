@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   TagAggregationRequest,
   TagAggregationResponse,
@@ -26,7 +27,7 @@ class TagClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as TagListResponse;
 
-    throw new Error(`Failed to fetch tag list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch tag list", response);
   }
 
   /**
@@ -45,7 +46,7 @@ class TagClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TagCreateResponse;
 
-    throw new Error(`Failed to create tag: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create tag", response);
   }
 
   /**
@@ -60,7 +61,7 @@ class TagClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TagListSearchResponse;
 
-    throw new Error(`Failed to search for tags: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for tags", response);
   }
 
   /**
@@ -74,7 +75,7 @@ class TagClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TagSingleResponse;
 
-    throw new Error(`Failed to fetch tag: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch tag", response);
   }
 
   /**
@@ -85,7 +86,7 @@ class TagClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete tag: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete tag", response);
   }
 
   /**
@@ -105,7 +106,7 @@ class TagClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TagUpdateResponse;
 
-    throw new Error(`Failed to update tag: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update tag", response);
   }
 
   /**
@@ -120,7 +121,7 @@ class TagClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TagAggregationResponse;
 
-    throw new Error(`Failed to aggregate tag: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate tag", response);
   }
 }
 

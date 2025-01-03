@@ -1,5 +1,7 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
+import ShopwareError from "#http/ShopwareError";
 import {
   AccountEmailChangeRequest,
   AccountEmailChangeResponse,
@@ -26,7 +28,6 @@ import {
   CustomerRegistrationConfirmRequest
 } from "#types/clients/store/AccountClient";
 import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
-import JsonPayload from "#payloads/JsonPayload";
 
 class AccountClient extends Client {
   /**
@@ -45,9 +46,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountNewsletterRecipientListResponse;
 
-    throw new Error(
-      `Failed to fetch newsletter recipient list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch newsletter recipient list", response);
   }
 
   /**
@@ -64,7 +63,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountUpdateResponse;
 
-    throw new Error(`Failed to change profile: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to change profile", response);
   }
 
   /**
@@ -83,7 +82,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountEmailChangeResponse;
 
-    throw new Error(`Failed to change email: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to change email", response);
   }
 
   /**
@@ -102,7 +101,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountLanguageChangeResponse;
 
-    throw new Error(`Failed to change language: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to change language", response);
   }
 
   /**
@@ -121,7 +120,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPasswordChangeResponse;
 
-    throw new Error(`Failed to change password: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to change password", response);
   }
 
   /**
@@ -138,9 +137,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPaymentMethodChangeResponse;
 
-    throw new Error(
-      `Failed to change payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to change payment method", response);
   }
 
   /**
@@ -159,9 +156,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountRecoveryExpiryCheckResponse;
 
-    throw new Error(
-      `Failed to check if customer recovery is expired: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to check if customer recovery is expired", response);
   }
 
   /**
@@ -178,7 +173,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountGetResponse;
 
-    throw new Error(`Failed to fetch customer: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch customer", response);
   }
 
   /**
@@ -192,7 +187,7 @@ class AccountClient extends Client {
 
     if (response.statusCode === 200) return undefined;
 
-    throw new Error(`Failed to delete customer: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete customer", response);
   }
 
   /**
@@ -211,9 +206,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPasswordRecoveryResponse;
 
-    throw new Error(
-      `Failed to confirm recovery password: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to confirm recovery password", response);
   }
 
   /**
@@ -232,9 +225,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPasswordRecoveryMailResponse;
 
-    throw new Error(
-      `Failed to request password recovery mail: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to request password recovery mail", response);
   }
 
   /**
@@ -247,9 +238,7 @@ class AccountClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(
-      `Failed to confirm registration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to confirm registration", response);
   }
 
   /**
@@ -266,7 +255,7 @@ class AccountClient extends Client {
       return (response.body as JsonPayload).data as CustomerRegisterResponse;
     }
 
-    throw new Error(`Failed to register: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to register", response);
   }
 
   /**
@@ -280,9 +269,7 @@ class AccountClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerRegisterGroupConfigResponse;
 
-    throw new Error(
-      `Failed to fetch registration settings for group: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch registration settings for group", response);
   }
 }
 

@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   ScriptAggregationRequest,
   ScriptAggregationResponse,
@@ -27,9 +28,7 @@ class ScriptClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptListResponse;
 
-    throw new Error(
-      `Failed to fetch script list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch script list", response);
   }
 
   /**
@@ -48,7 +47,7 @@ class ScriptClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptCreateResponse;
 
-    throw new Error(`Failed to create script: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create script", response);
   }
 
   /**
@@ -63,9 +62,7 @@ class ScriptClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptListSearchResponse;
 
-    throw new Error(
-      `Failed to search for scripts: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for scripts", response);
   }
 
   /**
@@ -79,7 +76,7 @@ class ScriptClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptSingleResponse;
 
-    throw new Error(`Failed to fetch script: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch script", response);
   }
 
   /**
@@ -90,7 +87,7 @@ class ScriptClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete script: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete script", response);
   }
 
   /**
@@ -110,7 +107,7 @@ class ScriptClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptUpdateResponse;
 
-    throw new Error(`Failed to update script: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update script", response);
   }
 
   /**
@@ -127,7 +124,7 @@ class ScriptClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptAggregationResponse;
 
-    throw new Error(`Failed to aggregate script: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate script", response);
   }
 }
 

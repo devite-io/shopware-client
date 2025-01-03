@@ -1,4 +1,6 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   CMSPageResolveResponse,
   ContactFormSubmitRequest,
@@ -8,7 +10,6 @@ import {
   MediaEntityResolveRequest,
   MediaEntityResolveResponse
 } from "#types/clients/store/ContentClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class ContentClient extends Client {
   /**
@@ -24,9 +25,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ContactFormSubmitResponse;
 
-    throw new Error(
-      `Failed to submit contact form: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to submit contact form", response);
   }
 
   /**
@@ -38,7 +37,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CMSPageResolveResponse;
 
-    throw new Error(`Failed to resolve CMS page: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to resolve CMS page", response);
   }
 
   /**
@@ -54,7 +53,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaEntityResolveResponse;
 
-    throw new Error(`Failed to resolve media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to resolve media", response);
   }
 
   /**
@@ -71,9 +70,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageResolveResponse;
 
-    throw new Error(
-      `Failed to resolve landing page: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to resolve landing page", response);
   }
 }
 

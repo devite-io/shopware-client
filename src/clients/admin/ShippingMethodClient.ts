@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   PriceAggregationRequest,
   PriceAggregationResponse,
@@ -39,9 +40,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListResponse;
 
-    throw new Error(
-      `Failed to fetch shipping method list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch shipping method list", response);
   }
 
   /**
@@ -60,9 +59,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodCreateResponse;
 
-    throw new Error(
-      `Failed to create shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create shipping method", response);
   }
 
   /**
@@ -79,9 +76,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListSearchResponse;
 
-    throw new Error(
-      `Failed to search for shipping methods: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for shipping methods", response);
   }
 
   /**
@@ -98,9 +93,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodSingleResponse;
 
-    throw new Error(
-      `Failed to fetch shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch shipping method", response);
   }
 
   /**
@@ -111,9 +104,7 @@ class ShippingMethodClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete shipping method", response);
   }
 
   /**
@@ -133,9 +124,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodUpdateResponse;
 
-    throw new Error(
-      `Failed to update shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update shipping method", response);
   }
 
   /**
@@ -152,9 +141,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate shipping method", response);
   }
 
   /** Prices **/
@@ -170,9 +157,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceListResponse;
 
-    throw new Error(
-      `Failed to fetch shipping method list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch shipping method list", response);
   }
 
   /**
@@ -191,9 +176,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceCreateResponse;
 
-    throw new Error(
-      `Failed to create shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create shipping method", response);
   }
 
   /**
@@ -208,9 +191,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceListSearchResponse;
 
-    throw new Error(
-      `Failed to search for prices: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for prices", response);
   }
 
   /**
@@ -224,7 +205,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceSingleResponse;
 
-    throw new Error(`Failed to fetch price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch price", response);
   }
 
   /**
@@ -235,7 +216,7 @@ class ShippingMethodClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete price", response);
   }
 
   /**
@@ -255,7 +236,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceUpdateResponse;
 
-    throw new Error(`Failed to update price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update price", response);
   }
 
   /**
@@ -272,7 +253,7 @@ class ShippingMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceAggregationResponse;
 
-    throw new Error(`Failed to aggregate price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate price", response);
   }
 }
 

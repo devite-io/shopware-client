@@ -1,9 +1,10 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   DocumentDownloadRequest,
   DocumentDownloadResponse
 } from "#types/clients/store/DocumentClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class DocumentClient extends Client {
   /**
@@ -21,9 +22,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentDownloadResponse;
 
-    throw new Error(
-      `Failed to download document: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to download document", response);
   }
 }
 

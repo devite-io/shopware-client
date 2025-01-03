@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   ActionButtonAggregationRequest,
   ActionButtonAggregationResponse,
@@ -118,7 +119,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as AppListResponse;
 
-    throw new Error(`Failed to fetch app list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch app list", response);
   }
 
   /**
@@ -137,7 +138,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AppCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -152,7 +153,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AppListSearchResponse;
 
-    throw new Error(`Failed to search for apps: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for apps", response);
   }
 
   /**
@@ -166,7 +167,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AppSingleResponse;
 
-    throw new Error(`Failed to fetch app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch app", response);
   }
 
   /**
@@ -177,7 +178,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete app", response);
   }
 
   /**
@@ -197,7 +198,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AppUpdateResponse;
 
-    throw new Error(`Failed to update app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update app", response);
   }
 
   /**
@@ -212,7 +213,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AppAggregationResponse;
 
-    throw new Error(`Failed to aggregate app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate app", response);
   }
 
   /** Action Buttons **/
@@ -228,9 +229,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ActionButtonListResponse;
 
-    throw new Error(
-      `Failed to fetch action button list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch action button list", response);
   }
 
   /**
@@ -249,7 +248,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ActionButtonCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -266,9 +265,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ActionButtonListSearchResponse;
 
-    throw new Error(
-      `Failed to search for action buttons: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for action buttons", response);
   }
 
   /**
@@ -282,9 +279,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ActionButtonSingleResponse;
 
-    throw new Error(
-      `Failed to fetch action button: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch action button", response);
   }
 
   /**
@@ -295,9 +290,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete action button: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete action button", response);
   }
 
   /**
@@ -317,9 +310,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ActionButtonUpdateResponse;
 
-    throw new Error(
-      `Failed to update action button: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update action button", response);
   }
 
   /**
@@ -336,9 +327,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ActionButtonAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate action button: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate action button", response);
   }
 
   /** Admin Snippets **/
@@ -354,9 +343,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AdminSnippetListResponse;
 
-    throw new Error(
-      `Failed to fetch administration snippet list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch administration snippet list", response);
   }
 
   /**
@@ -375,7 +362,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AdminSnippetCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -392,9 +379,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AdminSnippetListSearchResponse;
 
-    throw new Error(
-      `Failed to search for administration snippets: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for administration snippets", response);
   }
 
   /**
@@ -408,9 +393,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AdminSnippetSingleResponse;
 
-    throw new Error(
-      `Failed to fetch administration snippet: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch administration snippet", response);
   }
 
   /**
@@ -421,9 +404,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete administration snippet: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete administration snippet", response);
   }
 
   /**
@@ -443,9 +424,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AdminSnippetUpdateResponse;
 
-    throw new Error(
-      `Failed to update administration snippet: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update administration snippet", response);
   }
 
   /**
@@ -462,9 +441,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AdminSnippetAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate administration snippet: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate administration snippet", response);
   }
 
   /** Cms Blocks **/
@@ -480,9 +457,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockListResponse;
 
-    throw new Error(
-      `Failed to fetch cms block list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cms block list", response);
   }
 
   /**
@@ -501,7 +476,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -518,9 +493,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockListSearchResponse;
 
-    throw new Error(
-      `Failed to search for cms blocks: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for cms blocks", response);
   }
 
   /**
@@ -534,7 +507,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockSingleResponse;
 
-    throw new Error(`Failed to fetch cms block: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch cms block", response);
   }
 
   /**
@@ -545,7 +518,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete cms block: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete cms block", response);
   }
 
   /**
@@ -565,7 +538,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockUpdateResponse;
 
-    throw new Error(`Failed to update cms block: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update cms block", response);
   }
 
   /**
@@ -582,9 +555,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cms block: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cms block", response);
   }
 
   /** Flow Actions **/
@@ -600,9 +571,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowActionListResponse;
 
-    throw new Error(
-      `Failed to fetch flow action list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch flow action list", response);
   }
 
   /**
@@ -621,7 +590,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowActionCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -638,9 +607,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowActionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for flow actions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for flow actions", response);
   }
 
   /**
@@ -654,9 +621,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowActionSingleResponse;
 
-    throw new Error(
-      `Failed to fetch flow action: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch flow action", response);
   }
 
   /**
@@ -667,9 +632,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete flow action: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete flow action", response);
   }
 
   /**
@@ -689,9 +652,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowActionUpdateResponse;
 
-    throw new Error(
-      `Failed to update flow action: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update flow action", response);
   }
 
   /**
@@ -708,9 +669,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowActionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate flow action: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate flow action", response);
   }
 
   /** Flow Events **/
@@ -726,9 +685,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowEventListResponse;
 
-    throw new Error(
-      `Failed to fetch flow event list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch flow event list", response);
   }
 
   /**
@@ -747,7 +704,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowEventCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -764,9 +721,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowEventListSearchResponse;
 
-    throw new Error(
-      `Failed to search for flow events: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for flow events", response);
   }
 
   /**
@@ -780,7 +735,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowEventSingleResponse;
 
-    throw new Error(`Failed to fetch flow event: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch flow event", response);
   }
 
   /**
@@ -791,9 +746,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete flow event: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete flow event", response);
   }
 
   /**
@@ -813,9 +766,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowEventUpdateResponse;
 
-    throw new Error(
-      `Failed to update flow event: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update flow event", response);
   }
 
   /**
@@ -832,9 +783,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowEventAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate flow event: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate flow event", response);
   }
 
   /** Payment Methods **/
@@ -850,9 +799,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListResponse;
 
-    throw new Error(
-      `Failed to fetch payment method list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch payment method list", response);
   }
 
   /**
@@ -871,7 +818,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -888,9 +835,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListSearchResponse;
 
-    throw new Error(
-      `Failed to search for payment methods: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for payment methods", response);
   }
 
   /**
@@ -907,9 +852,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodSingleResponse;
 
-    throw new Error(
-      `Failed to fetch payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch payment method", response);
   }
 
   /**
@@ -920,9 +863,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete payment method", response);
   }
 
   /**
@@ -942,9 +883,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodUpdateResponse;
 
-    throw new Error(
-      `Failed to update payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update payment method", response);
   }
 
   /**
@@ -961,9 +900,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate payment method", response);
   }
 
   /** Script Conditions **/
@@ -979,9 +916,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptConditionListResponse;
 
-    throw new Error(
-      `Failed to fetch script condition list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch script condition list", response);
   }
 
   /**
@@ -1000,7 +935,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptConditionCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -1017,9 +952,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptConditionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for script conditions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for script conditions", response);
   }
 
   /**
@@ -1036,9 +969,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptConditionSingleResponse;
 
-    throw new Error(
-      `Failed to fetch script condition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch script condition", response);
   }
 
   /**
@@ -1049,9 +980,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete script condition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete script condition", response);
   }
 
   /**
@@ -1071,9 +1000,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptConditionUpdateResponse;
 
-    throw new Error(
-      `Failed to update script condition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update script condition", response);
   }
 
   /**
@@ -1090,9 +1017,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptConditionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate script condition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate script condition", response);
   }
 
   /** Shipping Methods **/
@@ -1108,9 +1033,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListResponse;
 
-    throw new Error(
-      `Failed to fetch shipping method list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch shipping method list", response);
   }
 
   /**
@@ -1129,7 +1052,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -1146,9 +1069,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListSearchResponse;
 
-    throw new Error(
-      `Failed to search for shipping methods: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for shipping methods", response);
   }
 
   /**
@@ -1165,9 +1086,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodSingleResponse;
 
-    throw new Error(
-      `Failed to fetch shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch shipping method", response);
   }
 
   /**
@@ -1178,9 +1097,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete shipping method", response);
   }
 
   /**
@@ -1200,9 +1117,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodUpdateResponse;
 
-    throw new Error(
-      `Failed to update shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update shipping method", response);
   }
 
   /**
@@ -1219,9 +1134,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate shipping method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate shipping method", response);
   }
 
   /** Templates **/
@@ -1237,9 +1150,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateListResponse;
 
-    throw new Error(
-      `Failed to fetch template list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch template list", response);
   }
 
   /**
@@ -1258,7 +1169,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateCreateResponse;
 
-    throw new Error(`Failed to create app: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create app", response);
   }
 
   /**
@@ -1275,9 +1186,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateListSearchResponse;
 
-    throw new Error(
-      `Failed to search for templates: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for templates", response);
   }
 
   /**
@@ -1291,7 +1200,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateSingleResponse;
 
-    throw new Error(`Failed to fetch template: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch template", response);
   }
 
   /**
@@ -1302,7 +1211,7 @@ class AppClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete template: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete template", response);
   }
 
   /**
@@ -1322,7 +1231,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateUpdateResponse;
 
-    throw new Error(`Failed to update template: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update template", response);
   }
 
   /**
@@ -1339,9 +1248,7 @@ class AppClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate template", response);
   }
 }
 

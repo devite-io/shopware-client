@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   AccessKeyAggregationRequest,
   AccessKeyAggregationResponse,
@@ -58,7 +59,7 @@ class UserClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as UserListResponse;
 
-    throw new Error(`Failed to fetch user list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch user list", response);
   }
 
   /**
@@ -77,7 +78,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UserCreateResponse;
 
-    throw new Error(`Failed to create user: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create user", response);
   }
 
   /**
@@ -92,7 +93,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UserListSearchResponse;
 
-    throw new Error(`Failed to search for users: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for users", response);
   }
 
   /**
@@ -106,7 +107,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UserSingleResponse;
 
-    throw new Error(`Failed to fetch user: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch user", response);
   }
 
   /**
@@ -117,7 +118,7 @@ class UserClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete user: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete user", response);
   }
 
   /**
@@ -137,7 +138,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UserUpdateResponse;
 
-    throw new Error(`Failed to update user: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update user", response);
   }
 
   /**
@@ -152,7 +153,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UserAggregationResponse;
 
-    throw new Error(`Failed to aggregate user: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate user", response);
   }
 
   /** Access Keys **/
@@ -168,9 +169,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeyListResponse;
 
-    throw new Error(
-      `Failed to fetch access key list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch access key list", response);
   }
 
   /**
@@ -189,9 +188,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeyCreateResponse;
 
-    throw new Error(
-      `Failed to create access key: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create access key", response);
   }
 
   /**
@@ -208,9 +205,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeyListSearchResponse;
 
-    throw new Error(
-      `Failed to search for access keys: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for access keys", response);
   }
 
   /**
@@ -224,7 +219,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeySingleResponse;
 
-    throw new Error(`Failed to fetch access key: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch access key", response);
   }
 
   /**
@@ -235,9 +230,7 @@ class UserClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete access key: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete access key", response);
   }
 
   /**
@@ -257,9 +250,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeyUpdateResponse;
 
-    throw new Error(
-      `Failed to update access key: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update access key", response);
   }
 
   /**
@@ -276,9 +267,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccessKeyAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate access key: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate access key", response);
   }
 
   /** Configs **/
@@ -294,9 +283,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigListResponse;
 
-    throw new Error(
-      `Failed to fetch config list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch config list", response);
   }
 
   /**
@@ -315,7 +302,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigCreateResponse;
 
-    throw new Error(`Failed to create config: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create config", response);
   }
 
   /**
@@ -330,9 +317,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigListSearchResponse;
 
-    throw new Error(
-      `Failed to search for configs: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for configs", response);
   }
 
   /**
@@ -346,7 +331,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigSingleResponse;
 
-    throw new Error(`Failed to fetch config: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch config", response);
   }
 
   /**
@@ -357,7 +342,7 @@ class UserClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete config: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete config", response);
   }
 
   /**
@@ -377,7 +362,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigUpdateResponse;
 
-    throw new Error(`Failed to update config: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update config", response);
   }
 
   /**
@@ -394,7 +379,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigAggregationResponse;
 
-    throw new Error(`Failed to aggregate config: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate config", response);
   }
 
   /** Recoveries **/
@@ -410,9 +395,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoveryListResponse;
 
-    throw new Error(
-      `Failed to fetch recovery list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch recovery list", response);
   }
 
   /**
@@ -431,7 +414,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoveryCreateResponse;
 
-    throw new Error(`Failed to create recovery: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create recovery", response);
   }
 
   /**
@@ -448,9 +431,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoveryListSearchResponse;
 
-    throw new Error(
-      `Failed to search for recoveries: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for recoveries", response);
   }
 
   /**
@@ -464,7 +445,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoverySingleResponse;
 
-    throw new Error(`Failed to fetch recovery: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch recovery", response);
   }
 
   /**
@@ -475,7 +456,7 @@ class UserClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete recovery: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete recovery", response);
   }
 
   /**
@@ -495,7 +476,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoveryUpdateResponse;
 
-    throw new Error(`Failed to update recovery: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update recovery", response);
   }
 
   /**
@@ -512,9 +493,7 @@ class UserClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecoveryAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate recovery: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate recovery", response);
   }
 }
 

@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   CategoryAggregationRequest,
   CategoryAggregationResponse,
@@ -39,9 +40,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategoryListResponse;
 
-    throw new Error(
-      `Failed to fetch category list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch category list", response);
   }
 
   /**
@@ -60,7 +59,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategoryCreateResponse;
 
-    throw new Error(`Failed to create category: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create category", response);
   }
 
   /**
@@ -77,9 +76,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategoryListSearchResponse;
 
-    throw new Error(
-      `Failed to search for categories: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for categories", response);
   }
 
   /**
@@ -93,7 +90,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategorySingleResponse;
 
-    throw new Error(`Failed to fetch category: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch category", response);
   }
 
   /**
@@ -104,7 +101,7 @@ class CategoryClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete category: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete category", response);
   }
 
   /**
@@ -124,7 +121,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategoryUpdateResponse;
 
-    throw new Error(`Failed to update category: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update category", response);
   }
 
   /**
@@ -141,9 +138,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategoryAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate category: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate category", response);
   }
 
   /** Main Categories **/
@@ -159,9 +154,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategoryListResponse;
 
-    throw new Error(
-      `Failed to fetch main category list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch main category list", response);
   }
 
   /**
@@ -180,9 +173,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategoryCreateResponse;
 
-    throw new Error(
-      `Failed to create main category: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create main category", response);
   }
 
   /**
@@ -199,9 +190,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategoryListSearchResponse;
 
-    throw new Error(
-      `Failed to search for main categories: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for main categories", response);
   }
 
   /**
@@ -215,9 +204,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategorySingleResponse;
 
-    throw new Error(
-      `Failed to fetch main category: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch main category", response);
   }
 
   /**
@@ -228,9 +215,7 @@ class CategoryClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete main category: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete main category", response);
   }
 
   /**
@@ -250,9 +235,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategoryUpdateResponse;
 
-    throw new Error(
-      `Failed to update main category: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update main category", response);
   }
 
   /**
@@ -269,9 +252,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MainCategoryAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate main category: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate main category", response);
   }
 }
 

@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   StateAggregationRequest,
   StateAggregationResponse,
@@ -49,9 +50,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineListResponse;
 
-    throw new Error(
-      `Failed to fetch state machine list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch state machine list", response);
   }
 
   /**
@@ -70,9 +69,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineCreateResponse;
 
-    throw new Error(
-      `Failed to create state machine: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create state machine", response);
   }
 
   /**
@@ -89,9 +86,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineListSearchResponse;
 
-    throw new Error(
-      `Failed to search for state machines: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for state machines", response);
   }
 
   /**
@@ -105,9 +100,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineSingleResponse;
 
-    throw new Error(
-      `Failed to fetch state machine: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch state machine", response);
   }
 
   /**
@@ -118,9 +111,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete state machine: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete state machine", response);
   }
 
   /**
@@ -140,9 +131,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineUpdateResponse;
 
-    throw new Error(
-      `Failed to update state machine: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update state machine", response);
   }
 
   /**
@@ -159,9 +148,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateMachineAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate state machine: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate state machine", response);
   }
 
   /** States **/
@@ -177,7 +164,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListResponse;
 
-    throw new Error(`Failed to fetch state list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch state list", response);
   }
 
   /**
@@ -196,7 +183,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateCreateResponse;
 
-    throw new Error(`Failed to create state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create state", response);
   }
 
   /**
@@ -211,9 +198,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListSearchResponse;
 
-    throw new Error(
-      `Failed to search for states: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for states", response);
   }
 
   /**
@@ -227,7 +212,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateSingleResponse;
 
-    throw new Error(`Failed to fetch state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch state", response);
   }
 
   /**
@@ -238,7 +223,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete state", response);
   }
 
   /**
@@ -258,7 +243,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateUpdateResponse;
 
-    throw new Error(`Failed to update state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update state", response);
   }
 
   /**
@@ -275,7 +260,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateAggregationResponse;
 
-    throw new Error(`Failed to aggregate state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate state", response);
   }
 
   /** Transitions **/
@@ -291,9 +276,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransitionListResponse;
 
-    throw new Error(
-      `Failed to fetch transition list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transition list", response);
   }
 
   /**
@@ -312,9 +295,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransitionCreateResponse;
 
-    throw new Error(
-      `Failed to create transition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create transition", response);
   }
 
   /**
@@ -331,9 +312,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransitionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for transitions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for transitions", response);
   }
 
   /**
@@ -347,7 +326,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransitionSingleResponse;
 
-    throw new Error(`Failed to fetch transition: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch transition", response);
   }
 
   /**
@@ -358,9 +337,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete transition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete transition", response);
   }
 
   /**
@@ -380,9 +357,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransitionUpdateResponse;
 
-    throw new Error(
-      `Failed to update transition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update transition", response);
   }
 
   /**
@@ -399,9 +374,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransitionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate transition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate transition", response);
   }
 }
 

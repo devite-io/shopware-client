@@ -1,5 +1,7 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
+import ShopwareError from "#http/ShopwareError";
 import {
   CustomerLoginImitateRequest,
   CustomerLoginImitateResponse,
@@ -7,7 +9,6 @@ import {
   CustomerLoginResponse,
   CustomerLogoutResponse
 } from "#types/clients/store/CustomerAuthClient";
-import JsonPayload from "#payloads/JsonPayload";
 import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
 import AuthenticationType from "#auth/AuthenticationType";
 
@@ -26,7 +27,7 @@ class CustomerAuthClient extends Client {
       return (response.body as JsonPayload).data as CustomerLoginResponse;
     }
 
-    throw new Error(`Failed to login: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to login", response);
   }
 
   /**
@@ -42,7 +43,7 @@ class CustomerAuthClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerLoginImitateResponse;
 
-    throw new Error(`Failed to imitate login: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to imitate login", response);
   }
 
   /**
@@ -60,7 +61,7 @@ class CustomerAuthClient extends Client {
       return (response.body as JsonPayload).data as CustomerLogoutResponse;
     }
 
-    throw new Error(`Failed to logout: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to logout", response);
   }
 }
 

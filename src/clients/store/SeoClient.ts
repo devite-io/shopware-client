@@ -1,11 +1,12 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   SeoRouteListRequest,
   SeoRouteListResponse,
   SitemapDownloadResponse,
   SitemapListResponse
 } from "#types/clients/store/SeoClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class SeoClient extends Client {
   /**
@@ -19,9 +20,7 @@ class SeoClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SeoRouteListResponse;
 
-    throw new Error(
-      `Failed to fetch SEO route list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch SEO route list", response);
   }
 
   /**
@@ -33,9 +32,7 @@ class SeoClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SitemapListResponse;
 
-    throw new Error(
-      `Failed to fetch sitemap list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch sitemap list", response);
   }
 
   /**
@@ -47,7 +44,7 @@ class SeoClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SitemapDownloadResponse;
 
-    throw new Error(`Failed to download sitemap: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to download sitemap", response);
   }
 }
 

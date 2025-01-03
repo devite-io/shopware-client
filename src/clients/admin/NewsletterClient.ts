@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   RecipientAggregationRequest,
   RecipientAggregationResponse,
@@ -27,9 +28,7 @@ class NewsletterClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecipientListResponse;
 
-    throw new Error(
-      `Failed to fetch recipient list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch recipient list", response);
   }
 
   /**
@@ -48,7 +47,7 @@ class NewsletterClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecipientCreateResponse;
 
-    throw new Error(`Failed to create recipient: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create recipient", response);
   }
 
   /**
@@ -65,9 +64,7 @@ class NewsletterClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecipientListSearchResponse;
 
-    throw new Error(
-      `Failed to search for recipients: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for recipients", response);
   }
 
   /**
@@ -81,7 +78,7 @@ class NewsletterClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecipientSingleResponse;
 
-    throw new Error(`Failed to fetch recipient: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch recipient", response);
   }
 
   /**
@@ -92,7 +89,7 @@ class NewsletterClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete recipient: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete recipient", response);
   }
 
   /**
@@ -112,7 +109,7 @@ class NewsletterClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecipientUpdateResponse;
 
-    throw new Error(`Failed to update recipient: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update recipient", response);
   }
 
   /**
@@ -129,9 +126,7 @@ class NewsletterClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RecipientAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate recipient: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate recipient", response);
   }
 }
 

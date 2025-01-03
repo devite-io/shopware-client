@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   ConfiguratorSettingAggregationRequest,
   ConfiguratorSettingAggregationResponse,
@@ -209,9 +210,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductListResponse;
 
-    throw new Error(
-      `Failed to fetch product list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch product list", response);
   }
 
   /**
@@ -230,7 +229,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductCreateResponse;
 
-    throw new Error(`Failed to create product: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create product", response);
   }
 
   /**
@@ -247,9 +246,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductListSearchResponse;
 
-    throw new Error(
-      `Failed to search for products: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for products", response);
   }
 
   /**
@@ -263,7 +260,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductSingleResponse;
 
-    throw new Error(`Failed to fetch product: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch product", response);
   }
 
   /**
@@ -274,7 +271,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete product: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete product", response);
   }
 
   /**
@@ -294,7 +291,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductUpdateResponse;
 
-    throw new Error(`Failed to update product: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update product", response);
   }
 
   /**
@@ -311,9 +308,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate product", response);
   }
 
   /** Configurator Settings **/
@@ -329,9 +324,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfiguratorSettingListResponse;
 
-    throw new Error(
-      `Failed to fetch configurator setting list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch configurator setting list", response);
   }
 
   /**
@@ -350,9 +343,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfiguratorSettingCreateResponse;
 
-    throw new Error(
-      `Failed to create configurator setting: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create configurator setting", response);
   }
 
   /**
@@ -369,9 +360,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfiguratorSettingListSearchResponse;
 
-    throw new Error(
-      `Failed to search for configurator settings: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for configurator settings", response);
   }
 
   /**
@@ -388,9 +377,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfiguratorSettingSingleResponse;
 
-    throw new Error(
-      `Failed to fetch configurator setting: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch configurator setting", response);
   }
 
   /**
@@ -401,9 +388,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete configurator setting: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete configurator setting", response);
   }
 
   /**
@@ -423,9 +408,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfiguratorSettingUpdateResponse;
 
-    throw new Error(
-      `Failed to update configurator setting: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update configurator setting", response);
   }
 
   /**
@@ -442,9 +425,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfiguratorSettingAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate configurator setting: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate configurator setting", response);
   }
 
   /** Cross Sellings **/
@@ -460,9 +441,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingListResponse;
 
-    throw new Error(
-      `Failed to fetch cross selling list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cross selling list", response);
   }
 
   /**
@@ -481,9 +460,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingCreateResponse;
 
-    throw new Error(
-      `Failed to create cross selling: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create cross selling", response);
   }
 
   /**
@@ -500,9 +477,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingListSearchResponse;
 
-    throw new Error(
-      `Failed to search for cross sellings: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for cross sellings", response);
   }
 
   /**
@@ -516,9 +491,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingSingleResponse;
 
-    throw new Error(
-      `Failed to fetch cross selling: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cross selling", response);
   }
 
   /**
@@ -529,9 +502,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete cross selling: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete cross selling", response);
   }
 
   /**
@@ -551,9 +522,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingUpdateResponse;
 
-    throw new Error(
-      `Failed to update cross selling: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update cross selling", response);
   }
 
   /**
@@ -570,9 +539,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cross selling: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cross selling", response);
   }
 
   /** Cross Selling Assigned Products **/
@@ -590,9 +557,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAssignedProductListResponse;
 
-    throw new Error(
-      `Failed to fetch cross selling assigned product list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cross selling assigned product list", response);
   }
 
   /**
@@ -611,9 +576,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAssignedProductCreateResponse;
 
-    throw new Error(
-      `Failed to create cross selling assigned product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create cross selling assigned product", response);
   }
 
   /**
@@ -630,9 +593,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAssignedProductListSearchResponse;
 
-    throw new Error(
-      `Failed to search for cross selling assigned products: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for cross selling assigned products", response);
   }
 
   /**
@@ -652,9 +613,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAssignedProductSingleResponse;
 
-    throw new Error(
-      `Failed to fetch cross selling assigned product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cross selling assigned product", response);
   }
 
   /**
@@ -665,9 +624,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete cross selling assigned product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete cross selling assigned product", response);
   }
 
   /**
@@ -687,9 +644,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAssignedProductUpdateResponse;
 
-    throw new Error(
-      `Failed to update cross selling assigned product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update cross selling assigned product", response);
   }
 
   /**
@@ -706,9 +661,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAssignedProductAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cross selling assigned product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cross selling assigned product", response);
   }
 
   /** Downloads **/
@@ -724,9 +677,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadListResponse;
 
-    throw new Error(
-      `Failed to fetch download list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch download list", response);
   }
 
   /**
@@ -745,7 +696,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadCreateResponse;
 
-    throw new Error(`Failed to create download: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create download", response);
   }
 
   /**
@@ -762,9 +713,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadListSearchResponse;
 
-    throw new Error(
-      `Failed to search for downloads: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for downloads", response);
   }
 
   /**
@@ -778,7 +727,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadSingleResponse;
 
-    throw new Error(`Failed to fetch download: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch download", response);
   }
 
   /**
@@ -789,7 +738,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete download: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete download", response);
   }
 
   /**
@@ -809,7 +758,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadUpdateResponse;
 
-    throw new Error(`Failed to update download: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update download", response);
   }
 
   /**
@@ -826,9 +775,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DownloadAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate download: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate download", response);
   }
 
   /** Exports **/
@@ -844,9 +791,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportListResponse;
 
-    throw new Error(
-      `Failed to fetch export list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch export list", response);
   }
 
   /**
@@ -865,7 +810,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportCreateResponse;
 
-    throw new Error(`Failed to create export: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create export", response);
   }
 
   /**
@@ -880,9 +825,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportListSearchResponse;
 
-    throw new Error(
-      `Failed to search for exports: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for exports", response);
   }
 
   /**
@@ -896,7 +839,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportSingleResponse;
 
-    throw new Error(`Failed to fetch export: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch export", response);
   }
 
   /**
@@ -907,7 +850,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete export: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete export", response);
   }
 
   /**
@@ -927,7 +870,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportUpdateResponse;
 
-    throw new Error(`Failed to update export: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update export", response);
   }
 
   /**
@@ -944,7 +887,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ExportAggregationResponse;
 
-    throw new Error(`Failed to aggregate export: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate export", response);
   }
 
   /** Feature Sets **/
@@ -960,9 +903,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FeatureSetListResponse;
 
-    throw new Error(
-      `Failed to fetch feature set list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch feature set list", response);
   }
 
   /**
@@ -981,9 +922,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FeatureSetCreateResponse;
 
-    throw new Error(
-      `Failed to create feature set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create feature set", response);
   }
 
   /**
@@ -1000,9 +939,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FeatureSetListSearchResponse;
 
-    throw new Error(
-      `Failed to search for feature sets: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for feature sets", response);
   }
 
   /**
@@ -1016,9 +953,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FeatureSetSingleResponse;
 
-    throw new Error(
-      `Failed to fetch feature set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch feature set", response);
   }
 
   /**
@@ -1029,9 +964,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete feature set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete feature set", response);
   }
 
   /**
@@ -1051,9 +984,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FeatureSetUpdateResponse;
 
-    throw new Error(
-      `Failed to update feature set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update feature set", response);
   }
 
   /**
@@ -1070,9 +1001,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FeatureSetAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate feature set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate feature set", response);
   }
 
   /** Keyword Dictionaries **/
@@ -1088,9 +1017,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as KeywordDictionaryListResponse;
 
-    throw new Error(
-      `Failed to fetch keyword dictionary list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch keyword dictionary list", response);
   }
 
   /**
@@ -1109,9 +1036,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as KeywordDictionaryCreateResponse;
 
-    throw new Error(
-      `Failed to create keyword dictionary: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create keyword dictionary", response);
   }
 
   /**
@@ -1128,9 +1053,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as KeywordDictionaryListSearchResponse;
 
-    throw new Error(
-      `Failed to search for keyword dictionaries: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for keyword dictionaries", response);
   }
 
   /**
@@ -1147,9 +1070,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as KeywordDictionarySingleResponse;
 
-    throw new Error(
-      `Failed to fetch keyword dictionary: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch keyword dictionary", response);
   }
 
   /**
@@ -1160,9 +1081,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete keyword dictionary: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete keyword dictionary", response);
   }
 
   /**
@@ -1182,9 +1101,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as KeywordDictionaryUpdateResponse;
 
-    throw new Error(
-      `Failed to update keyword dictionary: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update keyword dictionary", response);
   }
 
   /**
@@ -1201,9 +1118,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as KeywordDictionaryAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate keyword dictionary: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate keyword dictionary", response);
   }
 
   /** Manufacturers **/
@@ -1219,9 +1134,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ManufacturerListResponse;
 
-    throw new Error(
-      `Failed to fetch manufacturer list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch manufacturer list", response);
   }
 
   /**
@@ -1240,9 +1153,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ManufacturerCreateResponse;
 
-    throw new Error(
-      `Failed to create manufacturer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create manufacturer", response);
   }
 
   /**
@@ -1259,9 +1170,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ManufacturerListSearchResponse;
 
-    throw new Error(
-      `Failed to search for manufacturers: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for manufacturers", response);
   }
 
   /**
@@ -1275,9 +1184,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ManufacturerSingleResponse;
 
-    throw new Error(
-      `Failed to fetch manufacturer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch manufacturer", response);
   }
 
   /**
@@ -1288,9 +1195,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete manufacturer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete manufacturer", response);
   }
 
   /**
@@ -1310,9 +1215,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ManufacturerUpdateResponse;
 
-    throw new Error(
-      `Failed to update manufacturer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update manufacturer", response);
   }
 
   /**
@@ -1329,9 +1232,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ManufacturerAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate manufacturer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate manufacturer", response);
   }
 
   /** Media **/
@@ -1347,7 +1248,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaListResponse;
 
-    throw new Error(`Failed to fetch media list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch media list", response);
   }
 
   /**
@@ -1366,7 +1267,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaCreateResponse;
 
-    throw new Error(`Failed to create media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create media", response);
   }
 
   /**
@@ -1381,7 +1282,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaListSearchResponse;
 
-    throw new Error(`Failed to search for media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for media", response);
   }
 
   /**
@@ -1395,7 +1296,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaSingleResponse;
 
-    throw new Error(`Failed to fetch media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch media", response);
   }
 
   /**
@@ -1406,7 +1307,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete media", response);
   }
 
   /**
@@ -1426,7 +1327,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaUpdateResponse;
 
-    throw new Error(`Failed to update media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update media", response);
   }
 
   /**
@@ -1443,7 +1344,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaAggregationResponse;
 
-    throw new Error(`Failed to aggregate media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate media", response);
   }
 
   /** Price **/
@@ -1459,7 +1360,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceListResponse;
 
-    throw new Error(`Failed to fetch price list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch price list", response);
   }
 
   /**
@@ -1478,7 +1379,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceCreateResponse;
 
-    throw new Error(`Failed to create price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create price", response);
   }
 
   /**
@@ -1493,9 +1394,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceListSearchResponse;
 
-    throw new Error(
-      `Failed to search for prices: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for prices", response);
   }
 
   /**
@@ -1509,7 +1408,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceSingleResponse;
 
-    throw new Error(`Failed to fetch price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch price", response);
   }
 
   /**
@@ -1520,7 +1419,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete price", response);
   }
 
   /**
@@ -1540,7 +1439,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceUpdateResponse;
 
-    throw new Error(`Failed to update price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update price", response);
   }
 
   /**
@@ -1557,7 +1456,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PriceAggregationResponse;
 
-    throw new Error(`Failed to aggregate price: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate price", response);
   }
 
   /** Reviews **/
@@ -1573,9 +1472,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewListResponse;
 
-    throw new Error(
-      `Failed to fetch review list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch review list", response);
   }
 
   /**
@@ -1594,7 +1491,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewCreateResponse;
 
-    throw new Error(`Failed to create review: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create review", response);
   }
 
   /**
@@ -1609,9 +1506,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewListSearchResponse;
 
-    throw new Error(
-      `Failed to search for reviews: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for reviews", response);
   }
 
   /**
@@ -1625,7 +1520,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewSingleResponse;
 
-    throw new Error(`Failed to fetch review: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch review", response);
   }
 
   /**
@@ -1636,7 +1531,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete review: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete review", response);
   }
 
   /**
@@ -1656,7 +1551,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewUpdateResponse;
 
-    throw new Error(`Failed to update review: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update review", response);
   }
 
   /**
@@ -1673,7 +1568,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ReviewAggregationResponse;
 
-    throw new Error(`Failed to aggregate review: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate review", response);
   }
 
   /** Search Configs **/
@@ -1689,9 +1584,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigListResponse;
 
-    throw new Error(
-      `Failed to fetch search config list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch search config list", response);
   }
 
   /**
@@ -1710,9 +1603,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigCreateResponse;
 
-    throw new Error(
-      `Failed to create search config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create search config", response);
   }
 
   /**
@@ -1729,9 +1620,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigListSearchResponse;
 
-    throw new Error(
-      `Failed to search for search configs: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for search configs", response);
   }
 
   /**
@@ -1745,9 +1634,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigSingleResponse;
 
-    throw new Error(
-      `Failed to fetch search config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch search config", response);
   }
 
   /**
@@ -1758,9 +1645,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete search config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete search config", response);
   }
 
   /**
@@ -1780,9 +1665,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigUpdateResponse;
 
-    throw new Error(
-      `Failed to update search config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update search config", response);
   }
 
   /**
@@ -1799,9 +1682,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate search config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate search config", response);
   }
 
   /** Search Config Fields **/
@@ -1817,9 +1698,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigFieldListResponse;
 
-    throw new Error(
-      `Failed to fetch search config field list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch search config field list", response);
   }
 
   /**
@@ -1838,9 +1717,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigFieldCreateResponse;
 
-    throw new Error(
-      `Failed to create search config field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create search config field", response);
   }
 
   /**
@@ -1857,9 +1734,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigFieldListSearchResponse;
 
-    throw new Error(
-      `Failed to search for search config fields: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for search config fields", response);
   }
 
   /**
@@ -1876,9 +1751,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigFieldSingleResponse;
 
-    throw new Error(
-      `Failed to fetch search config field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch search config field", response);
   }
 
   /**
@@ -1889,9 +1762,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete search config field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete search config field", response);
   }
 
   /**
@@ -1911,9 +1782,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigFieldUpdateResponse;
 
-    throw new Error(
-      `Failed to update search config field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update search config field", response);
   }
 
   /**
@@ -1930,9 +1799,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchConfigFieldAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate search config field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate search config field", response);
   }
 
   /** Search Keywords **/
@@ -1948,9 +1815,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchKeywordListResponse;
 
-    throw new Error(
-      `Failed to fetch search keyword list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch search keyword list", response);
   }
 
   /**
@@ -1969,9 +1834,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchKeywordCreateResponse;
 
-    throw new Error(
-      `Failed to create search keyword: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create search keyword", response);
   }
 
   /**
@@ -1988,9 +1851,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchKeywordListSearchResponse;
 
-    throw new Error(
-      `Failed to search for search keywords: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for search keywords", response);
   }
 
   /**
@@ -2007,9 +1868,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchKeywordSingleResponse;
 
-    throw new Error(
-      `Failed to fetch search keyword: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch search keyword", response);
   }
 
   /**
@@ -2020,9 +1879,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete search keyword: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete search keyword", response);
   }
 
   /**
@@ -2042,9 +1899,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchKeywordUpdateResponse;
 
-    throw new Error(
-      `Failed to update search keyword: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update search keyword", response);
   }
 
   /**
@@ -2061,9 +1916,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SearchKeywordAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate search keyword: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate search keyword", response);
   }
 
   /** Sortings **/
@@ -2079,9 +1932,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingListResponse;
 
-    throw new Error(
-      `Failed to fetch sorting list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch sorting list", response);
   }
 
   /**
@@ -2100,7 +1951,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingCreateResponse;
 
-    throw new Error(`Failed to create sorting: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create sorting", response);
   }
 
   /**
@@ -2117,9 +1968,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingListSearchResponse;
 
-    throw new Error(
-      `Failed to search for sortings: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for sortings", response);
   }
 
   /**
@@ -2133,7 +1982,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingSingleResponse;
 
-    throw new Error(`Failed to fetch sorting: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch sorting", response);
   }
 
   /**
@@ -2144,7 +1993,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete sorting: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete sorting", response);
   }
 
   /**
@@ -2164,7 +2013,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingUpdateResponse;
 
-    throw new Error(`Failed to update sorting: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update sorting", response);
   }
 
   /**
@@ -2181,9 +2030,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SortingAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate sorting: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate sorting", response);
   }
 
   /** Streams **/
@@ -2199,9 +2046,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamListResponse;
 
-    throw new Error(
-      `Failed to fetch stream list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch stream list", response);
   }
 
   /**
@@ -2220,7 +2065,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamCreateResponse;
 
-    throw new Error(`Failed to create stream: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create stream", response);
   }
 
   /**
@@ -2235,9 +2080,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamListSearchResponse;
 
-    throw new Error(
-      `Failed to search for streams: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for streams", response);
   }
 
   /**
@@ -2251,7 +2094,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamSingleResponse;
 
-    throw new Error(`Failed to fetch stream: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch stream", response);
   }
 
   /**
@@ -2262,7 +2105,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete stream: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete stream", response);
   }
 
   /**
@@ -2282,7 +2125,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamUpdateResponse;
 
-    throw new Error(`Failed to update stream: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update stream", response);
   }
 
   /**
@@ -2299,7 +2142,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamAggregationResponse;
 
-    throw new Error(`Failed to aggregate stream: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate stream", response);
   }
 
   /** Stream Filters **/
@@ -2315,9 +2158,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamFilterListResponse;
 
-    throw new Error(
-      `Failed to fetch stream filter list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch stream filter list", response);
   }
 
   /**
@@ -2336,9 +2177,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamFilterCreateResponse;
 
-    throw new Error(
-      `Failed to create stream filter: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create stream filter", response);
   }
 
   /**
@@ -2355,9 +2194,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamFilterListSearchResponse;
 
-    throw new Error(
-      `Failed to search for stream filters: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for stream filters", response);
   }
 
   /**
@@ -2371,9 +2208,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamFilterSingleResponse;
 
-    throw new Error(
-      `Failed to fetch stream filter: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch stream filter", response);
   }
 
   /**
@@ -2384,9 +2219,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete stream filter: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete stream filter", response);
   }
 
   /**
@@ -2406,9 +2239,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamFilterUpdateResponse;
 
-    throw new Error(
-      `Failed to update stream filter: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update stream filter", response);
   }
 
   /**
@@ -2425,9 +2256,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StreamFilterAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate stream filter: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate stream filter", response);
   }
 
   /** Visibilities **/
@@ -2443,9 +2272,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as VisibilityListResponse;
 
-    throw new Error(
-      `Failed to fetch visibility list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch visibility list", response);
   }
 
   /**
@@ -2464,9 +2291,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as VisibilityCreateResponse;
 
-    throw new Error(
-      `Failed to create visibility: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create visibility", response);
   }
 
   /**
@@ -2483,9 +2308,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as VisibilityListSearchResponse;
 
-    throw new Error(
-      `Failed to search for visibilities: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for visibilities", response);
   }
 
   /**
@@ -2499,7 +2322,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as VisibilitySingleResponse;
 
-    throw new Error(`Failed to fetch visibility: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch visibility", response);
   }
 
   /**
@@ -2510,9 +2333,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete visibility: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete visibility", response);
   }
 
   /**
@@ -2532,9 +2353,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as VisibilityUpdateResponse;
 
-    throw new Error(
-      `Failed to update visibility: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update visibility", response);
   }
 
   /**
@@ -2551,9 +2370,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as VisibilityAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate visibility: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate visibility", response);
   }
 }
 

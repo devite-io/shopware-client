@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   FileAggregationRequest,
   FileAggregationResponse,
@@ -48,7 +49,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as FileListResponse;
 
-    throw new Error(`Failed to fetch  file list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch  file list", response);
   }
 
   /**
@@ -67,7 +68,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FileCreateResponse;
 
-    throw new Error(`Failed to create  file: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create  file", response);
   }
 
   /**
@@ -82,9 +83,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FileListSearchResponse;
 
-    throw new Error(
-      `Failed to search for  files: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for  files", response);
   }
 
   /**
@@ -98,7 +97,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FileSingleResponse;
 
-    throw new Error(`Failed to fetch  file: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch  file", response);
   }
 
   /**
@@ -109,7 +108,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete  file: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete  file", response);
   }
 
   /**
@@ -129,7 +128,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FileUpdateResponse;
 
-    throw new Error(`Failed to update  file: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update  file", response);
   }
 
   /**
@@ -144,7 +143,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FileAggregationResponse;
 
-    throw new Error(`Failed to aggregate  file: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate  file", response);
   }
 
   /** Logs **/
@@ -159,7 +158,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as LogListResponse;
 
-    throw new Error(`Failed to fetch log list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch log list", response);
   }
 
   /**
@@ -178,7 +177,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogCreateResponse;
 
-    throw new Error(`Failed to create log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create log", response);
   }
 
   /**
@@ -193,7 +192,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogListSearchResponse;
 
-    throw new Error(`Failed to search for logs: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for logs", response);
   }
 
   /**
@@ -207,7 +206,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogSingleResponse;
 
-    throw new Error(`Failed to fetch log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch log", response);
   }
 
   /**
@@ -218,7 +217,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete log", response);
   }
 
   /**
@@ -238,7 +237,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogUpdateResponse;
 
-    throw new Error(`Failed to update log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update log", response);
   }
 
   /**
@@ -253,7 +252,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogAggregationResponse;
 
-    throw new Error(`Failed to aggregate log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate log", response);
   }
 
   /** Profiles **/
@@ -269,9 +268,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProfileListResponse;
 
-    throw new Error(
-      `Failed to fetch profile list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch profile list", response);
   }
 
   /**
@@ -290,7 +287,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProfileCreateResponse;
 
-    throw new Error(`Failed to create profile: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create profile", response);
   }
 
   /**
@@ -307,9 +304,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProfileListSearchResponse;
 
-    throw new Error(
-      `Failed to search for profiles: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for profiles", response);
   }
 
   /**
@@ -323,7 +318,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProfileSingleResponse;
 
-    throw new Error(`Failed to fetch profile: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch profile", response);
   }
 
   /**
@@ -334,7 +329,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete profile: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete profile", response);
   }
 
   /**
@@ -354,7 +349,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProfileUpdateResponse;
 
-    throw new Error(`Failed to update profile: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update profile", response);
   }
 
   /**
@@ -371,9 +366,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProfileAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate profile: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate profile", response);
   }
 }
 

@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   RangeAggregationRequest,
   RangeAggregationResponse,
@@ -59,7 +60,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeListResponse;
 
-    throw new Error(`Failed to fetch range list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch range list", response);
   }
 
   /**
@@ -78,7 +79,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeCreateResponse;
 
-    throw new Error(`Failed to create range: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create range", response);
   }
 
   /**
@@ -93,9 +94,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeListSearchResponse;
 
-    throw new Error(
-      `Failed to search for ranges: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for ranges", response);
   }
 
   /**
@@ -109,7 +108,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeSingleResponse;
 
-    throw new Error(`Failed to fetch range: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch range", response);
   }
 
   /**
@@ -120,7 +119,7 @@ class NumberRangeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete range: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete range", response);
   }
 
   /**
@@ -140,7 +139,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeUpdateResponse;
 
-    throw new Error(`Failed to update range: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update range", response);
   }
 
   /**
@@ -157,7 +156,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RangeAggregationResponse;
 
-    throw new Error(`Failed to aggregate range: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate range", response);
   }
 
   /** Sales Channels **/
@@ -173,9 +172,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListResponse;
 
-    throw new Error(
-      `Failed to fetch sales channel list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch sales channel list", response);
   }
 
   /**
@@ -194,9 +191,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelCreateResponse;
 
-    throw new Error(
-      `Failed to create sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create sales channel", response);
   }
 
   /**
@@ -213,9 +208,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListSearchResponse;
 
-    throw new Error(
-      `Failed to search for sales channels: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for sales channels", response);
   }
 
   /**
@@ -229,9 +222,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelSingleResponse;
 
-    throw new Error(
-      `Failed to fetch sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch sales channel", response);
   }
 
   /**
@@ -242,9 +233,7 @@ class NumberRangeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete sales channel", response);
   }
 
   /**
@@ -264,9 +253,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelUpdateResponse;
 
-    throw new Error(
-      `Failed to update sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update sales channel", response);
   }
 
   /**
@@ -283,9 +270,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate sales channel", response);
   }
 
   /** States **/
@@ -301,7 +286,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListResponse;
 
-    throw new Error(`Failed to fetch state list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch state list", response);
   }
 
   /**
@@ -320,7 +305,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateCreateResponse;
 
-    throw new Error(`Failed to create state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create state", response);
   }
 
   /**
@@ -335,9 +320,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListSearchResponse;
 
-    throw new Error(
-      `Failed to search for states: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for states", response);
   }
 
   /**
@@ -351,7 +334,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateSingleResponse;
 
-    throw new Error(`Failed to fetch state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch state", response);
   }
 
   /**
@@ -362,7 +345,7 @@ class NumberRangeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete state", response);
   }
 
   /**
@@ -382,7 +365,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateUpdateResponse;
 
-    throw new Error(`Failed to update state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update state", response);
   }
 
   /**
@@ -399,7 +382,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateAggregationResponse;
 
-    throw new Error(`Failed to aggregate state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate state", response);
   }
 
   /** Types **/
@@ -414,7 +397,7 @@ class NumberRangeClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as TypeListResponse;
 
-    throw new Error(`Failed to fetch type list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch type list", response);
   }
 
   /**
@@ -433,7 +416,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeCreateResponse;
 
-    throw new Error(`Failed to create type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create type", response);
   }
 
   /**
@@ -448,7 +431,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeListSearchResponse;
 
-    throw new Error(`Failed to search for types: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for types", response);
   }
 
   /**
@@ -462,7 +445,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeSingleResponse;
 
-    throw new Error(`Failed to fetch type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch type", response);
   }
 
   /**
@@ -473,7 +456,7 @@ class NumberRangeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete type", response);
   }
 
   /**
@@ -493,7 +476,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeUpdateResponse;
 
-    throw new Error(`Failed to update type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update type", response);
   }
 
   /**
@@ -508,7 +491,7 @@ class NumberRangeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeAggregationResponse;
 
-    throw new Error(`Failed to aggregate type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate type", response);
   }
 }
 

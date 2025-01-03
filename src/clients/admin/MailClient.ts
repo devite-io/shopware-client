@@ -3,6 +3,7 @@ import HtmlPayload from "#payloads/HtmlPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   ContentValidationRequest,
   HeaderFooterAggregationRequest,
@@ -55,7 +56,7 @@ class MailClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as MailSendResponse;
 
-    throw new Error(`Failed to send mail: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to send mail", response);
   }
 
   /**
@@ -68,7 +69,7 @@ class MailClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to validate content: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to validate content", response);
   }
 
   /**
@@ -83,7 +84,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as HtmlPayload).data as TemplatePreviewResponse;
 
-    throw new Error(`Failed to preview template: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to preview template", response);
   }
 
   /** Header Footers **/
@@ -99,9 +100,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterListResponse;
 
-    throw new Error(
-      `Failed to fetch header footer list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch header footer list", response);
   }
 
   /**
@@ -120,9 +119,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterCreateResponse;
 
-    throw new Error(
-      `Failed to create header footer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create header footer", response);
   }
 
   /**
@@ -139,9 +136,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterListSearchResponse;
 
-    throw new Error(
-      `Failed to search for header footers: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for header footers", response);
   }
 
   /**
@@ -155,9 +150,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterSingleResponse;
 
-    throw new Error(
-      `Failed to fetch header footer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch header footer", response);
   }
 
   /**
@@ -168,9 +161,7 @@ class MailClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete header footer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete header footer", response);
   }
 
   /**
@@ -190,9 +181,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterUpdateResponse;
 
-    throw new Error(
-      `Failed to update header footer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update header footer", response);
   }
 
   /**
@@ -209,9 +198,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HeaderFooterAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate header footer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate header footer", response);
   }
 
   /** Templates **/
@@ -227,9 +214,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateListResponse;
 
-    throw new Error(
-      `Failed to fetch template list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch template list", response);
   }
 
   /**
@@ -248,7 +233,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateCreateResponse;
 
-    throw new Error(`Failed to create template: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create template", response);
   }
 
   /**
@@ -265,9 +250,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateListSearchResponse;
 
-    throw new Error(
-      `Failed to search for templates: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for templates", response);
   }
 
   /**
@@ -281,7 +264,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateSingleResponse;
 
-    throw new Error(`Failed to fetch template: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch template", response);
   }
 
   /**
@@ -292,7 +275,7 @@ class MailClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete template: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete template", response);
   }
 
   /**
@@ -312,7 +295,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateUpdateResponse;
 
-    throw new Error(`Failed to update template: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update template", response);
   }
 
   /**
@@ -329,9 +312,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate template", response);
   }
 
   /** Template Types **/
@@ -347,9 +328,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeListResponse;
 
-    throw new Error(
-      `Failed to fetch template type list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch template type list", response);
   }
 
   /**
@@ -368,9 +347,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeCreateResponse;
 
-    throw new Error(
-      `Failed to create template type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create template type", response);
   }
 
   /**
@@ -387,9 +364,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeListSearchResponse;
 
-    throw new Error(
-      `Failed to search for template types: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for template types", response);
   }
 
   /**
@@ -403,9 +378,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeSingleResponse;
 
-    throw new Error(
-      `Failed to fetch template type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch template type", response);
   }
 
   /**
@@ -416,9 +389,7 @@ class MailClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete template type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete template type", response);
   }
 
   /**
@@ -438,9 +409,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeUpdateResponse;
 
-    throw new Error(
-      `Failed to update template type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update template type", response);
   }
 
   /**
@@ -457,9 +426,7 @@ class MailClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateTypeAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate template type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate template type", response);
   }
 }
 

@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   ConditionAggregationRequest,
   ConditionAggregationResponse,
@@ -38,7 +39,7 @@ class RuleClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as RuleListResponse;
 
-    throw new Error(`Failed to fetch rule list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch rule list", response);
   }
 
   /**
@@ -57,7 +58,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleCreateResponse;
 
-    throw new Error(`Failed to create rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create rule", response);
   }
 
   /**
@@ -72,7 +73,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleListSearchResponse;
 
-    throw new Error(`Failed to search for rules: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for rules", response);
   }
 
   /**
@@ -86,7 +87,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleSingleResponse;
 
-    throw new Error(`Failed to fetch rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch rule", response);
   }
 
   /**
@@ -97,7 +98,7 @@ class RuleClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete rule", response);
   }
 
   /**
@@ -117,7 +118,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleUpdateResponse;
 
-    throw new Error(`Failed to update rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update rule", response);
   }
 
   /**
@@ -132,7 +133,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleAggregationResponse;
 
-    throw new Error(`Failed to aggregate rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate rule", response);
   }
 
   /** Conditions **/
@@ -148,9 +149,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConditionListResponse;
 
-    throw new Error(
-      `Failed to fetch condition list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch condition list", response);
   }
 
   /**
@@ -169,7 +168,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConditionCreateResponse;
 
-    throw new Error(`Failed to create condition: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create condition", response);
   }
 
   /**
@@ -186,9 +185,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConditionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for conditions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for conditions", response);
   }
 
   /**
@@ -202,7 +199,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConditionSingleResponse;
 
-    throw new Error(`Failed to fetch condition: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch condition", response);
   }
 
   /**
@@ -213,7 +210,7 @@ class RuleClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete condition: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete condition", response);
   }
 
   /**
@@ -233,7 +230,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConditionUpdateResponse;
 
-    throw new Error(`Failed to update condition: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update condition", response);
   }
 
   /**
@@ -250,9 +247,7 @@ class RuleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConditionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate condition: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate condition", response);
   }
 }
 

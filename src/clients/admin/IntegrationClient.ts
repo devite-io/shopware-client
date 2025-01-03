@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   IntegrationAggregationRequest,
   IntegrationAggregationResponse,
@@ -27,9 +28,7 @@ class IntegrationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationListResponse;
 
-    throw new Error(
-      `Failed to fetch integration list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch integration list", response);
   }
 
   /**
@@ -48,9 +47,7 @@ class IntegrationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationCreateResponse;
 
-    throw new Error(
-      `Failed to create integration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create integration", response);
   }
 
   /**
@@ -67,9 +64,7 @@ class IntegrationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationListSearchResponse;
 
-    throw new Error(
-      `Failed to search for integrations: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for integrations", response);
   }
 
   /**
@@ -83,9 +78,7 @@ class IntegrationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationSingleResponse;
 
-    throw new Error(
-      `Failed to fetch integration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch integration", response);
   }
 
   /**
@@ -96,9 +89,7 @@ class IntegrationClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete integration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete integration", response);
   }
 
   /**
@@ -118,9 +109,7 @@ class IntegrationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationUpdateResponse;
 
-    throw new Error(
-      `Failed to update integration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update integration", response);
   }
 
   /**
@@ -137,9 +126,7 @@ class IntegrationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IntegrationAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate integration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate integration", response);
   }
 }
 

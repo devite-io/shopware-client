@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   OptionAggregationRequest,
   OptionAggregationResponse,
@@ -39,9 +40,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupListResponse;
 
-    throw new Error(
-      `Failed to fetch property group list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch property group list", response);
   }
 
   /**
@@ -60,9 +59,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupCreateResponse;
 
-    throw new Error(
-      `Failed to create property group: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create property group", response);
   }
 
   /**
@@ -79,9 +76,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupListSearchResponse;
 
-    throw new Error(
-      `Failed to search for property groups: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for property groups", response);
   }
 
   /**
@@ -98,9 +93,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupSingleResponse;
 
-    throw new Error(
-      `Failed to fetch property group: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch property group", response);
   }
 
   /**
@@ -111,9 +104,7 @@ class PropertyGroupClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete property group: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete property group", response);
   }
 
   /**
@@ -133,9 +124,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupUpdateResponse;
 
-    throw new Error(
-      `Failed to update property group: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update property group", response);
   }
 
   /**
@@ -152,9 +141,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PropertyGroupAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate property group: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate property group", response);
   }
 
   /** Options **/
@@ -170,9 +157,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OptionListResponse;
 
-    throw new Error(
-      `Failed to fetch option list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch option list", response);
   }
 
   /**
@@ -191,7 +176,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OptionCreateResponse;
 
-    throw new Error(`Failed to create option: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create option", response);
   }
 
   /**
@@ -206,9 +191,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OptionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for options: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for options", response);
   }
 
   /**
@@ -222,7 +205,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OptionSingleResponse;
 
-    throw new Error(`Failed to fetch option: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch option", response);
   }
 
   /**
@@ -233,7 +216,7 @@ class PropertyGroupClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete option: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete option", response);
   }
 
   /**
@@ -253,7 +236,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OptionUpdateResponse;
 
-    throw new Error(`Failed to update option: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update option", response);
   }
 
   /**
@@ -270,7 +253,7 @@ class PropertyGroupClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OptionAggregationResponse;
 
-    throw new Error(`Failed to aggregate option: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate option", response);
   }
 }
 

@@ -3,6 +3,7 @@ import BinaryPayload from "#payloads/BinaryPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   AddressAggregationRequest,
   AddressAggregationResponse,
@@ -137,9 +138,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as BinaryPayload).data as DownloadMergedResponse;
 
-    throw new Error(
-      `Failed to download merged document: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to download merged document", response);
   }
 
   /**
@@ -157,7 +156,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(`Failed to create documents: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create documents", response);
   }
 
   /**
@@ -176,9 +175,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as BinaryPayload).data as DownloadResponse;
 
-    throw new Error(
-      `Failed to download merged document: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to download merged document", response);
   }
 
   /** Order Management **/
@@ -191,9 +188,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to refund transaction capture: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to refund transaction capture", response);
   }
 
   /**
@@ -218,9 +213,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateTransitionResponse;
 
-    throw new Error(
-      `Failed to transition transaction state: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to transition transaction state", response);
   }
 
   /**
@@ -242,7 +235,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateTransitionResponse;
 
-    throw new Error(`Failed to transition state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to transition state", response);
   }
 
   /**
@@ -264,9 +257,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateTransitionResponse;
 
-    throw new Error(
-      `Failed to transition delivery state: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to transition delivery state", response);
   }
 
   /** Orders **/
@@ -282,7 +273,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderListResponse;
 
-    throw new Error(`Failed to fetch order list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch order list", response);
   }
 
   /**
@@ -301,7 +292,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderCreateResponse;
 
-    throw new Error(`Failed to create order: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create order", response);
   }
 
   /**
@@ -316,9 +307,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderListSearchResponse;
 
-    throw new Error(
-      `Failed to search for orders: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for orders", response);
   }
 
   /**
@@ -332,7 +321,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderSingleResponse;
 
-    throw new Error(`Failed to fetch order: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch order", response);
   }
 
   /**
@@ -343,7 +332,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete order: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete order", response);
   }
 
   /**
@@ -363,7 +352,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderUpdateResponse;
 
-    throw new Error(`Failed to update order: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update order", response);
   }
 
   /**
@@ -380,7 +369,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderAggregationResponse;
 
-    throw new Error(`Failed to aggregate order: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate order", response);
   }
 
   /** Addresses **/
@@ -396,9 +385,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressListResponse;
 
-    throw new Error(
-      `Failed to fetch address list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch address list", response);
   }
 
   /**
@@ -417,7 +404,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressCreateResponse;
 
-    throw new Error(`Failed to create address: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create address", response);
   }
 
   /**
@@ -434,9 +421,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressListSearchResponse;
 
-    throw new Error(
-      `Failed to search for addresses: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for addresses", response);
   }
 
   /**
@@ -450,7 +435,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressSingleResponse;
 
-    throw new Error(`Failed to fetch address: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch address", response);
   }
 
   /**
@@ -461,7 +446,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete address: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete address", response);
   }
 
   /**
@@ -481,7 +466,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressUpdateResponse;
 
-    throw new Error(`Failed to update address: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update address", response);
   }
 
   /**
@@ -498,9 +483,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate address: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate address", response);
   }
 
   /** Customers **/
@@ -516,9 +499,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerListResponse;
 
-    throw new Error(
-      `Failed to fetch customer list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch customer list", response);
   }
 
   /**
@@ -537,7 +518,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerCreateResponse;
 
-    throw new Error(`Failed to create customer: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create customer", response);
   }
 
   /**
@@ -554,9 +535,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerListSearchResponse;
 
-    throw new Error(
-      `Failed to search for customers: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for customers", response);
   }
 
   /**
@@ -570,7 +549,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerSingleResponse;
 
-    throw new Error(`Failed to fetch customer: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch customer", response);
   }
 
   /**
@@ -581,7 +560,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete customer: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete customer", response);
   }
 
   /**
@@ -601,7 +580,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerUpdateResponse;
 
-    throw new Error(`Failed to update customer: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update customer", response);
   }
 
   /**
@@ -618,9 +597,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate customer: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate customer", response);
   }
 
   /** Deliveries **/
@@ -636,9 +613,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryListResponse;
 
-    throw new Error(
-      `Failed to fetch delivery list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch delivery list", response);
   }
 
   /**
@@ -657,7 +632,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryCreateResponse;
 
-    throw new Error(`Failed to create delivery: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create delivery", response);
   }
 
   /**
@@ -674,9 +649,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryListSearchResponse;
 
-    throw new Error(
-      `Failed to search for deliveries: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for deliveries", response);
   }
 
   /**
@@ -690,7 +663,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliverySingleResponse;
 
-    throw new Error(`Failed to fetch delivery: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch delivery", response);
   }
 
   /**
@@ -701,7 +674,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete delivery: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete delivery", response);
   }
 
   /**
@@ -721,7 +694,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryUpdateResponse;
 
-    throw new Error(`Failed to update delivery: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update delivery", response);
   }
 
   /**
@@ -738,9 +711,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate delivery: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate delivery", response);
   }
 
   /** Delivery Positions **/
@@ -756,9 +727,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryPositionListResponse;
 
-    throw new Error(
-      `Failed to fetch delivery position list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch delivery position list", response);
   }
 
   /**
@@ -777,9 +746,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryPositionCreateResponse;
 
-    throw new Error(
-      `Failed to create delivery position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create delivery position", response);
   }
 
   /**
@@ -796,9 +763,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryPositionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for delivery positions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for delivery positions", response);
   }
 
   /**
@@ -815,9 +780,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryPositionSingleResponse;
 
-    throw new Error(
-      `Failed to fetch delivery position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch delivery position", response);
   }
 
   /**
@@ -828,9 +791,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete delivery position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete delivery position", response);
   }
 
   /**
@@ -850,9 +811,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryPositionUpdateResponse;
 
-    throw new Error(
-      `Failed to update delivery position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update delivery position", response);
   }
 
   /**
@@ -869,9 +828,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryPositionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate delivery position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate delivery position", response);
   }
 
   /** Line Items **/
@@ -887,9 +844,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemListResponse;
 
-    throw new Error(
-      `Failed to fetch line item list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch line item list", response);
   }
 
   /**
@@ -908,7 +863,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemCreateResponse;
 
-    throw new Error(`Failed to create line item: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create line item", response);
   }
 
   /**
@@ -925,9 +880,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemListSearchResponse;
 
-    throw new Error(
-      `Failed to search for line items: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for line items", response);
   }
 
   /**
@@ -941,7 +894,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemSingleResponse;
 
-    throw new Error(`Failed to fetch line item: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch line item", response);
   }
 
   /**
@@ -952,7 +905,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete line item: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete line item", response);
   }
 
   /**
@@ -972,7 +925,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemUpdateResponse;
 
-    throw new Error(`Failed to update line item: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update line item", response);
   }
 
   /**
@@ -989,9 +942,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate line item: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate line item", response);
   }
 
   /** Line Item Downloads **/
@@ -1007,9 +958,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemDownloadListResponse;
 
-    throw new Error(
-      `Failed to fetch line item download list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch line item download list", response);
   }
 
   /**
@@ -1028,9 +977,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemDownloadCreateResponse;
 
-    throw new Error(
-      `Failed to create line item download: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create line item download", response);
   }
 
   /**
@@ -1047,9 +994,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemDownloadListSearchResponse;
 
-    throw new Error(
-      `Failed to search for line item downloads: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for line item downloads", response);
   }
 
   /**
@@ -1066,9 +1011,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemDownloadSingleResponse;
 
-    throw new Error(
-      `Failed to fetch line item download: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch line item download", response);
   }
 
   /**
@@ -1079,9 +1022,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete line item download: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete line item download", response);
   }
 
   /**
@@ -1101,9 +1042,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemDownloadUpdateResponse;
 
-    throw new Error(
-      `Failed to update line item download: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update line item download", response);
   }
 
   /**
@@ -1120,9 +1059,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LineItemDownloadAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate line item download: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate line item download", response);
   }
 
   /** Transactions **/
@@ -1138,9 +1075,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionListResponse;
 
-    throw new Error(
-      `Failed to fetch transaction list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transaction list", response);
   }
 
   /**
@@ -1159,9 +1094,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCreateResponse;
 
-    throw new Error(
-      `Failed to create transaction: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create transaction", response);
   }
 
   /**
@@ -1178,9 +1111,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for transactions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for transactions", response);
   }
 
   /**
@@ -1194,9 +1125,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionSingleResponse;
 
-    throw new Error(
-      `Failed to fetch transaction: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transaction", response);
   }
 
   /**
@@ -1207,9 +1136,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete transaction: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete transaction", response);
   }
 
   /**
@@ -1229,9 +1156,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionUpdateResponse;
 
-    throw new Error(
-      `Failed to update transaction: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update transaction", response);
   }
 
   /**
@@ -1248,9 +1173,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate transaction: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate transaction", response);
   }
 
   /** Transaction Captures **/
@@ -1266,9 +1189,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureListResponse;
 
-    throw new Error(
-      `Failed to fetch transaction capture list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transaction capture list", response);
   }
 
   /**
@@ -1287,9 +1208,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureCreateResponse;
 
-    throw new Error(
-      `Failed to create transaction capture: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create transaction capture", response);
   }
 
   /**
@@ -1306,9 +1225,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureListSearchResponse;
 
-    throw new Error(
-      `Failed to search for transaction captures: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for transaction captures", response);
   }
 
   /**
@@ -1325,9 +1242,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureSingleResponse;
 
-    throw new Error(
-      `Failed to fetch transaction capture: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transaction capture", response);
   }
 
   /**
@@ -1338,9 +1253,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete transaction capture: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete transaction capture", response);
   }
 
   /**
@@ -1360,9 +1273,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureUpdateResponse;
 
-    throw new Error(
-      `Failed to update transaction capture: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update transaction capture", response);
   }
 
   /**
@@ -1379,9 +1290,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate transaction capture: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate transaction capture", response);
   }
 
   /** Transaction Capture Refunds **/
@@ -1399,9 +1308,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundListResponse;
 
-    throw new Error(
-      `Failed to fetch transaction capture refund list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transaction capture refund list", response);
   }
 
   /**
@@ -1420,9 +1327,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundCreateResponse;
 
-    throw new Error(
-      `Failed to create transaction capture refund: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create transaction capture refund", response);
   }
 
   /**
@@ -1439,9 +1344,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundListSearchResponse;
 
-    throw new Error(
-      `Failed to search for transaction capture refunds: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for transaction capture refunds", response);
   }
 
   /**
@@ -1458,9 +1361,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundSingleResponse;
 
-    throw new Error(
-      `Failed to fetch transaction capture refund: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transaction capture refund", response);
   }
 
   /**
@@ -1471,9 +1372,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete transaction capture refund: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete transaction capture refund", response);
   }
 
   /**
@@ -1493,9 +1392,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundUpdateResponse;
 
-    throw new Error(
-      `Failed to update transaction capture refund: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update transaction capture refund", response);
   }
 
   /**
@@ -1512,9 +1409,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate transaction capture refund: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate transaction capture refund", response);
   }
 
   /** Transaction Capture Refund Positions **/
@@ -1535,9 +1430,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundPositionListResponse;
 
-    throw new Error(
-      `Failed to fetch transaction capture refund position list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transaction capture refund position list", response);
   }
 
   /**
@@ -1556,9 +1449,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundPositionCreateResponse;
 
-    throw new Error(
-      `Failed to create transaction capture refund position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create transaction capture refund position", response);
   }
 
   /**
@@ -1576,9 +1467,7 @@ class OrderClient extends Client {
       return (response.body as JsonPayload)
         .data as TransactionCaptureRefundPositionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for transaction capture refund positions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for transaction capture refund positions", response);
   }
 
   /**
@@ -1598,9 +1487,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundPositionSingleResponse;
 
-    throw new Error(
-      `Failed to fetch transaction capture refund position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch transaction capture refund position", response);
   }
 
   /**
@@ -1611,9 +1498,7 @@ class OrderClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete transaction capture refund position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete transaction capture refund position", response);
   }
 
   /**
@@ -1633,9 +1518,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundPositionUpdateResponse;
 
-    throw new Error(
-      `Failed to update transaction capture refund position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update transaction capture refund position", response);
   }
 
   /**
@@ -1653,9 +1536,7 @@ class OrderClient extends Client {
       return (response.body as JsonPayload)
         .data as TransactionCaptureRefundPositionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate transaction capture refund position: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate transaction capture refund position", response);
   }
 }
 

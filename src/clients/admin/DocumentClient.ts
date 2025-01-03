@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   BaseConfigAggregationRequest,
   BaseConfigAggregationResponse,
@@ -70,7 +71,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NumberReservationResponse;
 
-    throw new Error(`Failed to reserve number: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to reserve number", response);
   }
 
   /**
@@ -90,7 +91,7 @@ class DocumentClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as UploadResponse;
 
-    throw new Error(`Failed to upload file: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to upload file", response);
   }
 
   /**
@@ -112,9 +113,7 @@ class DocumentClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as UploadResponse;
 
-    throw new Error(
-      `Failed to upload file from url: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to upload file from url", response);
   }
 
   /** Documents **/
@@ -130,9 +129,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentListResponse;
 
-    throw new Error(
-      `Failed to fetch document list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch document list", response);
   }
 
   /**
@@ -151,7 +148,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentCreateResponse;
 
-    throw new Error(`Failed to create document: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create document", response);
   }
 
   /**
@@ -168,9 +165,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentListSearchResponse;
 
-    throw new Error(
-      `Failed to search for documents: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for documents", response);
   }
 
   /**
@@ -184,7 +179,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentSingleResponse;
 
-    throw new Error(`Failed to fetch document: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch document", response);
   }
 
   /**
@@ -195,7 +190,7 @@ class DocumentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete document: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete document", response);
   }
 
   /**
@@ -215,7 +210,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentUpdateResponse;
 
-    throw new Error(`Failed to update document: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update document", response);
   }
 
   /**
@@ -232,9 +227,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate document: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate document", response);
   }
 
   /** BaseConfigs **/
@@ -250,9 +243,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigListResponse;
 
-    throw new Error(
-      `Failed to fetch document base config list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch document base config list", response);
   }
 
   /**
@@ -271,9 +262,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigCreateResponse;
 
-    throw new Error(
-      `Failed to create document base config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create document base config", response);
   }
 
   /**
@@ -290,9 +279,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigListSearchResponse;
 
-    throw new Error(
-      `Failed to search for document base configs: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for document base configs", response);
   }
 
   /**
@@ -306,9 +293,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSingleResponse;
 
-    throw new Error(
-      `Failed to fetch document base config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch document base config", response);
   }
 
   /**
@@ -319,9 +304,7 @@ class DocumentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete document base config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete document base config", response);
   }
 
   /**
@@ -341,9 +324,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigUpdateResponse;
 
-    throw new Error(
-      `Failed to update document base config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update document base config", response);
   }
 
   /**
@@ -360,9 +341,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate document base config: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate document base config", response);
   }
 
   /** Base Config Sales Channels **/
@@ -380,9 +359,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSalesChannelListResponse;
 
-    throw new Error(
-      `Failed to fetch document base config sales channel list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch document base config sales channel list", response);
   }
 
   /**
@@ -401,9 +378,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSalesChannelCreateResponse;
 
-    throw new Error(
-      `Failed to create document base config sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create document base config sales channel", response);
   }
 
   /**
@@ -420,9 +395,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSalesChannelListSearchResponse;
 
-    throw new Error(
-      `Failed to search for document base config sales channels: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for document base config sales channels", response);
   }
 
   /**
@@ -442,9 +415,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSalesChannelSingleResponse;
 
-    throw new Error(
-      `Failed to fetch document base config sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch document base config sales channel", response);
   }
 
   /**
@@ -455,9 +426,7 @@ class DocumentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete document base config sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete document base config sales channel", response);
   }
 
   /**
@@ -477,9 +446,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSalesChannelUpdateResponse;
 
-    throw new Error(
-      `Failed to update document base config sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update document base config sales channel", response);
   }
 
   /**
@@ -496,9 +463,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSalesChannelAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate document base config sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate document base config sales channel", response);
   }
 
   /** Document Types **/
@@ -514,9 +479,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeListResponse;
 
-    throw new Error(
-      `Failed to fetch document type list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch document type list", response);
   }
 
   /**
@@ -535,9 +498,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeCreateResponse;
 
-    throw new Error(
-      `Failed to create document type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create document type", response);
   }
 
   /**
@@ -554,9 +515,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeListSearchResponse;
 
-    throw new Error(
-      `Failed to search for document types: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for document types", response);
   }
 
   /**
@@ -570,9 +529,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeSingleResponse;
 
-    throw new Error(
-      `Failed to fetch document type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch document type", response);
   }
 
   /**
@@ -583,9 +540,7 @@ class DocumentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete document type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete document type", response);
   }
 
   /**
@@ -605,9 +560,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeUpdateResponse;
 
-    throw new Error(
-      `Failed to update document type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update document type", response);
   }
 
   /**
@@ -624,9 +577,7 @@ class DocumentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentTypeAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate document type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate document type", response);
   }
 }
 

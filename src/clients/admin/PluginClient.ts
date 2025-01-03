@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   PluginAggregationRequest,
   PluginAggregationResponse,
@@ -27,9 +28,7 @@ class PluginClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginListResponse;
 
-    throw new Error(
-      `Failed to fetch plugin list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch plugin list", response);
   }
 
   /**
@@ -48,7 +47,7 @@ class PluginClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginCreateResponse;
 
-    throw new Error(`Failed to create plugin: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create plugin", response);
   }
 
   /**
@@ -63,9 +62,7 @@ class PluginClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginListSearchResponse;
 
-    throw new Error(
-      `Failed to search for plugins: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for plugins", response);
   }
 
   /**
@@ -79,7 +76,7 @@ class PluginClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginSingleResponse;
 
-    throw new Error(`Failed to fetch plugin: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch plugin", response);
   }
 
   /**
@@ -90,7 +87,7 @@ class PluginClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete plugin: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete plugin", response);
   }
 
   /**
@@ -110,7 +107,7 @@ class PluginClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginUpdateResponse;
 
-    throw new Error(`Failed to update plugin: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update plugin", response);
   }
 
   /**
@@ -127,7 +124,7 @@ class PluginClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginAggregationResponse;
 
-    throw new Error(`Failed to aggregate plugin: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate plugin", response);
   }
 }
 

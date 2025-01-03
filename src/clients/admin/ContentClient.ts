@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   CmsBlockAggregationRequest,
   CmsBlockAggregationResponse,
@@ -79,9 +80,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockListResponse;
 
-    throw new Error(
-      `Failed to fetch cms block list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cms block list", response);
   }
 
   /**
@@ -100,7 +99,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockCreateResponse;
 
-    throw new Error(`Failed to create cms block: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create cms block", response);
   }
 
   /**
@@ -117,9 +116,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockListSearchResponse;
 
-    throw new Error(
-      `Failed to search for cms blocks: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for cms blocks", response);
   }
 
   /**
@@ -133,7 +130,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockSingleResponse;
 
-    throw new Error(`Failed to fetch cms block: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch cms block", response);
   }
 
   /**
@@ -144,7 +141,7 @@ class ContentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete cms block: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete cms block", response);
   }
 
   /**
@@ -164,7 +161,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockUpdateResponse;
 
-    throw new Error(`Failed to update cms block: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update cms block", response);
   }
 
   /**
@@ -181,9 +178,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsBlockAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cms block: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cms block", response);
   }
 
   /** Cms Pages **/
@@ -199,9 +194,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageListResponse;
 
-    throw new Error(
-      `Failed to fetch cms page list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cms page list", response);
   }
 
   /**
@@ -220,7 +213,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageCreateResponse;
 
-    throw new Error(`Failed to create cms page: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create cms page", response);
   }
 
   /**
@@ -237,9 +230,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageListSearchResponse;
 
-    throw new Error(
-      `Failed to search for cms pages: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for cms pages", response);
   }
 
   /**
@@ -253,7 +244,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageSingleResponse;
 
-    throw new Error(`Failed to fetch cms page: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch cms page", response);
   }
 
   /**
@@ -264,7 +255,7 @@ class ContentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete cms page: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete cms page", response);
   }
 
   /**
@@ -284,7 +275,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageUpdateResponse;
 
-    throw new Error(`Failed to update cms page: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update cms page", response);
   }
 
   /**
@@ -301,9 +292,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cms page: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cms page", response);
   }
 
   /** Cms Sections **/
@@ -319,9 +308,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionListResponse;
 
-    throw new Error(
-      `Failed to fetch cms section list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cms section list", response);
   }
 
   /**
@@ -340,9 +327,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionCreateResponse;
 
-    throw new Error(
-      `Failed to create cms section: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create cms section", response);
   }
 
   /**
@@ -359,9 +344,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for cms sections: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for cms sections", response);
   }
 
   /**
@@ -375,9 +358,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionSingleResponse;
 
-    throw new Error(
-      `Failed to fetch cms section: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cms section", response);
   }
 
   /**
@@ -388,9 +369,7 @@ class ContentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete cms section: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete cms section", response);
   }
 
   /**
@@ -410,9 +389,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionUpdateResponse;
 
-    throw new Error(
-      `Failed to update cms section: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update cms section", response);
   }
 
   /**
@@ -429,9 +406,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSectionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cms section: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cms section", response);
   }
 
   /** Cms Slots **/
@@ -447,9 +422,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotListResponse;
 
-    throw new Error(
-      `Failed to fetch cms slot list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cms slot list", response);
   }
 
   /**
@@ -468,7 +441,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotCreateResponse;
 
-    throw new Error(`Failed to create cms slot: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create cms slot", response);
   }
 
   /**
@@ -485,9 +458,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotListSearchResponse;
 
-    throw new Error(
-      `Failed to search for cms slots: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for cms slots", response);
   }
 
   /**
@@ -501,7 +472,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotSingleResponse;
 
-    throw new Error(`Failed to fetch cms slot: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch cms slot", response);
   }
 
   /**
@@ -512,7 +483,7 @@ class ContentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete cms slot: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete cms slot", response);
   }
 
   /**
@@ -532,7 +503,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotUpdateResponse;
 
-    throw new Error(`Failed to update cms slot: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update cms slot", response);
   }
 
   /**
@@ -549,9 +520,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cms slot: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cms slot", response);
   }
 
   /** Landing Pages **/
@@ -567,9 +536,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageListResponse;
 
-    throw new Error(
-      `Failed to fetch landing page list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch landing page list", response);
   }
 
   /**
@@ -588,9 +555,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageCreateResponse;
 
-    throw new Error(
-      `Failed to create landing page: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create landing page", response);
   }
 
   /**
@@ -607,9 +572,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageListSearchResponse;
 
-    throw new Error(
-      `Failed to search for landing pages: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for landing pages", response);
   }
 
   /**
@@ -623,9 +586,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageSingleResponse;
 
-    throw new Error(
-      `Failed to fetch landing page: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch landing page", response);
   }
 
   /**
@@ -636,9 +597,7 @@ class ContentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete landing page: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete landing page", response);
   }
 
   /**
@@ -658,9 +617,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageUpdateResponse;
 
-    throw new Error(
-      `Failed to update landing page: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update landing page", response);
   }
 
   /**
@@ -677,9 +634,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LandingPageAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate landing page: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate landing page", response);
   }
 
   /** Themes **/
@@ -695,7 +650,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeListResponse;
 
-    throw new Error(`Failed to fetch theme list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch theme list", response);
   }
 
   /**
@@ -714,7 +669,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeCreateResponse;
 
-    throw new Error(`Failed to create theme: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create theme", response);
   }
 
   /**
@@ -729,9 +684,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeListSearchResponse;
 
-    throw new Error(
-      `Failed to search for themes: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for themes", response);
   }
 
   /**
@@ -745,7 +698,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeSingleResponse;
 
-    throw new Error(`Failed to fetch theme: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch theme", response);
   }
 
   /**
@@ -756,7 +709,7 @@ class ContentClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete theme: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete theme", response);
   }
 
   /**
@@ -776,7 +729,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeUpdateResponse;
 
-    throw new Error(`Failed to update theme: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update theme", response);
   }
 
   /**
@@ -793,7 +746,7 @@ class ContentClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeAggregationResponse;
 
-    throw new Error(`Failed to aggregate theme: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate theme", response);
   }
 }
 export default ContentClient;

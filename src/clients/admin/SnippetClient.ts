@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   SetAggregationRequest,
   SetAggregationResponse,
@@ -39,9 +40,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetListResponse;
 
-    throw new Error(
-      `Failed to fetch snippet list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch snippet list", response);
   }
 
   /**
@@ -60,7 +59,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetCreateResponse;
 
-    throw new Error(`Failed to create snippet: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create snippet", response);
   }
 
   /**
@@ -77,9 +76,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetListSearchResponse;
 
-    throw new Error(
-      `Failed to search for snippets: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for snippets", response);
   }
 
   /**
@@ -93,7 +90,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetSingleResponse;
 
-    throw new Error(`Failed to fetch snippet: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch snippet", response);
   }
 
   /**
@@ -104,7 +101,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete snippet: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete snippet", response);
   }
 
   /**
@@ -124,7 +121,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetUpdateResponse;
 
-    throw new Error(`Failed to update snippet: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update snippet", response);
   }
 
   /**
@@ -141,9 +138,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate snippet: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate snippet", response);
   }
 
   /** Sets **/
@@ -158,9 +153,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as SetListResponse;
 
-    throw new Error(
-      `Failed to fetch snippet set list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch snippet set list", response);
   }
 
   /**
@@ -179,9 +172,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetCreateResponse;
 
-    throw new Error(
-      `Failed to create snippet set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create snippet set", response);
   }
 
   /**
@@ -196,9 +187,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetListSearchResponse;
 
-    throw new Error(
-      `Failed to search for snippet sets: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for snippet sets", response);
   }
 
   /**
@@ -212,9 +201,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetSingleResponse;
 
-    throw new Error(
-      `Failed to fetch snippet set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch snippet set", response);
   }
 
   /**
@@ -225,9 +212,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete snippet set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete snippet set", response);
   }
 
   /**
@@ -247,9 +232,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetUpdateResponse;
 
-    throw new Error(
-      `Failed to update snippet set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update snippet set", response);
   }
 
   /**
@@ -264,9 +247,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate snippet set: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate snippet set", response);
   }
 }
 

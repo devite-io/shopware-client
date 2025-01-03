@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   ApiConfigResponse,
   BusinessEventsResponse,
@@ -72,9 +73,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BusinessEventsResponse;
 
-    throw new Error(
-      `Failed to fetch business events: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch business events", response);
   }
 
   /**
@@ -86,9 +85,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShopwareVersionResponse;
 
-    throw new Error(
-      `Failed to fetch Shopware version: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch Shopware version", response);
   }
 
   /**
@@ -99,9 +96,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(
-      `Failed to verify API health: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to verify API health", response);
   }
 
   /**
@@ -116,9 +111,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as HealthReportResponse;
 
-    throw new Error(
-      `Failed to fetch system health report: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch system health report", response);
   }
 
   /**
@@ -132,9 +125,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowBuilderActionsResponse;
 
-    throw new Error(
-      `Failed to fetch flow builder actions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch flow builder actions", response);
   }
 
   /**
@@ -146,7 +137,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ApiConfigResponse;
 
-    throw new Error(`Failed to fetch API config: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch API config", response);
   }
 
   /** Operations **/
@@ -159,7 +150,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to start indexing: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to start indexing", response);
   }
 
   /**
@@ -177,7 +168,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IndexIterationResponse;
 
-    throw new Error(`Failed to iterate indexer: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to iterate indexer", response);
   }
 
   /**
@@ -191,7 +182,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CacheInfoResponse;
 
-    throw new Error(`Failed to get cache info: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to get cache info", response);
   }
 
   /**
@@ -202,9 +193,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to clear old cache folders: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to clear old cache folders", response);
   }
 
   /**
@@ -221,9 +210,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MessageQueueConsumptionResponse;
 
-    throw new Error(
-      `Failed to consume message queue: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to consume message queue", response);
   }
 
   /**
@@ -237,9 +224,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskRunResponse;
 
-    throw new Error(
-      `Failed to run scheduled tasks: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to run scheduled tasks", response);
   }
 
   /**
@@ -253,9 +238,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskMinIntervalResponse;
 
-    throw new Error(
-      `Failed to fetch minimum scheduled task interval: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch minimum scheduled task interval", response);
   }
 
   /**
@@ -266,9 +249,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to start product indexing: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to start product indexing", response);
   }
 
   /**
@@ -279,9 +260,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to clear container caches: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to clear container caches", response);
   }
 
   /**
@@ -292,7 +271,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to clear caches: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to clear caches", response);
   }
 
   /**
@@ -303,9 +282,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to clear invalidated caches: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to clear invalidated caches", response);
   }
 
   /** Log Entries **/
@@ -321,9 +298,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntryListResponse;
 
-    throw new Error(
-      `Failed to fetch log entry list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch log entry list", response);
   }
 
   /**
@@ -342,7 +317,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntryCreateResponse;
 
-    throw new Error(`Failed to create log entry: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create log entry", response);
   }
 
   /**
@@ -359,9 +334,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntryListSearchResponse;
 
-    throw new Error(
-      `Failed to search for log entries: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for log entries", response);
   }
 
   /**
@@ -375,7 +348,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntrySingleResponse;
 
-    throw new Error(`Failed to fetch log entry: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch log entry", response);
   }
 
   /**
@@ -386,7 +359,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete log entry: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete log entry", response);
   }
 
   /**
@@ -406,7 +379,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntryUpdateResponse;
 
-    throw new Error(`Failed to update log entry: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update log entry", response);
   }
 
   /**
@@ -423,9 +396,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LogEntryAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate log entry: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate log entry", response);
   }
 
   /** Notifications **/
@@ -441,9 +412,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationListResponse;
 
-    throw new Error(
-      `Failed to fetch notification list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch notification list", response);
   }
 
   /**
@@ -462,9 +431,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationCreateResponse;
 
-    throw new Error(
-      `Failed to create notification: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create notification", response);
   }
 
   /**
@@ -481,9 +448,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationListSearchResponse;
 
-    throw new Error(
-      `Failed to search for notifications: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for notifications", response);
   }
 
   /**
@@ -497,9 +462,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationSingleResponse;
 
-    throw new Error(
-      `Failed to fetch notification: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch notification", response);
   }
 
   /**
@@ -510,9 +473,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete notification: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete notification", response);
   }
 
   /**
@@ -532,9 +493,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationUpdateResponse;
 
-    throw new Error(
-      `Failed to update notification: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update notification", response);
   }
 
   /**
@@ -551,9 +510,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NotificationAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate notification: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate notification", response);
   }
 
   /** Config Entries **/
@@ -569,9 +526,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntryListResponse;
 
-    throw new Error(
-      `Failed to fetch config entry list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch config entry list", response);
   }
 
   /**
@@ -590,9 +545,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntryCreateResponse;
 
-    throw new Error(
-      `Failed to create config entry: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create config entry", response);
   }
 
   /**
@@ -609,9 +562,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntryListSearchResponse;
 
-    throw new Error(
-      `Failed to search for config entries: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for config entries", response);
   }
 
   /**
@@ -625,9 +576,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntrySingleResponse;
 
-    throw new Error(
-      `Failed to fetch config entry: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch config entry", response);
   }
 
   /**
@@ -638,9 +587,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete config entry: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete config entry", response);
   }
 
   /**
@@ -660,9 +607,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntryUpdateResponse;
 
-    throw new Error(
-      `Failed to update config entry: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update config entry", response);
   }
 
   /**
@@ -679,9 +624,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ConfigEntryAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate config entry: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate config entry", response);
   }
 
   /** Scheduled Tasks **/
@@ -697,9 +640,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskListResponse;
 
-    throw new Error(
-      `Failed to fetch scheduled task list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch scheduled task list", response);
   }
 
   /**
@@ -718,9 +659,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskCreateResponse;
 
-    throw new Error(
-      `Failed to create scheduled task: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create scheduled task", response);
   }
 
   /**
@@ -737,9 +676,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskListSearchResponse;
 
-    throw new Error(
-      `Failed to search for scheduled tasks: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for scheduled tasks", response);
   }
 
   /**
@@ -756,9 +693,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskSingleResponse;
 
-    throw new Error(
-      `Failed to fetch scheduled task: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch scheduled task", response);
   }
 
   /**
@@ -769,9 +704,7 @@ class SystemClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete scheduled task: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete scheduled task", response);
   }
 
   /**
@@ -791,9 +724,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskUpdateResponse;
 
-    throw new Error(
-      `Failed to update scheduled task: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update scheduled task", response);
   }
 
   /**
@@ -810,9 +741,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScheduledTaskAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate scheduled task: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate scheduled task", response);
   }
 }
 

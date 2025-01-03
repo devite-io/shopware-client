@@ -1,4 +1,6 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   ProductCrossSellingGroupListResponse,
   ProductListingListWithCategoryRequest,
@@ -17,7 +19,6 @@ import {
   ProductVariantWithOptionsRequest,
   ProductVariantWithOptionsResponse
 } from "#types/clients/store/ProductClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class ProductClient extends Client {
   /**
@@ -34,9 +35,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductListingListWithCategoryResponse;
 
-    throw new Error(
-      `Failed to fetch product listing by category: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch product listing by category", response);
   }
 
   /**
@@ -50,9 +49,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductCrossSellingGroupListResponse;
 
-    throw new Error(
-      `Failed to fetch cross selling groups for product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch cross selling groups for product", response);
   }
 
   /**
@@ -71,7 +68,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductSingleResponse;
 
-    throw new Error(`Failed to fetch product: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch product", response);
   }
 
   /**
@@ -85,9 +82,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductListResponse;
 
-    throw new Error(
-      `Failed to fetch product list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch product list", response);
   }
 
   /**
@@ -104,9 +99,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductReviewListResponse;
 
-    throw new Error(
-      `Failed to fetch reviews for product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch reviews for product", response);
   }
 
   /**
@@ -119,9 +112,7 @@ class ProductClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(
-      `Failed to save review for product: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to save review for product", response);
   }
 
   /**
@@ -138,9 +129,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductVariantWithOptionsResponse;
 
-    throw new Error(
-      `Failed to find product variant: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to find product variant", response);
   }
 
   /**
@@ -154,9 +143,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductSearchResponse;
 
-    throw new Error(
-      `Failed to search for products: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for products", response);
   }
 
   /**
@@ -172,9 +159,7 @@ class ProductClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductSearchSuggestionListResponse;
 
-    throw new Error(
-      `Failed to fetch search suggestions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch search suggestions", response);
   }
 }
 

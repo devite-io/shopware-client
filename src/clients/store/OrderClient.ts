@@ -1,5 +1,8 @@
+import JsonPayload from "#payloads/JsonPayload";
+import BinaryPayload from "#payloads/BinaryPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
+import ShopwareError from "#http/ShopwareError";
 import {
   OrderCancelRequest,
   OrderCancelResponse,
@@ -13,8 +16,6 @@ import {
   OrderUpdatePaymentMethodRequest,
   OrderUpdatePaymentMethodResponse
 } from "#types/clients/store/OrderClient";
-import JsonPayload from "#payloads/JsonPayload";
-import BinaryPayload from "#payloads/BinaryPayload";
 
 class OrderClient extends Client {
   /**
@@ -30,9 +31,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderPaymentInitiateResponse;
 
-    throw new Error(
-      `Failed to initiate order payment: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to initiate order payment", response);
   }
 
   /**
@@ -49,7 +48,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderCancelResponse;
 
-    throw new Error(`Failed to cancel order: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to cancel order", response);
   }
 
   /**
@@ -66,7 +65,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderListResponse;
 
-    throw new Error(`Failed to fetch order list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch order list", response);
   }
 
   /**
@@ -85,9 +84,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderUpdatePaymentMethodResponse;
 
-    throw new Error(
-      `Failed to update order payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update order payment method", response);
   }
 
   /**
@@ -105,9 +102,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as BinaryPayload).data as OrderDownloadFileResponse;
 
-    throw new Error(
-      `Failed to download purchased file: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to download purchased file", response);
   }
 
   /**
@@ -124,9 +119,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderFromCartResponse;
 
-    throw new Error(
-      `Failed to create order from cart: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create order from cart", response);
   }
 }
 

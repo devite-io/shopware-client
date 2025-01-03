@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   SalutationAggregationRequest,
   SalutationAggregationResponse,
@@ -27,9 +28,7 @@ class SalutationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationListResponse;
 
-    throw new Error(
-      `Failed to fetch salutation list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch salutation list", response);
   }
 
   /**
@@ -48,9 +47,7 @@ class SalutationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationCreateResponse;
 
-    throw new Error(
-      `Failed to create salutation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create salutation", response);
   }
 
   /**
@@ -67,9 +64,7 @@ class SalutationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationListSearchResponse;
 
-    throw new Error(
-      `Failed to search for salutations: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for salutations", response);
   }
 
   /**
@@ -83,7 +78,7 @@ class SalutationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationSingleResponse;
 
-    throw new Error(`Failed to fetch salutation: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch salutation", response);
   }
 
   /**
@@ -94,9 +89,7 @@ class SalutationClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete salutation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete salutation", response);
   }
 
   /**
@@ -116,9 +109,7 @@ class SalutationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationUpdateResponse;
 
-    throw new Error(
-      `Failed to update salutation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update salutation", response);
   }
 
   /**
@@ -135,9 +126,7 @@ class SalutationClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate salutation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate salutation", response);
   }
 }
 

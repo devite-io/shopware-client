@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   DiscountAggregationRequest,
   DiscountAggregationResponse,
@@ -79,9 +80,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionListResponse;
 
-    throw new Error(
-      `Failed to fetch promotion list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch promotion list", response);
   }
 
   /**
@@ -100,7 +99,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionCreateResponse;
 
-    throw new Error(`Failed to create promotion: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create promotion", response);
   }
 
   /**
@@ -117,9 +116,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionListSearchResponse;
 
-    throw new Error(
-      `Failed to search for promotions: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for promotions", response);
   }
 
   /**
@@ -133,7 +130,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionSingleResponse;
 
-    throw new Error(`Failed to fetch promotion: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch promotion", response);
   }
 
   /**
@@ -144,7 +141,7 @@ class PromotionClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete promotion: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete promotion", response);
   }
 
   /**
@@ -164,7 +161,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionUpdateResponse;
 
-    throw new Error(`Failed to update promotion: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update promotion", response);
   }
 
   /**
@@ -181,9 +178,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PromotionAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate promotion: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate promotion", response);
   }
 
   /** Promotions **/
@@ -199,9 +194,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountListResponse;
 
-    throw new Error(
-      `Failed to fetch discount list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch discount list", response);
   }
 
   /**
@@ -220,7 +213,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountCreateResponse;
 
-    throw new Error(`Failed to create discount: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create discount", response);
   }
 
   /**
@@ -237,9 +230,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountListSearchResponse;
 
-    throw new Error(
-      `Failed to search for discounts: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for discounts", response);
   }
 
   /**
@@ -253,7 +244,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountSingleResponse;
 
-    throw new Error(`Failed to fetch discount: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch discount", response);
   }
 
   /**
@@ -264,7 +255,7 @@ class PromotionClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete discount: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete discount", response);
   }
 
   /**
@@ -284,7 +275,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountUpdateResponse;
 
-    throw new Error(`Failed to update discount: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update discount", response);
   }
 
   /**
@@ -301,9 +292,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate discount: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate discount", response);
   }
 
   /** Discount Prices **/
@@ -319,9 +308,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountPriceListResponse;
 
-    throw new Error(
-      `Failed to fetch discount price list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch discount price list", response);
   }
 
   /**
@@ -340,9 +327,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountPriceCreateResponse;
 
-    throw new Error(
-      `Failed to create discount price: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create discount price", response);
   }
 
   /**
@@ -359,9 +344,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountPriceListSearchResponse;
 
-    throw new Error(
-      `Failed to search for discount prices: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for discount prices", response);
   }
 
   /**
@@ -378,9 +361,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountPriceSingleResponse;
 
-    throw new Error(
-      `Failed to fetch discount price: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch discount price", response);
   }
 
   /**
@@ -391,9 +372,7 @@ class PromotionClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete discount price: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete discount price", response);
   }
 
   /**
@@ -413,9 +392,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountPriceUpdateResponse;
 
-    throw new Error(
-      `Failed to update discount price: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update discount price", response);
   }
 
   /**
@@ -432,9 +409,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DiscountPriceAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate discount price: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate discount price", response);
   }
 
   /** Individual Codes **/
@@ -450,9 +425,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IndividualCodeListResponse;
 
-    throw new Error(
-      `Failed to fetch individual code list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch individual code list", response);
   }
 
   /**
@@ -471,9 +444,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IndividualCodeCreateResponse;
 
-    throw new Error(
-      `Failed to create individual code: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create individual code", response);
   }
 
   /**
@@ -490,9 +461,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IndividualCodeListSearchResponse;
 
-    throw new Error(
-      `Failed to search for individual codes: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for individual codes", response);
   }
 
   /**
@@ -509,9 +478,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IndividualCodeSingleResponse;
 
-    throw new Error(
-      `Failed to fetch individual code: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch individual code", response);
   }
 
   /**
@@ -522,9 +489,7 @@ class PromotionClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete individual code: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete individual code", response);
   }
 
   /**
@@ -544,9 +509,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IndividualCodeUpdateResponse;
 
-    throw new Error(
-      `Failed to update individual code: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update individual code", response);
   }
 
   /**
@@ -563,9 +526,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as IndividualCodeAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate individual code: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate individual code", response);
   }
 
   /** Sales Channels **/
@@ -581,9 +542,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListResponse;
 
-    throw new Error(
-      `Failed to fetch sales channel list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch sales channel list", response);
   }
 
   /**
@@ -602,9 +561,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelCreateResponse;
 
-    throw new Error(
-      `Failed to create sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create sales channel", response);
   }
 
   /**
@@ -621,9 +578,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListSearchResponse;
 
-    throw new Error(
-      `Failed to search for sales channels: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for sales channels", response);
   }
 
   /**
@@ -637,9 +592,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelSingleResponse;
 
-    throw new Error(
-      `Failed to fetch sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch sales channel", response);
   }
 
   /**
@@ -650,9 +603,7 @@ class PromotionClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete sales channel", response);
   }
 
   /**
@@ -672,9 +623,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelUpdateResponse;
 
-    throw new Error(
-      `Failed to update sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update sales channel", response);
   }
 
   /**
@@ -691,9 +640,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate sales channel", response);
   }
 
   /** Set Groups **/
@@ -709,9 +656,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetGroupListResponse;
 
-    throw new Error(
-      `Failed to fetch set group list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch set group list", response);
   }
 
   /**
@@ -730,7 +675,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetGroupCreateResponse;
 
-    throw new Error(`Failed to create set group: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create set group", response);
   }
 
   /**
@@ -747,9 +692,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetGroupListSearchResponse;
 
-    throw new Error(
-      `Failed to search for set groups: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for set groups", response);
   }
 
   /**
@@ -763,7 +706,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetGroupSingleResponse;
 
-    throw new Error(`Failed to fetch set group: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch set group", response);
   }
 
   /**
@@ -774,7 +717,7 @@ class PromotionClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete set group: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete set group", response);
   }
 
   /**
@@ -794,7 +737,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetGroupUpdateResponse;
 
-    throw new Error(`Failed to update set group: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update set group", response);
   }
 
   /**
@@ -811,9 +754,7 @@ class PromotionClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SetGroupAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate set group: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate set group", response);
   }
 }
 

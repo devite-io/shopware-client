@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   PaymentMethodAggregationRequest,
   PaymentMethodAggregationResponse,
@@ -27,9 +28,7 @@ class PaymentMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListResponse;
 
-    throw new Error(
-      `Failed to fetch payment method list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch payment method list", response);
   }
 
   /**
@@ -48,9 +47,7 @@ class PaymentMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodCreateResponse;
 
-    throw new Error(
-      `Failed to create payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create payment method", response);
   }
 
   /**
@@ -67,9 +64,7 @@ class PaymentMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListSearchResponse;
 
-    throw new Error(
-      `Failed to search for payment methods: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for payment methods", response);
   }
 
   /**
@@ -86,9 +81,7 @@ class PaymentMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodSingleResponse;
 
-    throw new Error(
-      `Failed to fetch payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch payment method", response);
   }
 
   /**
@@ -99,9 +92,7 @@ class PaymentMethodClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete payment method", response);
   }
 
   /**
@@ -121,9 +112,7 @@ class PaymentMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodUpdateResponse;
 
-    throw new Error(
-      `Failed to update payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update payment method", response);
   }
 
   /**
@@ -140,9 +129,7 @@ class PaymentMethodClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate payment method: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate payment method", response);
   }
 }
 

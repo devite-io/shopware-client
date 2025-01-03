@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   CustomEntityAggregationRequest,
   CustomEntityAggregationResponse,
@@ -59,9 +60,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntityListResponse;
 
-    throw new Error(
-      `Failed to fetch custom entity list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch custom entity list", response);
   }
 
   /**
@@ -80,9 +79,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntityCreateResponse;
 
-    throw new Error(
-      `Failed to create custom entity: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create custom entity", response);
   }
 
   /**
@@ -99,9 +96,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntityListSearchResponse;
 
-    throw new Error(
-      `Failed to search for custom entities: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for custom entities", response);
   }
 
   /**
@@ -115,9 +110,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntitySingleResponse;
 
-    throw new Error(
-      `Failed to fetch custom entity: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch custom entity", response);
   }
 
   /**
@@ -128,9 +121,7 @@ class CustomDataClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete custom entity: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete custom entity", response);
   }
 
   /**
@@ -150,9 +141,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntityUpdateResponse;
 
-    throw new Error(
-      `Failed to update custom entity: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update custom entity", response);
   }
 
   /**
@@ -169,9 +158,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomEntityAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate custom entity: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate custom entity", response);
   }
 
   /** Custom Fields */
@@ -187,9 +174,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldListResponse;
 
-    throw new Error(
-      `Failed to fetch custom field list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch custom field list", response);
   }
 
   /**
@@ -208,9 +193,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldCreateResponse;
 
-    throw new Error(
-      `Failed to create custom field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create custom field", response);
   }
 
   /**
@@ -227,9 +210,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldListSearchResponse;
 
-    throw new Error(
-      `Failed to search for custom fields: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for custom fields", response);
   }
 
   /**
@@ -243,9 +224,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSingleResponse;
 
-    throw new Error(
-      `Failed to fetch custom field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch custom field", response);
   }
 
   /**
@@ -256,9 +235,7 @@ class CustomDataClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete custom field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete custom field", response);
   }
 
   /**
@@ -278,9 +255,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldUpdateResponse;
 
-    throw new Error(
-      `Failed to update custom field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update custom field", response);
   }
 
   /**
@@ -297,9 +272,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate custom field: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate custom field", response);
   }
 
   /** Custom Field Sets */
@@ -315,9 +288,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetListResponse;
 
-    throw new Error(
-      `Failed to fetch custom fieldset list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch custom fieldset list", response);
   }
 
   /**
@@ -336,9 +307,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetCreateResponse;
 
-    throw new Error(
-      `Failed to create custom fieldset: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create custom fieldset", response);
   }
 
   /**
@@ -355,9 +324,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetListSearchResponse;
 
-    throw new Error(
-      `Failed to search for custom fieldsets: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for custom fieldsets", response);
   }
 
   /**
@@ -374,9 +341,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetSingleResponse;
 
-    throw new Error(
-      `Failed to fetch custom fieldset: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch custom fieldset", response);
   }
 
   /**
@@ -387,9 +352,7 @@ class CustomDataClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete custom fieldset: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete custom fieldset", response);
   }
 
   /**
@@ -409,9 +372,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetUpdateResponse;
 
-    throw new Error(
-      `Failed to update custom fieldset: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update custom fieldset", response);
   }
 
   /**
@@ -428,9 +389,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate custom fieldset: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate custom fieldset", response);
   }
 
   /** Custom Field Set Relations */
@@ -448,9 +407,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetRelationListResponse;
 
-    throw new Error(
-      `Failed to fetch custom fieldset relation list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch custom fieldset relation list", response);
   }
 
   /**
@@ -469,9 +426,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetRelationCreateResponse;
 
-    throw new Error(
-      `Failed to create custom fieldset relation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create custom fieldset relation", response);
   }
 
   /**
@@ -488,9 +443,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetRelationListSearchResponse;
 
-    throw new Error(
-      `Failed to search for custom entities: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for custom entities", response);
   }
 
   /**
@@ -507,9 +460,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetRelationSingleResponse;
 
-    throw new Error(
-      `Failed to fetch custom fieldset relation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch custom fieldset relation", response);
   }
 
   /**
@@ -520,9 +471,7 @@ class CustomDataClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete custom fieldset relation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete custom fieldset relation", response);
   }
 
   /**
@@ -542,9 +491,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetRelationUpdateResponse;
 
-    throw new Error(
-      `Failed to update custom fieldset relation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update custom fieldset relation", response);
   }
 
   /**
@@ -561,9 +508,7 @@ class CustomDataClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomFieldSetRelationAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate custom fieldset relation: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate custom fieldset relation", response);
   }
 }
 

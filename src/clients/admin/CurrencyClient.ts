@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   CountryRoundingAggregationRequest,
   CountryRoundingAggregationResponse,
@@ -39,9 +40,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencyListResponse;
 
-    throw new Error(
-      `Failed to fetch currency list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch currency list", response);
   }
 
   /**
@@ -60,7 +59,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencyCreateResponse;
 
-    throw new Error(`Failed to create currency: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create currency", response);
   }
 
   /**
@@ -77,9 +76,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencyListSearchResponse;
 
-    throw new Error(
-      `Failed to search for currencies: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for currencies", response);
   }
 
   /**
@@ -93,7 +90,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencySingleResponse;
 
-    throw new Error(`Failed to fetch currency: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch currency", response);
   }
 
   /**
@@ -104,7 +101,7 @@ class CountryClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete currency: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete currency", response);
   }
 
   /**
@@ -124,7 +121,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencyUpdateResponse;
 
-    throw new Error(`Failed to update currency: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update currency", response);
   }
 
   /**
@@ -141,9 +138,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencyAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cms block: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cms block", response);
   }
 
   /** Country Roundings **/
@@ -159,9 +154,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryRoundingListResponse;
 
-    throw new Error(
-      `Failed to fetch country rounding list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch country rounding list", response);
   }
 
   /**
@@ -180,9 +173,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryRoundingCreateResponse;
 
-    throw new Error(
-      `Failed to create country rounding: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create country rounding", response);
   }
 
   /**
@@ -199,9 +190,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryRoundingListSearchResponse;
 
-    throw new Error(
-      `Failed to search for country roundings: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for country roundings", response);
   }
 
   /**
@@ -218,9 +207,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryRoundingSingleResponse;
 
-    throw new Error(
-      `Failed to fetch country rounding: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch country rounding", response);
   }
 
   /**
@@ -231,9 +218,7 @@ class CountryClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete country rounding: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete country rounding", response);
   }
 
   /**
@@ -253,9 +238,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryRoundingUpdateResponse;
 
-    throw new Error(
-      `Failed to update country rounding: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update country rounding", response);
   }
 
   /**
@@ -272,9 +255,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryRoundingAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate country rounding: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate country rounding", response);
   }
 }
 

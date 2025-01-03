@@ -1,4 +1,6 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   CartAddItemsRequest,
   CartAddItemsResponse,
@@ -9,7 +11,6 @@ import {
   CartUpdateItemsRequest,
   CartUpdateItemsResponse
 } from "#types/clients/store/CartClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class CartClient extends Client {
   /**
@@ -21,9 +22,7 @@ class CartClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartGetOrCreateResponse;
 
-    throw new Error(
-      `Failed to get or create cart: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to get or create cart", response);
   }
 
   /**
@@ -35,7 +34,7 @@ class CartClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartDeleteResponse;
 
-    throw new Error(`Failed to delete cart: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete cart", response);
   }
 
   /**
@@ -49,9 +48,7 @@ class CartClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartAddItemsResponse;
 
-    throw new Error(
-      `Failed to add line items to cart: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to add line items to cart", response);
   }
 
   /**
@@ -65,9 +62,7 @@ class CartClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartRemoveItemsResponse;
 
-    throw new Error(
-      `Failed to remove line items from cart: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to remove line items from cart", response);
   }
 
   /**
@@ -81,9 +76,7 @@ class CartClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartUpdateItemsResponse;
 
-    throw new Error(
-      `Failed to update line items in cart: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update line items in cart", response);
   }
 }
 

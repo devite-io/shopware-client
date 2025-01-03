@@ -1,6 +1,7 @@
-import Client from "../Client";
-import { GatewayCheckoutResponse } from "#types/clients/store/GatewayClient";
 import JsonPayload from "#payloads/JsonPayload";
+import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
+import { GatewayCheckoutResponse } from "#types/clients/store/GatewayClient";
 
 class GatewayClient extends Client {
   /**
@@ -12,7 +13,7 @@ class GatewayClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as GatewayCheckoutResponse;
 
-    throw new Error(`Failed to checkout: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to checkout", response);
   }
 }
 

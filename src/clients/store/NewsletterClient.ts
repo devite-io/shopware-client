@@ -1,10 +1,11 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   NewsletterConfirmRequest,
   NewsletterUnsubscribeRequest,
   NewsletterUpdateRequest
 } from "#types/clients/store/NewsletterClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class NewsletterClient extends Client {
   /**
@@ -17,9 +18,7 @@ class NewsletterClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(
-      `Failed to confirm newsletter subscription: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to confirm newsletter subscription", response);
   }
 
   /**
@@ -32,9 +31,7 @@ class NewsletterClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(
-      `Failed to update newsletter subscription: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update newsletter subscription", response);
   }
 
   /**
@@ -47,9 +44,7 @@ class NewsletterClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(
-      `Failed to unsubscribe newsletter subscription: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to unsubscribe newsletter subscription", response);
   }
 }
 

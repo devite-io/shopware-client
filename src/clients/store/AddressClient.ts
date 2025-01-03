@@ -1,5 +1,7 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
+import ShopwareError from "#http/ShopwareError";
 import {
   AddressCreateRequest,
   AddressCreateResponse,
@@ -8,7 +10,6 @@ import {
   AddressUpdateRequest,
   AddressUpdateResponse
 } from "#types/clients/store/AddressClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class AddressClient extends Client {
   /**
@@ -25,7 +26,7 @@ class AddressClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressCreateResponse;
 
-    throw new Error(`Failed to add address: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to add address", response);
   }
 
   /**
@@ -39,7 +40,7 @@ class AddressClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(`Failed to delete address: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete address", response);
   }
 
   /**
@@ -59,7 +60,7 @@ class AddressClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressUpdateResponse;
 
-    throw new Error(`Failed to update address: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update address", response);
   }
 
   /**
@@ -76,9 +77,7 @@ class AddressClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressListResponse;
 
-    throw new Error(
-      `Failed to fetch address list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch address list", response);
   }
 
   /**
@@ -92,9 +91,7 @@ class AddressClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(
-      `Failed to change default shipping address: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to change default shipping address", response);
   }
 
   /**
@@ -108,9 +105,7 @@ class AddressClient extends Client {
 
     if (response.statusCode === 200) return;
 
-    throw new Error(
-      `Failed to change default billing address: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to change default billing address", response);
   }
 }
 

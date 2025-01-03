@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   DefaultFolderAggregationRequest,
   DefaultFolderAggregationResponse,
@@ -86,7 +87,7 @@ class MediaClient extends Client {
 
     if (response.statusCode === 200) return response.headers?.get("Location") as string;
 
-    throw new Error(`Failed to upload asset: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to upload asset", response);
   }
 
   /**
@@ -108,9 +109,7 @@ class MediaClient extends Client {
 
     if (response.statusCode === 200) return response.headers?.get("Location") as string;
 
-    throw new Error(
-      `Failed to upload asset from url: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to upload asset from url", response);
   }
 
   /** Media **/
@@ -126,7 +125,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaListResponse;
 
-    throw new Error(`Failed to fetch media list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch media list", response);
   }
 
   /**
@@ -145,7 +144,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaCreateResponse;
 
-    throw new Error(`Failed to create media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create media", response);
   }
 
   /**
@@ -160,7 +159,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaListSearchResponse;
 
-    throw new Error(`Failed to search for media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for media", response);
   }
 
   /**
@@ -174,7 +173,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaSingleResponse;
 
-    throw new Error(`Failed to fetch media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch media", response);
   }
 
   /**
@@ -185,7 +184,7 @@ class MediaClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete media", response);
   }
 
   /**
@@ -205,7 +204,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaUpdateResponse;
 
-    throw new Error(`Failed to update media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update media", response);
   }
 
   /**
@@ -222,7 +221,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaAggregationResponse;
 
-    throw new Error(`Failed to aggregate media: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate media", response);
   }
 
   /** Default Folders **/
@@ -238,9 +237,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DefaultFolderListResponse;
 
-    throw new Error(
-      `Failed to fetch default folder list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch default folder list", response);
   }
 
   /**
@@ -259,9 +256,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DefaultFolderCreateResponse;
 
-    throw new Error(
-      `Failed to create default folder: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create default folder", response);
   }
 
   /**
@@ -278,9 +273,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DefaultFolderListSearchResponse;
 
-    throw new Error(
-      `Failed to search for default folders: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for default folders", response);
   }
 
   /**
@@ -297,9 +290,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DefaultFolderSingleResponse;
 
-    throw new Error(
-      `Failed to fetch default folder: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch default folder", response);
   }
 
   /**
@@ -310,9 +301,7 @@ class MediaClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete default folder: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete default folder", response);
   }
 
   /**
@@ -332,9 +321,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DefaultFolderUpdateResponse;
 
-    throw new Error(
-      `Failed to update default folder: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update default folder", response);
   }
 
   /**
@@ -351,9 +338,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DefaultFolderAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate default folder: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate default folder", response);
   }
 
   /** Folders **/
@@ -369,9 +354,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderListResponse;
 
-    throw new Error(
-      `Failed to fetch folder list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch folder list", response);
   }
 
   /**
@@ -390,7 +373,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderCreateResponse;
 
-    throw new Error(`Failed to create folder: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create folder", response);
   }
 
   /**
@@ -405,9 +388,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderListSearchResponse;
 
-    throw new Error(
-      `Failed to search for folders: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for folders", response);
   }
 
   /**
@@ -421,7 +402,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderSingleResponse;
 
-    throw new Error(`Failed to fetch folder: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch folder", response);
   }
 
   /**
@@ -432,7 +413,7 @@ class MediaClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete folder: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete folder", response);
   }
 
   /**
@@ -452,7 +433,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderUpdateResponse;
 
-    throw new Error(`Failed to update folder: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update folder", response);
   }
 
   /**
@@ -469,7 +450,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderAggregationResponse;
 
-    throw new Error(`Failed to aggregate folder: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate folder", response);
   }
 
   /** Folder Configs **/
@@ -485,9 +466,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderConfigListResponse;
 
-    throw new Error(
-      `Failed to fetch folder configuration list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch folder configuration list", response);
   }
 
   /**
@@ -506,9 +485,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderConfigCreateResponse;
 
-    throw new Error(
-      `Failed to create folder configuration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create folder configuration", response);
   }
 
   /**
@@ -525,9 +502,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderConfigListSearchResponse;
 
-    throw new Error(
-      `Failed to search for folder configurations: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for folder configurations", response);
   }
 
   /**
@@ -541,9 +516,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderConfigSingleResponse;
 
-    throw new Error(
-      `Failed to fetch folder configuration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch folder configuration", response);
   }
 
   /**
@@ -554,9 +527,7 @@ class MediaClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete folder configuration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete folder configuration", response);
   }
 
   /**
@@ -576,9 +547,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderConfigUpdateResponse;
 
-    throw new Error(
-      `Failed to update folder configuration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update folder configuration", response);
   }
 
   /**
@@ -595,9 +564,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FolderConfigAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate folder configuration: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate folder configuration", response);
   }
 
   /** Thumbnails **/
@@ -613,9 +580,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailListResponse;
 
-    throw new Error(
-      `Failed to fetch thumbnail list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch thumbnail list", response);
   }
 
   /**
@@ -634,7 +599,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailCreateResponse;
 
-    throw new Error(`Failed to create thumbnail: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create thumbnail", response);
   }
 
   /**
@@ -651,9 +616,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailListSearchResponse;
 
-    throw new Error(
-      `Failed to search for thumbnails: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for thumbnails", response);
   }
 
   /**
@@ -667,7 +630,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSingleResponse;
 
-    throw new Error(`Failed to fetch thumbnail: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch thumbnail", response);
   }
 
   /**
@@ -678,7 +641,7 @@ class MediaClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete thumbnail: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete thumbnail", response);
   }
 
   /**
@@ -698,7 +661,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailUpdateResponse;
 
-    throw new Error(`Failed to update thumbnail: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update thumbnail", response);
   }
 
   /**
@@ -715,9 +678,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate thumbnail: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate thumbnail", response);
   }
 
   /** Thumbnail Sizes **/
@@ -733,9 +694,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSizeListResponse;
 
-    throw new Error(
-      `Failed to fetch thumbnail size list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch thumbnail size list", response);
   }
 
   /**
@@ -754,9 +713,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSizeCreateResponse;
 
-    throw new Error(
-      `Failed to create thumbnail size: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create thumbnail size", response);
   }
 
   /**
@@ -773,9 +730,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSizeListSearchResponse;
 
-    throw new Error(
-      `Failed to search for thumbnail sizes: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for thumbnail sizes", response);
   }
 
   /**
@@ -792,9 +747,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSizeSingleResponse;
 
-    throw new Error(
-      `Failed to fetch thumbnail size: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch thumbnail size", response);
   }
 
   /**
@@ -805,9 +758,7 @@ class MediaClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete thumbnail size: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete thumbnail size", response);
   }
 
   /**
@@ -827,9 +778,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSizeUpdateResponse;
 
-    throw new Error(
-      `Failed to update thumbnail size: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update thumbnail size", response);
   }
 
   /**
@@ -846,9 +795,7 @@ class MediaClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThumbnailSizeAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate thumbnail size: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate thumbnail size", response);
   }
 }
 

@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   ProviderAggregationRequest,
   ProviderAggregationResponse,
@@ -58,7 +59,7 @@ class TaxClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as TaxListResponse;
 
-    throw new Error(`Failed to fetch tax list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch tax list", response);
   }
 
   /**
@@ -77,7 +78,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TaxCreateResponse;
 
-    throw new Error(`Failed to create tax: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create tax", response);
   }
 
   /**
@@ -92,7 +93,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TaxListSearchResponse;
 
-    throw new Error(`Failed to search for taxes: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for taxes", response);
   }
 
   /**
@@ -106,7 +107,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TaxSingleResponse;
 
-    throw new Error(`Failed to fetch tax: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch tax", response);
   }
 
   /**
@@ -117,7 +118,7 @@ class TaxClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete tax: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete tax", response);
   }
 
   /**
@@ -137,7 +138,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TaxUpdateResponse;
 
-    throw new Error(`Failed to update tax: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update tax", response);
   }
 
   /**
@@ -152,7 +153,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TaxAggregationResponse;
 
-    throw new Error(`Failed to aggregate tax: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate tax", response);
   }
 
   /** Providers **/
@@ -168,9 +169,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderListResponse;
 
-    throw new Error(
-      `Failed to fetch provider list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch provider list", response);
   }
 
   /**
@@ -189,7 +188,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderCreateResponse;
 
-    throw new Error(`Failed to create provider: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create provider", response);
   }
 
   /**
@@ -206,9 +205,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderListSearchResponse;
 
-    throw new Error(
-      `Failed to search for providers: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for providers", response);
   }
 
   /**
@@ -222,7 +219,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderSingleResponse;
 
-    throw new Error(`Failed to fetch provider: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch provider", response);
   }
 
   /**
@@ -233,7 +230,7 @@ class TaxClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete provider: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete provider", response);
   }
 
   /**
@@ -253,7 +250,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderUpdateResponse;
 
-    throw new Error(`Failed to update provider: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update provider", response);
   }
 
   /**
@@ -270,9 +267,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProviderAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate provider: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate provider", response);
   }
 
   /** Rules **/
@@ -287,7 +282,7 @@ class TaxClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as RuleListResponse;
 
-    throw new Error(`Failed to fetch rule list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch rule list", response);
   }
 
   /**
@@ -306,7 +301,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleCreateResponse;
 
-    throw new Error(`Failed to create rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create rule", response);
   }
 
   /**
@@ -321,7 +316,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleListSearchResponse;
 
-    throw new Error(`Failed to search for rules: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for rules", response);
   }
 
   /**
@@ -335,7 +330,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleSingleResponse;
 
-    throw new Error(`Failed to fetch rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch rule", response);
   }
 
   /**
@@ -346,7 +341,7 @@ class TaxClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete rule", response);
   }
 
   /**
@@ -366,7 +361,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleUpdateResponse;
 
-    throw new Error(`Failed to update rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update rule", response);
   }
 
   /**
@@ -381,7 +376,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleAggregationResponse;
 
-    throw new Error(`Failed to aggregate rule: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate rule", response);
   }
 
   /** Rule Types **/
@@ -397,9 +392,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeListResponse;
 
-    throw new Error(
-      `Failed to fetch rule type list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch rule type list", response);
   }
 
   /**
@@ -418,7 +411,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeCreateResponse;
 
-    throw new Error(`Failed to create rule type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create rule type", response);
   }
 
   /**
@@ -435,9 +428,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeListSearchResponse;
 
-    throw new Error(
-      `Failed to search for rule types: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for rule types", response);
   }
 
   /**
@@ -451,7 +442,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeSingleResponse;
 
-    throw new Error(`Failed to fetch rule type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch rule type", response);
   }
 
   /**
@@ -462,7 +453,7 @@ class TaxClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete rule type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete rule type", response);
   }
 
   /**
@@ -482,7 +473,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeUpdateResponse;
 
-    throw new Error(`Failed to update rule type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update rule type", response);
   }
 
   /**
@@ -499,9 +490,7 @@ class TaxClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleTypeAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate rule type: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate rule type", response);
   }
 }
 

@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   UnitAggregationRequest,
   UnitAggregationResponse,
@@ -26,7 +27,7 @@ class UnitClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as UnitListResponse;
 
-    throw new Error(`Failed to fetch unit list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch unit list", response);
   }
 
   /**
@@ -45,7 +46,7 @@ class UnitClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UnitCreateResponse;
 
-    throw new Error(`Failed to create unit: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create unit", response);
   }
 
   /**
@@ -60,7 +61,7 @@ class UnitClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UnitListSearchResponse;
 
-    throw new Error(`Failed to search for units: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for units", response);
   }
 
   /**
@@ -74,7 +75,7 @@ class UnitClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UnitSingleResponse;
 
-    throw new Error(`Failed to fetch unit: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch unit", response);
   }
 
   /**
@@ -85,7 +86,7 @@ class UnitClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete unit: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete unit", response);
   }
 
   /**
@@ -105,7 +106,7 @@ class UnitClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UnitUpdateResponse;
 
-    throw new Error(`Failed to update unit: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update unit", response);
   }
 
   /**
@@ -120,7 +121,7 @@ class UnitClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UnitAggregationResponse;
 
-    throw new Error(`Failed to aggregate unit: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate unit", response);
   }
 }
 

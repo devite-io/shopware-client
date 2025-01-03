@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   FlowAggregationRequest,
   FlowAggregationResponse,
@@ -48,7 +49,7 @@ class FlowClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as FlowListResponse;
 
-    throw new Error(`Failed to fetch flow list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch flow list", response);
   }
 
   /**
@@ -67,7 +68,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowCreateResponse;
 
-    throw new Error(`Failed to create flow: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create flow", response);
   }
 
   /**
@@ -82,7 +83,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowListSearchResponse;
 
-    throw new Error(`Failed to search for flows: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for flows", response);
   }
 
   /**
@@ -96,7 +97,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSingleResponse;
 
-    throw new Error(`Failed to fetch flow: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch flow", response);
   }
 
   /**
@@ -107,7 +108,7 @@ class FlowClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete flow: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete flow", response);
   }
 
   /**
@@ -127,7 +128,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowUpdateResponse;
 
-    throw new Error(`Failed to update flow: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update flow", response);
   }
 
   /**
@@ -142,7 +143,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowAggregationResponse;
 
-    throw new Error(`Failed to aggregate flow: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate flow", response);
   }
 
   /** Flow Sequences **/
@@ -158,9 +159,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceListResponse;
 
-    throw new Error(
-      `Failed to fetch flow sequence list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch flow sequence list", response);
   }
 
   /**
@@ -179,9 +178,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceCreateResponse;
 
-    throw new Error(
-      `Failed to create flow sequence: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create flow sequence", response);
   }
 
   /**
@@ -198,9 +195,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceListSearchResponse;
 
-    throw new Error(
-      `Failed to search for flow sequences: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for flow sequences", response);
   }
 
   /**
@@ -214,9 +209,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceSingleResponse;
 
-    throw new Error(
-      `Failed to fetch flow sequence: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch flow sequence", response);
   }
 
   /**
@@ -227,9 +220,7 @@ class FlowClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete flow sequence: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete flow sequence", response);
   }
 
   /**
@@ -249,9 +240,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceUpdateResponse;
 
-    throw new Error(
-      `Failed to update flow sequence: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update flow sequence", response);
   }
 
   /**
@@ -268,9 +257,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSequenceAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate flow sequence: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate flow sequence", response);
   }
 
   /** Flow Templates **/
@@ -286,9 +273,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateListResponse;
 
-    throw new Error(
-      `Failed to fetch flow template list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch flow template list", response);
   }
 
   /**
@@ -307,9 +292,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateCreateResponse;
 
-    throw new Error(
-      `Failed to create flow template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create flow template", response);
   }
 
   /**
@@ -326,9 +309,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateListSearchResponse;
 
-    throw new Error(
-      `Failed to search for flow templates: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for flow templates", response);
   }
 
   /**
@@ -342,9 +323,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateSingleResponse;
 
-    throw new Error(
-      `Failed to fetch flow template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch flow template", response);
   }
 
   /**
@@ -355,9 +334,7 @@ class FlowClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete flow template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete flow template", response);
   }
 
   /**
@@ -377,9 +354,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateUpdateResponse;
 
-    throw new Error(
-      `Failed to update flow template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update flow template", response);
   }
 
   /**
@@ -396,9 +371,7 @@ class FlowClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowTemplateAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate flow template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate flow template", response);
   }
 }
 

@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   LanguageAggregationRequest,
   LanguageAggregationResponse,
@@ -39,9 +40,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleListResponse;
 
-    throw new Error(
-      `Failed to fetch locale list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch locale list", response);
   }
 
   /**
@@ -60,7 +59,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleCreateResponse;
 
-    throw new Error(`Failed to create locale: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create locale", response);
   }
 
   /**
@@ -75,9 +74,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleListSearchResponse;
 
-    throw new Error(
-      `Failed to search for locales: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for locales", response);
   }
 
   /**
@@ -91,7 +88,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleSingleResponse;
 
-    throw new Error(`Failed to fetch locale: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch locale", response);
   }
 
   /**
@@ -102,7 +99,7 @@ class LocaleClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete locale: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete locale", response);
   }
 
   /**
@@ -122,7 +119,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleUpdateResponse;
 
-    throw new Error(`Failed to update locale: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update locale", response);
   }
 
   /**
@@ -139,7 +136,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleAggregationResponse;
 
-    throw new Error(`Failed to aggregate locale: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate locale", response);
   }
 
   /** Languages **/
@@ -155,9 +152,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageListResponse;
 
-    throw new Error(
-      `Failed to fetch language list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch language list", response);
   }
 
   /**
@@ -176,7 +171,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageCreateResponse;
 
-    throw new Error(`Failed to create language: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create language", response);
   }
 
   /**
@@ -193,9 +188,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageListSearchResponse;
 
-    throw new Error(
-      `Failed to search for languages: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for languages", response);
   }
 
   /**
@@ -209,7 +202,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageSingleResponse;
 
-    throw new Error(`Failed to fetch language: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch language", response);
   }
 
   /**
@@ -220,7 +213,7 @@ class LocaleClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete language: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete language", response);
   }
 
   /**
@@ -240,7 +233,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageUpdateResponse;
 
-    throw new Error(`Failed to update language: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update language", response);
   }
 
   /**
@@ -257,9 +250,7 @@ class LocaleClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate language: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate language", response);
   }
 }
 

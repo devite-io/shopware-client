@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   AclRoleAggregationRequest,
   AclRoleAggregationResponse,
@@ -27,9 +28,7 @@ class SecurityClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleListResponse;
 
-    throw new Error(
-      `Failed to fetch acl role list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch acl role list", response);
   }
 
   /**
@@ -48,7 +47,7 @@ class SecurityClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleCreateResponse;
 
-    throw new Error(`Failed to create acl role: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create acl role", response);
   }
 
   /**
@@ -65,9 +64,7 @@ class SecurityClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleListSearchResponse;
 
-    throw new Error(
-      `Failed to search for acl roles: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for acl roles", response);
   }
 
   /**
@@ -81,7 +78,7 @@ class SecurityClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleSingleResponse;
 
-    throw new Error(`Failed to fetch acl role: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch acl role", response);
   }
 
   /**
@@ -92,7 +89,7 @@ class SecurityClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete acl role: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete acl role", response);
   }
 
   /**
@@ -112,7 +109,7 @@ class SecurityClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleUpdateResponse;
 
-    throw new Error(`Failed to update acl role: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update acl role", response);
   }
 
   /**
@@ -129,9 +126,7 @@ class SecurityClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate acl role: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate acl role", response);
   }
 }
 

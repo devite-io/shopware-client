@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   DeliveryTimeAggregationRequest,
   DeliveryTimeAggregationResponse,
@@ -27,9 +28,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeListResponse;
 
-    throw new Error(
-      `Failed to fetch delivery time list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch delivery time list", response);
   }
 
   /**
@@ -48,9 +47,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeCreateResponse;
 
-    throw new Error(
-      `Failed to create delivery time: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create delivery time", response);
   }
 
   /**
@@ -67,9 +64,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeListSearchResponse;
 
-    throw new Error(
-      `Failed to search for delivery times: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for delivery times", response);
   }
 
   /**
@@ -83,9 +78,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeSingleResponse;
 
-    throw new Error(
-      `Failed to fetch delivery time: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch delivery time", response);
   }
 
   /**
@@ -96,9 +89,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete delivery time: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete delivery time", response);
   }
 
   /**
@@ -118,9 +109,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeUpdateResponse;
 
-    throw new Error(
-      `Failed to update delivery time: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update delivery time", response);
   }
 
   /**
@@ -137,9 +126,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DeliveryTimeAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate delivery time: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate delivery time", response);
   }
 }
 

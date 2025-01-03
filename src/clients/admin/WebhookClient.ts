@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   EventLogAggregationRequest,
   EventLogAggregationResponse,
@@ -39,9 +40,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookListResponse;
 
-    throw new Error(
-      `Failed to fetch webhook li1st: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch webhook li1st", response);
   }
 
   /**
@@ -60,7 +59,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookCreateResponse;
 
-    throw new Error(`Failed to create webhook: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create webhook", response);
   }
 
   /**
@@ -77,9 +76,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookListSearchResponse;
 
-    throw new Error(
-      `Failed to search for webhooks: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for webhooks", response);
   }
 
   /**
@@ -93,7 +90,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookSingleResponse;
 
-    throw new Error(`Failed to fetch webhook: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch webhook", response);
   }
 
   /**
@@ -104,7 +101,7 @@ class WebhookClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete webhook: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete webhook", response);
   }
 
   /**
@@ -124,7 +121,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookUpdateResponse;
 
-    throw new Error(`Failed to update webhook: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update webhook", response);
   }
 
   /**
@@ -141,9 +138,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate webhook: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate webhook", response);
   }
 
   /** Event Logs **/
@@ -159,9 +154,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as EventLogListResponse;
 
-    throw new Error(
-      `Failed to fetch event log li1st: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch event log li1st", response);
   }
 
   /**
@@ -180,7 +173,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as EventLogCreateResponse;
 
-    throw new Error(`Failed to create event log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create event log", response);
   }
 
   /**
@@ -197,9 +190,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as EventLogListSearchResponse;
 
-    throw new Error(
-      `Failed to search for event logs: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for event logs", response);
   }
 
   /**
@@ -213,7 +204,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as EventLogSingleResponse;
 
-    throw new Error(`Failed to fetch event log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch event log", response);
   }
 
   /**
@@ -224,7 +215,7 @@ class WebhookClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete event log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete event log", response);
   }
 
   /**
@@ -244,7 +235,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as EventLogUpdateResponse;
 
-    throw new Error(`Failed to update event log: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update event log", response);
   }
 
   /**
@@ -261,9 +252,7 @@ class WebhookClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as EventLogAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate event log: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate event log", response);
   }
 }
 

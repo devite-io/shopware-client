@@ -1,4 +1,6 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   CategoryListRequest,
   CategoryListResponse,
@@ -7,7 +9,6 @@ import {
   NavigationMenuRequest,
   NavigationMenuResponse
 } from "#types/clients/store/CategoryClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class CategoryClient extends Client {
   /**
@@ -21,9 +22,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategoryListResponse;
 
-    throw new Error(
-      `Failed to fetch category list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch category list", response);
   }
 
   /**
@@ -42,7 +41,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategorySingleResponse;
 
-    throw new Error(`Failed to fetch category: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch category", response);
   }
 
   /**
@@ -62,9 +61,7 @@ class CategoryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as NavigationMenuResponse;
 
-    throw new Error(
-      `Failed to fetch navigation menu: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch navigation menu", response);
   }
 }
 

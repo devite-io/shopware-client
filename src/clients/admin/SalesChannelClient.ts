@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   AnalyticsAggregationRequest,
   AnalyticsAggregationResponse,
@@ -59,9 +60,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListResponse;
 
-    throw new Error(
-      `Failed to fetch sales channel list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch sales channel list", response);
   }
 
   /**
@@ -80,9 +79,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelCreateResponse;
 
-    throw new Error(
-      `Failed to create sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create sales channel", response);
   }
 
   /**
@@ -99,9 +96,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelListSearchResponse;
 
-    throw new Error(
-      `Failed to search for sales channels: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for sales channels", response);
   }
 
   /**
@@ -115,9 +110,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelSingleResponse;
 
-    throw new Error(
-      `Failed to fetch sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch sales channel", response);
   }
 
   /**
@@ -128,9 +121,7 @@ class SalesChannelClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete sales channel", response);
   }
 
   /**
@@ -150,9 +141,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelUpdateResponse;
 
-    throw new Error(
-      `Failed to update sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update sales channel", response);
   }
 
   /**
@@ -169,9 +158,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalesChannelAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate sales channel: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate sales channel", response);
   }
 
   /** Analytics **/
@@ -187,9 +174,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AnalyticsListResponse;
 
-    throw new Error(
-      `Failed to fetch analytics list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch analytics list", response);
   }
 
   /**
@@ -208,7 +193,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AnalyticsCreateResponse;
 
-    throw new Error(`Failed to create analytics: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create analytics", response);
   }
 
   /**
@@ -225,9 +210,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AnalyticsListSearchResponse;
 
-    throw new Error(
-      `Failed to search for analytics: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for analytics", response);
   }
 
   /**
@@ -241,7 +224,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AnalyticsSingleResponse;
 
-    throw new Error(`Failed to fetch analytics: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch analytics", response);
   }
 
   /**
@@ -252,7 +235,7 @@ class SalesChannelClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete analytics: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete analytics", response);
   }
 
   /**
@@ -272,7 +255,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AnalyticsUpdateResponse;
 
-    throw new Error(`Failed to update analytics: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update analytics", response);
   }
 
   /**
@@ -289,9 +272,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AnalyticsAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate analytics: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate analytics", response);
   }
 
   /** Domains **/
@@ -307,9 +288,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DomainListResponse;
 
-    throw new Error(
-      `Failed to fetch domain list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch domain list", response);
   }
 
   /**
@@ -328,7 +307,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DomainCreateResponse;
 
-    throw new Error(`Failed to create domain: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create domain", response);
   }
 
   /**
@@ -343,9 +322,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DomainListSearchResponse;
 
-    throw new Error(
-      `Failed to search for domains: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for domains", response);
   }
 
   /**
@@ -359,7 +336,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DomainSingleResponse;
 
-    throw new Error(`Failed to fetch domain: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch domain", response);
   }
 
   /**
@@ -370,7 +347,7 @@ class SalesChannelClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete domain: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete domain", response);
   }
 
   /**
@@ -390,7 +367,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DomainUpdateResponse;
 
-    throw new Error(`Failed to update domain: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update domain", response);
   }
 
   /**
@@ -407,7 +384,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DomainAggregationResponse;
 
-    throw new Error(`Failed to aggregate domain: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate domain", response);
   }
 
   /** Types **/
@@ -422,7 +399,7 @@ class SalesChannelClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as TypeListResponse;
 
-    throw new Error(`Failed to fetch type list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch type list", response);
   }
 
   /**
@@ -441,7 +418,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeCreateResponse;
 
-    throw new Error(`Failed to create type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create type", response);
   }
 
   /**
@@ -456,7 +433,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeListSearchResponse;
 
-    throw new Error(`Failed to search for types: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for types", response);
   }
 
   /**
@@ -470,7 +447,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeSingleResponse;
 
-    throw new Error(`Failed to fetch type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch type", response);
   }
 
   /**
@@ -481,7 +458,7 @@ class SalesChannelClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete type", response);
   }
 
   /**
@@ -501,7 +478,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeUpdateResponse;
 
-    throw new Error(`Failed to update type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update type", response);
   }
 
   /**
@@ -516,7 +493,7 @@ class SalesChannelClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TypeAggregationResponse;
 
-    throw new Error(`Failed to aggregate type: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate type", response);
   }
 }
 

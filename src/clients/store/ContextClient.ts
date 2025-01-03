@@ -1,10 +1,11 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   ContextGetResponse,
   ContextUpdateRequest,
   ContextUpdateResponse
 } from "#types/clients/store/ContextClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class ContextClient extends Client {
   /**
@@ -15,7 +16,7 @@ class ContextClient extends Client {
 
     if (response.statusCode === 200) return response.body as ContextGetResponse;
 
-    throw new Error(`Failed to fetch context: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch context", response);
   }
 
   /**
@@ -29,7 +30,7 @@ class ContextClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ContextUpdateResponse;
 
-    throw new Error(`Failed to update context: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update context", response);
   }
 }
 

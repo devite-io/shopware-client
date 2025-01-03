@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   UrlAggregationRequest,
   UrlAggregationResponse,
@@ -38,7 +39,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 200) return (response.body as JsonPayload).data as UrlListResponse;
 
-    throw new Error(`Failed to fetch url list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch url list", response);
   }
 
   /**
@@ -57,7 +58,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlCreateResponse;
 
-    throw new Error(`Failed to create url: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create url", response);
   }
 
   /**
@@ -72,7 +73,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlListSearchResponse;
 
-    throw new Error(`Failed to search for urls: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to search for urls", response);
   }
 
   /**
@@ -86,7 +87,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlSingleResponse;
 
-    throw new Error(`Failed to fetch url: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch url", response);
   }
 
   /**
@@ -97,7 +98,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete url: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete url", response);
   }
 
   /**
@@ -117,7 +118,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlUpdateResponse;
 
-    throw new Error(`Failed to update url: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update url", response);
   }
 
   /**
@@ -132,7 +133,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlAggregationResponse;
 
-    throw new Error(`Failed to aggregate url: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate url", response);
   }
 
   /** Url Templates **/
@@ -148,9 +149,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateListResponse;
 
-    throw new Error(
-      `Failed to fetch url template list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch url template list", response);
   }
 
   /**
@@ -169,9 +168,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateCreateResponse;
 
-    throw new Error(
-      `Failed to create url template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to create url template", response);
   }
 
   /**
@@ -188,9 +185,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateListSearchResponse;
 
-    throw new Error(
-      `Failed to search for url templates: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for url templates", response);
   }
 
   /**
@@ -204,9 +199,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateSingleResponse;
 
-    throw new Error(
-      `Failed to fetch url template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch url template", response);
   }
 
   /**
@@ -217,9 +210,7 @@ class DeliveryTimeClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(
-      `Failed to delete url template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to delete url template", response);
   }
 
   /**
@@ -239,9 +230,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateUpdateResponse;
 
-    throw new Error(
-      `Failed to update url template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to update url template", response);
   }
 
   /**
@@ -258,9 +247,7 @@ class DeliveryTimeClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlTemplateAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate url template: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate url template", response);
   }
 }
 

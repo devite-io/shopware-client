@@ -1,4 +1,6 @@
+import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import ShopwareError from "#http/ShopwareError";
 import {
   CountryListRequest,
   CountryListResponse,
@@ -15,7 +17,6 @@ import {
   ShippingMethodListRequest,
   ShippingMethodListResponse
 } from "#types/clients/store/SystemClient";
-import JsonPayload from "#payloads/JsonPayload";
 
 class SystemClient extends Client {
   /**
@@ -29,9 +30,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageListResponse;
 
-    throw new Error(
-      `Failed to fetch language list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch language list", response);
   }
 
   /**
@@ -47,9 +46,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SalutationListResponse;
 
-    throw new Error(
-      `Failed to fetch salutations list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch salutations list", response);
   }
 
   /**
@@ -63,9 +60,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencyListResponse;
 
-    throw new Error(
-      `Failed to fetch currency list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch currency list", response);
   }
 
   /**
@@ -82,9 +77,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryStateListResponse;
 
-    throw new Error(
-      `Failed to fetch country state list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch country state list", response);
   }
 
   /**
@@ -98,9 +91,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryListResponse;
 
-    throw new Error(
-      `Failed to fetch country list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch country list", response);
   }
 
   /**
@@ -116,9 +107,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListResponse;
 
-    throw new Error(
-      `Failed to fetch shipping methods: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch shipping methods", response);
   }
 
   /**
@@ -134,9 +123,7 @@ class SystemClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListResponse;
 
-    throw new Error(
-      `Failed to fetch payment methods: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch payment methods", response);
   }
 }
 

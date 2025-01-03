@@ -2,6 +2,7 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { buildQuery } from "#utils/SwagQL";
+import ShopwareError from "#http/ShopwareError";
 import {
   CountryAggregationRequest,
   CountryAggregationResponse,
@@ -39,9 +40,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryListResponse;
 
-    throw new Error(
-      `Failed to fetch country list: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to fetch country list", response);
   }
 
   /**
@@ -60,7 +59,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryCreateResponse;
 
-    throw new Error(`Failed to create country: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create country", response);
   }
 
   /**
@@ -77,9 +76,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryListSearchResponse;
 
-    throw new Error(
-      `Failed to search for countries: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for countries", response);
   }
 
   /**
@@ -93,7 +90,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountrySingleResponse;
 
-    throw new Error(`Failed to fetch country: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch country", response);
   }
 
   /**
@@ -104,7 +101,7 @@ class CountryClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete country: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete country", response);
   }
 
   /**
@@ -124,7 +121,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryUpdateResponse;
 
-    throw new Error(`Failed to update country: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update country", response);
   }
 
   /**
@@ -141,9 +138,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountryAggregationResponse;
 
-    throw new Error(
-      `Failed to aggregate cms block: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to aggregate cms block", response);
   }
 
   /** States **/
@@ -159,7 +154,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListResponse;
 
-    throw new Error(`Failed to fetch state list: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch state list", response);
   }
 
   /**
@@ -178,7 +173,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateCreateResponse;
 
-    throw new Error(`Failed to create state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to create state", response);
   }
 
   /**
@@ -193,9 +188,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateListSearchResponse;
 
-    throw new Error(
-      `Failed to search for states: ${response.statusCode} ${response.statusMessage}`
-    );
+    throw new ShopwareError("Failed to search for states", response);
   }
 
   /**
@@ -209,7 +202,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateSingleResponse;
 
-    throw new Error(`Failed to fetch state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to fetch state", response);
   }
 
   /**
@@ -220,7 +213,7 @@ class CountryClient extends Client {
 
     if (response.statusCode === 204) return;
 
-    throw new Error(`Failed to delete state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to delete state", response);
   }
 
   /**
@@ -240,7 +233,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateUpdateResponse;
 
-    throw new Error(`Failed to update state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to update state", response);
   }
 
   /**
@@ -257,7 +250,7 @@ class CountryClient extends Client {
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as StateAggregationResponse;
 
-    throw new Error(`Failed to aggregate state: ${response.statusCode} ${response.statusMessage}`);
+    throw new ShopwareError("Failed to aggregate state", response);
   }
 }
 
