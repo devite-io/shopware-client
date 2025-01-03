@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.1.3...v1.2.0)
+
+### 🚀 Enhancements
+
+- Automatic encoding of Criteria objects for AdminAPI ([652182d](https://github.com/devite-io/shopware-client/commit/652182d))
+- Internationalisation via language id ([3a5c3a5](https://github.com/devite-io/shopware-client/commit/3a5c3a5))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.1.3
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.1.2...v1.1.3)
