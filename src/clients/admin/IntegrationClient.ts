@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   IntegrationAggregationRequest,
   IntegrationAggregationResponse,
@@ -17,13 +19,8 @@ class IntegrationClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getIntegrations(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<IntegrationListResponse> {
-    const response = await this.get(`/integration`, {
-      query: { limit, page, query },
+  public async getIntegrations(query?: Criteria): Promise<IntegrationListResponse> {
+    const response = await this.get(`/integration` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -78,8 +75,8 @@ class IntegrationClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getIntegration(id: string): Promise<IntegrationSingleResponse> {
-    const response = await this.get(`/integration/${id}`, {
+  public async getIntegration(id: string, query?: Criteria): Promise<IntegrationSingleResponse> {
+    const response = await this.get(`/integration/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

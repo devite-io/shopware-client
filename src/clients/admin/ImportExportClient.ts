@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   FileAggregationRequest,
   FileAggregationResponse,
@@ -39,9 +41,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFiles(limit?: number, page?: number, query?: string): Promise<FileListResponse> {
-    const response = await this.get(`/import-export-file`, {
-      query: { limit, page, query },
+  public async getFiles(query?: Criteria): Promise<FileListResponse> {
+    const response = await this.get(`/import-export-file` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -89,8 +90,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFile(id: string): Promise<FileSingleResponse> {
-    const response = await this.get(`/import-export-file/${id}`, {
+  public async getFile(id: string, query?: Criteria): Promise<FileSingleResponse> {
+    const response = await this.get(`/import-export-file/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -151,9 +152,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLogs(limit?: number, page?: number, query?: string): Promise<LogListResponse> {
-    const response = await this.get(`/import-export-log`, {
-      query: { limit, page, query },
+  public async getLogs(query?: Criteria): Promise<LogListResponse> {
+    const response = await this.get(`/import-export-log` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -199,8 +199,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLog(id: string): Promise<LogSingleResponse> {
-    const response = await this.get(`/import-export-log/${id}`, {
+  public async getLog(id: string, query?: Criteria): Promise<LogSingleResponse> {
+    const response = await this.get(`/import-export-log/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -261,13 +261,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getProfiles(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ProfileListResponse> {
-    const response = await this.get(`/import-export-profile`, {
-      query: { limit, page, query },
+  public async getProfiles(query?: Criteria): Promise<ProfileListResponse> {
+    const response = await this.get(`/import-export-profile` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -320,8 +315,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getProfile(id: string): Promise<ProfileSingleResponse> {
-    const response = await this.get(`/import-export-profile/${id}`, {
+  public async getProfile(id: string, query?: Criteria): Promise<ProfileSingleResponse> {
+    const response = await this.get(`/import-export-profile/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   ConfiguratorSettingAggregationRequest,
   ConfiguratorSettingAggregationResponse,
@@ -199,13 +201,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getProducts(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ProductListResponse> {
-    const response = await this.get(`/product`, {
-      query: { limit, page, query },
+  public async getProducts(query?: Criteria): Promise<ProductListResponse> {
+    const response = await this.get(`/product` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -258,8 +255,10 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getProduct(id: string): Promise<ProductSingleResponse> {
-    const response = await this.get(`/product/${id}`, { headers: { Accept: "application/json" } });
+  public async getProduct(id: string, query?: Criteria): Promise<ProductSingleResponse> {
+    const response = await this.get(`/product/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ProductSingleResponse;
@@ -322,13 +321,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getConfiguratorSettings(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ConfiguratorSettingListResponse> {
-    const response = await this.get(`/product-configurator-setting`, {
-      query: { limit, page, query },
+  public async getConfiguratorSettings(query?: Criteria): Promise<ConfiguratorSettingListResponse> {
+    const response = await this.get(`/product-configurator-setting` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -383,8 +377,11 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getConfiguratorSetting(id: string): Promise<ConfiguratorSettingSingleResponse> {
-    const response = await this.get(`/product-configurator-setting/${id}`, {
+  public async getConfiguratorSetting(
+    id: string,
+    query?: Criteria
+  ): Promise<ConfiguratorSettingSingleResponse> {
+    const response = await this.get(`/product-configurator-setting/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -455,13 +452,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCrossSellings(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CrossSellingListResponse> {
-    const response = await this.get(`/product-cross-selling`, {
-      query: { limit, page, query },
+  public async getCrossSellings(query?: Criteria): Promise<CrossSellingListResponse> {
+    const response = await this.get(`/product-cross-selling` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -516,8 +508,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCrossSelling(id: string): Promise<CrossSellingSingleResponse> {
-    const response = await this.get(`/product-cross-selling/${id}`, {
+  public async getCrossSelling(id: string, query?: Criteria): Promise<CrossSellingSingleResponse> {
+    const response = await this.get(`/product-cross-selling/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -589,12 +581,9 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCrossSellingAssignedProducts(
-    limit?: number,
-    page?: number,
-    query?: string
+    query?: Criteria
   ): Promise<CrossSellingAssignedProductListResponse> {
-    const response = await this.get(`/product-cross-selling-assigned-product`, {
-      query: { limit, page, query },
+    const response = await this.get(`/product-cross-selling-assigned-product` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -650,11 +639,15 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCrossSellingAssignedProduct(
-    id: string
+    id: string,
+    query?: Criteria
   ): Promise<CrossSellingAssignedProductSingleResponse> {
-    const response = await this.get(`/product-cross-selling-assigned-product/${id}`, {
-      headers: { Accept: "application/json" }
-    });
+    const response = await this.get(
+      `/product-cross-selling-assigned-product/${id}` + buildQuery(query),
+      {
+        headers: { Accept: "application/json" }
+      }
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CrossSellingAssignedProductSingleResponse;
@@ -723,13 +716,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDownloads(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DownloadListResponse> {
-    const response = await this.get(`/product-download`, {
-      query: { limit, page, query },
+  public async getDownloads(query?: Criteria): Promise<DownloadListResponse> {
+    const response = await this.get(`/product-download` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -782,8 +770,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDownload(id: string): Promise<DownloadSingleResponse> {
-    const response = await this.get(`/product-download/${id}`, {
+  public async getDownload(id: string, query?: Criteria): Promise<DownloadSingleResponse> {
+    const response = await this.get(`/product-download/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -848,13 +836,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getExports(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ExportListResponse> {
-    const response = await this.get(`/product-export`, {
-      query: { limit, page, query },
+  public async getExports(query?: Criteria): Promise<ExportListResponse> {
+    const response = await this.get(`/product-export` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -905,8 +888,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getExport(id: string): Promise<ExportSingleResponse> {
-    const response = await this.get(`/product-export/${id}`, {
+  public async getExport(id: string, query?: Criteria): Promise<ExportSingleResponse> {
+    const response = await this.get(`/product-export/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -969,13 +952,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFeatureSets(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<FeatureSetListResponse> {
-    const response = await this.get(`/product-feature-set`, {
-      query: { limit, page, query },
+  public async getFeatureSets(query?: Criteria): Promise<FeatureSetListResponse> {
+    const response = await this.get(`/product-feature-set` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1030,8 +1008,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFeatureSet(id: string): Promise<FeatureSetSingleResponse> {
-    const response = await this.get(`/product-feature-set/${id}`, {
+  public async getFeatureSet(id: string, query?: Criteria): Promise<FeatureSetSingleResponse> {
+    const response = await this.get(`/product-feature-set/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1102,13 +1080,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getKeywordDictionaries(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<KeywordDictionaryListResponse> {
-    const response = await this.get(`/product-keyword-dictionary`, {
-      query: { limit, page, query },
+  public async getKeywordDictionaries(query?: Criteria): Promise<KeywordDictionaryListResponse> {
+    const response = await this.get(`/product-keyword-dictionary` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1163,8 +1136,11 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getKeywordDictionary(id: string): Promise<KeywordDictionarySingleResponse> {
-    const response = await this.get(`/product-keyword-dictionary/${id}`, {
+  public async getKeywordDictionary(
+    id: string,
+    query?: Criteria
+  ): Promise<KeywordDictionarySingleResponse> {
+    const response = await this.get(`/product-keyword-dictionary/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1235,13 +1211,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getManufacturers(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ManufacturerListResponse> {
-    const response = await this.get(`/product-manufacturer`, {
-      query: { limit, page, query },
+  public async getManufacturers(query?: Criteria): Promise<ManufacturerListResponse> {
+    const response = await this.get(`/product-manufacturer` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1296,8 +1267,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getManufacturer(id: string): Promise<ManufacturerSingleResponse> {
-    const response = await this.get(`/product-manufacturer/${id}`, {
+  public async getManufacturer(id: string, query?: Criteria): Promise<ManufacturerSingleResponse> {
+    const response = await this.get(`/product-manufacturer/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1368,13 +1339,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getMediaList(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<MediaListResponse> {
-    const response = await this.get(`/product-media`, {
-      query: { limit, page, query },
+  public async getMediaList(query?: Criteria): Promise<MediaListResponse> {
+    const response = await this.get(`/product-media` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1421,8 +1387,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getMedia(id: string): Promise<MediaSingleResponse> {
-    const response = await this.get(`/product-media/${id}`, {
+  public async getMedia(id: string, query?: Criteria): Promise<MediaSingleResponse> {
+    const response = await this.get(`/product-media/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1485,13 +1451,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPrices(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<PriceListResponse> {
-    const response = await this.get(`/product-price`, {
-      query: { limit, page, query },
+  public async getPrices(query?: Criteria): Promise<PriceListResponse> {
+    const response = await this.get(`/product-price` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1540,8 +1501,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPrice(id: string): Promise<PriceSingleResponse> {
-    const response = await this.get(`/product-price/${id}`, {
+  public async getPrice(id: string, query?: Criteria): Promise<PriceSingleResponse> {
+    const response = await this.get(`/product-price/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1604,13 +1565,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getReviews(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ReviewListResponse> {
-    const response = await this.get(`/product-review`, {
-      query: { limit, page, query },
+  public async getReviews(query?: Criteria): Promise<ReviewListResponse> {
+    const response = await this.get(`/product-review` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1661,8 +1617,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getReview(id: string): Promise<ReviewSingleResponse> {
-    const response = await this.get(`/product-review/${id}`, {
+  public async getReview(id: string, query?: Criteria): Promise<ReviewSingleResponse> {
+    const response = await this.get(`/product-review/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1725,13 +1681,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSearchConfigs(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SearchConfigListResponse> {
-    const response = await this.get(`/product-search-config`, {
-      query: { limit, page, query },
+  public async getSearchConfigs(query?: Criteria): Promise<SearchConfigListResponse> {
+    const response = await this.get(`/product-search-config` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1786,8 +1737,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSearchConfig(id: string): Promise<SearchConfigSingleResponse> {
-    const response = await this.get(`/product-search-config/${id}`, {
+  public async getSearchConfig(id: string, query?: Criteria): Promise<SearchConfigSingleResponse> {
+    const response = await this.get(`/product-search-config/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1858,13 +1809,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSearchConfigFields(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SearchConfigFieldListResponse> {
-    const response = await this.get(`/product-search-config-field`, {
-      query: { limit, page, query },
+  public async getSearchConfigFields(query?: Criteria): Promise<SearchConfigFieldListResponse> {
+    const response = await this.get(`/product-search-config-field` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1919,8 +1865,11 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSearchConfigField(id: string): Promise<SearchConfigFieldSingleResponse> {
-    const response = await this.get(`/product-search-config-field/${id}`, {
+  public async getSearchConfigField(
+    id: string,
+    query?: Criteria
+  ): Promise<SearchConfigFieldSingleResponse> {
+    const response = await this.get(`/product-search-config-field/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1991,13 +1940,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSearchKeywords(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SearchKeywordListResponse> {
-    const response = await this.get(`/product-search-keyword`, {
-      query: { limit, page, query },
+  public async getSearchKeywords(query?: Criteria): Promise<SearchKeywordListResponse> {
+    const response = await this.get(`/product-search-keyword` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2052,8 +1996,11 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSearchKeyword(id: string): Promise<SearchKeywordSingleResponse> {
-    const response = await this.get(`/product-search-keyword/${id}`, {
+  public async getSearchKeyword(
+    id: string,
+    query?: Criteria
+  ): Promise<SearchKeywordSingleResponse> {
+    const response = await this.get(`/product-search-keyword/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2124,13 +2071,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSortings(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SortingListResponse> {
-    const response = await this.get(`/product-sorting`, {
-      query: { limit, page, query },
+  public async getSortings(query?: Criteria): Promise<SortingListResponse> {
+    const response = await this.get(`/product-sorting` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2183,8 +2125,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSorting(id: string): Promise<SortingSingleResponse> {
-    const response = await this.get(`/product-sorting/${id}`, {
+  public async getSorting(id: string, query?: Criteria): Promise<SortingSingleResponse> {
+    const response = await this.get(`/product-sorting/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2249,13 +2191,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStreams(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<StreamListResponse> {
-    const response = await this.get(`/product-stream`, {
-      query: { limit, page, query },
+  public async getStreams(query?: Criteria): Promise<StreamListResponse> {
+    const response = await this.get(`/product-stream` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2306,8 +2243,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStream(id: string): Promise<StreamSingleResponse> {
-    const response = await this.get(`/product-stream/${id}`, {
+  public async getStream(id: string, query?: Criteria): Promise<StreamSingleResponse> {
+    const response = await this.get(`/product-stream/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2370,13 +2307,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStreamFilters(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<StreamFilterListResponse> {
-    const response = await this.get(`/product-stream-filter`, {
-      query: { limit, page, query },
+  public async getStreamFilters(query?: Criteria): Promise<StreamFilterListResponse> {
+    const response = await this.get(`/product-stream-filter` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2431,8 +2363,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStreamFilter(id: string): Promise<StreamFilterSingleResponse> {
-    const response = await this.get(`/product-stream-filter/${id}`, {
+  public async getStreamFilter(id: string, query?: Criteria): Promise<StreamFilterSingleResponse> {
+    const response = await this.get(`/product-stream-filter/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2503,13 +2435,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getVisibilities(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<VisibilityListResponse> {
-    const response = await this.get(`/product-visibility`, {
-      query: { limit, page, query },
+  public async getVisibilities(query?: Criteria): Promise<VisibilityListResponse> {
+    const response = await this.get(`/product-visibility` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -2564,8 +2491,8 @@ class ProductClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getVisibility(id: string): Promise<VisibilitySingleResponse> {
-    const response = await this.get(`/product-visibility/${id}`, {
+  public async getVisibility(id: string, query?: Criteria): Promise<VisibilitySingleResponse> {
+    const response = await this.get(`/product-visibility/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

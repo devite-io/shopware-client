@@ -1,6 +1,8 @@
 import JsonPayload from "#payloads/JsonPayload";
 import HtmlPayload from "#payloads/HtmlPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   ContentValidationRequest,
   HeaderFooterAggregationRequest,
@@ -89,13 +91,8 @@ class MailClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getHeaderFooters(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<HeaderFooterListResponse> {
-    const response = await this.get(`/header-footer`, {
-      query: { limit, page, query },
+  public async getHeaderFooters(query?: Criteria): Promise<HeaderFooterListResponse> {
+    const response = await this.get(`/header-footer` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -150,8 +147,8 @@ class MailClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getHeaderFooter(id: string): Promise<HeaderFooterSingleResponse> {
-    const response = await this.get(`/header-footer/${id}`, {
+  public async getHeaderFooter(id: string, query?: Criteria): Promise<HeaderFooterSingleResponse> {
+    const response = await this.get(`/header-footer/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -222,13 +219,8 @@ class MailClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTemplates(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<TemplateListResponse> {
-    const response = await this.get(`/template`, {
-      query: { limit, page, query },
+  public async getTemplates(query?: Criteria): Promise<TemplateListResponse> {
+    const response = await this.get(`/template` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -281,8 +273,10 @@ class MailClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTemplate(id: string): Promise<TemplateSingleResponse> {
-    const response = await this.get(`/template/${id}`, { headers: { Accept: "application/json" } });
+  public async getTemplate(id: string, query?: Criteria): Promise<TemplateSingleResponse> {
+    const response = await this.get(`/template/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TemplateSingleResponse;
@@ -345,13 +339,8 @@ class MailClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTemplateTypes(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<TemplateTypeListResponse> {
-    const response = await this.get(`/template-type`, {
-      query: { limit, page, query },
+  public async getTemplateTypes(query?: Criteria): Promise<TemplateTypeListResponse> {
+    const response = await this.get(`/template-type` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -406,8 +395,8 @@ class MailClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTemplateType(id: string): Promise<TemplateTypeSingleResponse> {
-    const response = await this.get(`/template-type/${id}`, {
+  public async getTemplateType(id: string, query?: Criteria): Promise<TemplateTypeSingleResponse> {
+    const response = await this.get(`/template-type/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

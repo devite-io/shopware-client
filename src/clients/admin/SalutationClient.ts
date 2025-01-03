@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   SalutationAggregationRequest,
   SalutationAggregationResponse,
@@ -17,13 +19,8 @@ class SalutationClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSalutations(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SalutationListResponse> {
-    const response = await this.get(`/salutation`, {
-      query: { limit, page, query },
+  public async getSalutations(query?: Criteria): Promise<SalutationListResponse> {
+    const response = await this.get(`/salutation` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -78,8 +75,8 @@ class SalutationClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSalutation(id: string): Promise<SalutationSingleResponse> {
-    const response = await this.get(`/salutation/${id}`, {
+  public async getSalutation(id: string, query?: Criteria): Promise<SalutationSingleResponse> {
+    const response = await this.get(`/salutation/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

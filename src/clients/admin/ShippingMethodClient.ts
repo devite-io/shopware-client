@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   PriceAggregationRequest,
   PriceAggregationResponse,
@@ -29,13 +31,8 @@ class ShippingMethodClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getShippingMethods(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ShippingMethodListResponse> {
-    const response = await this.get(`/shipping-method`, {
-      query: { limit, page, query },
+  public async getShippingMethods(query?: Criteria): Promise<ShippingMethodListResponse> {
+    const response = await this.get(`/shipping-method` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -90,8 +87,11 @@ class ShippingMethodClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getShippingMethod(id: string): Promise<ShippingMethodSingleResponse> {
-    const response = await this.get(`/shipping-method/${id}`, {
+  public async getShippingMethod(
+    id: string,
+    query?: Criteria
+  ): Promise<ShippingMethodSingleResponse> {
+    const response = await this.get(`/shipping-method/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -162,13 +162,8 @@ class ShippingMethodClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPrices(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<PriceListResponse> {
-    const response = await this.get(`/shipping-method-price`, {
-      query: { limit, page, query },
+  public async getPrices(query?: Criteria): Promise<PriceListResponse> {
+    const response = await this.get(`/shipping-method-price` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -221,8 +216,8 @@ class ShippingMethodClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPrice(id: string): Promise<PriceSingleResponse> {
-    const response = await this.get(`/shipping-method-price/${id}`, {
+  public async getPrice(id: string, query?: Criteria): Promise<PriceSingleResponse> {
+    const response = await this.get(`/shipping-method-price/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

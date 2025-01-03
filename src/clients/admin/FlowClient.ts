@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   FlowAggregationRequest,
   FlowAggregationResponse,
@@ -39,9 +41,8 @@ class FlowClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlows(limit?: number, page?: number, query?: string): Promise<FlowListResponse> {
-    const response = await this.get(`/flow`, {
-      query: { limit, page, query },
+  public async getFlows(query?: Criteria): Promise<FlowListResponse> {
+    const response = await this.get(`/flow` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -87,8 +88,10 @@ class FlowClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlow(id: string): Promise<FlowSingleResponse> {
-    const response = await this.get(`/flow/${id}`, { headers: { Accept: "application/json" } });
+  public async getFlow(id: string, query?: Criteria): Promise<FlowSingleResponse> {
+    const response = await this.get(`/flow/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as FlowSingleResponse;
@@ -147,13 +150,8 @@ class FlowClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlowSequences(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<FlowSequenceListResponse> {
-    const response = await this.get(`/flow-sequence`, {
-      query: { limit, page, query },
+  public async getFlowSequences(query?: Criteria): Promise<FlowSequenceListResponse> {
+    const response = await this.get(`/flow-sequence` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -208,8 +206,8 @@ class FlowClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlowSequence(id: string): Promise<FlowSequenceSingleResponse> {
-    const response = await this.get(`/flow-sequence/${id}`, {
+  public async getFlowSequence(id: string, query?: Criteria): Promise<FlowSequenceSingleResponse> {
+    const response = await this.get(`/flow-sequence/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -280,13 +278,8 @@ class FlowClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlowTemplates(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<FlowTemplateListResponse> {
-    const response = await this.get(`/flow-template`, {
-      query: { limit, page, query },
+  public async getFlowTemplates(query?: Criteria): Promise<FlowTemplateListResponse> {
+    const response = await this.get(`/flow-template` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -341,8 +334,8 @@ class FlowClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlowTemplate(id: string): Promise<FlowTemplateSingleResponse> {
-    const response = await this.get(`/flow-template/${id}`, {
+  public async getFlowTemplate(id: string, query?: Criteria): Promise<FlowTemplateSingleResponse> {
+    const response = await this.get(`/flow-template/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

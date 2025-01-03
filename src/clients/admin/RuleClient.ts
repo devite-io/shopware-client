@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   ConditionAggregationRequest,
   ConditionAggregationResponse,
@@ -29,9 +31,8 @@ class RuleClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRules(limit?: number, page?: number, query?: string): Promise<RuleListResponse> {
-    const response = await this.get(`/rule`, {
-      query: { limit, page, query },
+  public async getRules(query?: Criteria): Promise<RuleListResponse> {
+    const response = await this.get(`/rule` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -77,8 +78,10 @@ class RuleClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRule(id: string): Promise<RuleSingleResponse> {
-    const response = await this.get(`/rule/${id}`, { headers: { Accept: "application/json" } });
+  public async getRule(id: string, query?: Criteria): Promise<RuleSingleResponse> {
+    const response = await this.get(`/rule/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleSingleResponse;
@@ -137,13 +140,8 @@ class RuleClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getConditions(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ConditionListResponse> {
-    const response = await this.get(`/rule-condition`, {
-      query: { limit, page, query },
+  public async getConditions(query?: Criteria): Promise<ConditionListResponse> {
+    const response = await this.get(`/rule-condition` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -196,8 +194,8 @@ class RuleClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCondition(id: string): Promise<ConditionSingleResponse> {
-    const response = await this.get(`/rule-condition/${id}`, {
+  public async getCondition(id: string, query?: Criteria): Promise<ConditionSingleResponse> {
+    const response = await this.get(`/rule-condition/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

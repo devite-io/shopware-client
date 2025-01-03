@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   BaseConfigAggregationRequest,
   BaseConfigAggregationResponse,
@@ -120,13 +122,8 @@ class DocumentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDocuments(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DocumentListResponse> {
-    const response = await this.get(`/document`, {
-      query: { limit, page, query },
+  public async getDocuments(query?: Criteria): Promise<DocumentListResponse> {
+    const response = await this.get(`/document` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -179,8 +176,10 @@ class DocumentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDocument(id: string): Promise<DocumentSingleResponse> {
-    const response = await this.get(`/document/${id}`, { headers: { Accept: "application/json" } });
+  public async getDocument(id: string, query?: Criteria): Promise<DocumentSingleResponse> {
+    const response = await this.get(`/document/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as DocumentSingleResponse;
@@ -243,13 +242,8 @@ class DocumentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getBaseConfigs(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<BaseConfigListResponse> {
-    const response = await this.get(`/document-base-config`, {
-      query: { limit, page, query },
+  public async getBaseConfigs(query?: Criteria): Promise<BaseConfigListResponse> {
+    const response = await this.get(`/document-base-config` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -304,8 +298,8 @@ class DocumentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getBaseConfig(id: string): Promise<BaseConfigSingleResponse> {
-    const response = await this.get(`/document-base-config/${id}`, {
+  public async getBaseConfig(id: string, query?: Criteria): Promise<BaseConfigSingleResponse> {
+    const response = await this.get(`/document-base-config/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -377,12 +371,9 @@ class DocumentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getBaseConfigSalesChannels(
-    limit?: number,
-    page?: number,
-    query?: string
+    query?: Criteria
   ): Promise<BaseConfigSalesChannelListResponse> {
-    const response = await this.get(`/document-base-config-sales-channel`, {
-      query: { limit, page, query },
+    const response = await this.get(`/document-base-config-sales-channel` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -438,11 +429,15 @@ class DocumentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getBaseConfigSalesChannel(
-    id: string
+    id: string,
+    query?: Criteria
   ): Promise<BaseConfigSalesChannelSingleResponse> {
-    const response = await this.get(`/document-base-config-sales-channel/${id}`, {
-      headers: { Accept: "application/json" }
-    });
+    const response = await this.get(
+      `/document-base-config-sales-channel/${id}` + buildQuery(query),
+      {
+        headers: { Accept: "application/json" }
+      }
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as BaseConfigSalesChannelSingleResponse;
@@ -511,13 +506,8 @@ class DocumentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDocumentTypes(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DocumentTypeListResponse> {
-    const response = await this.get(`/document-type`, {
-      query: { limit, page, query },
+  public async getDocumentTypes(query?: Criteria): Promise<DocumentTypeListResponse> {
+    const response = await this.get(`/document-type` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -572,8 +562,8 @@ class DocumentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDocumentType(id: string): Promise<DocumentTypeSingleResponse> {
-    const response = await this.get(`/document-type/${id}`, {
+  public async getDocumentType(id: string, query?: Criteria): Promise<DocumentTypeSingleResponse> {
+    const response = await this.get(`/document-type/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

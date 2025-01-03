@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   OptionAggregationRequest,
   OptionAggregationResponse,
@@ -29,13 +31,8 @@ class PropertyGroupClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPropertyGroups(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<PropertyGroupListResponse> {
-    const response = await this.get(`/property-group`, {
-      query: { limit, page, query },
+  public async getPropertyGroups(query?: Criteria): Promise<PropertyGroupListResponse> {
+    const response = await this.get(`/property-group` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -90,8 +87,11 @@ class PropertyGroupClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPropertyGroup(id: string): Promise<PropertyGroupSingleResponse> {
-    const response = await this.get(`/property-group/${id}`, {
+  public async getPropertyGroup(
+    id: string,
+    query?: Criteria
+  ): Promise<PropertyGroupSingleResponse> {
+    const response = await this.get(`/property-group/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -162,13 +162,8 @@ class PropertyGroupClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getOptions(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<OptionListResponse> {
-    const response = await this.get(`/property-group-option`, {
-      query: { limit, page, query },
+  public async getOptions(query?: Criteria): Promise<OptionListResponse> {
+    const response = await this.get(`/property-group-option` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -219,8 +214,8 @@ class PropertyGroupClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getOption(id: string): Promise<OptionSingleResponse> {
-    const response = await this.get(`/property-group-option/${id}`, {
+  public async getOption(id: string, query?: Criteria): Promise<OptionSingleResponse> {
+    const response = await this.get(`/property-group-option/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

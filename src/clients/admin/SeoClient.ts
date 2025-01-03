@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   UrlAggregationRequest,
   UrlAggregationResponse,
@@ -29,9 +31,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getUrls(limit?: number, page?: number, query?: string): Promise<UrlListResponse> {
-    const response = await this.get(`/seo-url`, {
-      query: { limit, page, query },
+  public async getUrls(query?: Criteria): Promise<UrlListResponse> {
+    const response = await this.get(`/seo-url` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -77,8 +78,10 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getUrl(id: string): Promise<UrlSingleResponse> {
-    const response = await this.get(`/seo-url/${id}`, { headers: { Accept: "application/json" } });
+  public async getUrl(id: string, query?: Criteria): Promise<UrlSingleResponse> {
+    const response = await this.get(`/seo-url/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UrlSingleResponse;
@@ -137,13 +140,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getUrlTemplates(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<UrlTemplateListResponse> {
-    const response = await this.get(`/seo-url-template`, {
-      query: { limit, page, query },
+  public async getUrlTemplates(query?: Criteria): Promise<UrlTemplateListResponse> {
+    const response = await this.get(`/seo-url-template` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -198,8 +196,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getUrlTemplate(id: string): Promise<UrlTemplateSingleResponse> {
-    const response = await this.get(`/seo-url-template/${id}`, {
+  public async getUrlTemplate(id: string, query?: Criteria): Promise<UrlTemplateSingleResponse> {
+    const response = await this.get(`/seo-url-template/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

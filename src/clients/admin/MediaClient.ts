@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   DefaultFolderAggregationRequest,
   DefaultFolderAggregationResponse,
@@ -116,13 +118,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getMediaList(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<MediaListResponse> {
-    const response = await this.get(`/media`, {
-      query: { limit, page, query },
+  public async getMediaList(query?: Criteria): Promise<MediaListResponse> {
+    const response = await this.get(`/media` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -169,8 +166,10 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getMedia(id: string): Promise<MediaSingleResponse> {
-    const response = await this.get(`/media/${id}`, { headers: { Accept: "application/json" } });
+  public async getMedia(id: string, query?: Criteria): Promise<MediaSingleResponse> {
+    const response = await this.get(`/media/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as MediaSingleResponse;
@@ -231,13 +230,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDefaultFolders(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DefaultFolderListResponse> {
-    const response = await this.get(`/media-default-folder`, {
-      query: { limit, page, query },
+  public async getDefaultFolders(query?: Criteria): Promise<DefaultFolderListResponse> {
+    const response = await this.get(`/media-default-folder` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -292,8 +286,11 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDefaultFolder(id: string): Promise<DefaultFolderSingleResponse> {
-    const response = await this.get(`/media-default-folder/${id}`, {
+  public async getDefaultFolder(
+    id: string,
+    query?: Criteria
+  ): Promise<DefaultFolderSingleResponse> {
+    const response = await this.get(`/media-default-folder/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -364,13 +361,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFolders(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<FolderListResponse> {
-    const response = await this.get(`/media-folder`, {
-      query: { limit, page, query },
+  public async getFolders(query?: Criteria): Promise<FolderListResponse> {
+    const response = await this.get(`/media-folder` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -421,8 +413,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFolder(id: string): Promise<FolderSingleResponse> {
-    const response = await this.get(`/media-folder/${id}`, {
+  public async getFolder(id: string, query?: Criteria): Promise<FolderSingleResponse> {
+    const response = await this.get(`/media-folder/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -485,13 +477,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFolderConfigs(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<FolderConfigListResponse> {
-    const response = await this.get(`/media-folder-configuration`, {
-      query: { limit, page, query },
+  public async getFolderConfigs(query?: Criteria): Promise<FolderConfigListResponse> {
+    const response = await this.get(`/media-folder-configuration` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -546,8 +533,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFolderConfig(id: string): Promise<FolderConfigSingleResponse> {
-    const response = await this.get(`/media-folder-configuration/${id}`, {
+  public async getFolderConfig(id: string, query?: Criteria): Promise<FolderConfigSingleResponse> {
+    const response = await this.get(`/media-folder-configuration/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -618,13 +605,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getThumbnails(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ThumbnailListResponse> {
-    const response = await this.get(`/media-thumbnail`, {
-      query: { limit, page, query },
+  public async getThumbnails(query?: Criteria): Promise<ThumbnailListResponse> {
+    const response = await this.get(`/media-thumbnail` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -677,8 +659,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getThumbnail(id: string): Promise<ThumbnailSingleResponse> {
-    const response = await this.get(`/media-thumbnail/${id}`, {
+  public async getThumbnail(id: string, query?: Criteria): Promise<ThumbnailSingleResponse> {
+    const response = await this.get(`/media-thumbnail/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -743,13 +725,8 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getThumbnailSizes(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ThumbnailSizeListResponse> {
-    const response = await this.get(`/media-thumbnail-size`, {
-      query: { limit, page, query },
+  public async getThumbnailSizes(query?: Criteria): Promise<ThumbnailSizeListResponse> {
+    const response = await this.get(`/media-thumbnail-size` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -804,8 +781,11 @@ class MediaClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getThumbnailSize(id: string): Promise<ThumbnailSizeSingleResponse> {
-    const response = await this.get(`/media-thumbnail-size/${id}`, {
+  public async getThumbnailSize(
+    id: string,
+    query?: Criteria
+  ): Promise<ThumbnailSizeSingleResponse> {
+    const response = await this.get(`/media-thumbnail-size/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

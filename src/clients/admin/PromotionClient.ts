@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   DiscountAggregationRequest,
   DiscountAggregationResponse,
@@ -69,13 +71,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPromotions(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<PromotionListResponse> {
-    const response = await this.get(`/promotion`, {
-      query: { limit, page, query },
+  public async getPromotions(query?: Criteria): Promise<PromotionListResponse> {
+    const response = await this.get(`/promotion` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -128,8 +125,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPromotion(id: string): Promise<PromotionSingleResponse> {
-    const response = await this.get(`/promotion/${id}`, {
+  public async getPromotion(id: string, query?: Criteria): Promise<PromotionSingleResponse> {
+    const response = await this.get(`/promotion/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -194,13 +191,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDiscounts(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DiscountListResponse> {
-    const response = await this.get(`/promotion-discount`, {
-      query: { limit, page, query },
+  public async getDiscounts(query?: Criteria): Promise<DiscountListResponse> {
+    const response = await this.get(`/promotion-discount` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -253,8 +245,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDiscount(id: string): Promise<DiscountSingleResponse> {
-    const response = await this.get(`/promotion-discount/${id}`, {
+  public async getDiscount(id: string, query?: Criteria): Promise<DiscountSingleResponse> {
+    const response = await this.get(`/promotion-discount/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -319,13 +311,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDiscountPrices(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DiscountPriceListResponse> {
-    const response = await this.get(`/promotion-discount-price`, {
-      query: { limit, page, query },
+  public async getDiscountPrices(query?: Criteria): Promise<DiscountPriceListResponse> {
+    const response = await this.get(`/promotion-discount-price` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -380,8 +367,11 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDiscountPrice(id: string): Promise<DiscountPriceSingleResponse> {
-    const response = await this.get(`/promotion-discount-price/${id}`, {
+  public async getDiscountPrice(
+    id: string,
+    query?: Criteria
+  ): Promise<DiscountPriceSingleResponse> {
+    const response = await this.get(`/promotion-discount-price/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -452,13 +442,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getIndividualCodes(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<IndividualCodeListResponse> {
-    const response = await this.get(`/promotion-individual-code`, {
-      query: { limit, page, query },
+  public async getIndividualCodes(query?: Criteria): Promise<IndividualCodeListResponse> {
+    const response = await this.get(`/promotion-individual-code` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -513,8 +498,11 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getIndividualCode(id: string): Promise<IndividualCodeSingleResponse> {
-    const response = await this.get(`/promotion-individual-code/${id}`, {
+  public async getIndividualCode(
+    id: string,
+    query?: Criteria
+  ): Promise<IndividualCodeSingleResponse> {
+    const response = await this.get(`/promotion-individual-code/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -585,13 +573,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSalesChannels(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SalesChannelListResponse> {
-    const response = await this.get(`/promotion-sales-channel`, {
-      query: { limit, page, query },
+  public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
+    const response = await this.get(`/promotion-sales-channel` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -646,8 +629,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSalesChannel(id: string): Promise<SalesChannelSingleResponse> {
-    const response = await this.get(`/promotion-sales-channel/${id}`, {
+  public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
+    const response = await this.get(`/promotion-sales-channel/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -718,13 +701,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSetGroups(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SetGroupListResponse> {
-    const response = await this.get(`/promotion-setgroup`, {
-      query: { limit, page, query },
+  public async getSetGroups(query?: Criteria): Promise<SetGroupListResponse> {
+    const response = await this.get(`/promotion-setgroup` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -777,8 +755,8 @@ class PromotionClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSetGroup(id: string): Promise<SetGroupSingleResponse> {
-    const response = await this.get(`/promotion-setgroup/${id}`, {
+  public async getSetGroup(id: string, query?: Criteria): Promise<SetGroupSingleResponse> {
+    const response = await this.get(`/promotion-setgroup/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

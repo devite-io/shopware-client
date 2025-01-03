@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   SetAggregationRequest,
   SetAggregationResponse,
@@ -29,13 +31,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSnippets(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SnippetListResponse> {
-    const response = await this.get(`/snippet`, {
-      query: { limit, page, query },
+  public async getSnippets(query?: Criteria): Promise<SnippetListResponse> {
+    const response = await this.get(`/snippet` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -88,8 +85,10 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSnippet(id: string): Promise<SnippetSingleResponse> {
-    const response = await this.get(`/snippet/${id}`, { headers: { Accept: "application/json" } });
+  public async getSnippet(id: string, query?: Criteria): Promise<SnippetSingleResponse> {
+    const response = await this.get(`/snippet/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as SnippetSingleResponse;
@@ -152,9 +151,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSets(limit?: number, page?: number, query?: string): Promise<SetListResponse> {
-    const response = await this.get(`/snippet-set`, {
-      query: { limit, page, query },
+  public async getSets(query?: Criteria): Promise<SetListResponse> {
+    const response = await this.get(`/snippet-set` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -206,8 +204,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSet(id: string): Promise<SetSingleResponse> {
-    const response = await this.get(`/snippet-set/${id}`, {
+  public async getSet(id: string, query?: Criteria): Promise<SetSingleResponse> {
+    const response = await this.get(`/snippet-set/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

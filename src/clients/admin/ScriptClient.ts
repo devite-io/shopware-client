@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   ScriptAggregationRequest,
   ScriptAggregationResponse,
@@ -17,13 +19,8 @@ class ScriptClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getScripts(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ScriptListResponse> {
-    const response = await this.get(`/script`, {
-      query: { limit, page, query },
+  public async getScripts(query?: Criteria): Promise<ScriptListResponse> {
+    const response = await this.get(`/script` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -74,8 +71,10 @@ class ScriptClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getScript(id: string): Promise<ScriptSingleResponse> {
-    const response = await this.get(`/script/${id}`, { headers: { Accept: "application/json" } });
+  public async getScript(id: string, query?: Criteria): Promise<ScriptSingleResponse> {
+    const response = await this.get(`/script/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ScriptSingleResponse;

@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   RecipientAggregationRequest,
   RecipientAggregationResponse,
@@ -17,13 +19,8 @@ class NewsletterClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRecipients(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<RecipientListResponse> {
-    const response = await this.get(`/newsletter-recipient`, {
-      query: { limit, page, query },
+  public async getRecipients(query?: Criteria): Promise<RecipientListResponse> {
+    const response = await this.get(`/newsletter-recipient` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -76,8 +73,8 @@ class NewsletterClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRecipient(id: string): Promise<RecipientSingleResponse> {
-    const response = await this.get(`/newsletter-recipient/${id}`, {
+  public async getRecipient(id: string, query?: Criteria): Promise<RecipientSingleResponse> {
+    const response = await this.get(`/newsletter-recipient/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

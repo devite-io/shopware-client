@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   DeliveryTimeAggregationRequest,
   DeliveryTimeAggregationResponse,
@@ -17,13 +19,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDeliveryTimes(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DeliveryTimeListResponse> {
-    const response = await this.get(`/delivery-time`, {
-      query: { limit, page, query },
+  public async getDeliveryTimes(query?: Criteria): Promise<DeliveryTimeListResponse> {
+    const response = await this.get(`/delivery-time` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -78,8 +75,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDeliveryTime(id: string): Promise<DeliveryTimeSingleResponse> {
-    const response = await this.get(`/delivery-time/${id}`, {
+  public async getDeliveryTime(id: string, query?: Criteria): Promise<DeliveryTimeSingleResponse> {
+    const response = await this.get(`/delivery-time/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

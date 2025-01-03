@@ -1,6 +1,8 @@
 import JsonPayload from "#payloads/JsonPayload";
 import BinaryPayload from "#payloads/BinaryPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   AddressAggregationRequest,
   AddressAggregationResponse,
@@ -272,13 +274,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getOrders(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<OrderListResponse> {
-    const response = await this.get(`/order`, {
-      query: { limit, page, query },
+  public async getOrders(query?: Criteria): Promise<OrderListResponse> {
+    const response = await this.get(`/order` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -327,8 +324,10 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getOrder(id: string): Promise<OrderSingleResponse> {
-    const response = await this.get(`/order/${id}`, { headers: { Accept: "application/json" } });
+  public async getOrder(id: string, query?: Criteria): Promise<OrderSingleResponse> {
+    const response = await this.get(`/order/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as OrderSingleResponse;
@@ -389,13 +388,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAddresses(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<AddressListResponse> {
-    const response = await this.get(`/order-address`, {
-      query: { limit, page, query },
+  public async getAddresses(query?: Criteria): Promise<AddressListResponse> {
+    const response = await this.get(`/order-address` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -448,8 +442,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAddress(id: string): Promise<AddressSingleResponse> {
-    const response = await this.get(`/order-address/${id}`, {
+  public async getAddress(id: string, query?: Criteria): Promise<AddressSingleResponse> {
+    const response = await this.get(`/order-address/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -514,13 +508,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomers(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CustomerListResponse> {
-    const response = await this.get(`/order-customer`, {
-      query: { limit, page, query },
+  public async getCustomers(query?: Criteria): Promise<CustomerListResponse> {
+    const response = await this.get(`/order-customer` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -573,8 +562,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomer(id: string): Promise<CustomerSingleResponse> {
-    const response = await this.get(`/order-customer/${id}`, {
+  public async getCustomer(id: string, query?: Criteria): Promise<CustomerSingleResponse> {
+    const response = await this.get(`/order-customer/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -639,13 +628,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDeliveries(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DeliveryListResponse> {
-    const response = await this.get(`/order-delivery`, {
-      query: { limit, page, query },
+  public async getDeliveries(query?: Criteria): Promise<DeliveryListResponse> {
+    const response = await this.get(`/order-delivery` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -698,8 +682,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDelivery(id: string): Promise<DeliverySingleResponse> {
-    const response = await this.get(`/order-delivery/${id}`, {
+  public async getDelivery(id: string, query?: Criteria): Promise<DeliverySingleResponse> {
+    const response = await this.get(`/order-delivery/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -764,13 +748,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDeliveryPositions(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DeliveryPositionListResponse> {
-    const response = await this.get(`/order-delivery-position`, {
-      query: { limit, page, query },
+  public async getDeliveryPositions(query?: Criteria): Promise<DeliveryPositionListResponse> {
+    const response = await this.get(`/order-delivery-position` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -825,8 +804,11 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDeliveryPosition(id: string): Promise<DeliveryPositionSingleResponse> {
-    const response = await this.get(`/order-delivery-position/${id}`, {
+  public async getDeliveryPosition(
+    id: string,
+    query?: Criteria
+  ): Promise<DeliveryPositionSingleResponse> {
+    const response = await this.get(`/order-delivery-position/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -897,13 +879,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLineItems(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<LineItemListResponse> {
-    const response = await this.get(`/order-line-item`, {
-      query: { limit, page, query },
+  public async getLineItems(query?: Criteria): Promise<LineItemListResponse> {
+    const response = await this.get(`/order-line-item` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -956,8 +933,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLineItem(id: string): Promise<LineItemSingleResponse> {
-    const response = await this.get(`/order-line-item/${id}`, {
+  public async getLineItem(id: string, query?: Criteria): Promise<LineItemSingleResponse> {
+    const response = await this.get(`/order-line-item/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1022,13 +999,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLineItemDownloads(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<LineItemDownloadListResponse> {
-    const response = await this.get(`/order-line-item-download`, {
-      query: { limit, page, query },
+  public async getLineItemDownloads(query?: Criteria): Promise<LineItemDownloadListResponse> {
+    const response = await this.get(`/order-line-item-download` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1083,8 +1055,11 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLineItemDownload(id: string): Promise<LineItemDownloadSingleResponse> {
-    const response = await this.get(`/order-line-item-download/${id}`, {
+  public async getLineItemDownload(
+    id: string,
+    query?: Criteria
+  ): Promise<LineItemDownloadSingleResponse> {
+    const response = await this.get(`/order-line-item-download/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1155,13 +1130,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTransactions(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<TransactionListResponse> {
-    const response = await this.get(`/order-transaction`, {
-      query: { limit, page, query },
+  public async getTransactions(query?: Criteria): Promise<TransactionListResponse> {
+    const response = await this.get(`/order-transaction` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1216,8 +1186,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTransaction(id: string): Promise<TransactionSingleResponse> {
-    const response = await this.get(`/order-transaction/${id}`, {
+  public async getTransaction(id: string, query?: Criteria): Promise<TransactionSingleResponse> {
+    const response = await this.get(`/order-transaction/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1288,13 +1258,8 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTransactionCaptures(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<TransactionCaptureListResponse> {
-    const response = await this.get(`/order-transaction-capture`, {
-      query: { limit, page, query },
+  public async getTransactionCaptures(query?: Criteria): Promise<TransactionCaptureListResponse> {
+    const response = await this.get(`/order-transaction-capture` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1349,8 +1314,11 @@ class OrderClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTransactionCapture(id: string): Promise<TransactionCaptureSingleResponse> {
-    const response = await this.get(`/order-transaction-capture/${id}`, {
+  public async getTransactionCapture(
+    id: string,
+    query?: Criteria
+  ): Promise<TransactionCaptureSingleResponse> {
+    const response = await this.get(`/order-transaction-capture/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1422,12 +1390,9 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTransactionCaptureRefunds(
-    limit?: number,
-    page?: number,
-    query?: string
+    query?: Criteria
   ): Promise<TransactionCaptureRefundListResponse> {
-    const response = await this.get(`/order-transaction-capture-refund`, {
-      query: { limit, page, query },
+    const response = await this.get(`/order-transaction-capture-refund` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1483,9 +1448,10 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTransactionCaptureRefund(
-    id: string
+    id: string,
+    query?: Criteria
   ): Promise<TransactionCaptureRefundSingleResponse> {
-    const response = await this.get(`/order-transaction-capture-refund/${id}`, {
+    const response = await this.get(`/order-transaction-capture-refund/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1557,14 +1523,14 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTransactionCaptureRefundPositions(
-    limit?: number,
-    page?: number,
-    query?: string
+    query?: Criteria
   ): Promise<TransactionCaptureRefundPositionListResponse> {
-    const response = await this.get(`/order-transaction-capture-refund-position`, {
-      query: { limit, page, query },
-      headers: { Accept: "application/json" }
-    });
+    const response = await this.get(
+      `/order-transaction-capture-refund-position` + buildQuery(query),
+      {
+        headers: { Accept: "application/json" }
+      }
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundPositionListResponse;
@@ -1619,11 +1585,15 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getTransactionCaptureRefundPosition(
-    id: string
+    id: string,
+    query?: Criteria
   ): Promise<TransactionCaptureRefundPositionSingleResponse> {
-    const response = await this.get(`/order-transaction-capture-refund-position/${id}`, {
-      headers: { Accept: "application/json" }
-    });
+    const response = await this.get(
+      `/order-transaction-capture-refund-position/${id}` + buildQuery(query),
+      {
+        headers: { Accept: "application/json" }
+      }
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TransactionCaptureRefundPositionSingleResponse;

@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   UnitAggregationRequest,
   UnitAggregationResponse,
@@ -17,9 +19,8 @@ class UnitClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getUnits(limit?: number, page?: number, query?: string): Promise<UnitListResponse> {
-    const response = await this.get(`/unit`, {
-      query: { limit, page, query },
+  public async getUnits(query?: Criteria): Promise<UnitListResponse> {
+    const response = await this.get(`/unit` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -65,8 +66,10 @@ class UnitClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getUnit(id: string): Promise<UnitSingleResponse> {
-    const response = await this.get(`/unit/${id}`, { headers: { Accept: "application/json" } });
+  public async getUnit(id: string, query?: Criteria): Promise<UnitSingleResponse> {
+    const response = await this.get(`/unit/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UnitSingleResponse;

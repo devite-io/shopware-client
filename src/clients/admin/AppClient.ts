@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   ActionButtonAggregationRequest,
   ActionButtonAggregationResponse,
@@ -109,9 +111,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getApps(limit?: number, page?: number, query?: string): Promise<AppListResponse> {
-    const response = await this.get(`/app`, {
-      query: { limit, page, query },
+  public async getApps(query?: Criteria): Promise<AppListResponse> {
+    const response = await this.get(`/app` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -157,8 +158,10 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getApp(id: string): Promise<AppSingleResponse> {
-    const response = await this.get(`/app/${id}`, { headers: { Accept: "application/json" } });
+  public async getApp(id: string, query?: Criteria): Promise<AppSingleResponse> {
+    const response = await this.get(`/app/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AppSingleResponse;
@@ -217,13 +220,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getActionButtons(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ActionButtonListResponse> {
-    const response = await this.get(`/app-action-button`, {
-      query: { limit, page, query },
+  public async getActionButtons(query?: Criteria): Promise<ActionButtonListResponse> {
+    const response = await this.get(`/app-action-button` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -276,8 +274,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getActionButton(id: string): Promise<ActionButtonSingleResponse> {
-    const response = await this.get(`/app-action-button/${id}`, {
+  public async getActionButton(id: string, query?: Criteria): Promise<ActionButtonSingleResponse> {
+    const response = await this.get(`/app-action-button/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -348,13 +346,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAdminSnippets(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<AdminSnippetListResponse> {
-    const response = await this.get(`/app-administration-snippet`, {
-      query: { limit, page, query },
+  public async getAdminSnippets(query?: Criteria): Promise<AdminSnippetListResponse> {
+    const response = await this.get(`/app-administration-snippet` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -407,8 +400,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAdminSnippet(id: string): Promise<AdminSnippetSingleResponse> {
-    const response = await this.get(`/app-administration-snippet/${id}`, {
+  public async getAdminSnippet(id: string, query?: Criteria): Promise<AdminSnippetSingleResponse> {
+    const response = await this.get(`/app-administration-snippet/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -479,13 +472,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsBlocks(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CmsBlockListResponse> {
-    const response = await this.get(`/app-cms-block`, {
-      query: { limit, page, query },
+  public async getCmsBlocks(query?: Criteria): Promise<CmsBlockListResponse> {
+    const response = await this.get(`/app-cms-block` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -538,8 +526,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsBlock(id: string): Promise<CmsBlockSingleResponse> {
-    const response = await this.get(`/app-cms-block/${id}`, {
+  public async getCmsBlock(id: string, query?: Criteria): Promise<CmsBlockSingleResponse> {
+    const response = await this.get(`/app-cms-block/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -604,13 +592,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlowActions(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<FlowActionListResponse> {
-    const response = await this.get(`/app-flow-action`, {
-      query: { limit, page, query },
+  public async getFlowActions(query?: Criteria): Promise<FlowActionListResponse> {
+    const response = await this.get(`/app-flow-action` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -663,8 +646,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlowAction(id: string): Promise<FlowActionSingleResponse> {
-    const response = await this.get(`/app-flow-action/${id}`, {
+  public async getFlowAction(id: string, query?: Criteria): Promise<FlowActionSingleResponse> {
+    const response = await this.get(`/app-flow-action/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -735,13 +718,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlowEvents(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<FlowEventListResponse> {
-    const response = await this.get(`/app-flow-event`, {
-      query: { limit, page, query },
+  public async getFlowEvents(query?: Criteria): Promise<FlowEventListResponse> {
+    const response = await this.get(`/app-flow-event` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -794,8 +772,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getFlowEvent(id: string): Promise<FlowEventSingleResponse> {
-    const response = await this.get(`/app-flow-event/${id}`, {
+  public async getFlowEvent(id: string, query?: Criteria): Promise<FlowEventSingleResponse> {
+    const response = await this.get(`/app-flow-event/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -864,13 +842,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPaymentMethods(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<PaymentMethodListResponse> {
-    const response = await this.get(`/app-payment-method`, {
-      query: { limit, page, query },
+  public async getPaymentMethods(query?: Criteria): Promise<PaymentMethodListResponse> {
+    const response = await this.get(`/app-payment-method` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -923,8 +896,11 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPaymentMethod(id: string): Promise<PaymentMethodSingleResponse> {
-    const response = await this.get(`/app-payment-method/${id}`, {
+  public async getPaymentMethod(
+    id: string,
+    query?: Criteria
+  ): Promise<PaymentMethodSingleResponse> {
+    const response = await this.get(`/app-payment-method/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -995,13 +971,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getScriptConditions(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ScriptConditionListResponse> {
-    const response = await this.get(`/app-script-condition`, {
-      query: { limit, page, query },
+  public async getScriptConditions(query?: Criteria): Promise<ScriptConditionListResponse> {
+    const response = await this.get(`/app-script-condition` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1054,8 +1025,11 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getScriptCondition(id: string): Promise<ScriptConditionSingleResponse> {
-    const response = await this.get(`/app-script-condition/${id}`, {
+  public async getScriptCondition(
+    id: string,
+    query?: Criteria
+  ): Promise<ScriptConditionSingleResponse> {
+    const response = await this.get(`/app-script-condition/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1126,13 +1100,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getShippingMethods(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ShippingMethodListResponse> {
-    const response = await this.get(`/app-shipping-method`, {
-      query: { limit, page, query },
+  public async getShippingMethods(query?: Criteria): Promise<ShippingMethodListResponse> {
+    const response = await this.get(`/app-shipping-method` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1185,8 +1154,11 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getShippingMethod(id: string): Promise<ShippingMethodSingleResponse> {
-    const response = await this.get(`/app-shipping-method/${id}`, {
+  public async getShippingMethod(
+    id: string,
+    query?: Criteria
+  ): Promise<ShippingMethodSingleResponse> {
+    const response = await this.get(`/app-shipping-method/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1257,13 +1229,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTemplates(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<TemplateListResponse> {
-    const response = await this.get(`/app-template`, {
-      query: { limit, page, query },
+  public async getTemplates(query?: Criteria): Promise<TemplateListResponse> {
+    const response = await this.get(`/app-template` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -1316,8 +1283,8 @@ class AppClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTemplate(id: string): Promise<TemplateSingleResponse> {
-    const response = await this.get(`/app-template/${id}`, {
+  public async getTemplate(id: string, query?: Criteria): Promise<TemplateSingleResponse> {
+    const response = await this.get(`/app-template/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

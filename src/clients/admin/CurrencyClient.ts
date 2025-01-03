@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   CountryRoundingAggregationRequest,
   CountryRoundingAggregationResponse,
@@ -29,13 +31,8 @@ class CountryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCurrencies(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CurrencyListResponse> {
-    const response = await this.get(`/currency`, {
-      query: { limit, page, query },
+  public async getCurrencies(query?: Criteria): Promise<CurrencyListResponse> {
+    const response = await this.get(`/currency` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -88,8 +85,10 @@ class CountryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCurrency(id: string): Promise<CurrencySingleResponse> {
-    const response = await this.get(`/currency/${id}`, { headers: { Accept: "application/json" } });
+  public async getCurrency(id: string, query?: Criteria): Promise<CurrencySingleResponse> {
+    const response = await this.get(`/currency/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CurrencySingleResponse;
@@ -152,13 +151,8 @@ class CountryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCountryRoundings(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CountryRoundingListResponse> {
-    const response = await this.get(`/currency-country-rounding`, {
-      query: { limit, page, query },
+  public async getCountryRoundings(query?: Criteria): Promise<CountryRoundingListResponse> {
+    const response = await this.get(`/currency-country-rounding` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -213,8 +207,11 @@ class CountryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCountryRounding(id: string): Promise<CountryRoundingSingleResponse> {
-    const response = await this.get(`/currency-country-rounding/${id}`, {
+  public async getCountryRounding(
+    id: string,
+    query?: Criteria
+  ): Promise<CountryRoundingSingleResponse> {
+    const response = await this.get(`/currency-country-rounding/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

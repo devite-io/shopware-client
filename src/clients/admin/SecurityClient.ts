@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   AclRoleAggregationRequest,
   AclRoleAggregationResponse,
@@ -17,13 +19,8 @@ class SecurityClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAclRoles(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<AclRoleListResponse> {
-    const response = await this.get(`/acl-role`, {
-      query: { limit, page, query },
+  public async getAclRoles(query?: Criteria): Promise<AclRoleListResponse> {
+    const response = await this.get(`/acl-role` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -76,8 +73,10 @@ class SecurityClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAclRole(id: string): Promise<AclRoleSingleResponse> {
-    const response = await this.get(`/acl-role/${id}`, { headers: { Accept: "application/json" } });
+  public async getAclRole(id: string, query?: Criteria): Promise<AclRoleSingleResponse> {
+    const response = await this.get(`/acl-role/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AclRoleSingleResponse;

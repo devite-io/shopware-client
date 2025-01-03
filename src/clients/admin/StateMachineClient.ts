@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   StateAggregationRequest,
   StateAggregationResponse,
@@ -39,13 +41,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStateMachines(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<StateMachineListResponse> {
-    const response = await this.get(`/state-machine`, {
-      query: { limit, page, query },
+  public async getStateMachines(query?: Criteria): Promise<StateMachineListResponse> {
+    const response = await this.get(`/state-machine` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -100,8 +97,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStateMachine(id: string): Promise<StateMachineSingleResponse> {
-    const response = await this.get(`/state-machine/${id}`, {
+  public async getStateMachine(id: string, query?: Criteria): Promise<StateMachineSingleResponse> {
+    const response = await this.get(`/state-machine/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -172,13 +169,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStates(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<StateListResponse> {
-    const response = await this.get(`/state-machine-state`, {
-      query: { limit, page, query },
+  public async getStates(query?: Criteria): Promise<StateListResponse> {
+    const response = await this.get(`/state-machine-state` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -227,8 +219,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getState(id: string): Promise<StateSingleResponse> {
-    const response = await this.get(`/state-machine-state/${id}`, {
+  public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
+    const response = await this.get(`/state-machine-state/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -291,13 +283,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTransitions(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<TransitionListResponse> {
-    const response = await this.get(`/state-machine-transition`, {
-      query: { limit, page, query },
+  public async getTransitions(query?: Criteria): Promise<TransitionListResponse> {
+    const response = await this.get(`/state-machine-transition` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -352,8 +339,8 @@ class DeliveryTimeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTransition(id: string): Promise<TransitionSingleResponse> {
-    const response = await this.get(`/state-machine-transition/${id}`, {
+  public async getTransition(id: string, query?: Criteria): Promise<TransitionSingleResponse> {
+    const response = await this.get(`/state-machine-transition/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   CategoryAggregationRequest,
   CategoryAggregationResponse,
@@ -29,13 +31,8 @@ class CategoryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCategories(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CategoryListResponse> {
-    const response = await this.get(`/category`, {
-      query: { limit, page, query },
+  public async getCategories(query?: Criteria): Promise<CategoryListResponse> {
+    const response = await this.get(`/category` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -88,8 +85,10 @@ class CategoryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCategory(id: string): Promise<CategorySingleResponse> {
-    const response = await this.get(`/category/${id}`, { headers: { Accept: "application/json" } });
+  public async getCategory(id: string, query?: Criteria): Promise<CategorySingleResponse> {
+    const response = await this.get(`/category/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CategorySingleResponse;
@@ -152,13 +151,8 @@ class CategoryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getMainCategories(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<MainCategoryListResponse> {
-    const response = await this.get(`/main-category`, {
-      query: { limit, page, query },
+  public async getMainCategories(query?: Criteria): Promise<MainCategoryListResponse> {
+    const response = await this.get(`/main-category` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -213,8 +207,8 @@ class CategoryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getMainCategory(id: string): Promise<MainCategorySingleResponse> {
-    const response = await this.get(`/main-category/${id}`, {
+  public async getMainCategory(id: string, query?: Criteria): Promise<MainCategorySingleResponse> {
+    const response = await this.get(`/main-category/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

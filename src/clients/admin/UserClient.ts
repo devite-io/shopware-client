@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   AccessKeyAggregationRequest,
   AccessKeyAggregationResponse,
@@ -49,9 +51,8 @@ class UserClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getUsers(limit?: number, page?: number, query?: string): Promise<UserListResponse> {
-    const response = await this.get(`/user`, {
-      query: { limit, page, query },
+  public async getUsers(query?: Criteria): Promise<UserListResponse> {
+    const response = await this.get(`/user` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -97,8 +98,10 @@ class UserClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getUser(id: string): Promise<UserSingleResponse> {
-    const response = await this.get(`/user/${id}`, { headers: { Accept: "application/json" } });
+  public async getUser(id: string, query?: Criteria): Promise<UserSingleResponse> {
+    const response = await this.get(`/user/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as UserSingleResponse;
@@ -157,13 +160,8 @@ class UserClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAccessKeys(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<AccessKeyListResponse> {
-    const response = await this.get(`/user-access-key`, {
-      query: { limit, page, query },
+  public async getAccessKeys(query?: Criteria): Promise<AccessKeyListResponse> {
+    const response = await this.get(`/user-access-key` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -218,8 +216,8 @@ class UserClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAccessKey(id: string): Promise<AccessKeySingleResponse> {
-    const response = await this.get(`/user-access-key/${id}`, {
+  public async getAccessKey(id: string, query?: Criteria): Promise<AccessKeySingleResponse> {
+    const response = await this.get(`/user-access-key/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -288,13 +286,8 @@ class UserClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getConfigs(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ConfigListResponse> {
-    const response = await this.get(`/user-config`, {
-      query: { limit, page, query },
+  public async getConfigs(query?: Criteria): Promise<ConfigListResponse> {
+    const response = await this.get(`/user-config` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -345,8 +338,8 @@ class UserClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getConfig(id: string): Promise<ConfigSingleResponse> {
-    const response = await this.get(`/user-config/${id}`, {
+  public async getConfig(id: string, query?: Criteria): Promise<ConfigSingleResponse> {
+    const response = await this.get(`/user-config/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -409,13 +402,8 @@ class UserClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRecoveries(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<RecoveryListResponse> {
-    const response = await this.get(`/user-recovery`, {
-      query: { limit, page, query },
+  public async getRecoveries(query?: Criteria): Promise<RecoveryListResponse> {
+    const response = await this.get(`/user-recovery` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -468,8 +456,8 @@ class UserClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRecovery(id: string): Promise<RecoverySingleResponse> {
-    const response = await this.get(`/user-recovery/${id}`, {
+  public async getRecovery(id: string, query?: Criteria): Promise<RecoverySingleResponse> {
+    const response = await this.get(`/user-recovery/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

@@ -14,7 +14,8 @@
       "#clients/*": ["src/clients/*"],
       "#payloads/*": ["src/payloads/*"],
       "#auth/*": ["src/auth/*"],
-      "#http/*": ["src/http/*"]
+      "#http/*": ["src/http/*"],
+      "#utils/*": ["src/utils/*"]
     }
   },
   "include": ["types/**/*.ts"]

@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   LanguageAggregationRequest,
   LanguageAggregationResponse,
@@ -29,13 +31,8 @@ class LocaleClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLocales(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<LocaleListResponse> {
-    const response = await this.get(`/locale`, {
-      query: { limit, page, query },
+  public async getLocales(query?: Criteria): Promise<LocaleListResponse> {
+    const response = await this.get(`/locale` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -86,8 +83,10 @@ class LocaleClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLocale(id: string): Promise<LocaleSingleResponse> {
-    const response = await this.get(`/locale/${id}`, { headers: { Accept: "application/json" } });
+  public async getLocale(id: string, query?: Criteria): Promise<LocaleSingleResponse> {
+    const response = await this.get(`/locale/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LocaleSingleResponse;
@@ -148,13 +147,8 @@ class LocaleClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLanguages(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<LanguageListResponse> {
-    const response = await this.get(`/language`, {
-      query: { limit, page, query },
+  public async getLanguages(query?: Criteria): Promise<LanguageListResponse> {
+    const response = await this.get(`/language` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -207,8 +201,10 @@ class LocaleClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLanguage(id: string): Promise<LanguageSingleResponse> {
-    const response = await this.get(`/language/${id}`, { headers: { Accept: "application/json" } });
+  public async getLanguage(id: string, query?: Criteria): Promise<LanguageSingleResponse> {
+    const response = await this.get(`/language/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as LanguageSingleResponse;

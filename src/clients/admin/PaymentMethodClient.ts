@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   PaymentMethodAggregationRequest,
   PaymentMethodAggregationResponse,
@@ -17,13 +19,8 @@ class PaymentMethodClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPaymentMethods(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<PaymentMethodListResponse> {
-    const response = await this.get(`/payment-method`, {
-      query: { limit, page, query },
+  public async getPaymentMethods(query?: Criteria): Promise<PaymentMethodListResponse> {
+    const response = await this.get(`/payment-method` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -78,8 +75,11 @@ class PaymentMethodClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPaymentMethod(id: string): Promise<PaymentMethodSingleResponse> {
-    const response = await this.get(`/payment-method/${id}`, {
+  public async getPaymentMethod(
+    id: string,
+    query?: Criteria
+  ): Promise<PaymentMethodSingleResponse> {
+    const response = await this.get(`/payment-method/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   RangeAggregationRequest,
   RangeAggregationResponse,
@@ -49,13 +51,8 @@ class NumberRangeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRanges(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<RangeListResponse> {
-    const response = await this.get(`/number-range`, {
-      query: { limit, page, query },
+  public async getRanges(query?: Criteria): Promise<RangeListResponse> {
+    const response = await this.get(`/number-range` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -104,8 +101,8 @@ class NumberRangeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRange(id: string): Promise<RangeSingleResponse> {
-    const response = await this.get(`/number-range/${id}`, {
+  public async getRange(id: string, query?: Criteria): Promise<RangeSingleResponse> {
+    const response = await this.get(`/number-range/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -168,13 +165,8 @@ class NumberRangeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSalesChannels(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SalesChannelListResponse> {
-    const response = await this.get(`/number-range-sales-channel`, {
-      query: { limit, page, query },
+  public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
+    const response = await this.get(`/number-range-sales-channel` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -229,8 +221,8 @@ class NumberRangeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSalesChannel(id: string): Promise<SalesChannelSingleResponse> {
-    const response = await this.get(`/number-range-sales-channel/${id}`, {
+  public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
+    const response = await this.get(`/number-range-sales-channel/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -301,13 +293,8 @@ class NumberRangeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStates(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<StateListResponse> {
-    const response = await this.get(`/number-range-state`, {
-      query: { limit, page, query },
+  public async getStates(query?: Criteria): Promise<StateListResponse> {
+    const response = await this.get(`/number-range-state` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -356,8 +343,8 @@ class NumberRangeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getState(id: string): Promise<StateSingleResponse> {
-    const response = await this.get(`/number-range-state/${id}`, {
+  public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
+    const response = await this.get(`/number-range-state/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -420,9 +407,8 @@ class NumberRangeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTypes(limit?: number, page?: number, query?: string): Promise<TypeListResponse> {
-    const response = await this.get(`/number-range-type`, {
-      query: { limit, page, query },
+  public async getTypes(query?: Criteria): Promise<TypeListResponse> {
+    const response = await this.get(`/number-range-type` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -468,8 +454,8 @@ class NumberRangeClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getType(id: string): Promise<TypeSingleResponse> {
-    const response = await this.get(`/number-range-type/${id}`, {
+  public async getType(id: string, query?: Criteria): Promise<TypeSingleResponse> {
+    const response = await this.get(`/number-range-type/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

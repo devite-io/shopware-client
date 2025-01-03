@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   CustomEntityAggregationRequest,
   CustomEntityAggregationResponse,
@@ -49,13 +51,8 @@ class CustomDataClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomEntities(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CustomEntityListResponse> {
-    const response = await this.get(`/custom-entity`, {
-      query: { limit, page, query },
+  public async getCustomEntities(query?: Criteria): Promise<CustomEntityListResponse> {
+    const response = await this.get(`/custom-entity` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -110,8 +107,8 @@ class CustomDataClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomEntity(id: string): Promise<CustomEntitySingleResponse> {
-    const response = await this.get(`/custom-entity/${id}`, {
+  public async getCustomEntity(id: string, query?: Criteria): Promise<CustomEntitySingleResponse> {
+    const response = await this.get(`/custom-entity/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -182,13 +179,8 @@ class CustomDataClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomFields(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CustomFieldListResponse> {
-    const response = await this.get(`/custom-field`, {
-      query: { limit, page, query },
+  public async getCustomFields(query?: Criteria): Promise<CustomFieldListResponse> {
+    const response = await this.get(`/custom-field` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -243,8 +235,8 @@ class CustomDataClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomField(id: string): Promise<CustomFieldSingleResponse> {
-    const response = await this.get(`/custom-field/${id}`, {
+  public async getCustomField(id: string, query?: Criteria): Promise<CustomFieldSingleResponse> {
+    const response = await this.get(`/custom-field/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -315,13 +307,8 @@ class CustomDataClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomFieldSets(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CustomFieldSetListResponse> {
-    const response = await this.get(`/custom-field-set`, {
-      query: { limit, page, query },
+  public async getCustomFieldSets(query?: Criteria): Promise<CustomFieldSetListResponse> {
+    const response = await this.get(`/custom-field-set` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -376,8 +363,11 @@ class CustomDataClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomFieldSet(id: string): Promise<CustomFieldSetSingleResponse> {
-    const response = await this.get(`/custom-field-set/${id}`, {
+  public async getCustomFieldSet(
+    id: string,
+    query?: Criteria
+  ): Promise<CustomFieldSetSingleResponse> {
+    const response = await this.get(`/custom-field-set/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -449,12 +439,9 @@ class CustomDataClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCustomFieldSetRelations(
-    limit?: number,
-    page?: number,
-    query?: string
+    query?: Criteria
   ): Promise<CustomFieldSetRelationListResponse> {
-    const response = await this.get(`/custom-field-set-relation`, {
-      query: { limit, page, query },
+    const response = await this.get(`/custom-field-set-relation` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -510,9 +497,10 @@ class CustomDataClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getCustomFieldSetRelation(
-    id: string
+    id: string,
+    query?: Criteria
   ): Promise<CustomFieldSetRelationSingleResponse> {
-    const response = await this.get(`/custom-field-set-relation/${id}`, {
+    const response = await this.get(`/custom-field-set-relation/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   PluginAggregationRequest,
   PluginAggregationResponse,
@@ -17,13 +19,8 @@ class PluginClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPlugins(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<PluginListResponse> {
-    const response = await this.get(`/plugin`, {
-      query: { limit, page, query },
+  public async getPlugins(query?: Criteria): Promise<PluginListResponse> {
+    const response = await this.get(`/plugin` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -74,8 +71,10 @@ class PluginClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getPlugin(id: string): Promise<PluginSingleResponse> {
-    const response = await this.get(`/plugin/${id}`, { headers: { Accept: "application/json" } });
+  public async getPlugin(id: string, query?: Criteria): Promise<PluginSingleResponse> {
+    const response = await this.get(`/plugin/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PluginSingleResponse;

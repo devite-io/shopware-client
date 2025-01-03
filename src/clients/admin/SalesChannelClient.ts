@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   AnalyticsAggregationRequest,
   AnalyticsAggregationResponse,
@@ -49,13 +51,8 @@ class SalesChannelClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSalesChannels(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<SalesChannelListResponse> {
-    const response = await this.get(`/sales-channel`, {
-      query: { limit, page, query },
+  public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
+    const response = await this.get(`/sales-channel` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -110,8 +107,8 @@ class SalesChannelClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getSalesChannel(id: string): Promise<SalesChannelSingleResponse> {
-    const response = await this.get(`/sales-channel/${id}`, {
+  public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
+    const response = await this.get(`/sales-channel/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -182,13 +179,8 @@ class SalesChannelClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAnalyticsList(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<AnalyticsListResponse> {
-    const response = await this.get(`/sales-channel-analytics`, {
-      query: { limit, page, query },
+  public async getAnalyticsList(query?: Criteria): Promise<AnalyticsListResponse> {
+    const response = await this.get(`/sales-channel-analytics` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -241,8 +233,8 @@ class SalesChannelClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAnalytics(id: string): Promise<AnalyticsSingleResponse> {
-    const response = await this.get(`/sales-channel-analytics/${id}`, {
+  public async getAnalytics(id: string, query?: Criteria): Promise<AnalyticsSingleResponse> {
+    const response = await this.get(`/sales-channel-analytics/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -307,13 +299,8 @@ class SalesChannelClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDomains(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<DomainListResponse> {
-    const response = await this.get(`/sales-channel-domain`, {
-      query: { limit, page, query },
+  public async getDomains(query?: Criteria): Promise<DomainListResponse> {
+    const response = await this.get(`/sales-channel-domain` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -364,8 +351,8 @@ class SalesChannelClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getDomain(id: string): Promise<DomainSingleResponse> {
-    const response = await this.get(`/sales-channel-domain/${id}`, {
+  public async getDomain(id: string, query?: Criteria): Promise<DomainSingleResponse> {
+    const response = await this.get(`/sales-channel-domain/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -428,9 +415,8 @@ class SalesChannelClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTypes(limit?: number, page?: number, query?: string): Promise<TypeListResponse> {
-    const response = await this.get(`/sales-channel-type`, {
-      query: { limit, page, query },
+  public async getTypes(query?: Criteria): Promise<TypeListResponse> {
+    const response = await this.get(`/sales-channel-type` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -476,8 +462,8 @@ class SalesChannelClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getType(id: string): Promise<TypeSingleResponse> {
-    const response = await this.get(`/sales-channel-type/${id}`, {
+  public async getType(id: string, query?: Criteria): Promise<TypeSingleResponse> {
+    const response = await this.get(`/sales-channel-type/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   CmsBlockAggregationRequest,
   CmsBlockAggregationResponse,
@@ -69,13 +71,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsBlocks(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CmsBlockListResponse> {
-    const response = await this.get(`/cms-block`, {
-      query: { limit, page, query },
+  public async getCmsBlocks(query?: Criteria): Promise<CmsBlockListResponse> {
+    const response = await this.get(`/cms-block` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -128,8 +125,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsBlock(id: string): Promise<CmsBlockSingleResponse> {
-    const response = await this.get(`/cms-block/${id}`, {
+  public async getCmsBlock(id: string, query?: Criteria): Promise<CmsBlockSingleResponse> {
+    const response = await this.get(`/cms-block/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -194,13 +191,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsPages(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CmsPageListResponse> {
-    const response = await this.get(`/cms-page`, {
-      query: { limit, page, query },
+  public async getCmsPages(query?: Criteria): Promise<CmsPageListResponse> {
+    const response = await this.get(`/cms-page` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -253,8 +245,10 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsPage(id: string): Promise<CmsPageSingleResponse> {
-    const response = await this.get(`/cms-page/${id}`, { headers: { Accept: "application/json" } });
+  public async getCmsPage(id: string, query?: Criteria): Promise<CmsPageSingleResponse> {
+    const response = await this.get(`/cms-page/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsPageSingleResponse;
@@ -317,13 +311,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsSections(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CmsSectionListResponse> {
-    const response = await this.get(`/cms-section`, {
-      query: { limit, page, query },
+  public async getCmsSections(query?: Criteria): Promise<CmsSectionListResponse> {
+    const response = await this.get(`/cms-section` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -378,8 +367,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsSection(id: string): Promise<CmsSectionSingleResponse> {
-    const response = await this.get(`/cms-section/${id}`, {
+  public async getCmsSection(id: string, query?: Criteria): Promise<CmsSectionSingleResponse> {
+    const response = await this.get(`/cms-section/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -450,13 +439,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsSlots(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CmsSlotListResponse> {
-    const response = await this.get(`/cms-slot`, {
-      query: { limit, page, query },
+  public async getCmsSlots(query?: Criteria): Promise<CmsSlotListResponse> {
+    const response = await this.get(`/cms-slot` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -509,8 +493,10 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCmsSlot(id: string): Promise<CmsSlotSingleResponse> {
-    const response = await this.get(`/cms-slot/${id}`, { headers: { Accept: "application/json" } });
+  public async getCmsSlot(id: string, query?: Criteria): Promise<CmsSlotSingleResponse> {
+    const response = await this.get(`/cms-slot/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CmsSlotSingleResponse;
@@ -573,13 +559,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLandingPages(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<LandingPageListResponse> {
-    const response = await this.get(`/landing-page`, {
-      query: { limit, page, query },
+  public async getLandingPages(query?: Criteria): Promise<LandingPageListResponse> {
+    const response = await this.get(`/landing-page` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -634,8 +615,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLandingPage(id: string): Promise<LandingPageSingleResponse> {
-    const response = await this.get(`/landing-page/${id}`, {
+  public async getLandingPage(id: string, query?: Criteria): Promise<LandingPageSingleResponse> {
+    const response = await this.get(`/landing-page/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -706,13 +687,8 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getThemes(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ThemeListResponse> {
-    const response = await this.get(`/theme`, {
-      query: { limit, page, query },
+  public async getThemes(query?: Criteria): Promise<ThemeListResponse> {
+    const response = await this.get(`/theme` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -761,8 +737,10 @@ class ContentClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTheme(id: string): Promise<ThemeSingleResponse> {
-    const response = await this.get(`/theme/${id}`, { headers: { Accept: "application/json" } });
+  public async getTheme(id: string, query?: Criteria): Promise<ThemeSingleResponse> {
+    const response = await this.get(`/theme/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ThemeSingleResponse;

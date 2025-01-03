@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   ApiConfigResponse,
   BusinessEventsResponse,
@@ -311,13 +313,8 @@ class SystemClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLogEntries(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<LogEntryListResponse> {
-    const response = await this.get(`/log-entry`, {
-      query: { limit, page, query },
+  public async getLogEntries(query?: Criteria): Promise<LogEntryListResponse> {
+    const response = await this.get(`/log-entry` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -370,8 +367,8 @@ class SystemClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getLogEntry(id: string): Promise<LogEntrySingleResponse> {
-    const response = await this.get(`/log-entry/${id}`, {
+  public async getLogEntry(id: string, query?: Criteria): Promise<LogEntrySingleResponse> {
+    const response = await this.get(`/log-entry/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -436,13 +433,8 @@ class SystemClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getNotifications(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<NotificationListResponse> {
-    const response = await this.get(`/notification`, {
-      query: { limit, page, query },
+  public async getNotifications(query?: Criteria): Promise<NotificationListResponse> {
+    const response = await this.get(`/notification` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -497,8 +489,8 @@ class SystemClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getNotification(id: string): Promise<NotificationSingleResponse> {
-    const response = await this.get(`/notification/${id}`, {
+  public async getNotification(id: string, query?: Criteria): Promise<NotificationSingleResponse> {
+    const response = await this.get(`/notification/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -569,13 +561,8 @@ class SystemClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getConfigEntries(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ConfigEntryListResponse> {
-    const response = await this.get(`/system-config`, {
-      query: { limit, page, query },
+  public async getConfigEntries(query?: Criteria): Promise<ConfigEntryListResponse> {
+    const response = await this.get(`/system-config` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -630,8 +617,8 @@ class SystemClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getConfigEntry(id: string): Promise<ConfigEntrySingleResponse> {
-    const response = await this.get(`/system-config/${id}`, {
+  public async getConfigEntry(id: string, query?: Criteria): Promise<ConfigEntrySingleResponse> {
+    const response = await this.get(`/system-config/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -702,13 +689,8 @@ class SystemClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getScheduledTasks(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ScheduledTaskListResponse> {
-    const response = await this.get(`/scheduled-task`, {
-      query: { limit, page, query },
+  public async getScheduledTasks(query?: Criteria): Promise<ScheduledTaskListResponse> {
+    const response = await this.get(`/scheduled-task` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -763,8 +745,11 @@ class SystemClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getScheduledTask(id: string): Promise<ScheduledTaskSingleResponse> {
-    const response = await this.get(`/scheduled-task/${id}`, {
+  public async getScheduledTask(
+    id: string,
+    query?: Criteria
+  ): Promise<ScheduledTaskSingleResponse> {
+    const response = await this.get(`/scheduled-task/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

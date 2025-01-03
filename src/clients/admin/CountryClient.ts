@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   CountryAggregationRequest,
   CountryAggregationResponse,
@@ -29,13 +31,8 @@ class CountryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCountries(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CountryListResponse> {
-    const response = await this.get(`/country`, {
-      query: { limit, page, query },
+  public async getCountries(query?: Criteria): Promise<CountryListResponse> {
+    const response = await this.get(`/country` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -88,8 +85,10 @@ class CountryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCountry(id: string): Promise<CountrySingleResponse> {
-    const response = await this.get(`/country/${id}`, { headers: { Accept: "application/json" } });
+  public async getCountry(id: string, query?: Criteria): Promise<CountrySingleResponse> {
+    const response = await this.get(`/country/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CountrySingleResponse;
@@ -152,13 +151,8 @@ class CountryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getStates(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<StateListResponse> {
-    const response = await this.get(`/country-state`, {
-      query: { limit, page, query },
+  public async getStates(query?: Criteria): Promise<StateListResponse> {
+    const response = await this.get(`/country-state` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -207,8 +201,8 @@ class CountryClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getState(id: string): Promise<StateSingleResponse> {
-    const response = await this.get(`/country-state/${id}`, {
+  public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
+    const response = await this.get(`/country-state/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

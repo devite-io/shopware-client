@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   AddressAggregationRequest,
   AddressAggregationResponse,
@@ -92,13 +94,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomers(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<CustomerListResponse> {
-    const response = await this.get(`/customer`, {
-      query: { limit, page, query },
+  public async getCustomers(query?: Criteria): Promise<CustomerListResponse> {
+    const response = await this.get(`/customer` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -151,8 +148,10 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getCustomer(id: string): Promise<CustomerSingleResponse> {
-    const response = await this.get(`/customer/${id}`, { headers: { Accept: "application/json" } });
+  public async getCustomer(id: string, query?: Criteria): Promise<CustomerSingleResponse> {
+    const response = await this.get(`/customer/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CustomerSingleResponse;
@@ -215,13 +214,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAddresses(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<AddressListResponse> {
-    const response = await this.get(`/address`, {
-      query: { limit, page, query },
+  public async getAddresses(query?: Criteria): Promise<AddressListResponse> {
+    const response = await this.get(`/address` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -274,8 +268,10 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getAddress(id: string): Promise<AddressSingleResponse> {
-    const response = await this.get(`/address/${id}`, { headers: { Accept: "application/json" } });
+  public async getAddress(id: string, query?: Criteria): Promise<AddressSingleResponse> {
+    const response = await this.get(`/address/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AddressSingleResponse;
@@ -338,13 +334,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getGroups(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<GroupListResponse> {
-    const response = await this.get(`/customer-group`, {
-      query: { limit, page, query },
+  public async getGroups(query?: Criteria): Promise<GroupListResponse> {
+    const response = await this.get(`/customer-group` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -393,8 +384,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getGroup(id: string): Promise<GroupSingleResponse> {
-    const response = await this.get(`/customer-group/${id}`, {
+  public async getGroup(id: string, query?: Criteria): Promise<GroupSingleResponse> {
+    const response = await this.get(`/customer-group/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -457,13 +448,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRecoveries(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<RecoveryListResponse> {
-    const response = await this.get(`/customer-recovery`, {
-      query: { limit, page, query },
+  public async getRecoveries(query?: Criteria): Promise<RecoveryListResponse> {
+    const response = await this.get(`/customer-recovery` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -516,8 +502,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRecovery(id: string): Promise<RecoverySingleResponse> {
-    const response = await this.get(`/customer-recovery/${id}`, {
+  public async getRecovery(id: string, query?: Criteria): Promise<RecoverySingleResponse> {
+    const response = await this.get(`/customer-recovery/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -582,13 +568,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getWishlists(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<WishlistListResponse> {
-    const response = await this.get(`/customer-wishlist`, {
-      query: { limit, page, query },
+  public async getWishlists(query?: Criteria): Promise<WishlistListResponse> {
+    const response = await this.get(`/customer-wishlist` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -641,8 +622,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getWishlist(id: string): Promise<WishlistSingleResponse> {
-    const response = await this.get(`/customer-wishlist/${id}`, {
+  public async getWishlist(id: string, query?: Criteria): Promise<WishlistSingleResponse> {
+    const response = await this.get(`/customer-wishlist/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -707,13 +688,8 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getWishlistProducts(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<WishlistProductListResponse> {
-    const response = await this.get(`/customer-wishlist-product`, {
-      query: { limit, page, query },
+  public async getWishlistProducts(query?: Criteria): Promise<WishlistProductListResponse> {
+    const response = await this.get(`/customer-wishlist-product` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -768,8 +744,11 @@ class CustomerClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getWishlistProduct(id: string): Promise<WishlistProductSingleResponse> {
-    const response = await this.get(`/customer-wishlist-product/${id}`, {
+  public async getWishlistProduct(
+    id: string,
+    query?: Criteria
+  ): Promise<WishlistProductSingleResponse> {
+    const response = await this.get(`/customer-wishlist-product/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

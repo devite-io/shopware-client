@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   EventLogAggregationRequest,
   EventLogAggregationResponse,
@@ -29,13 +31,8 @@ class WebhookClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getWebhooks(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<WebhookListResponse> {
-    const response = await this.get(`/webhook`, {
-      query: { limit, page, query },
+  public async getWebhooks(query?: Criteria): Promise<WebhookListResponse> {
+    const response = await this.get(`/webhook` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -88,8 +85,10 @@ class WebhookClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getWebhook(id: string): Promise<WebhookSingleResponse> {
-    const response = await this.get(`/webhook/${id}`, { headers: { Accept: "application/json" } });
+  public async getWebhook(id: string, query?: Criteria): Promise<WebhookSingleResponse> {
+    const response = await this.get(`/webhook/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as WebhookSingleResponse;
@@ -152,13 +151,8 @@ class WebhookClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getEventLogs(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<EventLogListResponse> {
-    const response = await this.get(`/webhook-event-log`, {
-      query: { limit, page, query },
+  public async getEventLogs(query?: Criteria): Promise<EventLogListResponse> {
+    const response = await this.get(`/webhook-event-log` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -211,8 +205,8 @@ class WebhookClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getEventLog(id: string): Promise<EventLogSingleResponse> {
-    const response = await this.get(`/webhook-event-log/${id}`, {
+  public async getEventLog(id: string, query?: Criteria): Promise<EventLogSingleResponse> {
+    const response = await this.get(`/webhook-event-log/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

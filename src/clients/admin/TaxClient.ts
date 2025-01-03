@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   ProviderAggregationRequest,
   ProviderAggregationResponse,
@@ -49,9 +51,8 @@ class TaxClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTaxes(limit?: number, page?: number, query?: string): Promise<TaxListResponse> {
-    const response = await this.get(`/tax`, {
-      query: { limit, page, query },
+  public async getTaxes(query?: Criteria): Promise<TaxListResponse> {
+    const response = await this.get(`/tax` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -97,8 +98,10 @@ class TaxClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTax(id: string): Promise<TaxSingleResponse> {
-    const response = await this.get(`/tax/${id}`, { headers: { Accept: "application/json" } });
+  public async getTax(id: string, query?: Criteria): Promise<TaxSingleResponse> {
+    const response = await this.get(`/tax/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TaxSingleResponse;
@@ -157,13 +160,8 @@ class TaxClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getProviders(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<ProviderListResponse> {
-    const response = await this.get(`/tax-provider`, {
-      query: { limit, page, query },
+  public async getProviders(query?: Criteria): Promise<ProviderListResponse> {
+    const response = await this.get(`/tax-provider` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -216,8 +214,8 @@ class TaxClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getProvider(id: string): Promise<ProviderSingleResponse> {
-    const response = await this.get(`/tax-provider/${id}`, {
+  public async getProvider(id: string, query?: Criteria): Promise<ProviderSingleResponse> {
+    const response = await this.get(`/tax-provider/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -282,9 +280,8 @@ class TaxClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRules(limit?: number, page?: number, query?: string): Promise<RuleListResponse> {
-    const response = await this.get(`/tax-rule`, {
-      query: { limit, page, query },
+  public async getRules(query?: Criteria): Promise<RuleListResponse> {
+    const response = await this.get(`/tax-rule` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -330,8 +327,10 @@ class TaxClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRule(id: string): Promise<RuleSingleResponse> {
-    const response = await this.get(`/tax-rule/${id}`, { headers: { Accept: "application/json" } });
+  public async getRule(id: string, query?: Criteria): Promise<RuleSingleResponse> {
+    const response = await this.get(`/tax-rule/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as RuleSingleResponse;
@@ -390,13 +389,8 @@ class TaxClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRuleTypes(
-    limit?: number,
-    page?: number,
-    query?: string
-  ): Promise<RuleTypeListResponse> {
-    const response = await this.get(`/tax-rule-type`, {
-      query: { limit, page, query },
+  public async getRuleTypes(query?: Criteria): Promise<RuleTypeListResponse> {
+    const response = await this.get(`/tax-rule-type` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -449,8 +443,8 @@ class TaxClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getRuleType(id: string): Promise<RuleTypeSingleResponse> {
-    const response = await this.get(`/tax-rule-type/${id}`, {
+  public async getRuleType(id: string, query?: Criteria): Promise<RuleTypeSingleResponse> {
+    const response = await this.get(`/tax-rule-type/${id}` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 

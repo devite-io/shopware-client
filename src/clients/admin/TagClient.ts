@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import { Criteria } from "#types/api/global/query/Criteria";
+import { buildQuery } from "#utils/SwagQL";
 import {
   TagAggregationRequest,
   TagAggregationResponse,
@@ -17,9 +19,8 @@ class TagClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTags(limit?: number, page?: number, query?: string): Promise<TagListResponse> {
-    const response = await this.get(`/tag`, {
-      query: { limit, page, query },
+  public async getTags(query?: Criteria): Promise<TagListResponse> {
+    const response = await this.get(`/tag` + buildQuery(query), {
       headers: { Accept: "application/json" }
     });
 
@@ -65,8 +66,10 @@ class TagClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
-  public async getTag(id: string): Promise<TagSingleResponse> {
-    const response = await this.get(`/tag/${id}`, { headers: { Accept: "application/json" } });
+  public async getTag(id: string, query?: Criteria): Promise<TagSingleResponse> {
+    const response = await this.get(`/tag/${id}` + buildQuery(query), {
+      headers: { Accept: "application/json" }
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as TagSingleResponse;
