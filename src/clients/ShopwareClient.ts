@@ -16,6 +16,8 @@ class ShopwareClient {
   public readonly authStore: AuthenticationStore = new AuthenticationStore();
   public readonly cache: Map<string, RequestCacheEntry> = new Map<string, RequestCacheEntry>();
 
+  private languageId: string | undefined;
+
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl;
   }
@@ -46,6 +48,7 @@ class ShopwareClient {
         query: options?.query,
         headers: {
           ...(options?.body ? { "Content-Type": options.body.contentType() } : {}),
+          ...(this.languageId ? { "sw-language-id": this.languageId } : {}),
           ...options?.headers
         },
         body: serializedBody,
@@ -99,6 +102,10 @@ class ShopwareClient {
     if (payload && response._data) await payload.deserialize(response._data);
 
     return payload;
+  }
+
+  public setLanguageId(id: string | undefined) {
+    this.languageId = id;
   }
 }
 
