@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.3.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.2.0...v1.3.0)
+
+### 🚀 Enhancements
+
+- Improve error handling capabilities ([8f4406a](https://github.com/devite-io/shopware-client/commit/8f4406a))
+
+### 🩹 Fixes
+
+- Adjust product list result types ([d187d40](https://github.com/devite-io/shopware-client/commit/d187d40))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.2.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.1.3...v1.2.0)
