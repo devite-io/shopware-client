@@ -3,6 +3,7 @@ import { Media } from "../media/Media";
 import { PropertyGroupOption } from "#types/api/store/propertyGroup/PropertyGroupOption";
 
 export interface ProductConfiguratorSetting {
+  apiAlias: "product_configurator_setting";
   id: string;
   versionId?: string;
   productId: string;

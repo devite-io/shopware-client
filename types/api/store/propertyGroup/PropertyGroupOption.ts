@@ -3,6 +3,7 @@ import { Media } from "../media/Media";
 import { PropertyGroup } from "./PropertyGroup";
 
 export interface PropertyGroupOption {
+  apiAlias: "property_group_option";
   id: string;
   groupId: string;
   name: string;

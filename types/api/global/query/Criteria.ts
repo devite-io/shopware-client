@@ -12,7 +12,7 @@ export interface Criteria {
   filter?: Filters;
   ids?: Array<string>;
   query?: Array<Query>;
-  associations?: Array<Criteria>;
+  associations?: Record<string, Criteria>;
   "post-filter"?: Filters;
   sort?: Array<Sort>;
   aggregations?: Aggregation;

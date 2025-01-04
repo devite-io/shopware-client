@@ -3,6 +3,7 @@ import { MediaThumbnail } from "./MediaThumbnail";
 import { Media } from "./Media";
 
 export interface ProductMedia {
+  apiAlias: "product_media";
   id: string;
   versionId?: string;
   productId: string;
