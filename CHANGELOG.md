@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.3.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.3.0...v1.3.1)
+
+### 🩹 Fixes
+
+- **types:** Npm package type imports + incorrect types ([2849ab4](https://github.com/devite-io/shopware-client/commit/2849ab4))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.3.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.2.0...v1.3.0)
