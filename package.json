@@ -62,5 +62,8 @@
     "ofetch": "^1.4.1",
     "ohash": "^1.1.4",
     "qs": "^6.13.1"
+  },
+  "imports": {
+    "#types/*": "./dist/types/*.d.ts"
   }
 }

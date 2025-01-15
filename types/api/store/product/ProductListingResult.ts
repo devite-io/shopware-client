@@ -1,9 +1,12 @@
-import { EntitySearchResult } from "../EntitySearchResult";
 import { Product } from "./Product";
 
-export type ProductListingResult = EntitySearchResult & {
+export type ProductListingResult = {
   apiAlias: "product_listing";
   entity?: "product";
+  total?: number;
+  aggregations?: Array<object>;
+  page?: number;
+  limit?: number;
   currentFilters: Array<{
     navigationId: string;
     manufacturer: Array<string>;

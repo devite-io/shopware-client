@@ -28,7 +28,7 @@ export type OrderFromCartResponse = Order;
 
 export type OrderListRequest = Criteria & { checkPromotion?: boolean };
 export interface OrderListResponse {
-  orders: Array<Order> & EntitySearchResult;
+  orders: Array<Order>;
   paymentChangeable: Record<string, boolean>;
 }
 
