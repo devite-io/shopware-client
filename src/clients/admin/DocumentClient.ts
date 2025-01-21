@@ -157,7 +157,7 @@ class DocumentClient extends Client {
   public async searchDocuments(
     request: DocumentListSearchRequest
   ): Promise<DocumentListSearchResponse> {
-    const response = await this.get(`/search/document`, {
+    const response = await this.post(`/search/document`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -271,7 +271,7 @@ class DocumentClient extends Client {
   public async searchBaseConfigs(
     request: BaseConfigListSearchRequest
   ): Promise<BaseConfigListSearchResponse> {
-    const response = await this.get(`/search/document-base-config`, {
+    const response = await this.post(`/search/document-base-config`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -387,7 +387,7 @@ class DocumentClient extends Client {
   public async searchBaseConfigSalesChannels(
     request: BaseConfigSalesChannelListSearchRequest
   ): Promise<BaseConfigSalesChannelListSearchResponse> {
-    const response = await this.get(`/search/document-base-config-sales-channel`, {
+    const response = await this.post(`/search/document-base-config-sales-channel`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -507,7 +507,7 @@ class DocumentClient extends Client {
   public async searchDocumentTypes(
     request: DocumentTypeListSearchRequest
   ): Promise<DocumentTypeListSearchResponse> {
-    const response = await this.get(`/search/document-type`, {
+    const response = await this.post(`/search/document-type`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

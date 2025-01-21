@@ -56,7 +56,7 @@ class IntegrationClient extends Client {
   public async searchIntegrations(
     request: IntegrationListSearchRequest
   ): Promise<IntegrationListSearchResponse> {
-    const response = await this.get(`/search/integration`, {
+    const response = await this.post(`/search/integration`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

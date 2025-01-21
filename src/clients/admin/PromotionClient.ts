@@ -108,7 +108,7 @@ class PromotionClient extends Client {
   public async searchPromotions(
     request: PromotionListSearchRequest
   ): Promise<PromotionListSearchResponse> {
-    const response = await this.get(`/search/promotion`, {
+    const response = await this.post(`/search/promotion`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -222,7 +222,7 @@ class PromotionClient extends Client {
   public async searchDiscounts(
     request: DiscountListSearchRequest
   ): Promise<DiscountListSearchResponse> {
-    const response = await this.get(`/search/promotion-discount`, {
+    const response = await this.post(`/search/promotion-discount`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -336,7 +336,7 @@ class PromotionClient extends Client {
   public async searchDiscountPrices(
     request: DiscountPriceListSearchRequest
   ): Promise<DiscountPriceListSearchResponse> {
-    const response = await this.get(`/search/promotion-discount-price`, {
+    const response = await this.post(`/search/promotion-discount-price`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -453,7 +453,7 @@ class PromotionClient extends Client {
   public async searchIndividualCodes(
     request: IndividualCodeListSearchRequest
   ): Promise<IndividualCodeListSearchResponse> {
-    const response = await this.get(`/search/promotion-individual-code`, {
+    const response = await this.post(`/search/promotion-individual-code`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -570,7 +570,7 @@ class PromotionClient extends Client {
   public async searchSalesChannels(
     request: SalesChannelListSearchRequest
   ): Promise<SalesChannelListSearchResponse> {
-    const response = await this.get(`/search/promotion-sales-channel`, {
+    const response = await this.post(`/search/promotion-sales-channel`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -684,7 +684,7 @@ class PromotionClient extends Client {
   public async searchSetGroups(
     request: SetGroupListSearchRequest
   ): Promise<SetGroupListSearchResponse> {
-    const response = await this.get(`/search/promotion-setgroup`, {
+    const response = await this.post(`/search/promotion-setgroup`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

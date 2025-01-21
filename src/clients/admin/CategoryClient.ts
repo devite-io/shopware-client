@@ -68,7 +68,7 @@ class CategoryClient extends Client {
   public async searchCategories(
     request: CategoryListSearchRequest
   ): Promise<CategoryListSearchResponse> {
-    const response = await this.get(`/search/category`, {
+    const response = await this.post(`/search/category`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -182,7 +182,7 @@ class CategoryClient extends Client {
   public async searchMainCategories(
     request: MainCategoryListSearchRequest
   ): Promise<MainCategoryListSearchResponse> {
-    const response = await this.get(`/search/main-category`, {
+    const response = await this.post(`/search/main-category`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

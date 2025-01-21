@@ -238,7 +238,7 @@ class ProductClient extends Client {
   public async searchProducts(
     request: ProductListSearchRequest
   ): Promise<ProductListSearchResponse> {
-    const response = await this.get(`/search/product`, {
+    const response = await this.post(`/search/product`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -352,7 +352,7 @@ class ProductClient extends Client {
   public async searchConfiguratorSettings(
     request: ConfiguratorSettingListSearchRequest
   ): Promise<ConfiguratorSettingListSearchResponse> {
-    const response = await this.get(`/search/product-configurator-setting`, {
+    const response = await this.post(`/search/product-configurator-setting`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -469,7 +469,7 @@ class ProductClient extends Client {
   public async searchCrossSellings(
     request: CrossSellingListSearchRequest
   ): Promise<CrossSellingListSearchResponse> {
-    const response = await this.get(`/search/product-cross-selling`, {
+    const response = await this.post(`/search/product-cross-selling`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -585,7 +585,7 @@ class ProductClient extends Client {
   public async searchCrossSellingAssignedProducts(
     request: CrossSellingAssignedProductListSearchRequest
   ): Promise<CrossSellingAssignedProductListSearchResponse> {
-    const response = await this.get(`/search/product-cross-selling-assigned-product`, {
+    const response = await this.post(`/search/product-cross-selling-assigned-product`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -705,7 +705,7 @@ class ProductClient extends Client {
   public async searchDownloads(
     request: DownloadListSearchRequest
   ): Promise<DownloadListSearchResponse> {
-    const response = await this.get(`/search/product-download`, {
+    const response = await this.post(`/search/product-download`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -817,7 +817,7 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchExports(request: ExportListSearchRequest): Promise<ExportListSearchResponse> {
-    const response = await this.get(`/search/product-export`, {
+    const response = await this.post(`/search/product-export`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -931,7 +931,7 @@ class ProductClient extends Client {
   public async searchFeatureSets(
     request: FeatureSetListSearchRequest
   ): Promise<FeatureSetListSearchResponse> {
-    const response = await this.get(`/search/product-feature-set`, {
+    const response = await this.post(`/search/product-feature-set`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1045,7 +1045,7 @@ class ProductClient extends Client {
   public async searchKeywordDictionaries(
     request: KeywordDictionaryListSearchRequest
   ): Promise<KeywordDictionaryListSearchResponse> {
-    const response = await this.get(`/search/product-keyword-dictionary`, {
+    const response = await this.post(`/search/product-keyword-dictionary`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1162,7 +1162,7 @@ class ProductClient extends Client {
   public async searchManufacturers(
     request: ManufacturerListSearchRequest
   ): Promise<ManufacturerListSearchResponse> {
-    const response = await this.get(`/search/product-manufacturer`, {
+    const response = await this.post(`/search/product-manufacturer`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1274,7 +1274,7 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchMedia(request: MediaListSearchRequest): Promise<MediaListSearchResponse> {
-    const response = await this.get(`/search/product-media`, {
+    const response = await this.post(`/search/product-media`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1386,7 +1386,7 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchPrices(request: PriceListSearchRequest): Promise<PriceListSearchResponse> {
-    const response = await this.get(`/search/product-price`, {
+    const response = await this.post(`/search/product-price`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1498,7 +1498,7 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchReviews(request: ReviewListSearchRequest): Promise<ReviewListSearchResponse> {
-    const response = await this.get(`/search/product-review`, {
+    const response = await this.post(`/search/product-review`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1612,7 +1612,7 @@ class ProductClient extends Client {
   public async searchSearchConfigs(
     request: SearchConfigListSearchRequest
   ): Promise<SearchConfigListSearchResponse> {
-    const response = await this.get(`/search/product-search-config`, {
+    const response = await this.post(`/search/product-search-config`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1726,7 +1726,7 @@ class ProductClient extends Client {
   public async searchSearchConfigFields(
     request: SearchConfigFieldListSearchRequest
   ): Promise<SearchConfigFieldListSearchResponse> {
-    const response = await this.get(`/search/product-search-config-field`, {
+    const response = await this.post(`/search/product-search-config-field`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1843,7 +1843,7 @@ class ProductClient extends Client {
   public async searchSearchKeywords(
     request: SearchKeywordListSearchRequest
   ): Promise<SearchKeywordListSearchResponse> {
-    const response = await this.get(`/search/product-search-keyword`, {
+    const response = await this.post(`/search/product-search-keyword`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1960,7 +1960,7 @@ class ProductClient extends Client {
   public async searchSortings(
     request: SortingListSearchRequest
   ): Promise<SortingListSearchResponse> {
-    const response = await this.get(`/search/product-sorting`, {
+    const response = await this.post(`/search/product-sorting`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -2072,7 +2072,7 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchStreams(request: StreamListSearchRequest): Promise<StreamListSearchResponse> {
-    const response = await this.get(`/search/product-stream`, {
+    const response = await this.post(`/search/product-stream`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -2186,7 +2186,7 @@ class ProductClient extends Client {
   public async searchStreamFilters(
     request: StreamFilterListSearchRequest
   ): Promise<StreamFilterListSearchResponse> {
-    const response = await this.get(`/search/product-stream-filter`, {
+    const response = await this.post(`/search/product-stream-filter`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -2300,7 +2300,7 @@ class ProductClient extends Client {
   public async searchVisibilities(
     request: VisibilityListSearchRequest
   ): Promise<VisibilityListSearchResponse> {
-    const response = await this.get(`/search/product-visibility`, {
+    const response = await this.post(`/search/product-visibility`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

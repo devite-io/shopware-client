@@ -68,7 +68,7 @@ class PropertyGroupClient extends Client {
   public async searchPropertyGroups(
     request: PropertyGroupListSearchRequest
   ): Promise<PropertyGroupListSearchResponse> {
-    const response = await this.get(`/search/property-group`, {
+    const response = await this.post(`/search/property-group`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -183,7 +183,7 @@ class PropertyGroupClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchOptions(request: OptionListSearchRequest): Promise<OptionListSearchResponse> {
-    const response = await this.get(`/search/property-group-option`, {
+    const response = await this.post(`/search/property-group-option`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

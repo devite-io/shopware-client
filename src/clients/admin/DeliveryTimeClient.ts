@@ -56,7 +56,7 @@ class DeliveryTimeClient extends Client {
   public async searchDeliveryTimes(
     request: DeliveryTimeListSearchRequest
   ): Promise<DeliveryTimeListSearchResponse> {
-    const response = await this.get(`/search/delivery-time`, {
+    const response = await this.post(`/search/delivery-time`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

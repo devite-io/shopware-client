@@ -75,7 +75,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchFiles(request: FileListSearchRequest): Promise<FileListSearchResponse> {
-    const response = await this.get(`/search/import-export-file`, {
+    const response = await this.post(`/search/import-export-file`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -184,7 +184,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchLogs(request: LogListSearchRequest): Promise<LogListSearchResponse> {
-    const response = await this.get(`/search/import-export-log`, {
+    const response = await this.post(`/search/import-export-log`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -296,7 +296,7 @@ class DeliveryTimeClient extends Client {
   public async searchProfiles(
     request: ProfileListSearchRequest
   ): Promise<ProfileListSearchResponse> {
-    const response = await this.get(`/search/import-export-profile`, {
+    const response = await this.post(`/search/import-export-profile`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

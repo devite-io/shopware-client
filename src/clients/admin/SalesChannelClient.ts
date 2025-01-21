@@ -88,7 +88,7 @@ class SalesChannelClient extends Client {
   public async searchSalesChannels(
     request: SalesChannelListSearchRequest
   ): Promise<SalesChannelListSearchResponse> {
-    const response = await this.get(`/search/sales-channel`, {
+    const response = await this.post(`/search/sales-channel`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -202,7 +202,7 @@ class SalesChannelClient extends Client {
   public async searchAnalytics(
     request: AnalyticsListSearchRequest
   ): Promise<AnalyticsListSearchResponse> {
-    const response = await this.get(`/search/sales-channel-analytics`, {
+    const response = await this.post(`/search/sales-channel-analytics`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -314,7 +314,7 @@ class SalesChannelClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchDomains(request: DomainListSearchRequest): Promise<DomainListSearchResponse> {
-    const response = await this.get(`/search/sales-channel-domain`, {
+    const response = await this.post(`/search/sales-channel-domain`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -425,7 +425,7 @@ class SalesChannelClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchTypes(request: TypeListSearchRequest): Promise<TypeListSearchResponse> {
-    const response = await this.get(`/search/sales-channel-type`, {
+    const response = await this.post(`/search/sales-channel-type`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

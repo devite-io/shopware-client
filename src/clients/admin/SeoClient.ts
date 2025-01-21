@@ -65,7 +65,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchUrls(request: UrlListSearchRequest): Promise<UrlListSearchResponse> {
-    const response = await this.get(`/search/seo-url`, {
+    const response = await this.post(`/search/seo-url`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -177,7 +177,7 @@ class DeliveryTimeClient extends Client {
   public async searchUrlTemplates(
     request: UrlTemplateListSearchRequest
   ): Promise<UrlTemplateListSearchResponse> {
-    const response = await this.get(`/search/seo-url-template`, {
+    const response = await this.post(`/search/seo-url-template`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

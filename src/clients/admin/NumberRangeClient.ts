@@ -86,7 +86,7 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchRanges(request: RangeListSearchRequest): Promise<RangeListSearchResponse> {
-    const response = await this.get(`/search/number-range`, {
+    const response = await this.post(`/search/number-range`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -200,7 +200,7 @@ class NumberRangeClient extends Client {
   public async searchSalesChannels(
     request: SalesChannelListSearchRequest
   ): Promise<SalesChannelListSearchResponse> {
-    const response = await this.get(`/search/number-range-sales-channel`, {
+    const response = await this.post(`/search/number-range-sales-channel`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -312,7 +312,7 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
-    const response = await this.get(`/search/number-range-state`, {
+    const response = await this.post(`/search/number-range-state`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -423,7 +423,7 @@ class NumberRangeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchTypes(request: TypeListSearchRequest): Promise<TypeListSearchResponse> {
-    const response = await this.get(`/search/number-range-type`, {
+    const response = await this.post(`/search/number-range-type`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

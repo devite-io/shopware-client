@@ -326,7 +326,7 @@ class SystemClient extends Client {
   public async searchLogEntries(
     request: LogEntryListSearchRequest
   ): Promise<LogEntryListSearchResponse> {
-    const response = await this.get(`/search/log-entry`, {
+    const response = await this.post(`/search/log-entry`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -440,7 +440,7 @@ class SystemClient extends Client {
   public async searchNotifications(
     request: NotificationListSearchRequest
   ): Promise<NotificationListSearchResponse> {
-    const response = await this.get(`/search/notification`, {
+    const response = await this.post(`/search/notification`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -554,7 +554,7 @@ class SystemClient extends Client {
   public async searchConfigEntries(
     request: ConfigEntryListSearchRequest
   ): Promise<ConfigEntryListSearchResponse> {
-    const response = await this.get(`/search/system-config`, {
+    const response = await this.post(`/search/system-config`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -668,7 +668,7 @@ class SystemClient extends Client {
   public async searchScheduledTasks(
     request: ScheduledTaskListSearchRequest
   ): Promise<ScheduledTaskListSearchResponse> {
-    const response = await this.get(`/search/scheduled-task`, {
+    const response = await this.post(`/search/scheduled-task`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

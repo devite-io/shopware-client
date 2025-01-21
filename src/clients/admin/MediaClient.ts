@@ -151,7 +151,7 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchMedia(request: MediaListSearchRequest): Promise<MediaListSearchResponse> {
-    const response = await this.get(`/search/media`, {
+    const response = await this.post(`/search/media`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -265,7 +265,7 @@ class MediaClient extends Client {
   public async searchDefaultFolders(
     request: DefaultFolderListSearchRequest
   ): Promise<DefaultFolderListSearchResponse> {
-    const response = await this.get(`/search/media-default-folder`, {
+    const response = await this.post(`/search/media-default-folder`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -380,7 +380,7 @@ class MediaClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchFolders(request: FolderListSearchRequest): Promise<FolderListSearchResponse> {
-    const response = await this.get(`/search/media-folder`, {
+    const response = await this.post(`/search/media-folder`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -494,7 +494,7 @@ class MediaClient extends Client {
   public async searchFolderConfigs(
     request: FolderConfigListSearchRequest
   ): Promise<FolderConfigListSearchResponse> {
-    const response = await this.get(`/search/media-folder-configuration`, {
+    const response = await this.post(`/search/media-folder-configuration`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -608,7 +608,7 @@ class MediaClient extends Client {
   public async searchThumbnails(
     request: ThumbnailListSearchRequest
   ): Promise<ThumbnailListSearchResponse> {
-    const response = await this.get(`/search/media-thumbnail`, {
+    const response = await this.post(`/search/media-thumbnail`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -722,7 +722,7 @@ class MediaClient extends Client {
   public async searchThumbnailSizes(
     request: ThumbnailSizeListSearchRequest
   ): Promise<ThumbnailSizeListSearchResponse> {
-    const response = await this.get(`/search/media-thumbnail-size`, {
+    const response = await this.post(`/search/media-thumbnail-size`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

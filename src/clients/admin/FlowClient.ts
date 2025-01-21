@@ -75,7 +75,7 @@ class FlowClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchFlows(request: FlowListSearchRequest): Promise<FlowListSearchResponse> {
-    const response = await this.get(`/search/flow`, {
+    const response = await this.post(`/search/flow`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -187,7 +187,7 @@ class FlowClient extends Client {
   public async searchFlowSequences(
     request: FlowSequenceListSearchRequest
   ): Promise<FlowSequenceListSearchResponse> {
-    const response = await this.get(`/search/flow-sequence`, {
+    const response = await this.post(`/search/flow-sequence`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -301,7 +301,7 @@ class FlowClient extends Client {
   public async searchFlowTemplates(
     request: FlowTemplateListSearchRequest
   ): Promise<FlowTemplateListSearchResponse> {
-    const response = await this.get(`/search/flow-template`, {
+    const response = await this.post(`/search/flow-template`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

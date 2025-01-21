@@ -108,7 +108,7 @@ class ContentClient extends Client {
   public async searchCmsBlocks(
     request: CmsBlockListSearchRequest
   ): Promise<CmsBlockListSearchResponse> {
-    const response = await this.get(`/search/cms-block`, {
+    const response = await this.post(`/search/cms-block`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -222,7 +222,7 @@ class ContentClient extends Client {
   public async searchCmsPages(
     request: CmsPageListSearchRequest
   ): Promise<CmsPageListSearchResponse> {
-    const response = await this.get(`/search/cms-page`, {
+    const response = await this.post(`/search/cms-page`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -336,7 +336,7 @@ class ContentClient extends Client {
   public async searchCmsSections(
     request: CmsSectionListSearchRequest
   ): Promise<CmsSectionListSearchResponse> {
-    const response = await this.get(`/search/cms-section`, {
+    const response = await this.post(`/search/cms-section`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -450,7 +450,7 @@ class ContentClient extends Client {
   public async searchCmsSlots(
     request: CmsSlotListSearchRequest
   ): Promise<CmsSlotListSearchResponse> {
-    const response = await this.get(`/search/cms-slot`, {
+    const response = await this.post(`/search/cms-slot`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -564,7 +564,7 @@ class ContentClient extends Client {
   public async searchLandingPages(
     request: LandingPageListSearchRequest
   ): Promise<LandingPageListSearchResponse> {
-    const response = await this.get(`/search/landing-page`, {
+    const response = await this.post(`/search/landing-page`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -676,7 +676,7 @@ class ContentClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchThemes(request: ThemeListSearchRequest): Promise<ThemeListSearchResponse> {
-    const response = await this.get(`/search/theme`, {
+    const response = await this.post(`/search/theme`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

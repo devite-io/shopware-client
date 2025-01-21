@@ -65,7 +65,7 @@ class RuleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchRules(request: RuleListSearchRequest): Promise<RuleListSearchResponse> {
-    const response = await this.get(`/search/rule`, {
+    const response = await this.post(`/search/rule`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -177,7 +177,7 @@ class RuleClient extends Client {
   public async searchConditions(
     request: ConditionListSearchRequest
   ): Promise<ConditionListSearchResponse> {
-    const response = await this.get(`/search/rule-condition`, {
+    const response = await this.post(`/search/rule-condition`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

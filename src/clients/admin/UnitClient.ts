@@ -53,7 +53,7 @@ class UnitClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchUnits(request: UnitListSearchRequest): Promise<UnitListSearchResponse> {
-    const response = await this.get(`/search/unit`, {
+    const response = await this.post(`/search/unit`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

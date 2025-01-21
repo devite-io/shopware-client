@@ -56,7 +56,7 @@ class SecurityClient extends Client {
   public async searchAclRoles(
     request: AclRoleListSearchRequest
   ): Promise<AclRoleListSearchResponse> {
-    const response = await this.get(`/search/acl-role`, {
+    const response = await this.post(`/search/acl-role`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

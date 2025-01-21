@@ -56,7 +56,7 @@ class PaymentMethodClient extends Client {
   public async searchPaymentMethods(
     request: PaymentMethodListSearchRequest
   ): Promise<PaymentMethodListSearchResponse> {
-    const response = await this.get(`/search/payment-method`, {
+    const response = await this.post(`/search/payment-method`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

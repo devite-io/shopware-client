@@ -299,7 +299,7 @@ class OrderClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchOrders(request: OrderListSearchRequest): Promise<OrderListSearchResponse> {
-    const response = await this.get(`/search/order`, {
+    const response = await this.post(`/search/order`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -413,7 +413,7 @@ class OrderClient extends Client {
   public async searchAddresses(
     request: AddressListSearchRequest
   ): Promise<AddressListSearchResponse> {
-    const response = await this.get(`/search/order-address`, {
+    const response = await this.post(`/search/order-address`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -527,7 +527,7 @@ class OrderClient extends Client {
   public async searchCustomers(
     request: CustomerListSearchRequest
   ): Promise<CustomerListSearchResponse> {
-    const response = await this.get(`/search/order-customer`, {
+    const response = await this.post(`/search/order-customer`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -641,7 +641,7 @@ class OrderClient extends Client {
   public async searchDeliveries(
     request: DeliveryListSearchRequest
   ): Promise<DeliveryListSearchResponse> {
-    const response = await this.get(`/search/order-delivery`, {
+    const response = await this.post(`/search/order-delivery`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -755,7 +755,7 @@ class OrderClient extends Client {
   public async searchDeliveryPositions(
     request: DeliveryPositionListSearchRequest
   ): Promise<DeliveryPositionListSearchResponse> {
-    const response = await this.get(`/search/order-delivery-position`, {
+    const response = await this.post(`/search/order-delivery-position`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -872,7 +872,7 @@ class OrderClient extends Client {
   public async searchLineItems(
     request: LineItemListSearchRequest
   ): Promise<LineItemListSearchResponse> {
-    const response = await this.get(`/search/order-line-item`, {
+    const response = await this.post(`/search/order-line-item`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -986,7 +986,7 @@ class OrderClient extends Client {
   public async searchLineItemDownloads(
     request: LineItemDownloadListSearchRequest
   ): Promise<LineItemDownloadListSearchResponse> {
-    const response = await this.get(`/search/order-line-item-download`, {
+    const response = await this.post(`/search/order-line-item-download`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1103,7 +1103,7 @@ class OrderClient extends Client {
   public async searchTransactions(
     request: TransactionListSearchRequest
   ): Promise<TransactionListSearchResponse> {
-    const response = await this.get(`/search/order-transaction`, {
+    const response = await this.post(`/search/order-transaction`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1217,7 +1217,7 @@ class OrderClient extends Client {
   public async searchTransactionCaptures(
     request: TransactionCaptureListSearchRequest
   ): Promise<TransactionCaptureListSearchResponse> {
-    const response = await this.get(`/search/order-transaction-capture`, {
+    const response = await this.post(`/search/order-transaction-capture`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1336,7 +1336,7 @@ class OrderClient extends Client {
   public async searchTransactionCaptureRefunds(
     request: TransactionCaptureRefundListSearchRequest
   ): Promise<TransactionCaptureRefundListSearchResponse> {
-    const response = await this.get(`/search/order-transaction-capture-refund`, {
+    const response = await this.post(`/search/order-transaction-capture-refund`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1458,7 +1458,7 @@ class OrderClient extends Client {
   public async searchTransactionCaptureRefundPositions(
     request: TransactionCaptureRefundPositionListSearchRequest
   ): Promise<TransactionCaptureRefundPositionListSearchResponse> {
-    const response = await this.get(`/search/order-transaction-capture-refund-position`, {
+    const response = await this.post(`/search/order-transaction-capture-refund-position`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

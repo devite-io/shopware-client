@@ -129,7 +129,7 @@ class CustomerClient extends Client {
   public async searchCustomers(
     request: CustomerListSearchRequest
   ): Promise<CustomerListSearchResponse> {
-    const response = await this.get(`/search/customer`, {
+    const response = await this.post(`/search/customer`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -243,7 +243,7 @@ class CustomerClient extends Client {
   public async searchAddresses(
     request: AddressListSearchRequest
   ): Promise<AddressListSearchResponse> {
-    const response = await this.get(`/search/address`, {
+    const response = await this.post(`/search/address`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -355,7 +355,7 @@ class CustomerClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchGroups(request: GroupListSearchRequest): Promise<GroupListSearchResponse> {
-    const response = await this.get(`/search/customer-group`, {
+    const response = await this.post(`/search/customer-group`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -469,7 +469,7 @@ class CustomerClient extends Client {
   public async searchRecoveries(
     request: RecoveryListSearchRequest
   ): Promise<RecoveryListSearchResponse> {
-    const response = await this.get(`/search/customer-recovery`, {
+    const response = await this.post(`/search/customer-recovery`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -583,7 +583,7 @@ class CustomerClient extends Client {
   public async searchWishlists(
     request: WishlistListSearchRequest
   ): Promise<WishlistListSearchResponse> {
-    const response = await this.get(`/search/customer-wishlist`, {
+    const response = await this.post(`/search/customer-wishlist`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -697,7 +697,7 @@ class CustomerClient extends Client {
   public async searchWishlistProducts(
     request: WishlistProductListSearchRequest
   ): Promise<WishlistProductListSearchResponse> {
-    const response = await this.get(`/search/customer-wishlist-product`, {
+    const response = await this.post(`/search/customer-wishlist-product`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

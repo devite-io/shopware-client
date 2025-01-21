@@ -68,7 +68,7 @@ class CountryClient extends Client {
   public async searchCountries(
     request: CountryListSearchRequest
   ): Promise<CountryListSearchResponse> {
-    const response = await this.get(`/search/country`, {
+    const response = await this.post(`/search/country`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -180,7 +180,7 @@ class CountryClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
-    const response = await this.get(`/search/country-state`, {
+    const response = await this.post(`/search/country-state`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

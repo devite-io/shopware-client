@@ -85,7 +85,7 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchUsers(request: UserListSearchRequest): Promise<UserListSearchResponse> {
-    const response = await this.get(`/search/user`, {
+    const response = await this.post(`/search/user`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -197,7 +197,7 @@ class UserClient extends Client {
   public async searchAccessKeys(
     request: AccessKeyListSearchRequest
   ): Promise<AccessKeyListSearchResponse> {
-    const response = await this.get(`/search/user-access-key`, {
+    const response = await this.post(`/search/user-access-key`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -309,7 +309,7 @@ class UserClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchConfigs(request: ConfigListSearchRequest): Promise<ConfigListSearchResponse> {
-    const response = await this.get(`/search/user-config`, {
+    const response = await this.post(`/search/user-config`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -423,7 +423,7 @@ class UserClient extends Client {
   public async searchRecoveries(
     request: RecoveryListSearchRequest
   ): Promise<RecoveryListSearchResponse> {
-    const response = await this.get(`/search/user-recovery`, {
+    const response = await this.post(`/search/user-recovery`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

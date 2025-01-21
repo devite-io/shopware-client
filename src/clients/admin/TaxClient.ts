@@ -85,7 +85,7 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchTaxes(request: TaxListSearchRequest): Promise<TaxListSearchResponse> {
-    const response = await this.get(`/search/tax`, {
+    const response = await this.post(`/search/tax`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -197,7 +197,7 @@ class TaxClient extends Client {
   public async searchProviders(
     request: ProviderListSearchRequest
   ): Promise<ProviderListSearchResponse> {
-    const response = await this.get(`/search/tax-provider`, {
+    const response = await this.post(`/search/tax-provider`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -308,7 +308,7 @@ class TaxClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchRules(request: RuleListSearchRequest): Promise<RuleListSearchResponse> {
-    const response = await this.get(`/search/tax-rule`, {
+    const response = await this.post(`/search/tax-rule`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -420,7 +420,7 @@ class TaxClient extends Client {
   public async searchRuleTypes(
     request: RuleTypeListSearchRequest
   ): Promise<RuleTypeListSearchResponse> {
-    const response = await this.get(`/search/tax-rule-type`, {
+    const response = await this.post(`/search/tax-rule-type`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

@@ -68,7 +68,7 @@ class DeliveryTimeClient extends Client {
   public async searchSnippets(
     request: SnippetListSearchRequest
   ): Promise<SnippetListSearchResponse> {
-    const response = await this.get(`/search/snippet`, {
+    const response = await this.post(`/search/snippet`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -179,7 +179,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchSets(request: SetListSearchRequest): Promise<SetListSearchResponse> {
-    const response = await this.get(`/search/snippet-set`, {
+    const response = await this.post(`/search/snippet-set`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

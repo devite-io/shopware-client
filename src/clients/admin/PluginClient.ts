@@ -54,7 +54,7 @@ class PluginClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchPlugins(request: PluginListSearchRequest): Promise<PluginListSearchResponse> {
-    const response = await this.get(`/search/plugin`, {
+    const response = await this.post(`/search/plugin`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

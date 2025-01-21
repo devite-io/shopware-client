@@ -88,7 +88,7 @@ class CustomDataClient extends Client {
   public async searchCustomEntities(
     request: CustomEntityListSearchRequest
   ): Promise<CustomEntityListSearchResponse> {
-    const response = await this.get(`/search/custom-entity`, {
+    const response = await this.post(`/search/custom-entity`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -202,7 +202,7 @@ class CustomDataClient extends Client {
   public async searchCustomFields(
     request: CustomFieldListSearchRequest
   ): Promise<CustomFieldListSearchResponse> {
-    const response = await this.get(`/search/custom-field`, {
+    const response = await this.post(`/search/custom-field`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -316,7 +316,7 @@ class CustomDataClient extends Client {
   public async searchCustomFieldSets(
     request: CustomFieldSetListSearchRequest
   ): Promise<CustomFieldSetListSearchResponse> {
-    const response = await this.get(`/search/custom-field-set`, {
+    const response = await this.post(`/search/custom-field-set`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -435,7 +435,7 @@ class CustomDataClient extends Client {
   public async searchCustomFieldSetRelations(
     request: CustomFieldSetRelationListSearchRequest
   ): Promise<CustomFieldSetRelationListSearchResponse> {
-    const response = await this.get(`/search/custom-field-set-relation`, {
+    const response = await this.post(`/search/custom-field-set-relation`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

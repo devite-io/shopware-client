@@ -68,7 +68,7 @@ class ShippingMethodClient extends Client {
   public async searchShippingMethods(
     request: ShippingMethodListSearchRequest
   ): Promise<ShippingMethodListSearchResponse> {
-    const response = await this.get(`/search/shipping-method`, {
+    const response = await this.post(`/search/shipping-method`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -183,7 +183,7 @@ class ShippingMethodClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchPrices(request: PriceListSearchRequest): Promise<PriceListSearchResponse> {
-    const response = await this.get(`/search/shipping-method-price`, {
+    const response = await this.post(`/search/shipping-method-price`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

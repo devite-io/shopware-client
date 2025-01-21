@@ -68,7 +68,7 @@ class WebhookClient extends Client {
   public async searchWebhooks(
     request: WebhookListSearchRequest
   ): Promise<WebhookListSearchResponse> {
-    const response = await this.get(`/search/webhook`, {
+    const response = await this.post(`/search/webhook`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -182,7 +182,7 @@ class WebhookClient extends Client {
   public async searchEventLogs(
     request: EventLogListSearchRequest
   ): Promise<EventLogListSearchResponse> {
-    const response = await this.get(`/search/webhook-event-log`, {
+    const response = await this.post(`/search/webhook-event-log`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

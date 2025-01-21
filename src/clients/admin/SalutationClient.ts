@@ -56,7 +56,7 @@ class SalutationClient extends Client {
   public async searchSalutations(
     request: SalutationListSearchRequest
   ): Promise<SalutationListSearchResponse> {
-    const response = await this.get(`/search/salutation`, {
+    const response = await this.post(`/search/salutation`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

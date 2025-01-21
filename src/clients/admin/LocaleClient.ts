@@ -66,7 +66,7 @@ class LocaleClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchLocales(request: LocaleListSearchRequest): Promise<LocaleListSearchResponse> {
-    const response = await this.get(`/search/locale`, {
+    const response = await this.post(`/search/locale`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -180,7 +180,7 @@ class LocaleClient extends Client {
   public async searchLanguages(
     request: LanguageListSearchRequest
   ): Promise<LanguageListSearchResponse> {
-    const response = await this.get(`/search/language`, {
+    const response = await this.post(`/search/language`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

@@ -78,7 +78,7 @@ class DeliveryTimeClient extends Client {
   public async searchStateMachines(
     request: StateMachineListSearchRequest
   ): Promise<StateMachineListSearchResponse> {
-    const response = await this.get(`/search/state-machine`, {
+    const response = await this.post(`/search/state-machine`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -190,7 +190,7 @@ class DeliveryTimeClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
-    const response = await this.get(`/search/state-machine-state`, {
+    const response = await this.post(`/search/state-machine-state`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -304,7 +304,7 @@ class DeliveryTimeClient extends Client {
   public async searchTransitions(
     request: TransitionListSearchRequest
   ): Promise<TransitionListSearchResponse> {
-    const response = await this.get(`/search/state-machine-transition`, {
+    const response = await this.post(`/search/state-machine-transition`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

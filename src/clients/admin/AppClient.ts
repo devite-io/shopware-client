@@ -145,7 +145,7 @@ class AppClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchApps(request: AppListSearchRequest): Promise<AppListSearchResponse> {
-    const response = await this.get(`/search/app`, {
+    const response = await this.post(`/search/app`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -257,7 +257,7 @@ class AppClient extends Client {
   public async searchActionButtons(
     request: ActionButtonListSearchRequest
   ): Promise<ActionButtonListSearchResponse> {
-    const response = await this.get(`/search/app-action-button`, {
+    const response = await this.post(`/search/app-action-button`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -371,7 +371,7 @@ class AppClient extends Client {
   public async searchAdminSnippets(
     request: AdminSnippetListSearchRequest
   ): Promise<AdminSnippetListSearchResponse> {
-    const response = await this.get(`/search/app-administration-snippet`, {
+    const response = await this.post(`/search/app-administration-snippet`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -485,7 +485,7 @@ class AppClient extends Client {
   public async searchCmsBlocks(
     request: CmsBlockListSearchRequest
   ): Promise<CmsBlockListSearchResponse> {
-    const response = await this.get(`/search/app-cms-block`, {
+    const response = await this.post(`/search/app-cms-block`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -599,7 +599,7 @@ class AppClient extends Client {
   public async searchFlowActions(
     request: FlowActionListSearchRequest
   ): Promise<FlowActionListSearchResponse> {
-    const response = await this.get(`/search/app-flow-action`, {
+    const response = await this.post(`/search/app-flow-action`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -713,7 +713,7 @@ class AppClient extends Client {
   public async searchFlowEvents(
     request: FlowEventListSearchRequest
   ): Promise<FlowEventListSearchResponse> {
-    const response = await this.get(`/search/app-flow-event`, {
+    const response = await this.post(`/search/app-flow-event`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -827,7 +827,7 @@ class AppClient extends Client {
   public async searchPaymentMethods(
     request: PaymentMethodListSearchRequest
   ): Promise<PaymentMethodListSearchResponse> {
-    const response = await this.get(`/search/app-payment-method`, {
+    const response = await this.post(`/search/app-payment-method`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -944,7 +944,7 @@ class AppClient extends Client {
   public async searchScriptConditions(
     request: ScriptConditionListSearchRequest
   ): Promise<ScriptConditionListSearchResponse> {
-    const response = await this.get(`/search/app-script-condition`, {
+    const response = await this.post(`/search/app-script-condition`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1061,7 +1061,7 @@ class AppClient extends Client {
   public async searchShippingMethods(
     request: ShippingMethodListSearchRequest
   ): Promise<ShippingMethodListSearchResponse> {
-    const response = await this.get(`/search/app-shipping-method`, {
+    const response = await this.post(`/search/app-shipping-method`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -1178,7 +1178,7 @@ class AppClient extends Client {
   public async searchTemplates(
     request: TemplateListSearchRequest
   ): Promise<TemplateListSearchResponse> {
-    const response = await this.get(`/search/app-template`, {
+    const response = await this.post(`/search/app-template`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

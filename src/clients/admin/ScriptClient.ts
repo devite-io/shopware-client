@@ -54,7 +54,7 @@ class ScriptClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchScripts(request: ScriptListSearchRequest): Promise<ScriptListSearchResponse> {
-    const response = await this.get(`/search/script`, {
+    const response = await this.post(`/search/script`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

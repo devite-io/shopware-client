@@ -128,7 +128,7 @@ class MailClient extends Client {
   public async searchHeaderFooters(
     request: HeaderFooterListSearchRequest
   ): Promise<HeaderFooterListSearchResponse> {
-    const response = await this.get(`/search/header-footer`, {
+    const response = await this.post(`/search/header-footer`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -242,7 +242,7 @@ class MailClient extends Client {
   public async searchTemplates(
     request: TemplateListSearchRequest
   ): Promise<TemplateListSearchResponse> {
-    const response = await this.get(`/search/template`, {
+    const response = await this.post(`/search/template`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -356,7 +356,7 @@ class MailClient extends Client {
   public async searchTemplateTypes(
     request: TemplateTypeListSearchRequest
   ): Promise<TemplateTypeListSearchResponse> {
-    const response = await this.get(`/search/template-type`, {
+    const response = await this.post(`/search/template-type`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

@@ -56,7 +56,7 @@ class NewsletterClient extends Client {
   public async searchRecipients(
     request: RecipientListSearchRequest
   ): Promise<RecipientListSearchResponse> {
-    const response = await this.get(`/search/newsletter-recipient`, {
+    const response = await this.post(`/search/newsletter-recipient`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

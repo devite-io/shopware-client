@@ -53,7 +53,7 @@ class TagClient extends Client {
    * @throws {Error} if the request failed
    */
   public async searchTags(request: TagListSearchRequest): Promise<TagListSearchResponse> {
-    const response = await this.get(`/search/tag`, {
+    const response = await this.post(`/search/tag`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });

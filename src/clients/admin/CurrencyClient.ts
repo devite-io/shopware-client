@@ -68,7 +68,7 @@ class CountryClient extends Client {
   public async searchCurrencies(
     request: CurrencyListSearchRequest
   ): Promise<CurrencyListSearchResponse> {
-    const response = await this.get(`/search/currency`, {
+    const response = await this.post(`/search/currency`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
@@ -182,7 +182,7 @@ class CountryClient extends Client {
   public async searchCountryRoundings(
     request: CountryRoundingListSearchRequest
   ): Promise<CountryRoundingListSearchResponse> {
-    const response = await this.get(`/search/currency-country-rounding`, {
+    const response = await this.post(`/search/currency-country-rounding`, {
       headers: { Accept: "application/json" },
       body: new JsonPayload(request)
     });
