@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v1.3.2
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.3.1...v1.3.2)
+
+### 🩹 Fixes
+
+- **clients/admin:** Change http method of search requests to POST ([533c23e](https://github.com/devite-io/shopware-client/commit/533c23e))
+- Export payloads for typed direct api usage via doRequest ([9310600](https://github.com/devite-io/shopware-client/commit/9310600))
+- **types:** Adjust incorrect types ([9437b44](https://github.com/devite-io/shopware-client/commit/9437b44))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.3.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.3.0...v1.3.1)
