@@ -15,7 +15,7 @@ export interface Criteria {
   associations?: Record<string, Criteria>;
   "post-filter"?: Filters;
   sort?: Array<Sort>;
-  aggregations?: Aggregation;
+  aggregations?: Array<Aggregation>;
   fields?: Array<string>;
   grouping?: Array<string>;
   /** @default "none" */

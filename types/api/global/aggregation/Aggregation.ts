@@ -5,11 +5,10 @@ import { AggregationMetrics } from "./AggregationMetrics";
 import { AggregationRange } from "./AggregationRange";
 import { AggregationTerms } from "./AggregationTerms";
 
-export type Aggregation = Array<
+export type Aggregation =
   | AggregationEntity
   | AggregationFilter
   | AggregationHistogram
   | AggregationMetrics
   | AggregationRange
-  | AggregationTerms
->;
+  | AggregationTerms;
