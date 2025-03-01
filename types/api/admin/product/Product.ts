@@ -7,7 +7,6 @@ import { Unit } from "../Unit";
 import { ProductMedia } from "./ProductMedia";
 import { ProductFeatureSet } from "./ProductFeatureSet";
 import { CmsPage } from "../cms/CmsPage";
-import { Media } from "../media/Media";
 import { ProductCrossSelling } from "./crossSelling/ProductCrossSelling";
 import { ProductCrossSellingAssignedProduct } from "./crossSelling/ProductCrossSellingAssignedProduct";
 import { ProductConfiguratorSetting } from "./ProductConfiguratorSetting";
@@ -45,7 +44,7 @@ export type Product = StoreApiProduct & {
   featureSet?: ProductFeatureSet;
   cmsPage?: CmsPage;
   canonicalProduct?: Product;
-  media?: Array<Media>;
+  media?: Array<ProductMedia>;
   crossSellings?: Array<ProductCrossSelling>;
   crossSellingAssignedProducts?: Array<ProductCrossSellingAssignedProduct>;
   configuratorSettings?: Array<ProductConfiguratorSetting>;

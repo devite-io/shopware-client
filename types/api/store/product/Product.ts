@@ -6,7 +6,6 @@ import { Tax } from "../Tax";
 import { ProductManufacturer } from "./ProductManufacturer";
 import { Unit } from "../Unit";
 import { ProductMedia } from "../media/ProductMedia";
-import { Media } from "../media/Media";
 import { CmsPage } from "../cms/CmsPage";
 import { ProductCrossSelling } from "./crossSelling/ProductCrossSelling";
 import { ProductConfiguratorSetting } from "./ProductConfiguratorSetting";
@@ -94,7 +93,7 @@ export interface Product {
   cover?: ProductMedia;
   cmsPage?: CmsPage;
   canonicalProduct?: Product;
-  media?: Array<Media>;
+  media?: Array<ProductMedia>;
   crossSellings?: Array<ProductCrossSelling>;
   configuratorSettings?: Array<ProductConfiguratorSetting>;
   productReviews?: Array<ProductReview>;
