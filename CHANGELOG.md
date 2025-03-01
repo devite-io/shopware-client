@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.3.3
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.3.2...v1.3.3)
+
+### 🩹 Fixes
+
+- **types:** Adjust incorrect types ([2dcbed6](https://github.com/devite-io/shopware-client/commit/2dcbed6))
+- **types:** Adjust product media type ([ad9532f](https://github.com/devite-io/shopware-client/commit/ad9532f))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.3.2
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.3.1...v1.3.2)
