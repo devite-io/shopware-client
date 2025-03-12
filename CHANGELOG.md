@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v1.4.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.3.3...v1.4.0)
+
+### 🚀 Enhancements
+
+- Use context token for context client + add method to manually set the context token ([841c117](https://github.com/devite-io/shopware-client/commit/841c117))
+
+### 🏡 Chore
+
+- Update dependencies ([70ffbd2](https://github.com/devite-io/shopware-client/commit/70ffbd2))
+- Update release script ([c7fe962](https://github.com/devite-io/shopware-client/commit/c7fe962))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.3.3
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.3.2...v1.3.3)
