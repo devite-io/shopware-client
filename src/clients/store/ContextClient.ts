@@ -1,5 +1,6 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import type StoreShopwareClient from "../StoreShopwareClient";
 import ShopwareError from "#http/ShopwareError";
 import {
   ContextGetResponse,
@@ -12,9 +13,13 @@ class ContextClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getContext(): Promise<ContextGetResponse> {
-    const response = await this.get("/context");
+    const response = await this.get(
+      "/context",
+      (this.client as StoreShopwareClient).withContextToken()
+    );
 
-    if (response.statusCode === 200) return response.body as ContextGetResponse;
+    if (response.statusCode === 200)
+      return (response.body as JsonPayload).data as ContextGetResponse;
 
     throw new ShopwareError("Failed to fetch context", response);
   }
@@ -23,9 +28,10 @@ class ContextClient extends Client {
    * @throws {Error} if the request failed
    */
   public async updateContext(context: ContextUpdateRequest): Promise<ContextUpdateResponse> {
-    const response = await this.patch("/context", {
-      body: new JsonPayload(context)
-    });
+    const response = await this.patch(
+      "/context",
+      (this.client as StoreShopwareClient).withContextToken({ body: new JsonPayload(context) })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ContextUpdateResponse;

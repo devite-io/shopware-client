@@ -18,6 +18,7 @@ import ProductClient from "./store/ProductClient";
 import SeoClient from "./store/SeoClient";
 import SystemClient from "./store/SystemClient";
 import WishlistClient from "./store/WishlistClient";
+import ContextTokenEntry from "../auth/entries/ContextTokenEntry";
 
 class StoreShopwareClient extends ShopwareClient {
   private readonly apiKey: string;
@@ -40,6 +41,14 @@ class StoreShopwareClient extends ShopwareClient {
         ...options?.headers,
         "sw-access-key": this.apiKey
       }
+    });
+  }
+
+  public setContextToken(token: string): void {
+    this.authStore.getOrCreateEntry(new ContextTokenEntry()).save({
+      statusCode: 200,
+      statusMessage: "OK",
+      headers: new Headers({ "sw-context-token": token })
     });
   }
 
