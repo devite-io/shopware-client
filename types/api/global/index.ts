@@ -1,4 +1,5 @@
 export * from "./aggregation";
+export * from "./dal";
 export * from "./filter";
 export * from "./price";
 export * from "./query";

@@ -90,7 +90,6 @@ export interface CustomerRegisterRequest {
   storefrontUrl: string;
   billingAddress: CustomerAddress;
   shippingAddress?: CustomerAddress;
-  accountType?: "private" | "business";
   guest?: boolean;
   birthdayDay?: number;
   birthdayMonth?: number;
@@ -98,8 +97,12 @@ export interface CustomerRegisterRequest {
   title?: string;
   affiliateCode?: string;
   campaignCode?: string;
+  /** @default "private" */
+  accountType?: "private" | "business";
+  company?: string;
+  vatIds?: Array<string>;
 }
-export type CustomerRegisterResponse = Customer;
+export type CustomerRegisterResponse = { accountType: "private" | "business" };
 
 export type CustomerRegisterGroupConfigResponse = CustomerGroup;
 

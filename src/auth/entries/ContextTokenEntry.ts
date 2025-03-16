@@ -20,7 +20,13 @@ class ContextTokenEntry implements AuthenticationEntry {
   }
 
   save(response: ClientResponse): void {
-    this.token = response.headers?.get("sw-context-token") || null;
+    const headerToken = response.headers?.get("sw-context-token") || null;
+
+    if (headerToken?.includes(", ")) {
+      this.token = headerToken.split(", ")[1];
+    } else {
+      this.token = headerToken;
+    }
   }
 
   clear(): void {
