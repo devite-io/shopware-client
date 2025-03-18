@@ -1,5 +1,7 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import AuthenticationEntry from "#auth/entries/AuthenticationEntry";
+import AuthenticationType from "#auth/AuthenticationType";
 import type StoreShopwareClient from "../StoreShopwareClient";
 import ShopwareError from "#http/ShopwareError";
 import {
@@ -13,13 +15,19 @@ class ContextClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getContext(): Promise<ContextGetResponse> {
+    const entry: AuthenticationEntry | undefined = this.client.authStore.getEntry(
+      AuthenticationType.CONTEXT_TOKEN
+    );
     const response = await this.get(
       "/context",
-      (this.client as StoreShopwareClient).withContextToken()
+      entry ? (this.client as StoreShopwareClient).withContextToken() : undefined
     );
 
-    if (response.statusCode === 200)
+    if (response.statusCode === 200) {
+      entry?.save(response);
+
       return (response.body as JsonPayload).data as ContextGetResponse;
+    }
 
     throw new ShopwareError("Failed to fetch context", response);
   }
