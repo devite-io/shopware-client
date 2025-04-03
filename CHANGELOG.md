@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.4.2
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.4.1...v1.4.2)
+
+### 🩹 Fixes
+
+- **clients/store:** Fix cart creation for unauthenticated users ([43c4aa8](https://github.com/devite-io/shopware-client/commit/43c4aa8))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.4.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.4.0...v1.4.1)
