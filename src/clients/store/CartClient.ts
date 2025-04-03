@@ -11,13 +11,17 @@ import {
   CartUpdateItemsRequest,
   CartUpdateItemsResponse
 } from "#types/clients/store/CartClient";
+import type StoreShopwareClient from "../StoreShopwareClient";
 
 class CartClient extends Client {
   /**
    * @throws {Error} if the request failed
    */
   public async getOrCreateCart(): Promise<CartGetOrCreateResponse> {
-    const response = await this.get("/checkout/cart");
+    const response = await this.get(
+      "/checkout/cart",
+      (this.client as StoreShopwareClient).withContextToken()
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartGetOrCreateResponse;
@@ -29,7 +33,10 @@ class CartClient extends Client {
    * @throws {Error} if the request failed
    */
   public async deleteCart(): Promise<CartDeleteResponse> {
-    const response = await this.delete("/checkout/cart");
+    const response = await this.delete(
+      "/checkout/cart",
+      (this.client as StoreShopwareClient).withContextToken()
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartDeleteResponse;
@@ -41,9 +48,12 @@ class CartClient extends Client {
    * @throws {Error} if the request failed
    */
   public async addLineItems(request: CartAddItemsRequest): Promise<CartAddItemsResponse> {
-    const response = await this.post("/checkout/cart/line-item", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/checkout/cart/line-item",
+      (this.client as StoreShopwareClient).withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartAddItemsResponse;
@@ -55,9 +65,12 @@ class CartClient extends Client {
    * @throws {Error} if the request failed
    */
   public async removeLineItems(request: CartRemoveItemsRequest): Promise<CartRemoveItemsResponse> {
-    const response = await this.post("/checkout/cart/line-item/delete", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      "/checkout/cart/line-item/delete",
+      (this.client as StoreShopwareClient).withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartRemoveItemsResponse;
@@ -69,9 +82,12 @@ class CartClient extends Client {
    * @throws {Error} if the request failed
    */
   public async updateLineItems(request: CartUpdateItemsRequest): Promise<CartUpdateItemsResponse> {
-    const response = await this.patch("/checkout/cart/line-item", {
-      body: new JsonPayload(request)
-    });
+    const response = await this.patch(
+      "/checkout/cart/line-item",
+      (this.client as StoreShopwareClient).withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as CartUpdateItemsResponse;

@@ -22,6 +22,7 @@ export interface CalculatedPrice {
   variantId?: string | null;
   apiAlias: "calculated_price";
   taxRules: Array<{
+    percentage?: number;
     taxRate?: number;
     name?: string;
   }>;

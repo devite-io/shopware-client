@@ -16,7 +16,7 @@ class NewsletterClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 204) return;
 
     throw new ShopwareError("Failed to confirm newsletter subscription", response);
   }
@@ -29,7 +29,7 @@ class NewsletterClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 204) return;
 
     throw new ShopwareError("Failed to update newsletter subscription", response);
   }
@@ -42,7 +42,7 @@ class NewsletterClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 204) return;
 
     throw new ShopwareError("Failed to unsubscribe newsletter subscription", response);
   }

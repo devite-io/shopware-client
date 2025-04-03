@@ -12,7 +12,7 @@ export interface CartRemoveItemsRequest {
 export type CartRemoveItemsResponse = Cart;
 
 export interface CartUpdateItemsRequest {
-  items?: Array<LineItem>;
+  items?: Array<Partial<LineItem>>;
 }
 export type CartUpdateItemsResponse = Cart;
 

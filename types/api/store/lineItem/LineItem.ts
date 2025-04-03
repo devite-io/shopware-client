@@ -1,4 +1,4 @@
-import { ProductMedia } from "../media/ProductMedia";
+import { Media } from "../media/Media";
 import { CartDeliveryInformation } from "../cart/delivery/CartDeliveryInformation";
 import { LineItemPayload } from "./LineItemPayload";
 import { CalculatedPrice } from "../price/CalculatedPrice";
@@ -7,7 +7,7 @@ import { LineItemType } from "./LineItemType";
 
 export interface LineItem {
   children?: Array<LineItem>;
-  cover?: ProductMedia;
+  cover?: Media;
   dataContextHash?: string;
   dataTimestamp?: string;
   deliveryInformation?: CartDeliveryInformation;
