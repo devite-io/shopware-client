@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v1.4.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.4.0...v1.4.1)
+
+### 🩹 Fixes
+
+- **types:** Adjust context + register types ([17d0981](https://github.com/devite-io/shopware-client/commit/17d0981))
+- **clients/store:** Save context token after first request ([8769b00](https://github.com/devite-io/shopware-client/commit/8769b00))
+- **clients/store:** Fix typings + context headers for cart and newsletter clients ([e69933d](https://github.com/devite-io/shopware-client/commit/e69933d))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.4.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.3.3...v1.4.0)
