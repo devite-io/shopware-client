@@ -12,6 +12,8 @@ import {
   CartUpdateItemsResponse
 } from "#types/clients/store/CartClient";
 import type StoreShopwareClient from "../StoreShopwareClient";
+import AuthenticationEntry from "../../auth/entries/AuthenticationEntry";
+import AuthenticationType from "../../auth/AuthenticationType";
 
 class CartClient extends Client {
   /**
@@ -20,7 +22,9 @@ class CartClient extends Client {
   public async getOrCreateCart(): Promise<CartGetOrCreateResponse> {
     const response = await this.get(
       "/checkout/cart",
-      (this.client as StoreShopwareClient).withContextToken()
+      this.client.authStore.getEntry(AuthenticationType.CONTEXT_TOKEN)
+        ? (this.client as StoreShopwareClient).withContextToken()
+        : undefined
     );
 
     if (response.statusCode === 200)
