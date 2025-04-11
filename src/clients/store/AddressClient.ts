@@ -38,7 +38,7 @@ class AddressClient extends Client {
       (this.client as StoreShopwareClient).withContextToken()
     );
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 204) return;
 
     throw new ShopwareError("Failed to delete address", response);
   }
@@ -50,7 +50,7 @@ class AddressClient extends Client {
     addressId: string,
     request: AddressUpdateRequest
   ): Promise<AddressUpdateResponse> {
-    const response = await this.put(
+    const response = await this.patch(
       `/account/address/${addressId}`,
       (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)
@@ -84,12 +84,12 @@ class AddressClient extends Client {
    * @throws {Error} if the request failed
    */
   public async changeDefaultShippingAddress(addressId: string): Promise<void> {
-    const response = await this.post(
+    const response = await this.patch(
       `/account/address/default-shipping/${addressId}`,
       (this.client as StoreShopwareClient).withContextToken()
     );
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 204) return;
 
     throw new ShopwareError("Failed to change default shipping address", response);
   }
@@ -98,12 +98,12 @@ class AddressClient extends Client {
    * @throws {Error} if the request failed
    */
   public async changeDefaultBillingAddress(addressId: string): Promise<void> {
-    const response = await this.post(
+    const response = await this.patch(
       `/account/address/default-billing/${addressId}`,
       (this.client as StoreShopwareClient).withContextToken()
     );
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 204) return;
 
     throw new ShopwareError("Failed to change default billing address", response);
   }
