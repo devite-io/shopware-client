@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v1.5.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.4.2...v1.5.0)
+
+### 🚀 Enhancements
+
+- **clients/store:** Export auth token entries ([a3fac35](https://github.com/devite-io/shopware-client/commit/a3fac35))
+
+### 🩹 Fixes
+
+- **types:** Adjust SimpleFilter value field ([eb35934](https://github.com/devite-io/shopware-client/commit/eb35934))
+- **clients/store:** Payment and shipping method request parameters ([3b584bf](https://github.com/devite-io/shopware-client/commit/3b584bf))
+
+### 🏡 Chore
+
+- Update dependencies ([a859801](https://github.com/devite-io/shopware-client/commit/a859801))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.4.2
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.4.1...v1.4.2)
