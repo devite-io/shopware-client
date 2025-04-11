@@ -45,11 +45,7 @@ class StoreShopwareClient extends ShopwareClient {
   }
 
   public setContextToken(token: string): void {
-    this.authStore.getOrCreateEntry(new ContextTokenEntry()).save({
-      statusCode: 200,
-      statusMessage: "OK",
-      headers: new Headers({ "sw-context-token": token })
-    });
+    (this.authStore.getOrCreateEntry(new ContextTokenEntry()) as ContextTokenEntry).token = token;
   }
 
   public withContextToken(options: ClientRequestOptions = {}): ClientRequestOptions {
