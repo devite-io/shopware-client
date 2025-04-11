@@ -98,9 +98,10 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getShippingMethods(
-    request: ShippingMethodListRequest = {}
+    request: ShippingMethodListRequest = {},
+    onlyAvailable: boolean = false
   ): Promise<ShippingMethodListResponse> {
-    const response = await this.post(`/shipping-method`, {
+    const response = await this.post(`/shipping-method?onlyAvailable=${onlyAvailable ? 1 : 0}`, {
       body: new JsonPayload(request)
     });
 
@@ -114,9 +115,10 @@ class SystemClient extends Client {
    * @throws {Error} if the request failed
    */
   public async getPaymentMethods(
-    request: PaymentMethodListRequest = {}
+    request: PaymentMethodListRequest = {},
+    onlyAvailable: boolean = false
   ): Promise<PaymentMethodListResponse> {
-    const response = await this.post(`/payment-method`, {
+    const response = await this.post(`/payment-method?onlyAvailable=${onlyAvailable ? 1 : 0}`, {
       body: new JsonPayload(request)
     });
 
