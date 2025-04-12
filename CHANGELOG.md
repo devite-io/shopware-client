@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.0...v1.5.1)
+
+### 🩹 Fixes
+
+- **clients/store/AddressClient:** Types, http methods and response code checks ([d58e028](https://github.com/devite-io/shopware-client/commit/d58e028))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.4.2...v1.5.0)
