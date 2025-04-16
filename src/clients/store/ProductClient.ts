@@ -1,5 +1,6 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
+import type StoreShopwareClient from "../StoreShopwareClient";
 import ShopwareError from "#http/ShopwareError";
 import {
   ProductCrossSellingGroupListResponse,
@@ -106,11 +107,14 @@ class ProductClient extends Client {
    * @throws {Error} if the request failed
    */
   public async saveReviewForProduct(id: string, request: ProductReviewSaveRequest): Promise<void> {
-    const response = await this.post(`/product/${id}/review`, {
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/product/${id}/review`,
+      (this.client as StoreShopwareClient).withContextToken({
+        body: new JsonPayload(request)
+      })
+    );
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 204) return;
 
     throw new ShopwareError("Failed to save review for product", response);
   }
