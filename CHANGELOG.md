@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.5.2
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.1...v1.5.2)
+
+### 🩹 Fixes
+
+- **clients/store/ProductClient:** Request headers and response code check ([2b6adf7](https://github.com/devite-io/shopware-client/commit/2b6adf7))
+- **clients/admin:** Error JSDoc + update/create status codes + responses ([93e7b19](https://github.com/devite-io/shopware-client/commit/93e7b19))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.0...v1.5.1)
