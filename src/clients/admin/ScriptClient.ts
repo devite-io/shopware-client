@@ -18,7 +18,7 @@ import {
 
 class ScriptClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScripts(query?: Criteria): Promise<ScriptListResponse> {
     const response = await this.get(`/script` + buildQuery(query), {
@@ -32,7 +32,7 @@ class ScriptClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createScript(
     request: ScriptCreateRequest,
@@ -51,7 +51,7 @@ class ScriptClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchScripts(request: ScriptListSearchRequest): Promise<ScriptListSearchResponse> {
     const response = await this.post(`/search/script`, {
@@ -66,7 +66,7 @@ class ScriptClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScript(id: string, query?: Criteria): Promise<ScriptSingleResponse> {
     const response = await this.get(`/script/${id}` + buildQuery(query), {
@@ -80,7 +80,7 @@ class ScriptClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteScript(id: string): Promise<void> {
     const response = await this.delete(`/script/${id}`);
@@ -91,7 +91,7 @@ class ScriptClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateScript(
     id: string,
@@ -104,14 +104,14 @@ class ScriptClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ScriptUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ScriptUpdateResponse;
 
     throw new ShopwareError("Failed to update script", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScriptAggregate(
     request: ScriptAggregationRequest

@@ -50,7 +50,7 @@ class UserClient extends Client {
   /** Users **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUsers(query?: Criteria): Promise<UserListResponse> {
     const response = await this.get(`/user` + buildQuery(query), {
@@ -63,7 +63,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createUser(
     request: UserCreateRequest,
@@ -82,7 +82,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchUsers(request: UserListSearchRequest): Promise<UserListSearchResponse> {
     const response = await this.post(`/search/user`, {
@@ -97,7 +97,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUser(id: string, query?: Criteria): Promise<UserSingleResponse> {
     const response = await this.get(`/user/${id}` + buildQuery(query), {
@@ -111,7 +111,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteUser(id: string): Promise<void> {
     const response = await this.delete(`/user/${id}`);
@@ -122,7 +122,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateUser(
     id: string,
@@ -135,14 +135,14 @@ class UserClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as UserUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as UserUpdateResponse;
 
     throw new ShopwareError("Failed to update user", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUserAggregate(request: UserAggregationRequest): Promise<UserAggregationResponse> {
     const response = await this.post(`/aggregate/user`, {
@@ -159,7 +159,7 @@ class UserClient extends Client {
   /** Access Keys **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAccessKeys(query?: Criteria): Promise<AccessKeyListResponse> {
     const response = await this.get(`/user-access-key` + buildQuery(query), {
@@ -173,7 +173,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAccessKey(
     request: AccessKeyCreateRequest,
@@ -192,7 +192,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAccessKeys(
     request: AccessKeyListSearchRequest
@@ -209,7 +209,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAccessKey(id: string, query?: Criteria): Promise<AccessKeySingleResponse> {
     const response = await this.get(`/user-access-key/${id}` + buildQuery(query), {
@@ -223,7 +223,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAccessKey(id: string): Promise<void> {
     const response = await this.delete(`/user-access-key/${id}`);
@@ -234,7 +234,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAccessKey(
     id: string,
@@ -247,14 +247,14 @@ class UserClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AccessKeyUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AccessKeyUpdateResponse;
 
     throw new ShopwareError("Failed to update access key", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAccessKeyAggregate(
     request: AccessKeyAggregationRequest
@@ -273,7 +273,7 @@ class UserClient extends Client {
   /** Configs **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigs(query?: Criteria): Promise<ConfigListResponse> {
     const response = await this.get(`/user-config` + buildQuery(query), {
@@ -287,7 +287,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createConfig(
     request: ConfigCreateRequest,
@@ -306,7 +306,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchConfigs(request: ConfigListSearchRequest): Promise<ConfigListSearchResponse> {
     const response = await this.post(`/search/user-config`, {
@@ -321,7 +321,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfig(id: string, query?: Criteria): Promise<ConfigSingleResponse> {
     const response = await this.get(`/user-config/${id}` + buildQuery(query), {
@@ -335,7 +335,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteConfig(id: string): Promise<void> {
     const response = await this.delete(`/user-config/${id}`);
@@ -346,7 +346,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateConfig(
     id: string,
@@ -359,14 +359,14 @@ class UserClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ConfigUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ConfigUpdateResponse;
 
     throw new ShopwareError("Failed to update config", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigAggregate(
     request: ConfigAggregationRequest
@@ -385,7 +385,7 @@ class UserClient extends Client {
   /** Recoveries **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecoveries(query?: Criteria): Promise<RecoveryListResponse> {
     const response = await this.get(`/user-recovery` + buildQuery(query), {
@@ -399,7 +399,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRecovery(
     request: RecoveryCreateRequest,
@@ -418,7 +418,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRecoveries(
     request: RecoveryListSearchRequest
@@ -435,7 +435,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecovery(id: string, query?: Criteria): Promise<RecoverySingleResponse> {
     const response = await this.get(`/user-recovery/${id}` + buildQuery(query), {
@@ -449,7 +449,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRecovery(id: string): Promise<void> {
     const response = await this.delete(`/user-recovery/${id}`);
@@ -460,7 +460,7 @@ class UserClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRecovery(
     id: string,
@@ -473,14 +473,14 @@ class UserClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RecoveryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RecoveryUpdateResponse;
 
     throw new ShopwareError("Failed to update recovery", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecoveryAggregate(
     request: RecoveryAggregationRequest

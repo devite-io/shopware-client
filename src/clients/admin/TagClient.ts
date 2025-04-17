@@ -18,7 +18,7 @@ import {
 
 class TagClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTags(query?: Criteria): Promise<TagListResponse> {
     const response = await this.get(`/tag` + buildQuery(query), {
@@ -31,7 +31,7 @@ class TagClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTag(
     request: TagCreateRequest,
@@ -50,7 +50,7 @@ class TagClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTags(request: TagListSearchRequest): Promise<TagListSearchResponse> {
     const response = await this.post(`/search/tag`, {
@@ -65,7 +65,7 @@ class TagClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTag(id: string, query?: Criteria): Promise<TagSingleResponse> {
     const response = await this.get(`/tag/${id}` + buildQuery(query), {
@@ -79,7 +79,7 @@ class TagClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTag(id: string): Promise<void> {
     const response = await this.delete(`/tag/${id}`);
@@ -90,7 +90,7 @@ class TagClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTag(
     id: string,
@@ -103,14 +103,14 @@ class TagClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TagUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TagUpdateResponse;
 
     throw new ShopwareError("Failed to update tag", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTagAggregate(request: TagAggregationRequest): Promise<TagAggregationResponse> {
     const response = await this.post(`/aggregate/tag`, {

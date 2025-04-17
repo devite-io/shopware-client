@@ -18,7 +18,7 @@ import {
 
 class SalutationClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalutations(query?: Criteria): Promise<SalutationListResponse> {
     const response = await this.get(`/salutation` + buildQuery(query), {
@@ -32,7 +32,7 @@ class SalutationClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSalutation(
     request: SalutationCreateRequest,
@@ -51,7 +51,7 @@ class SalutationClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSalutations(
     request: SalutationListSearchRequest
@@ -68,7 +68,7 @@ class SalutationClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalutation(id: string, query?: Criteria): Promise<SalutationSingleResponse> {
     const response = await this.get(`/salutation/${id}` + buildQuery(query), {
@@ -82,7 +82,7 @@ class SalutationClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSalutation(id: string): Promise<void> {
     const response = await this.delete(`/salutation/${id}`);
@@ -93,7 +93,7 @@ class SalutationClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSalutation(
     id: string,
@@ -106,14 +106,14 @@ class SalutationClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SalutationUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SalutationUpdateResponse;
 
     throw new ShopwareError("Failed to update salutation", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalutationAggregate(
     request: SalutationAggregationRequest

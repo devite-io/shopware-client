@@ -13,7 +13,7 @@ import {
 
 class ContentClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async submitContactForm(
     request: ContactFormSubmitRequest
@@ -29,7 +29,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async resolveCMSPage(id: string): Promise<CMSPageResolveResponse> {
     const response = await this.get(`/cms/${id}`);
@@ -41,7 +41,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async resolveMedia(
     request: MediaEntityResolveRequest
@@ -57,7 +57,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async resolveLandingPage(
     landingPageId: string,

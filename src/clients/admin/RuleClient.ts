@@ -30,7 +30,7 @@ class RuleClient extends Client {
   /** Rules **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRules(query?: Criteria): Promise<RuleListResponse> {
     const response = await this.get(`/rule` + buildQuery(query), {
@@ -43,7 +43,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRule(
     request: RuleCreateRequest,
@@ -62,7 +62,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRules(request: RuleListSearchRequest): Promise<RuleListSearchResponse> {
     const response = await this.post(`/search/rule`, {
@@ -77,7 +77,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRule(id: string, query?: Criteria): Promise<RuleSingleResponse> {
     const response = await this.get(`/rule/${id}` + buildQuery(query), {
@@ -91,7 +91,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRule(id: string): Promise<void> {
     const response = await this.delete(`/rule/${id}`);
@@ -102,7 +102,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRule(
     id: string,
@@ -115,14 +115,14 @@ class RuleClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RuleUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RuleUpdateResponse;
 
     throw new ShopwareError("Failed to update rule", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleAggregate(request: RuleAggregationRequest): Promise<RuleAggregationResponse> {
     const response = await this.post(`/aggregate/rule`, {
@@ -139,7 +139,7 @@ class RuleClient extends Client {
   /** Conditions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConditions(query?: Criteria): Promise<ConditionListResponse> {
     const response = await this.get(`/rule-condition` + buildQuery(query), {
@@ -153,7 +153,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCondition(
     request: ConditionCreateRequest,
@@ -172,7 +172,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchConditions(
     request: ConditionListSearchRequest
@@ -189,7 +189,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCondition(id: string, query?: Criteria): Promise<ConditionSingleResponse> {
     const response = await this.get(`/rule-condition/${id}` + buildQuery(query), {
@@ -203,7 +203,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCondition(id: string): Promise<void> {
     const response = await this.delete(`/rule-condition/${id}`);
@@ -214,7 +214,7 @@ class RuleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCondition(
     id: string,
@@ -227,14 +227,14 @@ class RuleClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ConditionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ConditionUpdateResponse;
 
     throw new ShopwareError("Failed to update condition", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConditionAggregate(
     request: ConditionAggregationRequest

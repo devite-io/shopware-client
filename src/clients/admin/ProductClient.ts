@@ -200,7 +200,7 @@ class ProductClient extends Client {
   /** Products **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProducts(query?: Criteria): Promise<ProductListResponse> {
     const response = await this.get(`/product` + buildQuery(query), {
@@ -214,7 +214,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createProduct(
     request: ProductCreateRequest,
@@ -233,7 +233,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchProducts(
     request: ProductListSearchRequest
@@ -250,7 +250,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProduct(id: string, query?: Criteria): Promise<ProductSingleResponse> {
     const response = await this.get(`/product/${id}` + buildQuery(query), {
@@ -264,7 +264,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteProduct(id: string): Promise<void> {
     const response = await this.delete(`/product/${id}`);
@@ -275,7 +275,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateProduct(
     id: string,
@@ -288,14 +288,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ProductUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ProductUpdateResponse;
 
     throw new ShopwareError("Failed to update product", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProductAggregate(
     request: ProductAggregationRequest
@@ -314,7 +314,7 @@ class ProductClient extends Client {
   /** Configurator Settings **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfiguratorSettings(query?: Criteria): Promise<ConfiguratorSettingListResponse> {
     const response = await this.get(`/product-configurator-setting` + buildQuery(query), {
@@ -328,7 +328,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createConfiguratorSetting(
     request: ConfiguratorSettingCreateRequest,
@@ -347,7 +347,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchConfiguratorSettings(
     request: ConfiguratorSettingListSearchRequest
@@ -364,7 +364,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfiguratorSetting(
     id: string,
@@ -381,7 +381,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteConfiguratorSetting(id: string): Promise<void> {
     const response = await this.delete(`/product-configurator-setting/${id}`);
@@ -392,7 +392,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateConfiguratorSetting(
     id: string,
@@ -405,14 +405,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ConfiguratorSettingUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ConfiguratorSettingUpdateResponse;
 
     throw new ShopwareError("Failed to update configurator setting", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfiguratorSettingAggregate(
     request: ConfiguratorSettingAggregationRequest
@@ -431,7 +431,7 @@ class ProductClient extends Client {
   /** Cross Sellings **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCrossSellings(query?: Criteria): Promise<CrossSellingListResponse> {
     const response = await this.get(`/product-cross-selling` + buildQuery(query), {
@@ -445,7 +445,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCrossSelling(
     request: CrossSellingCreateRequest,
@@ -464,7 +464,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCrossSellings(
     request: CrossSellingListSearchRequest
@@ -481,7 +481,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCrossSelling(id: string, query?: Criteria): Promise<CrossSellingSingleResponse> {
     const response = await this.get(`/product-cross-selling/${id}` + buildQuery(query), {
@@ -495,7 +495,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCrossSelling(id: string): Promise<void> {
     const response = await this.delete(`/product-cross-selling/${id}`);
@@ -506,7 +506,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCrossSelling(
     id: string,
@@ -519,14 +519,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CrossSellingUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CrossSellingUpdateResponse;
 
     throw new ShopwareError("Failed to update cross selling", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCrossSellingAggregate(
     request: CrossSellingAggregationRequest
@@ -545,7 +545,7 @@ class ProductClient extends Client {
   /** Cross Selling Assigned Products **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCrossSellingAssignedProducts(
     query?: Criteria
@@ -561,7 +561,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCrossSellingAssignedProduct(
     request: CrossSellingAssignedProductCreateRequest,
@@ -580,7 +580,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCrossSellingAssignedProducts(
     request: CrossSellingAssignedProductListSearchRequest
@@ -597,7 +597,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCrossSellingAssignedProduct(
     id: string,
@@ -617,7 +617,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCrossSellingAssignedProduct(id: string): Promise<void> {
     const response = await this.delete(`/product-cross-selling-assigned-product/${id}`);
@@ -628,7 +628,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCrossSellingAssignedProduct(
     id: string,
@@ -641,14 +641,15 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CrossSellingAssignedProductUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as CrossSellingAssignedProductUpdateResponse;
 
     throw new ShopwareError("Failed to update cross selling assigned product", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCrossSellingAssignedProductAggregate(
     request: CrossSellingAssignedProductAggregationRequest
@@ -667,7 +668,7 @@ class ProductClient extends Client {
   /** Downloads **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDownloads(query?: Criteria): Promise<DownloadListResponse> {
     const response = await this.get(`/product-download` + buildQuery(query), {
@@ -681,7 +682,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDownload(
     request: DownloadCreateRequest,
@@ -700,7 +701,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDownloads(
     request: DownloadListSearchRequest
@@ -717,7 +718,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDownload(id: string, query?: Criteria): Promise<DownloadSingleResponse> {
     const response = await this.get(`/product-download/${id}` + buildQuery(query), {
@@ -731,7 +732,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDownload(id: string): Promise<void> {
     const response = await this.delete(`/product-download/${id}`);
@@ -742,7 +743,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDownload(
     id: string,
@@ -755,14 +756,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DownloadUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DownloadUpdateResponse;
 
     throw new ShopwareError("Failed to update download", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDownloadAggregate(
     request: DownloadAggregationRequest
@@ -781,7 +782,7 @@ class ProductClient extends Client {
   /** Exports **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getExports(query?: Criteria): Promise<ExportListResponse> {
     const response = await this.get(`/product-export` + buildQuery(query), {
@@ -795,7 +796,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createExport(
     request: ExportCreateRequest,
@@ -814,7 +815,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchExports(request: ExportListSearchRequest): Promise<ExportListSearchResponse> {
     const response = await this.post(`/search/product-export`, {
@@ -829,7 +830,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getExport(id: string, query?: Criteria): Promise<ExportSingleResponse> {
     const response = await this.get(`/product-export/${id}` + buildQuery(query), {
@@ -843,7 +844,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteExport(id: string): Promise<void> {
     const response = await this.delete(`/product-export/${id}`);
@@ -854,7 +855,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateExport(
     id: string,
@@ -867,14 +868,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ExportUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ExportUpdateResponse;
 
     throw new ShopwareError("Failed to update export", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getExportAggregate(
     request: ExportAggregationRequest
@@ -893,7 +894,7 @@ class ProductClient extends Client {
   /** Feature Sets **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFeatureSets(query?: Criteria): Promise<FeatureSetListResponse> {
     const response = await this.get(`/product-feature-set` + buildQuery(query), {
@@ -907,7 +908,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFeatureSet(
     request: FeatureSetCreateRequest,
@@ -926,7 +927,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFeatureSets(
     request: FeatureSetListSearchRequest
@@ -943,7 +944,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFeatureSet(id: string, query?: Criteria): Promise<FeatureSetSingleResponse> {
     const response = await this.get(`/product-feature-set/${id}` + buildQuery(query), {
@@ -957,7 +958,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFeatureSet(id: string): Promise<void> {
     const response = await this.delete(`/product-feature-set/${id}`);
@@ -968,7 +969,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFeatureSet(
     id: string,
@@ -981,14 +982,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FeatureSetUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FeatureSetUpdateResponse;
 
     throw new ShopwareError("Failed to update feature set", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFeatureSetAggregate(
     request: FeatureSetAggregationRequest
@@ -1007,7 +1008,7 @@ class ProductClient extends Client {
   /** Keyword Dictionaries **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getKeywordDictionaries(query?: Criteria): Promise<KeywordDictionaryListResponse> {
     const response = await this.get(`/product-keyword-dictionary` + buildQuery(query), {
@@ -1021,7 +1022,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createKeywordDictionary(
     request: KeywordDictionaryCreateRequest,
@@ -1040,7 +1041,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchKeywordDictionaries(
     request: KeywordDictionaryListSearchRequest
@@ -1057,7 +1058,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getKeywordDictionary(
     id: string,
@@ -1074,7 +1075,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteKeywordDictionary(id: string): Promise<void> {
     const response = await this.delete(`/product-keyword-dictionary/${id}`);
@@ -1085,7 +1086,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateKeywordDictionary(
     id: string,
@@ -1098,14 +1099,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as KeywordDictionaryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as KeywordDictionaryUpdateResponse;
 
     throw new ShopwareError("Failed to update keyword dictionary", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getKeywordDictionaryAggregate(
     request: KeywordDictionaryAggregationRequest
@@ -1124,7 +1125,7 @@ class ProductClient extends Client {
   /** Manufacturers **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getManufacturers(query?: Criteria): Promise<ManufacturerListResponse> {
     const response = await this.get(`/product-manufacturer` + buildQuery(query), {
@@ -1138,7 +1139,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createManufacturer(
     request: ManufacturerCreateRequest,
@@ -1157,7 +1158,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchManufacturers(
     request: ManufacturerListSearchRequest
@@ -1174,7 +1175,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getManufacturer(id: string, query?: Criteria): Promise<ManufacturerSingleResponse> {
     const response = await this.get(`/product-manufacturer/${id}` + buildQuery(query), {
@@ -1188,7 +1189,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteManufacturer(id: string): Promise<void> {
     const response = await this.delete(`/product-manufacturer/${id}`);
@@ -1199,7 +1200,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateManufacturer(
     id: string,
@@ -1212,14 +1213,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ManufacturerUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ManufacturerUpdateResponse;
 
     throw new ShopwareError("Failed to update manufacturer", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getManufacturerAggregate(
     request: ManufacturerAggregationRequest
@@ -1238,7 +1239,7 @@ class ProductClient extends Client {
   /** Media **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMediaList(query?: Criteria): Promise<MediaListResponse> {
     const response = await this.get(`/product-media` + buildQuery(query), {
@@ -1252,7 +1253,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createMedia(
     request: MediaCreateRequest,
@@ -1271,7 +1272,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchMedia(request: MediaListSearchRequest): Promise<MediaListSearchResponse> {
     const response = await this.post(`/search/product-media`, {
@@ -1286,7 +1287,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMedia(id: string, query?: Criteria): Promise<MediaSingleResponse> {
     const response = await this.get(`/product-media/${id}` + buildQuery(query), {
@@ -1300,7 +1301,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteMedia(id: string): Promise<void> {
     const response = await this.delete(`/product-media/${id}`);
@@ -1311,7 +1312,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateMedia(
     id: string,
@@ -1324,14 +1325,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as MediaUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as MediaUpdateResponse;
 
     throw new ShopwareError("Failed to update media", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMediaAggregate(
     request: MediaAggregationRequest
@@ -1350,7 +1351,7 @@ class ProductClient extends Client {
   /** Price **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPrices(query?: Criteria): Promise<PriceListResponse> {
     const response = await this.get(`/product-price` + buildQuery(query), {
@@ -1364,7 +1365,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPrice(
     request: PriceCreateRequest,
@@ -1383,7 +1384,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPrices(request: PriceListSearchRequest): Promise<PriceListSearchResponse> {
     const response = await this.post(`/search/product-price`, {
@@ -1398,7 +1399,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPrice(id: string, query?: Criteria): Promise<PriceSingleResponse> {
     const response = await this.get(`/product-price/${id}` + buildQuery(query), {
@@ -1412,7 +1413,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePrice(id: string): Promise<void> {
     const response = await this.delete(`/product-price/${id}`);
@@ -1423,7 +1424,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePrice(
     id: string,
@@ -1436,14 +1437,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PriceUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PriceUpdateResponse;
 
     throw new ShopwareError("Failed to update price", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPriceAggregate(
     request: PriceAggregationRequest
@@ -1462,7 +1463,7 @@ class ProductClient extends Client {
   /** Reviews **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getReviews(query?: Criteria): Promise<ReviewListResponse> {
     const response = await this.get(`/product-review` + buildQuery(query), {
@@ -1476,7 +1477,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createReview(
     request: ReviewCreateRequest,
@@ -1495,7 +1496,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchReviews(request: ReviewListSearchRequest): Promise<ReviewListSearchResponse> {
     const response = await this.post(`/search/product-review`, {
@@ -1510,7 +1511,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getReview(id: string, query?: Criteria): Promise<ReviewSingleResponse> {
     const response = await this.get(`/product-review/${id}` + buildQuery(query), {
@@ -1524,7 +1525,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteReview(id: string): Promise<void> {
     const response = await this.delete(`/product-review/${id}`);
@@ -1535,7 +1536,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateReview(
     id: string,
@@ -1548,14 +1549,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ReviewUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ReviewUpdateResponse;
 
     throw new ShopwareError("Failed to update review", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getReviewAggregate(
     request: ReviewAggregationRequest
@@ -1574,7 +1575,7 @@ class ProductClient extends Client {
   /** Search Configs **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchConfigs(query?: Criteria): Promise<SearchConfigListResponse> {
     const response = await this.get(`/product-search-config` + buildQuery(query), {
@@ -1588,7 +1589,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSearchConfig(
     request: SearchConfigCreateRequest,
@@ -1607,7 +1608,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSearchConfigs(
     request: SearchConfigListSearchRequest
@@ -1624,7 +1625,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchConfig(id: string, query?: Criteria): Promise<SearchConfigSingleResponse> {
     const response = await this.get(`/product-search-config/${id}` + buildQuery(query), {
@@ -1638,7 +1639,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSearchConfig(id: string): Promise<void> {
     const response = await this.delete(`/product-search-config/${id}`);
@@ -1649,7 +1650,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSearchConfig(
     id: string,
@@ -1662,14 +1663,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SearchConfigUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SearchConfigUpdateResponse;
 
     throw new ShopwareError("Failed to update search config", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchConfigAggregate(
     request: SearchConfigAggregationRequest
@@ -1688,7 +1689,7 @@ class ProductClient extends Client {
   /** Search Config Fields **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchConfigFields(query?: Criteria): Promise<SearchConfigFieldListResponse> {
     const response = await this.get(`/product-search-config-field` + buildQuery(query), {
@@ -1702,7 +1703,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSearchConfigField(
     request: SearchConfigFieldCreateRequest,
@@ -1721,7 +1722,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSearchConfigFields(
     request: SearchConfigFieldListSearchRequest
@@ -1738,7 +1739,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchConfigField(
     id: string,
@@ -1755,7 +1756,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSearchConfigField(id: string): Promise<void> {
     const response = await this.delete(`/product-search-config-field/${id}`);
@@ -1766,7 +1767,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSearchConfigField(
     id: string,
@@ -1779,14 +1780,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SearchConfigFieldUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SearchConfigFieldUpdateResponse;
 
     throw new ShopwareError("Failed to update search config field", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchConfigFieldAggregate(
     request: SearchConfigFieldAggregationRequest
@@ -1805,7 +1806,7 @@ class ProductClient extends Client {
   /** Search Keywords **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchKeywords(query?: Criteria): Promise<SearchKeywordListResponse> {
     const response = await this.get(`/product-search-keyword` + buildQuery(query), {
@@ -1819,7 +1820,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSearchKeyword(
     request: SearchKeywordCreateRequest,
@@ -1838,7 +1839,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSearchKeywords(
     request: SearchKeywordListSearchRequest
@@ -1855,7 +1856,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchKeyword(
     id: string,
@@ -1872,7 +1873,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSearchKeyword(id: string): Promise<void> {
     const response = await this.delete(`/product-search-keyword/${id}`);
@@ -1883,7 +1884,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSearchKeyword(
     id: string,
@@ -1896,14 +1897,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SearchKeywordUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SearchKeywordUpdateResponse;
 
     throw new ShopwareError("Failed to update search keyword", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchKeywordAggregate(
     request: SearchKeywordAggregationRequest
@@ -1922,7 +1923,7 @@ class ProductClient extends Client {
   /** Sortings **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSortings(query?: Criteria): Promise<SortingListResponse> {
     const response = await this.get(`/product-sorting` + buildQuery(query), {
@@ -1936,7 +1937,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSorting(
     request: SortingCreateRequest,
@@ -1955,7 +1956,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSortings(
     request: SortingListSearchRequest
@@ -1972,7 +1973,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSorting(id: string, query?: Criteria): Promise<SortingSingleResponse> {
     const response = await this.get(`/product-sorting/${id}` + buildQuery(query), {
@@ -1986,7 +1987,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSorting(id: string): Promise<void> {
     const response = await this.delete(`/product-sorting/${id}`);
@@ -1997,7 +1998,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSorting(
     id: string,
@@ -2010,14 +2011,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SortingUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SortingUpdateResponse;
 
     throw new ShopwareError("Failed to update sorting", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSortingAggregate(
     request: SortingAggregationRequest
@@ -2036,7 +2037,7 @@ class ProductClient extends Client {
   /** Streams **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStreams(query?: Criteria): Promise<StreamListResponse> {
     const response = await this.get(`/product-stream` + buildQuery(query), {
@@ -2050,7 +2051,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createStream(
     request: StreamCreateRequest,
@@ -2069,7 +2070,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStreams(request: StreamListSearchRequest): Promise<StreamListSearchResponse> {
     const response = await this.post(`/search/product-stream`, {
@@ -2084,7 +2085,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStream(id: string, query?: Criteria): Promise<StreamSingleResponse> {
     const response = await this.get(`/product-stream/${id}` + buildQuery(query), {
@@ -2098,7 +2099,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteStream(id: string): Promise<void> {
     const response = await this.delete(`/product-stream/${id}`);
@@ -2109,7 +2110,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateStream(
     id: string,
@@ -2122,14 +2123,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StreamUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StreamUpdateResponse;
 
     throw new ShopwareError("Failed to update stream", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStreamAggregate(
     request: StreamAggregationRequest
@@ -2148,7 +2149,7 @@ class ProductClient extends Client {
   /** Stream Filters **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStreamFilters(query?: Criteria): Promise<StreamFilterListResponse> {
     const response = await this.get(`/product-stream-filter` + buildQuery(query), {
@@ -2162,7 +2163,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createStreamFilter(
     request: StreamFilterCreateRequest,
@@ -2181,7 +2182,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStreamFilters(
     request: StreamFilterListSearchRequest
@@ -2198,7 +2199,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStreamFilter(id: string, query?: Criteria): Promise<StreamFilterSingleResponse> {
     const response = await this.get(`/product-stream-filter/${id}` + buildQuery(query), {
@@ -2212,7 +2213,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteStreamFilter(id: string): Promise<void> {
     const response = await this.delete(`/product-stream-filter/${id}`);
@@ -2223,7 +2224,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateStreamFilter(
     id: string,
@@ -2236,14 +2237,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StreamFilterUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StreamFilterUpdateResponse;
 
     throw new ShopwareError("Failed to update stream filter", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStreamFilterAggregate(
     request: StreamFilterAggregationRequest
@@ -2262,7 +2263,7 @@ class ProductClient extends Client {
   /** Visibilities **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getVisibilities(query?: Criteria): Promise<VisibilityListResponse> {
     const response = await this.get(`/product-visibility` + buildQuery(query), {
@@ -2276,7 +2277,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createVisibility(
     request: VisibilityCreateRequest,
@@ -2295,7 +2296,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchVisibilities(
     request: VisibilityListSearchRequest
@@ -2312,7 +2313,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getVisibility(id: string, query?: Criteria): Promise<VisibilitySingleResponse> {
     const response = await this.get(`/product-visibility/${id}` + buildQuery(query), {
@@ -2326,7 +2327,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteVisibility(id: string): Promise<void> {
     const response = await this.delete(`/product-visibility/${id}`);
@@ -2337,7 +2338,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateVisibility(
     id: string,
@@ -2350,14 +2351,14 @@ class ProductClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as VisibilityUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as VisibilityUpdateResponse;
 
     throw new ShopwareError("Failed to update visibility", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getVisibilityAggregate(
     request: VisibilityAggregationRequest

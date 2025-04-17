@@ -31,7 +31,7 @@ import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
 
 class AccountClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getNewsletterRecipients(
     request: AccountNewsletterRecipientListRequest = {}
@@ -50,7 +50,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async changeProfile(request: AccountUpdateRequest): Promise<AccountUpdateResponse> {
     const response = await this.post(
@@ -67,7 +67,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async changeEmail(
     request: AccountEmailChangeRequest
@@ -86,7 +86,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async changeLanguage(
     request: AccountLanguageChangeRequest
@@ -105,7 +105,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async changePassword(
     request: AccountPasswordChangeRequest
@@ -124,7 +124,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async changePaymentMethod(
     paymentMethodId: string
@@ -141,7 +141,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async isCustomerRecoveryExpired(
     request: AccountRecoveryExpiryCheckRequest
@@ -160,7 +160,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomer(request: AccountGetRequest = {}): Promise<AccountGetResponse> {
     const response = await this.get(
@@ -177,7 +177,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomer(): Promise<undefined> {
     const response = await this.delete(
@@ -191,7 +191,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async confirmRecoveryPassword(
     request: AccountPasswordRecoveryRequest
@@ -210,7 +210,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async requestPasswordRecoveryMail(
     request: AccountPasswordRecoveryMailRequest
@@ -229,7 +229,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async confirmRegistration(request: CustomerRegistrationConfirmRequest): Promise<void> {
     const response = await this.post("/account/register-confirm", {
@@ -242,7 +242,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async register(request: CustomerRegisterRequest): Promise<CustomerRegisterResponse> {
     const response = await this.post("/account/register", {
@@ -259,7 +259,7 @@ class AccountClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRegistrationSettingsForGroup(
     customerGroupId: string

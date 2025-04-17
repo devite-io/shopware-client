@@ -40,7 +40,7 @@ class DeliveryTimeClient extends Client {
   /** State Machines **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateMachines(query?: Criteria): Promise<StateMachineListResponse> {
     const response = await this.get(`/state-machine` + buildQuery(query), {
@@ -54,7 +54,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createStateMachine(
     request: StateMachineCreateRequest,
@@ -73,7 +73,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStateMachines(
     request: StateMachineListSearchRequest
@@ -90,7 +90,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateMachine(id: string, query?: Criteria): Promise<StateMachineSingleResponse> {
     const response = await this.get(`/state-machine/${id}` + buildQuery(query), {
@@ -104,7 +104,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteStateMachine(id: string): Promise<void> {
     const response = await this.delete(`/state-machine/${id}`);
@@ -115,7 +115,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateStateMachine(
     id: string,
@@ -128,14 +128,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StateMachineUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StateMachineUpdateResponse;
 
     throw new ShopwareError("Failed to update state machine", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateMachineAggregate(
     request: StateMachineAggregationRequest
@@ -154,7 +154,7 @@ class DeliveryTimeClient extends Client {
   /** States **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStates(query?: Criteria): Promise<StateListResponse> {
     const response = await this.get(`/state-machine-state` + buildQuery(query), {
@@ -168,7 +168,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createState(
     request: StateCreateRequest,
@@ -187,7 +187,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
     const response = await this.post(`/search/state-machine-state`, {
@@ -202,7 +202,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
     const response = await this.get(`/state-machine-state/${id}` + buildQuery(query), {
@@ -216,7 +216,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteState(id: string): Promise<void> {
     const response = await this.delete(`/state-machine-state/${id}`);
@@ -227,7 +227,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateState(
     id: string,
@@ -240,14 +240,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StateUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StateUpdateResponse;
 
     throw new ShopwareError("Failed to update state", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateAggregate(
     request: StateAggregationRequest
@@ -266,7 +266,7 @@ class DeliveryTimeClient extends Client {
   /** Transitions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransitions(query?: Criteria): Promise<TransitionListResponse> {
     const response = await this.get(`/state-machine-transition` + buildQuery(query), {
@@ -280,7 +280,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransition(
     request: TransitionCreateRequest,
@@ -299,7 +299,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransitions(
     request: TransitionListSearchRequest
@@ -316,7 +316,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransition(id: string, query?: Criteria): Promise<TransitionSingleResponse> {
     const response = await this.get(`/state-machine-transition/${id}` + buildQuery(query), {
@@ -330,7 +330,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransition(id: string): Promise<void> {
     const response = await this.delete(`/state-machine-transition/${id}`);
@@ -341,7 +341,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransition(
     id: string,
@@ -354,14 +354,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransitionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TransitionUpdateResponse;
 
     throw new ShopwareError("Failed to update transition", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransitionAggregate(
     request: TransitionAggregationRequest

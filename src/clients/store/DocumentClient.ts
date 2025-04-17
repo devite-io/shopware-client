@@ -8,7 +8,7 @@ import {
 
 class DocumentClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   async download(
     id: string,

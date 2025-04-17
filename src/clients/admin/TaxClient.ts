@@ -50,7 +50,7 @@ class TaxClient extends Client {
   /** Taxes **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTaxes(query?: Criteria): Promise<TaxListResponse> {
     const response = await this.get(`/tax` + buildQuery(query), {
@@ -63,7 +63,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTax(
     request: TaxCreateRequest,
@@ -82,7 +82,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTaxes(request: TaxListSearchRequest): Promise<TaxListSearchResponse> {
     const response = await this.post(`/search/tax`, {
@@ -97,7 +97,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTax(id: string, query?: Criteria): Promise<TaxSingleResponse> {
     const response = await this.get(`/tax/${id}` + buildQuery(query), {
@@ -111,7 +111,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTax(id: string): Promise<void> {
     const response = await this.delete(`/tax/${id}`);
@@ -122,7 +122,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTax(
     id: string,
@@ -135,14 +135,14 @@ class TaxClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TaxUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TaxUpdateResponse;
 
     throw new ShopwareError("Failed to update tax", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTaxAggregate(request: TaxAggregationRequest): Promise<TaxAggregationResponse> {
     const response = await this.post(`/aggregate/tax`, {
@@ -159,7 +159,7 @@ class TaxClient extends Client {
   /** Providers **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProviders(query?: Criteria): Promise<ProviderListResponse> {
     const response = await this.get(`/tax-provider` + buildQuery(query), {
@@ -173,7 +173,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createProvider(
     request: ProviderCreateRequest,
@@ -192,7 +192,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchProviders(
     request: ProviderListSearchRequest
@@ -209,7 +209,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProvider(id: string, query?: Criteria): Promise<ProviderSingleResponse> {
     const response = await this.get(`/tax-provider/${id}` + buildQuery(query), {
@@ -223,7 +223,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteProvider(id: string): Promise<void> {
     const response = await this.delete(`/tax-provider/${id}`);
@@ -234,7 +234,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateProvider(
     id: string,
@@ -247,14 +247,14 @@ class TaxClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ProviderUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ProviderUpdateResponse;
 
     throw new ShopwareError("Failed to update provider", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProviderAggregate(
     request: ProviderAggregationRequest
@@ -273,7 +273,7 @@ class TaxClient extends Client {
   /** Rules **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRules(query?: Criteria): Promise<RuleListResponse> {
     const response = await this.get(`/tax-rule` + buildQuery(query), {
@@ -286,7 +286,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRule(
     request: RuleCreateRequest,
@@ -305,7 +305,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRules(request: RuleListSearchRequest): Promise<RuleListSearchResponse> {
     const response = await this.post(`/search/tax-rule`, {
@@ -320,7 +320,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRule(id: string, query?: Criteria): Promise<RuleSingleResponse> {
     const response = await this.get(`/tax-rule/${id}` + buildQuery(query), {
@@ -334,7 +334,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRule(id: string): Promise<void> {
     const response = await this.delete(`/tax-rule/${id}`);
@@ -345,7 +345,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRule(
     id: string,
@@ -358,14 +358,14 @@ class TaxClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RuleUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RuleUpdateResponse;
 
     throw new ShopwareError("Failed to update rule", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleAggregate(request: RuleAggregationRequest): Promise<RuleAggregationResponse> {
     const response = await this.post(`/aggregate/tax-rule`, {
@@ -382,7 +382,7 @@ class TaxClient extends Client {
   /** Rule Types **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleTypes(query?: Criteria): Promise<RuleTypeListResponse> {
     const response = await this.get(`/tax-rule-type` + buildQuery(query), {
@@ -396,7 +396,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRuleType(
     request: RuleTypeCreateRequest,
@@ -415,7 +415,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRuleTypes(
     request: RuleTypeListSearchRequest
@@ -432,7 +432,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleType(id: string, query?: Criteria): Promise<RuleTypeSingleResponse> {
     const response = await this.get(`/tax-rule-type/${id}` + buildQuery(query), {
@@ -446,7 +446,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRuleType(id: string): Promise<void> {
     const response = await this.delete(`/tax-rule-type/${id}`);
@@ -457,7 +457,7 @@ class TaxClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRuleType(
     id: string,
@@ -470,14 +470,14 @@ class TaxClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RuleTypeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RuleTypeUpdateResponse;
 
     throw new ShopwareError("Failed to update rule type", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleTypeAggregate(
     request: RuleTypeAggregationRequest

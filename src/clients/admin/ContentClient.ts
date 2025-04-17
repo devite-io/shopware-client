@@ -70,7 +70,7 @@ class ContentClient extends Client {
   /** Cms Blocks **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlocks(query?: Criteria): Promise<CmsBlockListResponse> {
     const response = await this.get(`/cms-block` + buildQuery(query), {
@@ -84,7 +84,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsBlock(
     request: CmsBlockCreateRequest,
@@ -103,7 +103,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsBlocks(
     request: CmsBlockListSearchRequest
@@ -120,7 +120,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlock(id: string, query?: Criteria): Promise<CmsBlockSingleResponse> {
     const response = await this.get(`/cms-block/${id}` + buildQuery(query), {
@@ -134,7 +134,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsBlock(id: string): Promise<void> {
     const response = await this.delete(`/cms-block/${id}`);
@@ -145,7 +145,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsBlock(
     id: string,
@@ -158,14 +158,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsBlockUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsBlockUpdateResponse;
 
     throw new ShopwareError("Failed to update cms block", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlockAggregate(
     request: CmsBlockAggregationRequest
@@ -184,7 +184,7 @@ class ContentClient extends Client {
   /** Cms Pages **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsPages(query?: Criteria): Promise<CmsPageListResponse> {
     const response = await this.get(`/cms-page` + buildQuery(query), {
@@ -198,7 +198,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsPage(
     request: CmsPageCreateRequest,
@@ -217,7 +217,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsPages(
     request: CmsPageListSearchRequest
@@ -234,7 +234,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsPage(id: string, query?: Criteria): Promise<CmsPageSingleResponse> {
     const response = await this.get(`/cms-page/${id}` + buildQuery(query), {
@@ -248,7 +248,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsPage(id: string): Promise<void> {
     const response = await this.delete(`/cms-page/${id}`);
@@ -259,7 +259,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsPage(
     id: string,
@@ -272,14 +272,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsPageUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsPageUpdateResponse;
 
     throw new ShopwareError("Failed to update cms page", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsPageAggregate(
     request: CmsPageAggregationRequest
@@ -298,7 +298,7 @@ class ContentClient extends Client {
   /** Cms Sections **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSections(query?: Criteria): Promise<CmsSectionListResponse> {
     const response = await this.get(`/cms-section` + buildQuery(query), {
@@ -312,7 +312,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsSection(
     request: CmsSectionCreateRequest,
@@ -331,7 +331,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsSections(
     request: CmsSectionListSearchRequest
@@ -348,7 +348,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSection(id: string, query?: Criteria): Promise<CmsSectionSingleResponse> {
     const response = await this.get(`/cms-section/${id}` + buildQuery(query), {
@@ -362,7 +362,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsSection(id: string): Promise<void> {
     const response = await this.delete(`/cms-section/${id}`);
@@ -373,7 +373,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsSection(
     id: string,
@@ -386,14 +386,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsSectionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsSectionUpdateResponse;
 
     throw new ShopwareError("Failed to update cms section", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSectionAggregate(
     request: CmsSectionAggregationRequest
@@ -412,7 +412,7 @@ class ContentClient extends Client {
   /** Cms Slots **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSlots(query?: Criteria): Promise<CmsSlotListResponse> {
     const response = await this.get(`/cms-slot` + buildQuery(query), {
@@ -426,7 +426,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsSlot(
     request: CmsSlotCreateRequest,
@@ -445,7 +445,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsSlots(
     request: CmsSlotListSearchRequest
@@ -462,7 +462,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSlot(id: string, query?: Criteria): Promise<CmsSlotSingleResponse> {
     const response = await this.get(`/cms-slot/${id}` + buildQuery(query), {
@@ -476,7 +476,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsSlot(id: string): Promise<void> {
     const response = await this.delete(`/cms-slot/${id}`);
@@ -487,7 +487,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsSlot(
     id: string,
@@ -500,14 +500,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsSlotUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsSlotUpdateResponse;
 
     throw new ShopwareError("Failed to update cms slot", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSlotAggregate(
     request: CmsSlotAggregationRequest
@@ -526,7 +526,7 @@ class ContentClient extends Client {
   /** Landing Pages **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLandingPages(query?: Criteria): Promise<LandingPageListResponse> {
     const response = await this.get(`/landing-page` + buildQuery(query), {
@@ -540,7 +540,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLandingPage(
     request: LandingPageCreateRequest,
@@ -559,7 +559,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLandingPages(
     request: LandingPageListSearchRequest
@@ -576,7 +576,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLandingPage(id: string, query?: Criteria): Promise<LandingPageSingleResponse> {
     const response = await this.get(`/landing-page/${id}` + buildQuery(query), {
@@ -590,7 +590,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLandingPage(id: string): Promise<void> {
     const response = await this.delete(`/landing-page/${id}`);
@@ -601,7 +601,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLandingPage(
     id: string,
@@ -614,14 +614,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LandingPageUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LandingPageUpdateResponse;
 
     throw new ShopwareError("Failed to update landing page", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLandingPageAggregate(
     request: LandingPageAggregationRequest
@@ -640,7 +640,7 @@ class ContentClient extends Client {
   /** Themes **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThemes(query?: Criteria): Promise<ThemeListResponse> {
     const response = await this.get(`/theme` + buildQuery(query), {
@@ -654,7 +654,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTheme(
     request: ThemeCreateRequest,
@@ -673,7 +673,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchThemes(request: ThemeListSearchRequest): Promise<ThemeListSearchResponse> {
     const response = await this.post(`/search/theme`, {
@@ -688,7 +688,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTheme(id: string, query?: Criteria): Promise<ThemeSingleResponse> {
     const response = await this.get(`/theme/${id}` + buildQuery(query), {
@@ -702,7 +702,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTheme(id: string): Promise<void> {
     const response = await this.delete(`/theme/${id}`);
@@ -713,7 +713,7 @@ class ContentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTheme(
     id: string,
@@ -726,14 +726,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ThemeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ThemeUpdateResponse;
 
     throw new ShopwareError("Failed to update theme", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThemeAggregate(
     request: ThemeAggregationRequest

@@ -40,7 +40,7 @@ class DeliveryTimeClient extends Client {
   /** Files **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFiles(query?: Criteria): Promise<FileListResponse> {
     const response = await this.get(`/import-export-file` + buildQuery(query), {
@@ -53,7 +53,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFile(
     request: FileCreateRequest,
@@ -72,7 +72,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFiles(request: FileListSearchRequest): Promise<FileListSearchResponse> {
     const response = await this.post(`/search/import-export-file`, {
@@ -87,7 +87,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFile(id: string, query?: Criteria): Promise<FileSingleResponse> {
     const response = await this.get(`/import-export-file/${id}` + buildQuery(query), {
@@ -101,7 +101,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFile(id: string): Promise<void> {
     const response = await this.delete(`/import-export-file/${id}`);
@@ -112,7 +112,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFile(
     id: string,
@@ -125,14 +125,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FileUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FileUpdateResponse;
 
     throw new ShopwareError("Failed to update  file", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFileAggregate(request: FileAggregationRequest): Promise<FileAggregationResponse> {
     const response = await this.post(`/aggregate/import-export-file`, {
@@ -149,7 +149,7 @@ class DeliveryTimeClient extends Client {
   /** Logs **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogs(query?: Criteria): Promise<LogListResponse> {
     const response = await this.get(`/import-export-log` + buildQuery(query), {
@@ -162,7 +162,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLog(
     request: LogCreateRequest,
@@ -181,7 +181,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLogs(request: LogListSearchRequest): Promise<LogListSearchResponse> {
     const response = await this.post(`/search/import-export-log`, {
@@ -196,7 +196,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLog(id: string, query?: Criteria): Promise<LogSingleResponse> {
     const response = await this.get(`/import-export-log/${id}` + buildQuery(query), {
@@ -210,7 +210,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLog(id: string): Promise<void> {
     const response = await this.delete(`/import-export-log/${id}`);
@@ -221,7 +221,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLog(
     id: string,
@@ -234,14 +234,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LogUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LogUpdateResponse;
 
     throw new ShopwareError("Failed to update log", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogAggregate(request: LogAggregationRequest): Promise<LogAggregationResponse> {
     const response = await this.post(`/aggregate/import-export-log`, {
@@ -258,7 +258,7 @@ class DeliveryTimeClient extends Client {
   /** Profiles **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProfiles(query?: Criteria): Promise<ProfileListResponse> {
     const response = await this.get(`/import-export-profile` + buildQuery(query), {
@@ -272,7 +272,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createProfile(
     request: ProfileCreateRequest,
@@ -291,7 +291,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchProfiles(
     request: ProfileListSearchRequest
@@ -308,7 +308,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProfile(id: string, query?: Criteria): Promise<ProfileSingleResponse> {
     const response = await this.get(`/import-export-profile/${id}` + buildQuery(query), {
@@ -322,7 +322,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteProfile(id: string): Promise<void> {
     const response = await this.delete(`/import-export-profile/${id}`);
@@ -333,7 +333,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateProfile(
     id: string,
@@ -346,14 +346,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ProfileUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ProfileUpdateResponse;
 
     throw new ShopwareError("Failed to update profile", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProfileAggregate(
     request: ProfileAggregationRequest

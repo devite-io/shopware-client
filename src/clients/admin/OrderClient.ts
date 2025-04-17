@@ -127,7 +127,7 @@ class OrderClient extends Client {
   /** Document Management **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async downloadMerged(request: DownloadMergedRequest): Promise<DownloadMergedResponse> {
     const response = await this.post(`/_action/order/document/download`, {
@@ -144,7 +144,7 @@ class OrderClient extends Client {
   /**
    * @param documentTypeName - The `technicalName` of the document type.
    * @param request
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDocuments(
     documentTypeName: string,
@@ -160,7 +160,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async download(
     id: string,
@@ -181,7 +181,7 @@ class OrderClient extends Client {
   /** Order Management **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async refundTransactionCapture(refundId: string): Promise<void> {
     const response = await this.post(`/_action/order_transaction_capture_refund/${refundId}`);
@@ -195,7 +195,7 @@ class OrderClient extends Client {
    * @param transactionId
    * @param transition - The `action_name` of the StateMachineTransition.
    * @param request
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async transitionTransactionState(
     transactionId: string,
@@ -220,7 +220,7 @@ class OrderClient extends Client {
    * @param orderId
    * @param transition - The `action_name` of the StateMachineTransition.
    * @param request
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async transitionState(
     orderId: string,
@@ -242,7 +242,7 @@ class OrderClient extends Client {
    * @param deliveryId
    * @param transition - The `action_name` of the StateMachineTransition.
    * @param request
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async transitionDeliveryState(
     deliveryId: string,
@@ -263,7 +263,7 @@ class OrderClient extends Client {
   /** Orders **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOrders(query?: Criteria): Promise<OrderListResponse> {
     const response = await this.get(`/order` + buildQuery(query), {
@@ -277,7 +277,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createOrder(
     request: OrderCreateRequest,
@@ -296,7 +296,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchOrders(request: OrderListSearchRequest): Promise<OrderListSearchResponse> {
     const response = await this.post(`/search/order`, {
@@ -311,7 +311,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOrder(id: string, query?: Criteria): Promise<OrderSingleResponse> {
     const response = await this.get(`/order/${id}` + buildQuery(query), {
@@ -325,7 +325,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteOrder(id: string): Promise<void> {
     const response = await this.delete(`/order/${id}`);
@@ -336,7 +336,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateOrder(
     id: string,
@@ -349,14 +349,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as OrderUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as OrderUpdateResponse;
 
     throw new ShopwareError("Failed to update order", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOrderAggregate(
     request: OrderAggregationRequest
@@ -375,7 +375,7 @@ class OrderClient extends Client {
   /** Addresses **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddresses(query?: Criteria): Promise<AddressListResponse> {
     const response = await this.get(`/order-address` + buildQuery(query), {
@@ -389,7 +389,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAddress(
     request: AddressCreateRequest,
@@ -408,7 +408,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAddresses(
     request: AddressListSearchRequest
@@ -425,7 +425,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddress(id: string, query?: Criteria): Promise<AddressSingleResponse> {
     const response = await this.get(`/order-address/${id}` + buildQuery(query), {
@@ -439,7 +439,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAddress(id: string): Promise<void> {
     const response = await this.delete(`/order-address/${id}`);
@@ -450,7 +450,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAddress(
     id: string,
@@ -463,14 +463,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AddressUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AddressUpdateResponse;
 
     throw new ShopwareError("Failed to update address", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddressAggregate(
     request: AddressAggregationRequest
@@ -489,7 +489,7 @@ class OrderClient extends Client {
   /** Customers **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomers(query?: Criteria): Promise<CustomerListResponse> {
     const response = await this.get(`/order-customer` + buildQuery(query), {
@@ -503,7 +503,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomer(
     request: CustomerCreateRequest,
@@ -522,7 +522,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomers(
     request: CustomerListSearchRequest
@@ -539,7 +539,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomer(id: string, query?: Criteria): Promise<CustomerSingleResponse> {
     const response = await this.get(`/order-customer/${id}` + buildQuery(query), {
@@ -553,7 +553,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomer(id: string): Promise<void> {
     const response = await this.delete(`/order-customer/${id}`);
@@ -564,7 +564,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomer(
     id: string,
@@ -577,14 +577,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomerUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomerUpdateResponse;
 
     throw new ShopwareError("Failed to update customer", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomerAggregate(
     request: CustomerAggregationRequest
@@ -603,7 +603,7 @@ class OrderClient extends Client {
   /** Deliveries **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveries(query?: Criteria): Promise<DeliveryListResponse> {
     const response = await this.get(`/order-delivery` + buildQuery(query), {
@@ -617,7 +617,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDelivery(
     request: DeliveryCreateRequest,
@@ -636,7 +636,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDeliveries(
     request: DeliveryListSearchRequest
@@ -653,7 +653,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDelivery(id: string, query?: Criteria): Promise<DeliverySingleResponse> {
     const response = await this.get(`/order-delivery/${id}` + buildQuery(query), {
@@ -667,7 +667,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDelivery(id: string): Promise<void> {
     const response = await this.delete(`/order-delivery/${id}`);
@@ -678,7 +678,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDelivery(
     id: string,
@@ -691,14 +691,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DeliveryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DeliveryUpdateResponse;
 
     throw new ShopwareError("Failed to update delivery", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryAggregate(
     request: DeliveryAggregationRequest
@@ -717,7 +717,7 @@ class OrderClient extends Client {
   /** Delivery Positions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryPositions(query?: Criteria): Promise<DeliveryPositionListResponse> {
     const response = await this.get(`/order-delivery-position` + buildQuery(query), {
@@ -731,7 +731,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDeliveryPosition(
     request: DeliveryPositionCreateRequest,
@@ -750,7 +750,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDeliveryPositions(
     request: DeliveryPositionListSearchRequest
@@ -767,7 +767,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryPosition(
     id: string,
@@ -784,7 +784,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDeliveryPosition(id: string): Promise<void> {
     const response = await this.delete(`/order-delivery-position/${id}`);
@@ -795,7 +795,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDeliveryPosition(
     id: string,
@@ -808,14 +808,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DeliveryPositionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DeliveryPositionUpdateResponse;
 
     throw new ShopwareError("Failed to update delivery position", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryPositionAggregate(
     request: DeliveryPositionAggregationRequest
@@ -834,7 +834,7 @@ class OrderClient extends Client {
   /** Line Items **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItems(query?: Criteria): Promise<LineItemListResponse> {
     const response = await this.get(`/order-line-item` + buildQuery(query), {
@@ -848,7 +848,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLineItem(
     request: LineItemCreateRequest,
@@ -867,7 +867,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLineItems(
     request: LineItemListSearchRequest
@@ -884,7 +884,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItem(id: string, query?: Criteria): Promise<LineItemSingleResponse> {
     const response = await this.get(`/order-line-item/${id}` + buildQuery(query), {
@@ -898,7 +898,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLineItem(id: string): Promise<void> {
     const response = await this.delete(`/order-line-item/${id}`);
@@ -909,7 +909,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLineItem(
     id: string,
@@ -922,14 +922,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LineItemUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LineItemUpdateResponse;
 
     throw new ShopwareError("Failed to update line item", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItemAggregate(
     request: LineItemAggregationRequest
@@ -948,7 +948,7 @@ class OrderClient extends Client {
   /** Line Item Downloads **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItemDownloads(query?: Criteria): Promise<LineItemDownloadListResponse> {
     const response = await this.get(`/order-line-item-download` + buildQuery(query), {
@@ -962,7 +962,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLineItemDownload(
     request: LineItemDownloadCreateRequest,
@@ -981,7 +981,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLineItemDownloads(
     request: LineItemDownloadListSearchRequest
@@ -998,7 +998,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItemDownload(
     id: string,
@@ -1015,7 +1015,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLineItemDownload(id: string): Promise<void> {
     const response = await this.delete(`/order-line-item-download/${id}`);
@@ -1026,7 +1026,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLineItemDownload(
     id: string,
@@ -1039,14 +1039,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LineItemDownloadUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LineItemDownloadUpdateResponse;
 
     throw new ShopwareError("Failed to update line item download", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItemDownloadAggregate(
     request: LineItemDownloadAggregationRequest
@@ -1065,7 +1065,7 @@ class OrderClient extends Client {
   /** Transactions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactions(query?: Criteria): Promise<TransactionListResponse> {
     const response = await this.get(`/order-transaction` + buildQuery(query), {
@@ -1079,7 +1079,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransaction(
     request: TransactionCreateRequest,
@@ -1098,7 +1098,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransactions(
     request: TransactionListSearchRequest
@@ -1115,7 +1115,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransaction(id: string, query?: Criteria): Promise<TransactionSingleResponse> {
     const response = await this.get(`/order-transaction/${id}` + buildQuery(query), {
@@ -1129,7 +1129,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransaction(id: string): Promise<void> {
     const response = await this.delete(`/order-transaction/${id}`);
@@ -1140,7 +1140,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransaction(
     id: string,
@@ -1153,14 +1153,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransactionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TransactionUpdateResponse;
 
     throw new ShopwareError("Failed to update transaction", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionAggregate(
     request: TransactionAggregationRequest
@@ -1179,7 +1179,7 @@ class OrderClient extends Client {
   /** Transaction Captures **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptures(query?: Criteria): Promise<TransactionCaptureListResponse> {
     const response = await this.get(`/order-transaction-capture` + buildQuery(query), {
@@ -1193,7 +1193,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransactionCapture(
     request: TransactionCaptureCreateRequest,
@@ -1212,7 +1212,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransactionCaptures(
     request: TransactionCaptureListSearchRequest
@@ -1229,7 +1229,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCapture(
     id: string,
@@ -1246,7 +1246,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransactionCapture(id: string): Promise<void> {
     const response = await this.delete(`/order-transaction-capture/${id}`);
@@ -1257,7 +1257,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransactionCapture(
     id: string,
@@ -1270,14 +1270,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransactionCaptureUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TransactionCaptureUpdateResponse;
 
     throw new ShopwareError("Failed to update transaction capture", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureAggregate(
     request: TransactionCaptureAggregationRequest
@@ -1296,7 +1296,7 @@ class OrderClient extends Client {
   /** Transaction Capture Refunds **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefunds(
     query?: Criteria
@@ -1312,7 +1312,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransactionCaptureRefund(
     request: TransactionCaptureRefundCreateRequest,
@@ -1331,7 +1331,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransactionCaptureRefunds(
     request: TransactionCaptureRefundListSearchRequest
@@ -1348,7 +1348,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefund(
     id: string,
@@ -1365,7 +1365,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransactionCaptureRefund(id: string): Promise<void> {
     const response = await this.delete(`/order-transaction-capture-refund/${id}`);
@@ -1376,7 +1376,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransactionCaptureRefund(
     id: string,
@@ -1389,14 +1389,15 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransactionCaptureRefundUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as TransactionCaptureRefundUpdateResponse;
 
     throw new ShopwareError("Failed to update transaction capture refund", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefundAggregate(
     request: TransactionCaptureRefundAggregationRequest
@@ -1415,7 +1416,7 @@ class OrderClient extends Client {
   /** Transaction Capture Refund Positions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefundPositions(
     query?: Criteria
@@ -1434,7 +1435,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransactionCaptureRefundPosition(
     request: TransactionCaptureRefundPositionCreateRequest,
@@ -1453,7 +1454,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransactionCaptureRefundPositions(
     request: TransactionCaptureRefundPositionListSearchRequest
@@ -1471,7 +1472,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefundPosition(
     id: string,
@@ -1491,7 +1492,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransactionCaptureRefundPosition(id: string): Promise<void> {
     const response = await this.delete(`/order-transaction-capture-refund-position/${id}`);
@@ -1502,7 +1503,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransactionCaptureRefundPosition(
     id: string,
@@ -1515,14 +1516,15 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransactionCaptureRefundPositionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as TransactionCaptureRefundPositionUpdateResponse;
 
     throw new ShopwareError("Failed to update transaction capture refund position", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefundPositionAggregate(
     request: TransactionCaptureRefundPositionAggregationRequest

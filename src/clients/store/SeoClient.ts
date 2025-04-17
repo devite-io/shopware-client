@@ -10,7 +10,7 @@ import {
 
 class SeoClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRoutes(request: SeoRouteListRequest = {}): Promise<SeoRouteListResponse> {
     const response = await this.post("/seo-url", {
@@ -24,7 +24,7 @@ class SeoClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSitemaps(): Promise<SitemapListResponse> {
     const response = await this.get("/sitemap");
@@ -36,7 +36,7 @@ class SeoClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSitemap(filePath: string): Promise<SitemapDownloadResponse> {
     const response = await this.get(`/sitemap/${filePath}`);

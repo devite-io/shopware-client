@@ -70,7 +70,7 @@ class PromotionClient extends Client {
   /** Promotions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPromotions(query?: Criteria): Promise<PromotionListResponse> {
     const response = await this.get(`/promotion` + buildQuery(query), {
@@ -84,7 +84,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPromotion(
     request: PromotionCreateRequest,
@@ -103,7 +103,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPromotions(
     request: PromotionListSearchRequest
@@ -120,7 +120,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPromotion(id: string, query?: Criteria): Promise<PromotionSingleResponse> {
     const response = await this.get(`/promotion/${id}` + buildQuery(query), {
@@ -134,7 +134,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePromotion(id: string): Promise<void> {
     const response = await this.delete(`/promotion/${id}`);
@@ -145,7 +145,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePromotion(
     id: string,
@@ -158,14 +158,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PromotionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PromotionUpdateResponse;
 
     throw new ShopwareError("Failed to update promotion", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPromotionAggregate(
     request: PromotionAggregationRequest
@@ -184,7 +184,7 @@ class PromotionClient extends Client {
   /** Promotions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscounts(query?: Criteria): Promise<DiscountListResponse> {
     const response = await this.get(`/promotion-discount` + buildQuery(query), {
@@ -198,7 +198,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDiscount(
     request: DiscountCreateRequest,
@@ -217,7 +217,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDiscounts(
     request: DiscountListSearchRequest
@@ -234,7 +234,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscount(id: string, query?: Criteria): Promise<DiscountSingleResponse> {
     const response = await this.get(`/promotion-discount/${id}` + buildQuery(query), {
@@ -248,7 +248,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDiscount(id: string): Promise<void> {
     const response = await this.delete(`/promotion-discount/${id}`);
@@ -259,7 +259,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDiscount(
     id: string,
@@ -272,14 +272,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DiscountUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DiscountUpdateResponse;
 
     throw new ShopwareError("Failed to update discount", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscountAggregate(
     request: DiscountAggregationRequest
@@ -298,7 +298,7 @@ class PromotionClient extends Client {
   /** Discount Prices **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscountPrices(query?: Criteria): Promise<DiscountPriceListResponse> {
     const response = await this.get(`/promotion-discount-price` + buildQuery(query), {
@@ -312,7 +312,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDiscountPrice(
     request: DiscountPriceCreateRequest,
@@ -331,7 +331,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDiscountPrices(
     request: DiscountPriceListSearchRequest
@@ -348,7 +348,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscountPrice(
     id: string,
@@ -365,7 +365,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDiscountPrice(id: string): Promise<void> {
     const response = await this.delete(`/promotion-discount-price/${id}`);
@@ -376,7 +376,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDiscountPrice(
     id: string,
@@ -389,14 +389,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DiscountPriceUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DiscountPriceUpdateResponse;
 
     throw new ShopwareError("Failed to update discount price", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscountPriceAggregate(
     request: DiscountPriceAggregationRequest
@@ -415,7 +415,7 @@ class PromotionClient extends Client {
   /** Individual Codes **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIndividualCodes(query?: Criteria): Promise<IndividualCodeListResponse> {
     const response = await this.get(`/promotion-individual-code` + buildQuery(query), {
@@ -429,7 +429,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createIndividualCode(
     request: IndividualCodeCreateRequest,
@@ -448,7 +448,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchIndividualCodes(
     request: IndividualCodeListSearchRequest
@@ -465,7 +465,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIndividualCode(
     id: string,
@@ -482,7 +482,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteIndividualCode(id: string): Promise<void> {
     const response = await this.delete(`/promotion-individual-code/${id}`);
@@ -493,7 +493,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateIndividualCode(
     id: string,
@@ -506,14 +506,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as IndividualCodeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as IndividualCodeUpdateResponse;
 
     throw new ShopwareError("Failed to update individual code", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIndividualCodeAggregate(
     request: IndividualCodeAggregationRequest
@@ -532,7 +532,7 @@ class PromotionClient extends Client {
   /** Sales Channels **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
     const response = await this.get(`/promotion-sales-channel` + buildQuery(query), {
@@ -546,7 +546,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSalesChannel(
     request: SalesChannelCreateRequest,
@@ -565,7 +565,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSalesChannels(
     request: SalesChannelListSearchRequest
@@ -582,7 +582,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
     const response = await this.get(`/promotion-sales-channel/${id}` + buildQuery(query), {
@@ -596,7 +596,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSalesChannel(id: string): Promise<void> {
     const response = await this.delete(`/promotion-sales-channel/${id}`);
@@ -607,7 +607,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSalesChannel(
     id: string,
@@ -620,14 +620,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SalesChannelUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SalesChannelUpdateResponse;
 
     throw new ShopwareError("Failed to update sales channel", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannelAggregate(
     request: SalesChannelAggregationRequest
@@ -646,7 +646,7 @@ class PromotionClient extends Client {
   /** Set Groups **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSetGroups(query?: Criteria): Promise<SetGroupListResponse> {
     const response = await this.get(`/promotion-setgroup` + buildQuery(query), {
@@ -660,7 +660,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSetGroup(
     request: SetGroupCreateRequest,
@@ -679,7 +679,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSetGroups(
     request: SetGroupListSearchRequest
@@ -696,7 +696,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSetGroup(id: string, query?: Criteria): Promise<SetGroupSingleResponse> {
     const response = await this.get(`/promotion-setgroup/${id}` + buildQuery(query), {
@@ -710,7 +710,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSetGroup(id: string): Promise<void> {
     const response = await this.delete(`/promotion-setgroup/${id}`);
@@ -721,7 +721,7 @@ class PromotionClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSetGroup(
     id: string,
@@ -734,14 +734,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SetGroupUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SetGroupUpdateResponse;
 
     throw new ShopwareError("Failed to update set group", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSetGroupAggregate(
     request: SetGroupAggregationRequest

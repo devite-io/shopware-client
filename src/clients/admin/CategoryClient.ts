@@ -30,7 +30,7 @@ class CategoryClient extends Client {
   /** Categories **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCategories(query?: Criteria): Promise<CategoryListResponse> {
     const response = await this.get(`/category` + buildQuery(query), {
@@ -44,7 +44,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCategory(
     request: CategoryCreateRequest,
@@ -63,7 +63,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCategories(
     request: CategoryListSearchRequest
@@ -80,7 +80,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCategory(id: string, query?: Criteria): Promise<CategorySingleResponse> {
     const response = await this.get(`/category/${id}` + buildQuery(query), {
@@ -94,7 +94,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCategory(id: string): Promise<void> {
     const response = await this.delete(`/category/${id}`);
@@ -105,7 +105,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCategory(
     id: string,
@@ -118,14 +118,14 @@ class CategoryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CategoryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CategoryUpdateResponse;
 
     throw new ShopwareError("Failed to update category", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCategoryAggregate(
     request: CategoryAggregationRequest
@@ -144,7 +144,7 @@ class CategoryClient extends Client {
   /** Main Categories **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMainCategories(query?: Criteria): Promise<MainCategoryListResponse> {
     const response = await this.get(`/main-category` + buildQuery(query), {
@@ -158,7 +158,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createMainCategory(
     request: MainCategoryCreateRequest,
@@ -177,7 +177,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchMainCategories(
     request: MainCategoryListSearchRequest
@@ -194,7 +194,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMainCategory(id: string, query?: Criteria): Promise<MainCategorySingleResponse> {
     const response = await this.get(`/main-category/${id}` + buildQuery(query), {
@@ -208,7 +208,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteMainCategory(id: string): Promise<void> {
     const response = await this.delete(`/main-category/${id}`);
@@ -219,7 +219,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateMainCategory(
     id: string,
@@ -232,14 +232,14 @@ class CategoryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as MainCategoryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as MainCategoryUpdateResponse;
 
     throw new ShopwareError("Failed to update main category", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMainCategoryAggregate(
     request: MainCategoryAggregationRequest

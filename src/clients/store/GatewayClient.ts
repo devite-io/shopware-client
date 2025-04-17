@@ -5,7 +5,7 @@ import { GatewayCheckoutResponse } from "#types/clients/store/GatewayClient";
 
 class GatewayClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async checkout(): Promise<GatewayCheckoutResponse> {
     const response = await this.post("/checkout/gateway");

@@ -18,7 +18,7 @@ import {
 
 class PaymentMethodClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethods(query?: Criteria): Promise<PaymentMethodListResponse> {
     const response = await this.get(`/payment-method` + buildQuery(query), {
@@ -32,7 +32,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPaymentMethod(
     request: PaymentMethodCreateRequest,
@@ -51,7 +51,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPaymentMethods(
     request: PaymentMethodListSearchRequest
@@ -68,7 +68,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethod(
     id: string,
@@ -85,7 +85,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePaymentMethod(id: string): Promise<void> {
     const response = await this.delete(`/payment-method/${id}`);
@@ -96,7 +96,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePaymentMethod(
     id: string,
@@ -109,14 +109,14 @@ class PaymentMethodClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PaymentMethodUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PaymentMethodUpdateResponse;
 
     throw new ShopwareError("Failed to update payment method", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethodAggregate(
     request: PaymentMethodAggregationRequest

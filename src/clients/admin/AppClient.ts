@@ -110,7 +110,7 @@ class AppClient extends Client {
   /** Apps **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getApps(query?: Criteria): Promise<AppListResponse> {
     const response = await this.get(`/app` + buildQuery(query), {
@@ -123,7 +123,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createApp(
     request: AppCreateRequest,
@@ -142,7 +142,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchApps(request: AppListSearchRequest): Promise<AppListSearchResponse> {
     const response = await this.post(`/search/app`, {
@@ -157,7 +157,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getApp(id: string, query?: Criteria): Promise<AppSingleResponse> {
     const response = await this.get(`/app/${id}` + buildQuery(query), {
@@ -171,7 +171,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteApp(id: string): Promise<void> {
     const response = await this.delete(`/app/${id}`);
@@ -182,7 +182,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateApp(
     id: string,
@@ -195,14 +195,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AppUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AppUpdateResponse;
 
     throw new ShopwareError("Failed to update app", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAppAggregate(request: AppAggregationRequest): Promise<AppAggregationResponse> {
     const response = await this.post(`/aggregate/app`, {
@@ -219,7 +219,7 @@ class AppClient extends Client {
   /** Action Buttons **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getActionButtons(query?: Criteria): Promise<ActionButtonListResponse> {
     const response = await this.get(`/app-action-button` + buildQuery(query), {
@@ -233,7 +233,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createActionButton(
     request: ActionButtonCreateRequest,
@@ -252,7 +252,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchActionButtons(
     request: ActionButtonListSearchRequest
@@ -269,7 +269,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getActionButton(id: string, query?: Criteria): Promise<ActionButtonSingleResponse> {
     const response = await this.get(`/app-action-button/${id}` + buildQuery(query), {
@@ -283,7 +283,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteActionButton(id: string): Promise<void> {
     const response = await this.delete(`/app-action-button/${id}`);
@@ -294,7 +294,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateActionButton(
     id: string,
@@ -307,14 +307,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ActionButtonUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ActionButtonUpdateResponse;
 
     throw new ShopwareError("Failed to update action button", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getActionButtonAggregate(
     request: ActionButtonAggregationRequest
@@ -333,7 +333,7 @@ class AppClient extends Client {
   /** Admin Snippets **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAdminSnippets(query?: Criteria): Promise<AdminSnippetListResponse> {
     const response = await this.get(`/app-administration-snippet` + buildQuery(query), {
@@ -347,7 +347,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAdminSnippet(
     request: AdminSnippetCreateRequest,
@@ -366,7 +366,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAdminSnippets(
     request: AdminSnippetListSearchRequest
@@ -383,7 +383,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAdminSnippet(id: string, query?: Criteria): Promise<AdminSnippetSingleResponse> {
     const response = await this.get(`/app-administration-snippet/${id}` + buildQuery(query), {
@@ -397,7 +397,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAdminSnippet(id: string): Promise<void> {
     const response = await this.delete(`/app-administration-snippet/${id}`);
@@ -408,7 +408,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAdminSnippet(
     id: string,
@@ -421,14 +421,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AdminSnippetUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AdminSnippetUpdateResponse;
 
     throw new ShopwareError("Failed to update administration snippet", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAdminSnippetAggregate(
     request: AdminSnippetAggregationRequest
@@ -447,7 +447,7 @@ class AppClient extends Client {
   /** Cms Blocks **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlocks(query?: Criteria): Promise<CmsBlockListResponse> {
     const response = await this.get(`/app-cms-block` + buildQuery(query), {
@@ -461,7 +461,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsBlock(
     request: CmsBlockCreateRequest,
@@ -480,7 +480,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsBlocks(
     request: CmsBlockListSearchRequest
@@ -497,7 +497,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlock(id: string, query?: Criteria): Promise<CmsBlockSingleResponse> {
     const response = await this.get(`/app-cms-block/${id}` + buildQuery(query), {
@@ -511,7 +511,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsBlock(id: string): Promise<void> {
     const response = await this.delete(`/app-cms-block/${id}`);
@@ -522,7 +522,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsBlock(
     id: string,
@@ -535,14 +535,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsBlockUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsBlockUpdateResponse;
 
     throw new ShopwareError("Failed to update cms block", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlockAggregate(
     request: CmsBlockAggregationRequest
@@ -561,7 +561,7 @@ class AppClient extends Client {
   /** Flow Actions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowActions(query?: Criteria): Promise<FlowActionListResponse> {
     const response = await this.get(`/app-flow-action` + buildQuery(query), {
@@ -575,7 +575,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlowAction(
     request: FlowActionCreateRequest,
@@ -594,7 +594,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlowActions(
     request: FlowActionListSearchRequest
@@ -611,7 +611,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowAction(id: string, query?: Criteria): Promise<FlowActionSingleResponse> {
     const response = await this.get(`/app-flow-action/${id}` + buildQuery(query), {
@@ -625,7 +625,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlowAction(id: string): Promise<void> {
     const response = await this.delete(`/app-flow-action/${id}`);
@@ -636,7 +636,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlowAction(
     id: string,
@@ -649,14 +649,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowActionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowActionUpdateResponse;
 
     throw new ShopwareError("Failed to update flow action", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowActionAggregate(
     request: FlowActionAggregationRequest
@@ -675,7 +675,7 @@ class AppClient extends Client {
   /** Flow Events **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowEvents(query?: Criteria): Promise<FlowEventListResponse> {
     const response = await this.get(`/app-flow-event` + buildQuery(query), {
@@ -689,7 +689,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlowEvent(
     request: FlowEventCreateRequest,
@@ -708,7 +708,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlowEvents(
     request: FlowEventListSearchRequest
@@ -725,7 +725,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowEvent(id: string, query?: Criteria): Promise<FlowEventSingleResponse> {
     const response = await this.get(`/app-flow-event/${id}` + buildQuery(query), {
@@ -739,7 +739,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlowEvent(id: string): Promise<void> {
     const response = await this.delete(`/app-flow-event/${id}`);
@@ -750,7 +750,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlowEvent(
     id: string,
@@ -763,14 +763,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowEventUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowEventUpdateResponse;
 
     throw new ShopwareError("Failed to update flow event", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowEventAggregate(
     request: FlowEventAggregationRequest
@@ -789,7 +789,7 @@ class AppClient extends Client {
   /** Payment Methods **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethods(query?: Criteria): Promise<PaymentMethodListResponse> {
     const response = await this.get(`/app-payment-method` + buildQuery(query), {
@@ -803,7 +803,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPaymentMethod(
     request: PaymentMethodCreateRequest,
@@ -822,7 +822,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPaymentMethods(
     request: PaymentMethodListSearchRequest
@@ -839,7 +839,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethod(
     id: string,
@@ -856,7 +856,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePaymentMethod(id: string): Promise<void> {
     const response = await this.delete(`/app-payment-method/${id}`);
@@ -867,7 +867,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePaymentMethod(
     id: string,
@@ -880,14 +880,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PaymentMethodUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PaymentMethodUpdateResponse;
 
     throw new ShopwareError("Failed to update payment method", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethodAggregate(
     request: PaymentMethodAggregationRequest
@@ -906,7 +906,7 @@ class AppClient extends Client {
   /** Script Conditions **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScriptConditions(query?: Criteria): Promise<ScriptConditionListResponse> {
     const response = await this.get(`/app-script-condition` + buildQuery(query), {
@@ -920,7 +920,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createScriptCondition(
     request: ScriptConditionCreateRequest,
@@ -939,7 +939,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchScriptConditions(
     request: ScriptConditionListSearchRequest
@@ -956,7 +956,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScriptCondition(
     id: string,
@@ -973,7 +973,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteScriptCondition(id: string): Promise<void> {
     const response = await this.delete(`/app-script-condition/${id}`);
@@ -984,7 +984,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateScriptCondition(
     id: string,
@@ -997,14 +997,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ScriptConditionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ScriptConditionUpdateResponse;
 
     throw new ShopwareError("Failed to update script condition", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScriptConditionAggregate(
     request: ScriptConditionAggregationRequest
@@ -1023,7 +1023,7 @@ class AppClient extends Client {
   /** Shipping Methods **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethods(query?: Criteria): Promise<ShippingMethodListResponse> {
     const response = await this.get(`/app-shipping-method` + buildQuery(query), {
@@ -1037,7 +1037,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createShippingMethod(
     request: ShippingMethodCreateRequest,
@@ -1056,7 +1056,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchShippingMethods(
     request: ShippingMethodListSearchRequest
@@ -1073,7 +1073,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethod(
     id: string,
@@ -1090,7 +1090,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteShippingMethod(id: string): Promise<void> {
     const response = await this.delete(`/app-shipping-method/${id}`);
@@ -1101,7 +1101,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateShippingMethod(
     id: string,
@@ -1114,14 +1114,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ShippingMethodUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ShippingMethodUpdateResponse;
 
     throw new ShopwareError("Failed to update shipping method", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethodAggregate(
     request: ShippingMethodAggregationRequest
@@ -1140,7 +1140,7 @@ class AppClient extends Client {
   /** Templates **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplates(query?: Criteria): Promise<TemplateListResponse> {
     const response = await this.get(`/app-template` + buildQuery(query), {
@@ -1154,7 +1154,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTemplate(
     request: TemplateCreateRequest,
@@ -1173,7 +1173,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTemplates(
     request: TemplateListSearchRequest
@@ -1190,7 +1190,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplate(id: string, query?: Criteria): Promise<TemplateSingleResponse> {
     const response = await this.get(`/app-template/${id}` + buildQuery(query), {
@@ -1204,7 +1204,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTemplate(id: string): Promise<void> {
     const response = await this.delete(`/app-template/${id}`);
@@ -1215,7 +1215,7 @@ class AppClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTemplate(
     id: string,
@@ -1228,14 +1228,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TemplateUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TemplateUpdateResponse;
 
     throw new ShopwareError("Failed to update template", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateAggregate(
     request: TemplateAggregationRequest

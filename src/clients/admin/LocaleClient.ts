@@ -30,7 +30,7 @@ class LocaleClient extends Client {
   /** Locales **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLocales(query?: Criteria): Promise<LocaleListResponse> {
     const response = await this.get(`/locale` + buildQuery(query), {
@@ -44,7 +44,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLocale(
     request: LocaleCreateRequest,
@@ -63,7 +63,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLocales(request: LocaleListSearchRequest): Promise<LocaleListSearchResponse> {
     const response = await this.post(`/search/locale`, {
@@ -78,7 +78,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLocale(id: string, query?: Criteria): Promise<LocaleSingleResponse> {
     const response = await this.get(`/locale/${id}` + buildQuery(query), {
@@ -92,7 +92,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLocale(id: string): Promise<void> {
     const response = await this.delete(`/locale/${id}`);
@@ -103,7 +103,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLocale(
     id: string,
@@ -116,14 +116,14 @@ class LocaleClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LocaleUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LocaleUpdateResponse;
 
     throw new ShopwareError("Failed to update locale", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLocaleAggregate(
     request: LocaleAggregationRequest
@@ -142,7 +142,7 @@ class LocaleClient extends Client {
   /** Languages **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLanguages(query?: Criteria): Promise<LanguageListResponse> {
     const response = await this.get(`/language` + buildQuery(query), {
@@ -156,7 +156,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLanguage(
     request: LanguageCreateRequest,
@@ -175,7 +175,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLanguages(
     request: LanguageListSearchRequest
@@ -192,7 +192,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLanguage(id: string, query?: Criteria): Promise<LanguageSingleResponse> {
     const response = await this.get(`/language/${id}` + buildQuery(query), {
@@ -206,7 +206,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLanguage(id: string): Promise<void> {
     const response = await this.delete(`/language/${id}`);
@@ -217,7 +217,7 @@ class LocaleClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLanguage(
     id: string,
@@ -230,14 +230,14 @@ class LocaleClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LanguageUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LanguageUpdateResponse;
 
     throw new ShopwareError("Failed to update language", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLanguageAggregate(
     request: LanguageAggregationRequest

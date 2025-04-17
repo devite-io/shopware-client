@@ -20,7 +20,7 @@ import {
 
 class SystemClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLanguages(request: LanguageListRequest = {}): Promise<LanguageListResponse> {
     const response = await this.post("/language", {
@@ -34,7 +34,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalutations(
     request: SalutationListRequest = {}
@@ -50,7 +50,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCurrencies(request: CurrencyListRequest = {}): Promise<CurrencyListResponse> {
     const response = await this.post("/currency", {
@@ -64,7 +64,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryStates(
     countryId: string,
@@ -81,7 +81,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountries(request: CountryListRequest = {}): Promise<CountryListResponse> {
     const response = await this.post("/country", {
@@ -95,7 +95,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethods(
     request: ShippingMethodListRequest = {},
@@ -112,7 +112,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethods(
     request: PaymentMethodListRequest = {},

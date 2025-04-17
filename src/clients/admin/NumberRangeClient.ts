@@ -50,7 +50,7 @@ class NumberRangeClient extends Client {
   /** Ranges **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRanges(query?: Criteria): Promise<RangeListResponse> {
     const response = await this.get(`/number-range` + buildQuery(query), {
@@ -64,7 +64,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRange(
     request: RangeCreateRequest,
@@ -83,7 +83,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRanges(request: RangeListSearchRequest): Promise<RangeListSearchResponse> {
     const response = await this.post(`/search/number-range`, {
@@ -98,7 +98,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRange(id: string, query?: Criteria): Promise<RangeSingleResponse> {
     const response = await this.get(`/number-range/${id}` + buildQuery(query), {
@@ -112,7 +112,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRange(id: string): Promise<void> {
     const response = await this.delete(`/number-range/${id}`);
@@ -123,7 +123,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRange(
     id: string,
@@ -136,14 +136,14 @@ class NumberRangeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RangeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RangeUpdateResponse;
 
     throw new ShopwareError("Failed to update range", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRangeAggregate(
     request: RangeAggregationRequest
@@ -162,7 +162,7 @@ class NumberRangeClient extends Client {
   /** Sales Channels **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
     const response = await this.get(`/number-range-sales-channel` + buildQuery(query), {
@@ -176,7 +176,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSalesChannel(
     request: SalesChannelCreateRequest,
@@ -195,7 +195,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSalesChannels(
     request: SalesChannelListSearchRequest
@@ -212,7 +212,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
     const response = await this.get(`/number-range-sales-channel/${id}` + buildQuery(query), {
@@ -226,7 +226,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSalesChannel(id: string): Promise<void> {
     const response = await this.delete(`/number-range-sales-channel/${id}`);
@@ -237,7 +237,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSalesChannel(
     id: string,
@@ -250,14 +250,14 @@ class NumberRangeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SalesChannelUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SalesChannelUpdateResponse;
 
     throw new ShopwareError("Failed to update sales channel", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannelAggregate(
     request: SalesChannelAggregationRequest
@@ -276,7 +276,7 @@ class NumberRangeClient extends Client {
   /** States **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStates(query?: Criteria): Promise<StateListResponse> {
     const response = await this.get(`/number-range-state` + buildQuery(query), {
@@ -290,7 +290,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createState(
     request: StateCreateRequest,
@@ -309,7 +309,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
     const response = await this.post(`/search/number-range-state`, {
@@ -324,7 +324,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
     const response = await this.get(`/number-range-state/${id}` + buildQuery(query), {
@@ -338,7 +338,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteState(id: string): Promise<void> {
     const response = await this.delete(`/number-range-state/${id}`);
@@ -349,7 +349,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateState(
     id: string,
@@ -362,14 +362,14 @@ class NumberRangeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StateUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StateUpdateResponse;
 
     throw new ShopwareError("Failed to update state", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateAggregate(
     request: StateAggregationRequest
@@ -388,7 +388,7 @@ class NumberRangeClient extends Client {
   /** Types **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTypes(query?: Criteria): Promise<TypeListResponse> {
     const response = await this.get(`/number-range-type` + buildQuery(query), {
@@ -401,7 +401,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createType(
     request: TypeCreateRequest,
@@ -420,7 +420,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTypes(request: TypeListSearchRequest): Promise<TypeListSearchResponse> {
     const response = await this.post(`/search/number-range-type`, {
@@ -435,7 +435,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getType(id: string, query?: Criteria): Promise<TypeSingleResponse> {
     const response = await this.get(`/number-range-type/${id}` + buildQuery(query), {
@@ -449,7 +449,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteType(id: string): Promise<void> {
     const response = await this.delete(`/number-range-type/${id}`);
@@ -460,7 +460,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateType(
     id: string,
@@ -473,14 +473,14 @@ class NumberRangeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TypeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TypeUpdateResponse;
 
     throw new ShopwareError("Failed to update type", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTypeAggregate(request: TypeAggregationRequest): Promise<TypeAggregationResponse> {
     const response = await this.post(`/aggregate/number-range-type`, {

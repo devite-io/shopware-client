@@ -50,7 +50,7 @@ class CustomDataClient extends Client {
   /** Custom Entities */
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomEntities(query?: Criteria): Promise<CustomEntityListResponse> {
     const response = await this.get(`/custom-entity` + buildQuery(query), {
@@ -64,7 +64,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomEntity(
     request: CustomEntityCreateRequest,
@@ -83,7 +83,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomEntities(
     request: CustomEntityListSearchRequest
@@ -100,7 +100,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomEntity(id: string, query?: Criteria): Promise<CustomEntitySingleResponse> {
     const response = await this.get(`/custom-entity/${id}` + buildQuery(query), {
@@ -114,7 +114,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomEntity(id: string): Promise<void> {
     const response = await this.delete(`/custom-entity/${id}`);
@@ -125,7 +125,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomEntity(
     id: string,
@@ -138,14 +138,14 @@ class CustomDataClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomEntityUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomEntityUpdateResponse;
 
     throw new ShopwareError("Failed to update custom entity", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomEntityAggregate(
     request: CustomEntityAggregationRequest
@@ -164,7 +164,7 @@ class CustomDataClient extends Client {
   /** Custom Fields */
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFields(query?: Criteria): Promise<CustomFieldListResponse> {
     const response = await this.get(`/custom-field` + buildQuery(query), {
@@ -178,7 +178,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomField(
     request: CustomFieldCreateRequest,
@@ -197,7 +197,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomFields(
     request: CustomFieldListSearchRequest
@@ -214,7 +214,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomField(id: string, query?: Criteria): Promise<CustomFieldSingleResponse> {
     const response = await this.get(`/custom-field/${id}` + buildQuery(query), {
@@ -228,7 +228,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomField(id: string): Promise<void> {
     const response = await this.delete(`/custom-field/${id}`);
@@ -239,7 +239,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomField(
     id: string,
@@ -252,14 +252,14 @@ class CustomDataClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomFieldUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomFieldUpdateResponse;
 
     throw new ShopwareError("Failed to update custom field", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldAggregate(
     request: CustomFieldAggregationRequest
@@ -278,7 +278,7 @@ class CustomDataClient extends Client {
   /** Custom Field Sets */
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSets(query?: Criteria): Promise<CustomFieldSetListResponse> {
     const response = await this.get(`/custom-field-set` + buildQuery(query), {
@@ -292,7 +292,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomFieldSet(
     request: CustomFieldSetCreateRequest,
@@ -311,7 +311,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomFieldSets(
     request: CustomFieldSetListSearchRequest
@@ -328,7 +328,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSet(
     id: string,
@@ -345,7 +345,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomFieldSet(id: string): Promise<void> {
     const response = await this.delete(`/custom-field-set/${id}`);
@@ -356,7 +356,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomFieldSet(
     id: string,
@@ -369,14 +369,14 @@ class CustomDataClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomFieldSetUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomFieldSetUpdateResponse;
 
     throw new ShopwareError("Failed to update custom fieldset", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSetAggregate(
     request: CustomFieldSetAggregationRequest
@@ -395,7 +395,7 @@ class CustomDataClient extends Client {
   /** Custom Field Set Relations */
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSetRelations(
     query?: Criteria
@@ -411,7 +411,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomFieldSetRelation(
     request: CustomFieldSetRelationCreateRequest,
@@ -430,7 +430,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomFieldSetRelations(
     request: CustomFieldSetRelationListSearchRequest
@@ -447,7 +447,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSetRelation(
     id: string,
@@ -464,7 +464,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomFieldSetRelation(id: string): Promise<void> {
     const response = await this.delete(`/custom-field-set-relation/${id}`);
@@ -475,7 +475,7 @@ class CustomDataClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomFieldSetRelation(
     id: string,
@@ -488,14 +488,15 @@ class CustomDataClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomFieldSetRelationUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as CustomFieldSetRelationUpdateResponse;
 
     throw new ShopwareError("Failed to update custom fieldset relation", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSetRelationAggregate(
     request: CustomFieldSetRelationAggregationRequest

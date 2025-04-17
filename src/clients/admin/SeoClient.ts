@@ -30,7 +30,7 @@ class DeliveryTimeClient extends Client {
   /** Urls **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrls(query?: Criteria): Promise<UrlListResponse> {
     const response = await this.get(`/seo-url` + buildQuery(query), {
@@ -43,7 +43,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createUrl(
     request: UrlCreateRequest,
@@ -62,7 +62,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchUrls(request: UrlListSearchRequest): Promise<UrlListSearchResponse> {
     const response = await this.post(`/search/seo-url`, {
@@ -77,7 +77,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrl(id: string, query?: Criteria): Promise<UrlSingleResponse> {
     const response = await this.get(`/seo-url/${id}` + buildQuery(query), {
@@ -91,7 +91,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteUrl(id: string): Promise<void> {
     const response = await this.delete(`/seo-url/${id}`);
@@ -102,7 +102,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateUrl(
     id: string,
@@ -115,14 +115,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as UrlUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as UrlUpdateResponse;
 
     throw new ShopwareError("Failed to update url", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrlAggregate(request: UrlAggregationRequest): Promise<UrlAggregationResponse> {
     const response = await this.post(`/aggregate/seo-url`, {
@@ -139,7 +139,7 @@ class DeliveryTimeClient extends Client {
   /** Url Templates **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrlTemplates(query?: Criteria): Promise<UrlTemplateListResponse> {
     const response = await this.get(`/seo-url-template` + buildQuery(query), {
@@ -153,7 +153,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createUrlTemplate(
     request: UrlTemplateCreateRequest,
@@ -172,7 +172,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchUrlTemplates(
     request: UrlTemplateListSearchRequest
@@ -189,7 +189,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrlTemplate(id: string, query?: Criteria): Promise<UrlTemplateSingleResponse> {
     const response = await this.get(`/seo-url-template/${id}` + buildQuery(query), {
@@ -203,7 +203,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteUrlTemplate(id: string): Promise<void> {
     const response = await this.delete(`/seo-url-template/${id}`);
@@ -214,7 +214,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateUrlTemplate(
     id: string,
@@ -227,14 +227,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as UrlTemplateUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as UrlTemplateUpdateResponse;
 
     throw new ShopwareError("Failed to update url template", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrlTemplateAggregate(
     request: UrlTemplateAggregationRequest

@@ -56,7 +56,7 @@ class DocumentClient extends Client {
    * @param salesChannelId
    * @param type - The `technicalName` of the document type.
    * @param preview - If `true`, the document number range will not be incremented.
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async reserveNumber(
     salesChannelId: string,
@@ -75,7 +75,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async upload(
     id: string,
@@ -97,7 +97,7 @@ class DocumentClient extends Client {
   /**
    * Requires `shopware.media.enable_url_upload_feature` to be enabled.
    *
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async uploadFromUrl(
     id: string,
@@ -119,7 +119,7 @@ class DocumentClient extends Client {
   /** Documents **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocuments(query?: Criteria): Promise<DocumentListResponse> {
     const response = await this.get(`/document` + buildQuery(query), {
@@ -133,7 +133,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDocument(
     request: DocumentCreateRequest,
@@ -152,7 +152,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDocuments(
     request: DocumentListSearchRequest
@@ -169,7 +169,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocument(id: string, query?: Criteria): Promise<DocumentSingleResponse> {
     const response = await this.get(`/document/${id}` + buildQuery(query), {
@@ -183,7 +183,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDocument(id: string): Promise<void> {
     const response = await this.delete(`/document/${id}`);
@@ -194,7 +194,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDocument(
     id: string,
@@ -207,14 +207,14 @@ class DocumentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DocumentUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DocumentUpdateResponse;
 
     throw new ShopwareError("Failed to update document", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocumentAggregate(
     request: DocumentAggregationRequest
@@ -233,7 +233,7 @@ class DocumentClient extends Client {
   /** BaseConfigs **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigs(query?: Criteria): Promise<BaseConfigListResponse> {
     const response = await this.get(`/document-base-config` + buildQuery(query), {
@@ -247,7 +247,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createBaseConfig(
     request: BaseConfigCreateRequest,
@@ -266,7 +266,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchBaseConfigs(
     request: BaseConfigListSearchRequest
@@ -283,7 +283,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfig(id: string, query?: Criteria): Promise<BaseConfigSingleResponse> {
     const response = await this.get(`/document-base-config/${id}` + buildQuery(query), {
@@ -297,7 +297,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteBaseConfig(id: string): Promise<void> {
     const response = await this.delete(`/document-base-config/${id}`);
@@ -308,7 +308,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateBaseConfig(
     id: string,
@@ -321,14 +321,14 @@ class DocumentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as BaseConfigUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as BaseConfigUpdateResponse;
 
     throw new ShopwareError("Failed to update document base config", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigAggregate(
     request: BaseConfigAggregationRequest
@@ -347,7 +347,7 @@ class DocumentClient extends Client {
   /** Base Config Sales Channels **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigSalesChannels(
     query?: Criteria
@@ -363,7 +363,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createBaseConfigSalesChannel(
     request: BaseConfigSalesChannelCreateRequest,
@@ -382,7 +382,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchBaseConfigSalesChannels(
     request: BaseConfigSalesChannelListSearchRequest
@@ -399,7 +399,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigSalesChannel(
     id: string,
@@ -419,7 +419,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteBaseConfigSalesChannel(id: string): Promise<void> {
     const response = await this.delete(`/document-base-config-sales-channel/${id}`);
@@ -430,7 +430,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateBaseConfigSalesChannel(
     id: string,
@@ -443,14 +443,15 @@ class DocumentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as BaseConfigSalesChannelUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as BaseConfigSalesChannelUpdateResponse;
 
     throw new ShopwareError("Failed to update document base config sales channel", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigSalesChannelAggregate(
     request: BaseConfigSalesChannelAggregationRequest
@@ -469,7 +470,7 @@ class DocumentClient extends Client {
   /** Document Types **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocumentTypes(query?: Criteria): Promise<DocumentTypeListResponse> {
     const response = await this.get(`/document-type` + buildQuery(query), {
@@ -483,7 +484,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDocumentType(
     request: DocumentTypeCreateRequest,
@@ -502,7 +503,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDocumentTypes(
     request: DocumentTypeListSearchRequest
@@ -519,7 +520,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocumentType(id: string, query?: Criteria): Promise<DocumentTypeSingleResponse> {
     const response = await this.get(`/document-type/${id}` + buildQuery(query), {
@@ -533,7 +534,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDocumentType(id: string): Promise<void> {
     const response = await this.delete(`/document-type/${id}`);
@@ -544,7 +545,7 @@ class DocumentClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDocumentType(
     id: string,
@@ -557,14 +558,14 @@ class DocumentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DocumentTypeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DocumentTypeUpdateResponse;
 
     throw new ShopwareError("Failed to update document type", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocumentTypeAggregate(
     request: DocumentTypeAggregationRequest

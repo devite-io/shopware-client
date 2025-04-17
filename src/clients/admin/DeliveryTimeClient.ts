@@ -18,7 +18,7 @@ import {
 
 class DeliveryTimeClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryTimes(query?: Criteria): Promise<DeliveryTimeListResponse> {
     const response = await this.get(`/delivery-time` + buildQuery(query), {
@@ -32,7 +32,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDeliveryTime(
     request: DeliveryTimeCreateRequest,
@@ -51,7 +51,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDeliveryTimes(
     request: DeliveryTimeListSearchRequest
@@ -68,7 +68,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryTime(id: string, query?: Criteria): Promise<DeliveryTimeSingleResponse> {
     const response = await this.get(`/delivery-time/${id}` + buildQuery(query), {
@@ -82,7 +82,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDeliveryTime(id: string): Promise<void> {
     const response = await this.delete(`/delivery-time/${id}`);
@@ -93,7 +93,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDeliveryTime(
     id: string,
@@ -106,14 +106,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DeliveryTimeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DeliveryTimeUpdateResponse;
 
     throw new ShopwareError("Failed to update delivery time", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryTimeAggregate(
     request: DeliveryTimeAggregationRequest

@@ -50,7 +50,7 @@ class SalesChannelClient extends Client {
   /** Sales Channels **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
     const response = await this.get(`/sales-channel` + buildQuery(query), {
@@ -64,7 +64,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSalesChannel(
     request: SalesChannelCreateRequest,
@@ -83,7 +83,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSalesChannels(
     request: SalesChannelListSearchRequest
@@ -100,7 +100,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
     const response = await this.get(`/sales-channel/${id}` + buildQuery(query), {
@@ -114,7 +114,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSalesChannel(id: string): Promise<void> {
     const response = await this.delete(`/sales-channel/${id}`);
@@ -125,7 +125,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSalesChannel(
     id: string,
@@ -138,14 +138,14 @@ class SalesChannelClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SalesChannelUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SalesChannelUpdateResponse;
 
     throw new ShopwareError("Failed to update sales channel", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannelAggregate(
     request: SalesChannelAggregationRequest
@@ -164,7 +164,7 @@ class SalesChannelClient extends Client {
   /** Analytics **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAnalyticsList(query?: Criteria): Promise<AnalyticsListResponse> {
     const response = await this.get(`/sales-channel-analytics` + buildQuery(query), {
@@ -178,7 +178,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAnalytics(
     request: AnalyticsCreateRequest,
@@ -197,7 +197,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAnalytics(
     request: AnalyticsListSearchRequest
@@ -214,7 +214,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAnalytics(id: string, query?: Criteria): Promise<AnalyticsSingleResponse> {
     const response = await this.get(`/sales-channel-analytics/${id}` + buildQuery(query), {
@@ -228,7 +228,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAnalytics(id: string): Promise<void> {
     const response = await this.delete(`/sales-channel-analytics/${id}`);
@@ -239,7 +239,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAnalytics(
     id: string,
@@ -252,14 +252,14 @@ class SalesChannelClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AnalyticsUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AnalyticsUpdateResponse;
 
     throw new ShopwareError("Failed to update analytics", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAnalyticsAggregate(
     request: AnalyticsAggregationRequest
@@ -278,7 +278,7 @@ class SalesChannelClient extends Client {
   /** Domains **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDomains(query?: Criteria): Promise<DomainListResponse> {
     const response = await this.get(`/sales-channel-domain` + buildQuery(query), {
@@ -292,7 +292,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDomain(
     request: DomainCreateRequest,
@@ -311,7 +311,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDomains(request: DomainListSearchRequest): Promise<DomainListSearchResponse> {
     const response = await this.post(`/search/sales-channel-domain`, {
@@ -326,7 +326,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDomain(id: string, query?: Criteria): Promise<DomainSingleResponse> {
     const response = await this.get(`/sales-channel-domain/${id}` + buildQuery(query), {
@@ -340,7 +340,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDomain(id: string): Promise<void> {
     const response = await this.delete(`/sales-channel-domain/${id}`);
@@ -351,7 +351,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDomain(
     id: string,
@@ -364,14 +364,14 @@ class SalesChannelClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DomainUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DomainUpdateResponse;
 
     throw new ShopwareError("Failed to update domain", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDomainAggregate(
     request: DomainAggregationRequest
@@ -390,7 +390,7 @@ class SalesChannelClient extends Client {
   /** Types **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTypes(query?: Criteria): Promise<TypeListResponse> {
     const response = await this.get(`/sales-channel-type` + buildQuery(query), {
@@ -403,7 +403,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createType(
     request: TypeCreateRequest,
@@ -422,7 +422,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTypes(request: TypeListSearchRequest): Promise<TypeListSearchResponse> {
     const response = await this.post(`/search/sales-channel-type`, {
@@ -437,7 +437,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getType(id: string, query?: Criteria): Promise<TypeSingleResponse> {
     const response = await this.get(`/sales-channel-type/${id}` + buildQuery(query), {
@@ -451,7 +451,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteType(id: string): Promise<void> {
     const response = await this.delete(`/sales-channel-type/${id}`);
@@ -462,7 +462,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateType(
     id: string,
@@ -475,14 +475,14 @@ class SalesChannelClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TypeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TypeUpdateResponse;
 
     throw new ShopwareError("Failed to update type", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTypeAggregate(request: TypeAggregationRequest): Promise<TypeAggregationResponse> {
     const response = await this.post(`/aggregate/sales-channel-type`, {

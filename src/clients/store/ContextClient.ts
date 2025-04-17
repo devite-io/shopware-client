@@ -12,7 +12,7 @@ import {
 
 class ContextClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getContext(): Promise<ContextGetResponse> {
     const entry: AuthenticationEntry | undefined = this.client.authStore.getEntry(
@@ -33,7 +33,7 @@ class ContextClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateContext(context: ContextUpdateRequest): Promise<ContextUpdateResponse> {
     const response = await this.patch(

@@ -30,7 +30,7 @@ class PropertyGroupClient extends Client {
   /** Property Groups **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPropertyGroups(query?: Criteria): Promise<PropertyGroupListResponse> {
     const response = await this.get(`/property-group` + buildQuery(query), {
@@ -44,7 +44,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPropertyGroup(
     request: PropertyGroupCreateRequest,
@@ -63,7 +63,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPropertyGroups(
     request: PropertyGroupListSearchRequest
@@ -80,7 +80,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPropertyGroup(
     id: string,
@@ -97,7 +97,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePropertyGroup(id: string): Promise<void> {
     const response = await this.delete(`/property-group/${id}`);
@@ -108,7 +108,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePropertyGroup(
     id: string,
@@ -121,14 +121,14 @@ class PropertyGroupClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PropertyGroupUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PropertyGroupUpdateResponse;
 
     throw new ShopwareError("Failed to update property group", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPropertyGroupAggregate(
     request: PropertyGroupAggregationRequest
@@ -147,7 +147,7 @@ class PropertyGroupClient extends Client {
   /** Options **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOptions(query?: Criteria): Promise<OptionListResponse> {
     const response = await this.get(`/property-group-option` + buildQuery(query), {
@@ -161,7 +161,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createOption(
     request: OptionCreateRequest,
@@ -180,7 +180,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchOptions(request: OptionListSearchRequest): Promise<OptionListSearchResponse> {
     const response = await this.post(`/search/property-group-option`, {
@@ -195,7 +195,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOption(id: string, query?: Criteria): Promise<OptionSingleResponse> {
     const response = await this.get(`/property-group-option/${id}` + buildQuery(query), {
@@ -209,7 +209,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteOption(id: string): Promise<void> {
     const response = await this.delete(`/property-group-option/${id}`);
@@ -220,7 +220,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateOption(
     id: string,
@@ -233,14 +233,14 @@ class PropertyGroupClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as OptionUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as OptionUpdateResponse;
 
     throw new ShopwareError("Failed to update option", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOptionAggregate(
     request: OptionAggregationRequest

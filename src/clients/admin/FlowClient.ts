@@ -40,7 +40,7 @@ class FlowClient extends Client {
   /** Flows **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlows(query?: Criteria): Promise<FlowListResponse> {
     const response = await this.get(`/flow` + buildQuery(query), {
@@ -53,7 +53,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlow(
     request: FlowCreateRequest,
@@ -72,7 +72,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlows(request: FlowListSearchRequest): Promise<FlowListSearchResponse> {
     const response = await this.post(`/search/flow`, {
@@ -87,7 +87,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlow(id: string, query?: Criteria): Promise<FlowSingleResponse> {
     const response = await this.get(`/flow/${id}` + buildQuery(query), {
@@ -101,7 +101,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlow(id: string): Promise<void> {
     const response = await this.delete(`/flow/${id}`);
@@ -112,7 +112,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlow(
     id: string,
@@ -125,14 +125,14 @@ class FlowClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowUpdateResponse;
 
     throw new ShopwareError("Failed to update flow", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowAggregate(request: FlowAggregationRequest): Promise<FlowAggregationResponse> {
     const response = await this.post(`/aggregate/flow`, {
@@ -149,7 +149,7 @@ class FlowClient extends Client {
   /** Flow Sequences **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowSequences(query?: Criteria): Promise<FlowSequenceListResponse> {
     const response = await this.get(`/flow-sequence` + buildQuery(query), {
@@ -163,7 +163,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlowSequence(
     request: FlowSequenceCreateRequest,
@@ -182,7 +182,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlowSequences(
     request: FlowSequenceListSearchRequest
@@ -199,7 +199,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowSequence(id: string, query?: Criteria): Promise<FlowSequenceSingleResponse> {
     const response = await this.get(`/flow-sequence/${id}` + buildQuery(query), {
@@ -213,7 +213,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlowSequence(id: string): Promise<void> {
     const response = await this.delete(`/flow-sequence/${id}`);
@@ -224,7 +224,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlowSequence(
     id: string,
@@ -237,14 +237,14 @@ class FlowClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowSequenceUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowSequenceUpdateResponse;
 
     throw new ShopwareError("Failed to update flow sequence", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowSequenceAggregate(
     request: FlowSequenceAggregationRequest
@@ -263,7 +263,7 @@ class FlowClient extends Client {
   /** Flow Templates **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowTemplates(query?: Criteria): Promise<FlowTemplateListResponse> {
     const response = await this.get(`/flow-template` + buildQuery(query), {
@@ -277,7 +277,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlowTemplate(
     request: FlowTemplateCreateRequest,
@@ -296,7 +296,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlowTemplates(
     request: FlowTemplateListSearchRequest
@@ -313,7 +313,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowTemplate(id: string, query?: Criteria): Promise<FlowTemplateSingleResponse> {
     const response = await this.get(`/flow-template/${id}` + buildQuery(query), {
@@ -327,7 +327,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlowTemplate(id: string): Promise<void> {
     const response = await this.delete(`/flow-template/${id}`);
@@ -338,7 +338,7 @@ class FlowClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlowTemplate(
     id: string,
@@ -351,14 +351,14 @@ class FlowClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowTemplateUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowTemplateUpdateResponse;
 
     throw new ShopwareError("Failed to update flow template", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowTemplateAggregate(
     request: FlowTemplateAggregationRequest

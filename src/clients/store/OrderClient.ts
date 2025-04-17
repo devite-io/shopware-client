@@ -19,7 +19,7 @@ import {
 
 class OrderClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async initiatePayment(
     request: OrderPaymentInitiateRequest
@@ -35,7 +35,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async cancel(request: OrderCancelRequest): Promise<OrderCancelResponse> {
     const response = await this.post(
@@ -52,7 +52,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOrders(request: OrderListRequest = {}): Promise<OrderListResponse> {
     const response = await this.post(
@@ -69,7 +69,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePaymentMethod(
     request: OrderUpdatePaymentMethodRequest
@@ -88,7 +88,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async downloadPurchasedFile(
     downloadId: string,
@@ -106,7 +106,7 @@ class OrderClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFromCart(request: OrderFromCartRequest = {}): Promise<OrderFromCartResponse> {
     const response = await this.post(

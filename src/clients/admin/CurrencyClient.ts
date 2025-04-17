@@ -30,7 +30,7 @@ class CountryClient extends Client {
   /** Currencies **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCurrencies(query?: Criteria): Promise<CurrencyListResponse> {
     const response = await this.get(`/currency` + buildQuery(query), {
@@ -44,7 +44,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCurrency(
     request: CurrencyCreateRequest,
@@ -63,7 +63,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCurrencies(
     request: CurrencyListSearchRequest
@@ -80,7 +80,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCurrency(id: string, query?: Criteria): Promise<CurrencySingleResponse> {
     const response = await this.get(`/currency/${id}` + buildQuery(query), {
@@ -94,7 +94,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCurrency(id: string): Promise<void> {
     const response = await this.delete(`/currency/${id}`);
@@ -105,7 +105,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCurrency(
     id: string,
@@ -118,14 +118,14 @@ class CountryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CurrencyUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CurrencyUpdateResponse;
 
     throw new ShopwareError("Failed to update currency", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCurrencyAggregate(
     request: CurrencyAggregationRequest
@@ -144,7 +144,7 @@ class CountryClient extends Client {
   /** Country Roundings **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryRoundings(query?: Criteria): Promise<CountryRoundingListResponse> {
     const response = await this.get(`/currency-country-rounding` + buildQuery(query), {
@@ -158,7 +158,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCountryRounding(
     request: CountryRoundingCreateRequest,
@@ -177,7 +177,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCountryRoundings(
     request: CountryRoundingListSearchRequest
@@ -194,7 +194,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryRounding(
     id: string,
@@ -211,7 +211,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCountryRounding(id: string): Promise<void> {
     const response = await this.delete(`/currency-country-rounding/${id}`);
@@ -222,7 +222,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCountryRounding(
     id: string,
@@ -235,14 +235,14 @@ class CountryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CountryRoundingUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CountryRoundingUpdateResponse;
 
     throw new ShopwareError("Failed to update country rounding", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryRoundingAggregate(
     request: CountryRoundingAggregationRequest

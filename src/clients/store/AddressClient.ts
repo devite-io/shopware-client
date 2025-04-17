@@ -13,7 +13,7 @@ import {
 
 class AddressClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAddress(request: AddressCreateRequest): Promise<AddressCreateResponse> {
     const response = await this.post(
@@ -30,7 +30,7 @@ class AddressClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAddress(addressId: string): Promise<void> {
     const response = await this.delete(
@@ -44,7 +44,7 @@ class AddressClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAddress(
     addressId: string,
@@ -64,7 +64,7 @@ class AddressClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddresses(request: AddressListRequest = {}): Promise<AddressListResponse> {
     const response = await this.post(
@@ -81,7 +81,7 @@ class AddressClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async changeDefaultShippingAddress(addressId: string): Promise<void> {
     const response = await this.patch(
@@ -95,7 +95,7 @@ class AddressClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async changeDefaultBillingAddress(addressId: string): Promise<void> {
     const response = await this.patch(

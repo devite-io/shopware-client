@@ -23,7 +23,7 @@ import {
 
 class ProductClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getListingByCategory(
     categoryId: string,
@@ -40,7 +40,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCrossSellingGroupsForProduct(
     id: string
@@ -54,7 +54,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProduct(
     id: string,
@@ -73,7 +73,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProducts(request: ProductListRequest = {}): Promise<ProductListResponse> {
     const response = await this.post("/product", {
@@ -87,7 +87,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getReviewsForProduct(
     id: string,
@@ -104,7 +104,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async saveReviewForProduct(id: string, request: ProductReviewSaveRequest): Promise<void> {
     const response = await this.post(
@@ -120,7 +120,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async findVariantWithOptions(
     id: string,
@@ -137,7 +137,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchProducts(request: ProductSearchRequest): Promise<ProductSearchResponse> {
     const response = await this.post("/search", {
@@ -151,7 +151,7 @@ class ProductClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSearchSuggestions(
     request: ProductSearchSuggestionListRequest

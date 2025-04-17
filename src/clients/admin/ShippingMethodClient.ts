@@ -30,7 +30,7 @@ class ShippingMethodClient extends Client {
   /** Shipping Methods **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethods(query?: Criteria): Promise<ShippingMethodListResponse> {
     const response = await this.get(`/shipping-method` + buildQuery(query), {
@@ -44,7 +44,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createShippingMethod(
     request: ShippingMethodCreateRequest,
@@ -63,7 +63,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchShippingMethods(
     request: ShippingMethodListSearchRequest
@@ -80,7 +80,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethod(
     id: string,
@@ -97,7 +97,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteShippingMethod(id: string): Promise<void> {
     const response = await this.delete(`/shipping-method/${id}`);
@@ -108,7 +108,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateShippingMethod(
     id: string,
@@ -121,14 +121,14 @@ class ShippingMethodClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ShippingMethodUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ShippingMethodUpdateResponse;
 
     throw new ShopwareError("Failed to update shipping method", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethodAggregate(
     request: ShippingMethodAggregationRequest
@@ -147,7 +147,7 @@ class ShippingMethodClient extends Client {
   /** Prices **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPrices(query?: Criteria): Promise<PriceListResponse> {
     const response = await this.get(`/shipping-method-price` + buildQuery(query), {
@@ -161,7 +161,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPrice(
     request: PriceCreateRequest,
@@ -180,7 +180,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPrices(request: PriceListSearchRequest): Promise<PriceListSearchResponse> {
     const response = await this.post(`/search/shipping-method-price`, {
@@ -195,7 +195,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPrice(id: string, query?: Criteria): Promise<PriceSingleResponse> {
     const response = await this.get(`/shipping-method-price/${id}` + buildQuery(query), {
@@ -209,7 +209,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePrice(id: string): Promise<void> {
     const response = await this.delete(`/shipping-method-price/${id}`);
@@ -220,7 +220,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePrice(
     id: string,
@@ -233,14 +233,14 @@ class ShippingMethodClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PriceUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PriceUpdateResponse;
 
     throw new ShopwareError("Failed to update price", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPriceAggregate(
     request: PriceAggregationRequest

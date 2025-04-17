@@ -18,7 +18,7 @@ import {
 
 class UnitClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUnits(query?: Criteria): Promise<UnitListResponse> {
     const response = await this.get(`/unit` + buildQuery(query), {
@@ -31,7 +31,7 @@ class UnitClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createUnit(
     request: UnitCreateRequest,
@@ -50,7 +50,7 @@ class UnitClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchUnits(request: UnitListSearchRequest): Promise<UnitListSearchResponse> {
     const response = await this.post(`/search/unit`, {
@@ -65,7 +65,7 @@ class UnitClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUnit(id: string, query?: Criteria): Promise<UnitSingleResponse> {
     const response = await this.get(`/unit/${id}` + buildQuery(query), {
@@ -79,7 +79,7 @@ class UnitClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteUnit(id: string): Promise<void> {
     const response = await this.delete(`/unit/${id}`);
@@ -90,7 +90,7 @@ class UnitClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateUnit(
     id: string,
@@ -103,14 +103,14 @@ class UnitClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as UnitUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as UnitUpdateResponse;
 
     throw new ShopwareError("Failed to update unit", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUnitAggregate(request: UnitAggregationRequest): Promise<UnitAggregationResponse> {
     const response = await this.post(`/aggregate/unit`, {

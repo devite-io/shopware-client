@@ -46,7 +46,7 @@ class MailClient extends Client {
   /** Operations **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async sendMail(request: MailSendRequest): Promise<MailSendResponse> {
     const response = await this.post(`/_action/mail-template/send`, {
@@ -60,7 +60,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async validateContent(request: ContentValidationRequest): Promise<void> {
     const response = await this.post(`/_action/mail-template/validate`, {
@@ -73,7 +73,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async previewTemplate(request: TemplatePreviewRequest): Promise<TemplatePreviewResponse> {
     const response = await this.post(`/_action/mail-template/build`, {
@@ -90,7 +90,7 @@ class MailClient extends Client {
   /** Header Footers **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getHeaderFooters(query?: Criteria): Promise<HeaderFooterListResponse> {
     const response = await this.get(`/header-footer` + buildQuery(query), {
@@ -104,7 +104,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createHeaderFooter(
     request: HeaderFooterCreateRequest,
@@ -123,7 +123,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchHeaderFooters(
     request: HeaderFooterListSearchRequest
@@ -140,7 +140,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getHeaderFooter(id: string, query?: Criteria): Promise<HeaderFooterSingleResponse> {
     const response = await this.get(`/header-footer/${id}` + buildQuery(query), {
@@ -154,7 +154,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteHeaderFooter(id: string): Promise<void> {
     const response = await this.delete(`/header-footer/${id}`);
@@ -165,7 +165,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateHeaderFooter(
     id: string,
@@ -178,14 +178,14 @@ class MailClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as HeaderFooterUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as HeaderFooterUpdateResponse;
 
     throw new ShopwareError("Failed to update header footer", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getHeaderFooterAggregate(
     request: HeaderFooterAggregationRequest
@@ -204,7 +204,7 @@ class MailClient extends Client {
   /** Templates **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplates(query?: Criteria): Promise<TemplateListResponse> {
     const response = await this.get(`/template` + buildQuery(query), {
@@ -218,7 +218,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTemplate(
     request: TemplateCreateRequest,
@@ -237,7 +237,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTemplates(
     request: TemplateListSearchRequest
@@ -254,7 +254,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplate(id: string, query?: Criteria): Promise<TemplateSingleResponse> {
     const response = await this.get(`/template/${id}` + buildQuery(query), {
@@ -268,7 +268,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTemplate(id: string): Promise<void> {
     const response = await this.delete(`/template/${id}`);
@@ -279,7 +279,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTemplate(
     id: string,
@@ -292,14 +292,14 @@ class MailClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TemplateUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TemplateUpdateResponse;
 
     throw new ShopwareError("Failed to update template", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateAggregate(
     request: TemplateAggregationRequest
@@ -318,7 +318,7 @@ class MailClient extends Client {
   /** Template Types **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateTypes(query?: Criteria): Promise<TemplateTypeListResponse> {
     const response = await this.get(`/template-type` + buildQuery(query), {
@@ -332,7 +332,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTemplateType(
     request: TemplateTypeCreateRequest,
@@ -351,7 +351,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTemplateTypes(
     request: TemplateTypeListSearchRequest
@@ -368,7 +368,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateType(id: string, query?: Criteria): Promise<TemplateTypeSingleResponse> {
     const response = await this.get(`/template-type/${id}` + buildQuery(query), {
@@ -382,7 +382,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTemplateType(id: string): Promise<void> {
     const response = await this.delete(`/template-type/${id}`);
@@ -393,7 +393,7 @@ class MailClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTemplateType(
     id: string,
@@ -406,14 +406,14 @@ class MailClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TemplateTypeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TemplateTypeUpdateResponse;
 
     throw new ShopwareError("Failed to update template type", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateTypeAggregate(
     request: TemplateTypeAggregationRequest

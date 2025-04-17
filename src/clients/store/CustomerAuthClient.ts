@@ -14,7 +14,7 @@ import AuthenticationType from "#auth/AuthenticationType";
 
 class CustomerAuthClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async login(request: CustomerLoginRequest): Promise<CustomerLoginResponse> {
     const response = await this.post("/account/login", {
@@ -31,7 +31,7 @@ class CustomerAuthClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async imitateLogin(
     request: CustomerLoginImitateRequest
@@ -47,7 +47,7 @@ class CustomerAuthClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async logout(): Promise<CustomerLogoutResponse> {
     const response = await this.post(

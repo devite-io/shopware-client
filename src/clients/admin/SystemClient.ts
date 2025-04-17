@@ -63,7 +63,7 @@ class SystemClient extends Client {
   /** Info & Health **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBusinessEvents(): Promise<BusinessEventsResponse> {
     const response = await this.get(`/_info/events.json`, {
@@ -77,7 +77,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShopwareVersion(): Promise<ShopwareVersionResponse> {
     const response = await this.get(`/_info/version`, { headers: { Accept: "application/json" } });
@@ -89,7 +89,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async checkApiHealth(): Promise<void> {
     const response = await this.get(`/_info/health-check`);
@@ -100,7 +100,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getHealthReport(verbose?: boolean): Promise<HealthReportResponse> {
     const response = await this.get(`/_info/system-health-check`, {
@@ -115,7 +115,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowBuilderActions(): Promise<FlowBuilderActionsResponse> {
     const response = await this.get(`/_info/flow-actions.json`, {
@@ -129,7 +129,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getApiConfig(): Promise<ApiConfigResponse> {
     const response = await this.get(`/_info/config`, { headers: { Accept: "application/json" } });
@@ -143,7 +143,7 @@ class SystemClient extends Client {
   /** Operations **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async index(request: IndexRequest): Promise<void> {
     const response = await this.post(`/_action/index`, { body: new JsonPayload(request) });
@@ -154,7 +154,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async iterateIndexer(
     indexerName: string,
@@ -172,7 +172,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCacheInfo(): Promise<CacheInfoResponse> {
     const response = await this.get(`/_action/cache_info`, {
@@ -186,7 +186,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async clearOldCacheFolders(): Promise<void> {
     const response = await this.delete(`/_action/cleanup`);
@@ -197,7 +197,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async consumeMessageQueue(
     request: MessageQueueConsumptionRequest
@@ -214,7 +214,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async runScheduledTasks(): Promise<ScheduledTaskRunResponse> {
     const response = await this.post(`/_action/scheduled-task/run`, {
@@ -228,7 +228,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMinScheduledTaskInterval(): Promise<ScheduledTaskMinIntervalResponse> {
     const response = await this.get(`/_action/scheduled-task/min-run-interval`, {
@@ -242,7 +242,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async indexProducts(): Promise<void> {
     const response = await this.post(`/_action/index-products`);
@@ -253,7 +253,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async clearContainerCaches(): Promise<void> {
     const response = await this.post(`/_action/container-cache`);
@@ -264,7 +264,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async clearCaches(): Promise<void> {
     const response = await this.post(`/_action/cache`);
@@ -275,7 +275,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async clearInvalidatedCaches(): Promise<void> {
     const response = await this.post(`/_action/cache-delayed`);
@@ -288,7 +288,7 @@ class SystemClient extends Client {
   /** Log Entries **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogEntries(query?: Criteria): Promise<LogEntryListResponse> {
     const response = await this.get(`/log-entry` + buildQuery(query), {
@@ -302,7 +302,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLogEntry(
     request: LogEntryCreateRequest,
@@ -321,7 +321,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLogEntries(
     request: LogEntryListSearchRequest
@@ -338,7 +338,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogEntry(id: string, query?: Criteria): Promise<LogEntrySingleResponse> {
     const response = await this.get(`/log-entry/${id}` + buildQuery(query), {
@@ -352,7 +352,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLogEntry(id: string): Promise<void> {
     const response = await this.delete(`/log-entry/${id}`);
@@ -363,7 +363,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLogEntry(
     id: string,
@@ -376,14 +376,14 @@ class SystemClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LogEntryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LogEntryUpdateResponse;
 
     throw new ShopwareError("Failed to update log entry", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogEntryAggregate(
     request: LogEntryAggregationRequest
@@ -402,7 +402,7 @@ class SystemClient extends Client {
   /** Notifications **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getNotifications(query?: Criteria): Promise<NotificationListResponse> {
     const response = await this.get(`/notification` + buildQuery(query), {
@@ -416,7 +416,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createNotification(
     request: NotificationCreateRequest,
@@ -435,7 +435,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchNotifications(
     request: NotificationListSearchRequest
@@ -452,7 +452,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getNotification(id: string, query?: Criteria): Promise<NotificationSingleResponse> {
     const response = await this.get(`/notification/${id}` + buildQuery(query), {
@@ -466,7 +466,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteNotification(id: string): Promise<void> {
     const response = await this.delete(`/notification/${id}`);
@@ -477,7 +477,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateNotification(
     id: string,
@@ -490,14 +490,14 @@ class SystemClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as NotificationUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as NotificationUpdateResponse;
 
     throw new ShopwareError("Failed to update notification", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getNotificationAggregate(
     request: NotificationAggregationRequest
@@ -516,7 +516,7 @@ class SystemClient extends Client {
   /** Config Entries **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigEntries(query?: Criteria): Promise<ConfigEntryListResponse> {
     const response = await this.get(`/system-config` + buildQuery(query), {
@@ -530,7 +530,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createConfigEntry(
     request: ConfigEntryCreateRequest,
@@ -549,7 +549,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchConfigEntries(
     request: ConfigEntryListSearchRequest
@@ -566,7 +566,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigEntry(id: string, query?: Criteria): Promise<ConfigEntrySingleResponse> {
     const response = await this.get(`/system-config/${id}` + buildQuery(query), {
@@ -580,7 +580,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteConfigEntry(id: string): Promise<void> {
     const response = await this.delete(`/system-config/${id}`);
@@ -591,7 +591,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateConfigEntry(
     id: string,
@@ -604,14 +604,14 @@ class SystemClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ConfigEntryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ConfigEntryUpdateResponse;
 
     throw new ShopwareError("Failed to update config entry", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigEntryAggregate(
     request: ConfigEntryAggregationRequest
@@ -630,7 +630,7 @@ class SystemClient extends Client {
   /** Scheduled Tasks **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScheduledTasks(query?: Criteria): Promise<ScheduledTaskListResponse> {
     const response = await this.get(`/scheduled-task` + buildQuery(query), {
@@ -644,7 +644,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createScheduledTask(
     request: ScheduledTaskCreateRequest,
@@ -663,7 +663,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchScheduledTasks(
     request: ScheduledTaskListSearchRequest
@@ -680,7 +680,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScheduledTask(
     id: string,
@@ -697,7 +697,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteScheduledTask(id: string): Promise<void> {
     const response = await this.delete(`/scheduled-task/${id}`);
@@ -708,7 +708,7 @@ class SystemClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateScheduledTask(
     id: string,
@@ -721,14 +721,14 @@ class SystemClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ScheduledTaskUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ScheduledTaskUpdateResponse;
 
     throw new ShopwareError("Failed to update scheduled task", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScheduledTaskAggregate(
     request: ScheduledTaskAggregationRequest

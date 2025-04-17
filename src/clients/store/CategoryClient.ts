@@ -12,7 +12,7 @@ import {
 
 class CategoryClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCategories(request: CategoryListRequest = {}): Promise<CategoryListResponse> {
     const response = await this.post("/category", {
@@ -26,7 +26,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCategory(
     categoryId: string,
@@ -45,7 +45,7 @@ class CategoryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getNavigationMenu(
     activeId: string,

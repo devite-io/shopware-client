@@ -18,7 +18,7 @@ import {
 
 class NewsletterClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecipients(query?: Criteria): Promise<RecipientListResponse> {
     const response = await this.get(`/newsletter-recipient` + buildQuery(query), {
@@ -32,7 +32,7 @@ class NewsletterClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRecipient(
     request: RecipientCreateRequest,
@@ -51,7 +51,7 @@ class NewsletterClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRecipients(
     request: RecipientListSearchRequest
@@ -68,7 +68,7 @@ class NewsletterClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecipient(id: string, query?: Criteria): Promise<RecipientSingleResponse> {
     const response = await this.get(`/newsletter-recipient/${id}` + buildQuery(query), {
@@ -82,7 +82,7 @@ class NewsletterClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRecipient(id: string): Promise<void> {
     const response = await this.delete(`/newsletter-recipient/${id}`);
@@ -93,7 +93,7 @@ class NewsletterClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRecipient(
     id: string,
@@ -106,14 +106,14 @@ class NewsletterClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RecipientUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RecipientUpdateResponse;
 
     throw new ShopwareError("Failed to update recipient", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecipientAggregate(
     request: RecipientAggregationRequest

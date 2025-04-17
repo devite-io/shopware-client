@@ -30,7 +30,7 @@ class WebhookClient extends Client {
   /** Webhooks **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWebhooks(query?: Criteria): Promise<WebhookListResponse> {
     const response = await this.get(`/webhook` + buildQuery(query), {
@@ -44,7 +44,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createWebhook(
     request: WebhookCreateRequest,
@@ -63,7 +63,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchWebhooks(
     request: WebhookListSearchRequest
@@ -80,7 +80,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWebhook(id: string, query?: Criteria): Promise<WebhookSingleResponse> {
     const response = await this.get(`/webhook/${id}` + buildQuery(query), {
@@ -94,7 +94,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteWebhook(id: string): Promise<void> {
     const response = await this.delete(`/webhook/${id}`);
@@ -105,7 +105,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateWebhook(
     id: string,
@@ -118,14 +118,14 @@ class WebhookClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as WebhookUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as WebhookUpdateResponse;
 
     throw new ShopwareError("Failed to update webhook", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWebhookAggregate(
     request: WebhookAggregationRequest
@@ -144,7 +144,7 @@ class WebhookClient extends Client {
   /** Event Logs **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getEventLogs(query?: Criteria): Promise<EventLogListResponse> {
     const response = await this.get(`/webhook-event-log` + buildQuery(query), {
@@ -158,7 +158,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createEventLog(
     request: EventLogCreateRequest,
@@ -177,7 +177,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchEventLogs(
     request: EventLogListSearchRequest
@@ -194,7 +194,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getEventLog(id: string, query?: Criteria): Promise<EventLogSingleResponse> {
     const response = await this.get(`/webhook-event-log/${id}` + buildQuery(query), {
@@ -208,7 +208,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteEventLog(id: string): Promise<void> {
     const response = await this.delete(`/webhook-event-log/${id}`);
@@ -219,7 +219,7 @@ class WebhookClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateEventLog(
     id: string,
@@ -232,14 +232,14 @@ class WebhookClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as EventLogUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as EventLogUpdateResponse;
 
     throw new ShopwareError("Failed to update event log", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getEventLogAggregate(
     request: EventLogAggregationRequest

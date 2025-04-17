@@ -18,7 +18,7 @@ import {
 
 class SecurityClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAclRoles(query?: Criteria): Promise<AclRoleListResponse> {
     const response = await this.get(`/acl-role` + buildQuery(query), {
@@ -32,7 +32,7 @@ class SecurityClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAclRole(
     request: AclRoleCreateRequest,
@@ -51,7 +51,7 @@ class SecurityClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAclRoles(
     request: AclRoleListSearchRequest
@@ -68,7 +68,7 @@ class SecurityClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAclRole(id: string, query?: Criteria): Promise<AclRoleSingleResponse> {
     const response = await this.get(`/acl-role/${id}` + buildQuery(query), {
@@ -82,7 +82,7 @@ class SecurityClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAclRole(id: string): Promise<void> {
     const response = await this.delete(`/acl-role/${id}`);
@@ -93,7 +93,7 @@ class SecurityClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAclRole(
     id: string,
@@ -106,14 +106,14 @@ class SecurityClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AclRoleUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AclRoleUpdateResponse;
 
     throw new ShopwareError("Failed to update acl role", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAclRoleAggregate(
     request: AclRoleAggregationRequest

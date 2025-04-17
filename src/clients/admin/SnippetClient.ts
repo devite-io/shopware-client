@@ -30,7 +30,7 @@ class DeliveryTimeClient extends Client {
   /** Snippets **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSnippets(query?: Criteria): Promise<SnippetListResponse> {
     const response = await this.get(`/snippet` + buildQuery(query), {
@@ -44,7 +44,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSnippet(
     request: SnippetCreateRequest,
@@ -63,7 +63,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSnippets(
     request: SnippetListSearchRequest
@@ -80,7 +80,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSnippet(id: string, query?: Criteria): Promise<SnippetSingleResponse> {
     const response = await this.get(`/snippet/${id}` + buildQuery(query), {
@@ -94,7 +94,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSnippet(id: string): Promise<void> {
     const response = await this.delete(`/snippet/${id}`);
@@ -105,7 +105,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSnippet(
     id: string,
@@ -118,14 +118,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SnippetUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SnippetUpdateResponse;
 
     throw new ShopwareError("Failed to update snippet", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSnippetAggregate(
     request: SnippetAggregationRequest
@@ -144,7 +144,7 @@ class DeliveryTimeClient extends Client {
   /** Sets **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSets(query?: Criteria): Promise<SetListResponse> {
     const response = await this.get(`/snippet-set` + buildQuery(query), {
@@ -157,7 +157,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSet(
     request: SetCreateRequest,
@@ -176,7 +176,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSets(request: SetListSearchRequest): Promise<SetListSearchResponse> {
     const response = await this.post(`/search/snippet-set`, {
@@ -191,7 +191,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSet(id: string, query?: Criteria): Promise<SetSingleResponse> {
     const response = await this.get(`/snippet-set/${id}` + buildQuery(query), {
@@ -205,7 +205,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSet(id: string): Promise<void> {
     const response = await this.delete(`/snippet-set/${id}`);
@@ -216,7 +216,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSet(
     id: string,
@@ -229,14 +229,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SetUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SetUpdateResponse;
 
     throw new ShopwareError("Failed to update snippet set", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSetAggregate(request: SetAggregationRequest): Promise<SetAggregationResponse> {
     const response = await this.post(`/aggregate/snippet-set`, {

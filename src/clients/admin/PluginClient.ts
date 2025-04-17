@@ -18,7 +18,7 @@ import {
 
 class PluginClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPlugins(query?: Criteria): Promise<PluginListResponse> {
     const response = await this.get(`/plugin` + buildQuery(query), {
@@ -32,7 +32,7 @@ class PluginClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPlugin(
     request: PluginCreateRequest,
@@ -51,7 +51,7 @@ class PluginClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPlugins(request: PluginListSearchRequest): Promise<PluginListSearchResponse> {
     const response = await this.post(`/search/plugin`, {
@@ -66,7 +66,7 @@ class PluginClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPlugin(id: string, query?: Criteria): Promise<PluginSingleResponse> {
     const response = await this.get(`/plugin/${id}` + buildQuery(query), {
@@ -80,7 +80,7 @@ class PluginClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePlugin(id: string): Promise<void> {
     const response = await this.delete(`/plugin/${id}`);
@@ -91,7 +91,7 @@ class PluginClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePlugin(
     id: string,
@@ -104,14 +104,14 @@ class PluginClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PluginUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PluginUpdateResponse;
 
     throw new ShopwareError("Failed to update plugin", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPluginAggregate(
     request: PluginAggregationRequest

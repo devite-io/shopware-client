@@ -9,7 +9,7 @@ import {
 
 class NewsletterClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async confirmSubscription(request: NewsletterConfirmRequest): Promise<void> {
     const response = await this.post(`/newsletter/confirm`, {
@@ -22,7 +22,7 @@ class NewsletterClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSubscription(request: NewsletterUpdateRequest): Promise<void> {
     const response = await this.post(`/newsletter/subscribe`, {
@@ -35,7 +35,7 @@ class NewsletterClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSubscription(request: NewsletterUnsubscribeRequest): Promise<void> {
     const response = await this.post(`/newsletter/unsubscribe`, {

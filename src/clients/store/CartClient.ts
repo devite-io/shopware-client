@@ -17,7 +17,7 @@ import AuthenticationType from "../../auth/AuthenticationType";
 
 class CartClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOrCreateCart(): Promise<CartGetOrCreateResponse> {
     const response = await this.get(
@@ -34,7 +34,7 @@ class CartClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCart(): Promise<CartDeleteResponse> {
     const response = await this.delete(
@@ -49,7 +49,7 @@ class CartClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async addLineItems(request: CartAddItemsRequest): Promise<CartAddItemsResponse> {
     const response = await this.post(
@@ -66,7 +66,7 @@ class CartClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async removeLineItems(request: CartRemoveItemsRequest): Promise<CartRemoveItemsResponse> {
     const response = await this.post(
@@ -83,7 +83,7 @@ class CartClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLineItems(request: CartUpdateItemsRequest): Promise<CartUpdateItemsResponse> {
     const response = await this.patch(

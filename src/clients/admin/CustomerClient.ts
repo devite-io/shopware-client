@@ -72,7 +72,7 @@ class CustomerClient extends Client {
   /** Impersonation **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomerImpersonationToken(
     request: ImpersonationTokenRequest
@@ -91,7 +91,7 @@ class CustomerClient extends Client {
   /** Customers **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomers(query?: Criteria): Promise<CustomerListResponse> {
     const response = await this.get(`/customer` + buildQuery(query), {
@@ -105,7 +105,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomer(
     request: CustomerCreateRequest,
@@ -124,7 +124,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomers(
     request: CustomerListSearchRequest
@@ -141,7 +141,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomer(id: string, query?: Criteria): Promise<CustomerSingleResponse> {
     const response = await this.get(`/customer/${id}` + buildQuery(query), {
@@ -155,7 +155,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomer(id: string): Promise<void> {
     const response = await this.delete(`/customer/${id}`);
@@ -166,7 +166,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomer(
     id: string,
@@ -179,14 +179,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomerUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomerUpdateResponse;
 
     throw new ShopwareError("Failed to update customer", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomerAggregate(
     request: CustomerAggregationRequest
@@ -205,7 +205,7 @@ class CustomerClient extends Client {
   /** Addresses **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddresses(query?: Criteria): Promise<AddressListResponse> {
     const response = await this.get(`/address` + buildQuery(query), {
@@ -219,7 +219,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAddress(
     request: AddressCreateRequest,
@@ -238,7 +238,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAddresses(
     request: AddressListSearchRequest
@@ -255,7 +255,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddress(id: string, query?: Criteria): Promise<AddressSingleResponse> {
     const response = await this.get(`/address/${id}` + buildQuery(query), {
@@ -269,7 +269,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAddress(id: string): Promise<void> {
     const response = await this.delete(`/address/${id}`);
@@ -280,7 +280,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAddress(
     id: string,
@@ -293,14 +293,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AddressUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AddressUpdateResponse;
 
     throw new ShopwareError("Failed to update address", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddressAggregate(
     request: AddressAggregationRequest
@@ -319,7 +319,7 @@ class CustomerClient extends Client {
   /** Groups **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getGroups(query?: Criteria): Promise<GroupListResponse> {
     const response = await this.get(`/customer-group` + buildQuery(query), {
@@ -333,7 +333,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createGroup(
     request: GroupCreateRequest,
@@ -352,7 +352,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchGroups(request: GroupListSearchRequest): Promise<GroupListSearchResponse> {
     const response = await this.post(`/search/customer-group`, {
@@ -367,7 +367,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getGroup(id: string, query?: Criteria): Promise<GroupSingleResponse> {
     const response = await this.get(`/customer-group/${id}` + buildQuery(query), {
@@ -381,7 +381,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteGroup(id: string): Promise<void> {
     const response = await this.delete(`/customer-group/${id}`);
@@ -392,7 +392,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateGroup(
     id: string,
@@ -405,14 +405,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as GroupUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as GroupUpdateResponse;
 
     throw new ShopwareError("Failed to update group", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getGroupAggregate(
     request: GroupAggregationRequest
@@ -431,7 +431,7 @@ class CustomerClient extends Client {
   /** Recoveries **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecoveries(query?: Criteria): Promise<RecoveryListResponse> {
     const response = await this.get(`/customer-recovery` + buildQuery(query), {
@@ -445,7 +445,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRecovery(
     request: RecoveryCreateRequest,
@@ -464,7 +464,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRecoveries(
     request: RecoveryListSearchRequest
@@ -481,7 +481,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecovery(id: string, query?: Criteria): Promise<RecoverySingleResponse> {
     const response = await this.get(`/customer-recovery/${id}` + buildQuery(query), {
@@ -495,7 +495,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRecovery(id: string): Promise<void> {
     const response = await this.delete(`/customer-recovery/${id}`);
@@ -506,7 +506,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRecovery(
     id: string,
@@ -519,14 +519,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RecoveryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RecoveryUpdateResponse;
 
     throw new ShopwareError("Failed to update recovery", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecoveryAggregate(
     request: RecoveryAggregationRequest
@@ -545,7 +545,7 @@ class CustomerClient extends Client {
   /** Wishlists **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlists(query?: Criteria): Promise<WishlistListResponse> {
     const response = await this.get(`/customer-wishlist` + buildQuery(query), {
@@ -559,7 +559,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createWishlist(
     request: WishlistCreateRequest,
@@ -578,7 +578,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchWishlists(
     request: WishlistListSearchRequest
@@ -595,7 +595,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlist(id: string, query?: Criteria): Promise<WishlistSingleResponse> {
     const response = await this.get(`/customer-wishlist/${id}` + buildQuery(query), {
@@ -609,7 +609,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteWishlist(id: string): Promise<void> {
     const response = await this.delete(`/customer-wishlist/${id}`);
@@ -620,7 +620,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateWishlist(
     id: string,
@@ -633,14 +633,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as WishlistUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as WishlistUpdateResponse;
 
     throw new ShopwareError("Failed to update wishlist", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlistAggregate(
     request: WishlistAggregationRequest
@@ -659,7 +659,7 @@ class CustomerClient extends Client {
   /** Wishlist Products **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlistProducts(query?: Criteria): Promise<WishlistProductListResponse> {
     const response = await this.get(`/customer-wishlist-product` + buildQuery(query), {
@@ -673,7 +673,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createWishlistProduct(
     request: WishlistProductCreateRequest,
@@ -692,7 +692,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchWishlistProducts(
     request: WishlistProductListSearchRequest
@@ -709,7 +709,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlistProduct(
     id: string,
@@ -726,7 +726,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteWishlistProduct(id: string): Promise<void> {
     const response = await this.delete(`/customer-wishlist-product/${id}`);
@@ -737,7 +737,7 @@ class CustomerClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateWishlistProduct(
     id: string,
@@ -750,14 +750,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as WishlistProductUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as WishlistProductUpdateResponse;
 
     throw new ShopwareError("Failed to update wishlist product", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlistProductAggregate(
     request: WishlistProductAggregationRequest

@@ -13,7 +13,7 @@ import {
 
 class WishlistClient extends Client {
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlist(request: WishlistGetRequest = {}): Promise<WishlistGetResponse> {
     const response = await this.post(
@@ -30,7 +30,7 @@ class WishlistClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async mergeOrCreateWishlist(
     request: WishlistMergeOrCreateRequest
@@ -49,7 +49,7 @@ class WishlistClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async addProductToWishlist(productId: string): Promise<WishlistProductAddResponse> {
     const response = await this.post(
@@ -64,7 +64,7 @@ class WishlistClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async removeProductFromWishlist(
     productId: string

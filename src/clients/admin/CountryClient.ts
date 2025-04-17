@@ -30,7 +30,7 @@ class CountryClient extends Client {
   /** Countries **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountries(query?: Criteria): Promise<CountryListResponse> {
     const response = await this.get(`/country` + buildQuery(query), {
@@ -44,7 +44,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCountry(
     request: CountryCreateRequest,
@@ -63,7 +63,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCountries(
     request: CountryListSearchRequest
@@ -80,7 +80,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountry(id: string, query?: Criteria): Promise<CountrySingleResponse> {
     const response = await this.get(`/country/${id}` + buildQuery(query), {
@@ -94,7 +94,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCountry(id: string): Promise<void> {
     const response = await this.delete(`/country/${id}`);
@@ -105,7 +105,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCountry(
     id: string,
@@ -118,14 +118,14 @@ class CountryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CountryUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CountryUpdateResponse;
 
     throw new ShopwareError("Failed to update country", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryAggregate(
     request: CountryAggregationRequest
@@ -144,7 +144,7 @@ class CountryClient extends Client {
   /** States **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStates(query?: Criteria): Promise<StateListResponse> {
     const response = await this.get(`/country-state` + buildQuery(query), {
@@ -158,7 +158,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createState(
     request: StateCreateRequest,
@@ -177,7 +177,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
     const response = await this.post(`/search/country-state`, {
@@ -192,7 +192,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
     const response = await this.get(`/country-state/${id}` + buildQuery(query), {
@@ -206,7 +206,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteState(id: string): Promise<void> {
     const response = await this.delete(`/country-state/${id}`);
@@ -217,7 +217,7 @@ class CountryClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateState(
     id: string,
@@ -230,14 +230,14 @@ class CountryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StateUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StateUpdateResponse;
 
     throw new ShopwareError("Failed to update state", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateAggregate(
     request: StateAggregationRequest

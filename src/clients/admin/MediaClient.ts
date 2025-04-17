@@ -72,7 +72,7 @@ class MediaClient extends Client {
 
   /**
    * @return The url for the uploaded media.
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async upload(
     id: string,
@@ -94,7 +94,7 @@ class MediaClient extends Client {
    * Requires `shopware.media.enable_url_upload_feature` to be enabled.
    *
    * @return The url for the uploaded media.
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async uploadFromUrl(
     id: string,
@@ -115,7 +115,7 @@ class MediaClient extends Client {
   /** Media **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMediaList(query?: Criteria): Promise<MediaListResponse> {
     const response = await this.get(`/media` + buildQuery(query), {
@@ -129,7 +129,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createMedia(
     request: MediaCreateRequest,
@@ -148,7 +148,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchMedia(request: MediaListSearchRequest): Promise<MediaListSearchResponse> {
     const response = await this.post(`/search/media`, {
@@ -163,7 +163,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMedia(id: string, query?: Criteria): Promise<MediaSingleResponse> {
     const response = await this.get(`/media/${id}` + buildQuery(query), {
@@ -177,7 +177,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteMedia(id: string): Promise<void> {
     const response = await this.delete(`/media/${id}`);
@@ -188,7 +188,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateMedia(
     id: string,
@@ -201,14 +201,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as MediaUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as MediaUpdateResponse;
 
     throw new ShopwareError("Failed to update media", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMediaAggregate(
     request: MediaAggregationRequest
@@ -227,7 +227,7 @@ class MediaClient extends Client {
   /** Default Folders **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDefaultFolders(query?: Criteria): Promise<DefaultFolderListResponse> {
     const response = await this.get(`/media-default-folder` + buildQuery(query), {
@@ -241,7 +241,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDefaultFolder(
     request: DefaultFolderCreateRequest,
@@ -260,7 +260,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDefaultFolders(
     request: DefaultFolderListSearchRequest
@@ -277,7 +277,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDefaultFolder(
     id: string,
@@ -294,7 +294,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDefaultFolder(id: string): Promise<void> {
     const response = await this.delete(`/media-default-folder/${id}`);
@@ -305,7 +305,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDefaultFolder(
     id: string,
@@ -318,14 +318,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DefaultFolderUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DefaultFolderUpdateResponse;
 
     throw new ShopwareError("Failed to update default folder", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDefaultFolderAggregate(
     request: DefaultFolderAggregationRequest
@@ -344,7 +344,7 @@ class MediaClient extends Client {
   /** Folders **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolders(query?: Criteria): Promise<FolderListResponse> {
     const response = await this.get(`/media-folder` + buildQuery(query), {
@@ -358,7 +358,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFolder(
     request: FolderCreateRequest,
@@ -377,7 +377,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFolders(request: FolderListSearchRequest): Promise<FolderListSearchResponse> {
     const response = await this.post(`/search/media-folder`, {
@@ -392,7 +392,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolder(id: string, query?: Criteria): Promise<FolderSingleResponse> {
     const response = await this.get(`/media-folder/${id}` + buildQuery(query), {
@@ -406,7 +406,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFolder(id: string): Promise<void> {
     const response = await this.delete(`/media-folder/${id}`);
@@ -417,7 +417,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFolder(
     id: string,
@@ -430,14 +430,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FolderUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FolderUpdateResponse;
 
     throw new ShopwareError("Failed to update folder", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolderAggregate(
     request: FolderAggregationRequest
@@ -456,7 +456,7 @@ class MediaClient extends Client {
   /** Folder Configs **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolderConfigs(query?: Criteria): Promise<FolderConfigListResponse> {
     const response = await this.get(`/media-folder-configuration` + buildQuery(query), {
@@ -470,7 +470,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFolderConfig(
     request: FolderConfigCreateRequest,
@@ -489,7 +489,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFolderConfigs(
     request: FolderConfigListSearchRequest
@@ -506,7 +506,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolderConfig(id: string, query?: Criteria): Promise<FolderConfigSingleResponse> {
     const response = await this.get(`/media-folder-configuration/${id}` + buildQuery(query), {
@@ -520,7 +520,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFolderConfig(id: string): Promise<void> {
     const response = await this.delete(`/media-folder-configuration/${id}`);
@@ -531,7 +531,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFolderConfig(
     id: string,
@@ -544,14 +544,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FolderConfigUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FolderConfigUpdateResponse;
 
     throw new ShopwareError("Failed to update folder configuration", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolderConfigAggregate(
     request: FolderConfigAggregationRequest
@@ -570,7 +570,7 @@ class MediaClient extends Client {
   /** Thumbnails **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnails(query?: Criteria): Promise<ThumbnailListResponse> {
     const response = await this.get(`/media-thumbnail` + buildQuery(query), {
@@ -584,7 +584,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createThumbnail(
     request: ThumbnailCreateRequest,
@@ -603,7 +603,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchThumbnails(
     request: ThumbnailListSearchRequest
@@ -620,7 +620,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnail(id: string, query?: Criteria): Promise<ThumbnailSingleResponse> {
     const response = await this.get(`/media-thumbnail/${id}` + buildQuery(query), {
@@ -634,7 +634,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteThumbnail(id: string): Promise<void> {
     const response = await this.delete(`/media-thumbnail/${id}`);
@@ -645,7 +645,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateThumbnail(
     id: string,
@@ -658,14 +658,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ThumbnailUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ThumbnailUpdateResponse;
 
     throw new ShopwareError("Failed to update thumbnail", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnailAggregate(
     request: ThumbnailAggregationRequest
@@ -684,7 +684,7 @@ class MediaClient extends Client {
   /** Thumbnail Sizes **/
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnailSizes(query?: Criteria): Promise<ThumbnailSizeListResponse> {
     const response = await this.get(`/media-thumbnail-size` + buildQuery(query), {
@@ -698,7 +698,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createThumbnailSize(
     request: ThumbnailSizeCreateRequest,
@@ -717,7 +717,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchThumbnailSizes(
     request: ThumbnailSizeListSearchRequest
@@ -734,7 +734,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnailSize(
     id: string,
@@ -751,7 +751,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteThumbnailSize(id: string): Promise<void> {
     const response = await this.delete(`/media-thumbnail-size/${id}`);
@@ -762,7 +762,7 @@ class MediaClient extends Client {
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateThumbnailSize(
     id: string,
@@ -775,14 +775,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ThumbnailSizeUpdateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ThumbnailSizeUpdateResponse;
 
     throw new ShopwareError("Failed to update thumbnail size", response);
   }
 
   /**
-   * @throws {Error} if the request failed
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnailSizeAggregate(
     request: ThumbnailSizeAggregationRequest
