@@ -40,6 +40,7 @@ class DeliveryTimeClient extends Client {
   /** Files **/
 
   /**
+   * Requires `import-export-file:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFiles(query?: Criteria): Promise<FileListResponse> {
@@ -53,6 +54,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-file:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFile(
@@ -65,13 +67,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FileCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FileCreateResponse;
 
     throw new ShopwareError("Failed to create  file", response);
   }
 
   /**
+   * Requires `import-export-file:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFiles(request: FileListSearchRequest): Promise<FileListSearchResponse> {
@@ -87,6 +90,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-file:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFile(id: string, query?: Criteria): Promise<FileSingleResponse> {
@@ -101,6 +105,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-file:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFile(id: string): Promise<void> {
@@ -112,6 +117,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-file:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFile(
@@ -132,6 +138,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-file:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFileAggregate(request: FileAggregationRequest): Promise<FileAggregationResponse> {
@@ -149,6 +156,7 @@ class DeliveryTimeClient extends Client {
   /** Logs **/
 
   /**
+   * Requires `import-export-log:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogs(query?: Criteria): Promise<LogListResponse> {
@@ -162,6 +170,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-log:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLog(
@@ -174,13 +183,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LogCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LogCreateResponse;
 
     throw new ShopwareError("Failed to create log", response);
   }
 
   /**
+   * Requires `import-export-log:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLogs(request: LogListSearchRequest): Promise<LogListSearchResponse> {
@@ -196,6 +206,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-log:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLog(id: string, query?: Criteria): Promise<LogSingleResponse> {
@@ -210,6 +221,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-log:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLog(id: string): Promise<void> {
@@ -221,6 +233,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-log:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLog(
@@ -241,6 +254,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-log:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogAggregate(request: LogAggregationRequest): Promise<LogAggregationResponse> {
@@ -258,6 +272,7 @@ class DeliveryTimeClient extends Client {
   /** Profiles **/
 
   /**
+   * Requires `import-export-profile:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProfiles(query?: Criteria): Promise<ProfileListResponse> {
@@ -272,6 +287,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-profile:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createProfile(
@@ -284,13 +300,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ProfileCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ProfileCreateResponse;
 
     throw new ShopwareError("Failed to create profile", response);
   }
 
   /**
+   * Requires `import-export-profile:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchProfiles(
@@ -308,6 +325,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-profile:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProfile(id: string, query?: Criteria): Promise<ProfileSingleResponse> {
@@ -322,6 +340,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-profile:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteProfile(id: string): Promise<void> {
@@ -333,6 +352,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-profile:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateProfile(
@@ -353,6 +373,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `import-export-profile:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProfileAggregate(

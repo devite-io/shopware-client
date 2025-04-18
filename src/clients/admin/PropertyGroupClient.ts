@@ -30,6 +30,7 @@ class PropertyGroupClient extends Client {
   /** Property Groups **/
 
   /**
+   * Requires `property-group:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPropertyGroups(query?: Criteria): Promise<PropertyGroupListResponse> {
@@ -44,6 +45,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPropertyGroup(
@@ -56,13 +58,14 @@ class PropertyGroupClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PropertyGroupCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PropertyGroupCreateResponse;
 
     throw new ShopwareError("Failed to create property group", response);
   }
 
   /**
+   * Requires `property-group:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPropertyGroups(
@@ -80,6 +83,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPropertyGroup(
@@ -97,6 +101,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePropertyGroup(id: string): Promise<void> {
@@ -108,6 +113,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePropertyGroup(
@@ -128,6 +134,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPropertyGroupAggregate(
@@ -147,6 +154,7 @@ class PropertyGroupClient extends Client {
   /** Options **/
 
   /**
+   * Requires `property-group-option:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOptions(query?: Criteria): Promise<OptionListResponse> {
@@ -161,6 +169,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group-option:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createOption(
@@ -173,13 +182,14 @@ class PropertyGroupClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as OptionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as OptionCreateResponse;
 
     throw new ShopwareError("Failed to create option", response);
   }
 
   /**
+   * Requires `property-group-option:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchOptions(request: OptionListSearchRequest): Promise<OptionListSearchResponse> {
@@ -195,6 +205,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group-option:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOption(id: string, query?: Criteria): Promise<OptionSingleResponse> {
@@ -209,6 +220,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group-option:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteOption(id: string): Promise<void> {
@@ -220,6 +232,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group-option:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateOption(
@@ -240,6 +253,7 @@ class PropertyGroupClient extends Client {
   }
 
   /**
+   * Requires `property-group-option:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOptionAggregate(

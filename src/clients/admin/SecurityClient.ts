@@ -18,6 +18,7 @@ import {
 
 class SecurityClient extends Client {
   /**
+   * Requires `acl-role:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAclRoles(query?: Criteria): Promise<AclRoleListResponse> {
@@ -32,6 +33,7 @@ class SecurityClient extends Client {
   }
 
   /**
+   * Requires `acl-role:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAclRole(
@@ -44,13 +46,14 @@ class SecurityClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AclRoleCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AclRoleCreateResponse;
 
     throw new ShopwareError("Failed to create acl role", response);
   }
 
   /**
+   * Requires `acl-role:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAclRoles(
@@ -68,6 +71,7 @@ class SecurityClient extends Client {
   }
 
   /**
+   * Requires `acl-role:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAclRole(id: string, query?: Criteria): Promise<AclRoleSingleResponse> {
@@ -82,6 +86,7 @@ class SecurityClient extends Client {
   }
 
   /**
+   * Requires `acl-role:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAclRole(id: string): Promise<void> {
@@ -93,6 +98,7 @@ class SecurityClient extends Client {
   }
 
   /**
+   * Requires `acl-role:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAclRole(
@@ -113,6 +119,7 @@ class SecurityClient extends Client {
   }
 
   /**
+   * Requires `acl-role:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAclRoleAggregate(

@@ -50,6 +50,7 @@ class CustomDataClient extends Client {
   /** Custom Entities */
 
   /**
+   * Requires `custom-entity:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomEntities(query?: Criteria): Promise<CustomEntityListResponse> {
@@ -64,6 +65,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-entity:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomEntity(
@@ -76,13 +78,14 @@ class CustomDataClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomEntityCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomEntityCreateResponse;
 
     throw new ShopwareError("Failed to create custom entity", response);
   }
 
   /**
+   * Requires `custom-entity:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomEntities(
@@ -100,6 +103,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-entity:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomEntity(id: string, query?: Criteria): Promise<CustomEntitySingleResponse> {
@@ -114,6 +118,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-entity:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomEntity(id: string): Promise<void> {
@@ -125,6 +130,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-entity:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomEntity(
@@ -145,6 +151,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-entity:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomEntityAggregate(
@@ -164,6 +171,7 @@ class CustomDataClient extends Client {
   /** Custom Fields */
 
   /**
+   * Requires `custom-field:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFields(query?: Criteria): Promise<CustomFieldListResponse> {
@@ -178,6 +186,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomField(
@@ -190,13 +199,14 @@ class CustomDataClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomFieldCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomFieldCreateResponse;
 
     throw new ShopwareError("Failed to create custom field", response);
   }
 
   /**
+   * Requires `custom-field:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomFields(
@@ -214,6 +224,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomField(id: string, query?: Criteria): Promise<CustomFieldSingleResponse> {
@@ -228,6 +239,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomField(id: string): Promise<void> {
@@ -239,6 +251,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomField(
@@ -259,6 +272,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldAggregate(
@@ -278,6 +292,7 @@ class CustomDataClient extends Client {
   /** Custom Field Sets */
 
   /**
+   * Requires `custom-field-set:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSets(query?: Criteria): Promise<CustomFieldSetListResponse> {
@@ -292,6 +307,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomFieldSet(
@@ -304,13 +320,14 @@ class CustomDataClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomFieldSetCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomFieldSetCreateResponse;
 
     throw new ShopwareError("Failed to create custom fieldset", response);
   }
 
   /**
+   * Requires `custom-field-set:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomFieldSets(
@@ -328,6 +345,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSet(
@@ -345,6 +363,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomFieldSet(id: string): Promise<void> {
@@ -356,6 +375,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomFieldSet(
@@ -376,6 +396,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSetAggregate(
@@ -395,6 +416,7 @@ class CustomDataClient extends Client {
   /** Custom Field Set Relations */
 
   /**
+   * Requires `custom-field-set-relation:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSetRelations(
@@ -411,6 +433,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set-relation:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomFieldSetRelation(
@@ -423,13 +446,15 @@ class CustomDataClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomFieldSetRelationCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as CustomFieldSetRelationCreateResponse;
 
     throw new ShopwareError("Failed to create custom fieldset relation", response);
   }
 
   /**
+   * Requires `custom-field-set-relation:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomFieldSetRelations(
@@ -447,6 +472,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set-relation:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSetRelation(
@@ -464,6 +490,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set-relation:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomFieldSetRelation(id: string): Promise<void> {
@@ -475,6 +502,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set-relation:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomFieldSetRelation(
@@ -496,6 +524,7 @@ class CustomDataClient extends Client {
   }
 
   /**
+   * Requires `custom-field-set-relation:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomFieldSetRelationAggregate(

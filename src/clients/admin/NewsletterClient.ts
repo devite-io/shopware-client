@@ -18,6 +18,7 @@ import {
 
 class NewsletterClient extends Client {
   /**
+   * Requires `newsletter-recipient:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecipients(query?: Criteria): Promise<RecipientListResponse> {
@@ -32,6 +33,7 @@ class NewsletterClient extends Client {
   }
 
   /**
+   * Requires `newsletter-recipient:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRecipient(
@@ -44,13 +46,14 @@ class NewsletterClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RecipientCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RecipientCreateResponse;
 
     throw new ShopwareError("Failed to create recipient", response);
   }
 
   /**
+   * Requires `newsletter-recipient:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRecipients(
@@ -68,6 +71,7 @@ class NewsletterClient extends Client {
   }
 
   /**
+   * Requires `newsletter-recipient:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecipient(id: string, query?: Criteria): Promise<RecipientSingleResponse> {
@@ -82,6 +86,7 @@ class NewsletterClient extends Client {
   }
 
   /**
+   * Requires `newsletter-recipient:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRecipient(id: string): Promise<void> {
@@ -93,6 +98,7 @@ class NewsletterClient extends Client {
   }
 
   /**
+   * Requires `newsletter-recipient:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRecipient(
@@ -113,6 +119,7 @@ class NewsletterClient extends Client {
   }
 
   /**
+   * Requires `newsletter-recipient:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecipientAggregate(

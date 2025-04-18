@@ -70,6 +70,7 @@ class PromotionClient extends Client {
   /** Promotions **/
 
   /**
+   * Requires `promotion:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPromotions(query?: Criteria): Promise<PromotionListResponse> {
@@ -84,6 +85,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPromotion(
@@ -96,13 +98,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PromotionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PromotionCreateResponse;
 
     throw new ShopwareError("Failed to create promotion", response);
   }
 
   /**
+   * Requires `promotion:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPromotions(
@@ -120,6 +123,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPromotion(id: string, query?: Criteria): Promise<PromotionSingleResponse> {
@@ -134,6 +138,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePromotion(id: string): Promise<void> {
@@ -145,6 +150,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePromotion(
@@ -165,6 +171,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPromotionAggregate(
@@ -184,6 +191,7 @@ class PromotionClient extends Client {
   /** Promotions **/
 
   /**
+   * Requires `promotion-discount:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscounts(query?: Criteria): Promise<DiscountListResponse> {
@@ -198,6 +206,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDiscount(
@@ -210,13 +219,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DiscountCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DiscountCreateResponse;
 
     throw new ShopwareError("Failed to create discount", response);
   }
 
   /**
+   * Requires `promotion-discount:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDiscounts(
@@ -234,6 +244,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscount(id: string, query?: Criteria): Promise<DiscountSingleResponse> {
@@ -248,6 +259,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDiscount(id: string): Promise<void> {
@@ -259,6 +271,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDiscount(
@@ -279,6 +292,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscountAggregate(
@@ -298,6 +312,7 @@ class PromotionClient extends Client {
   /** Discount Prices **/
 
   /**
+   * Requires `promotion-discount-price:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscountPrices(query?: Criteria): Promise<DiscountPriceListResponse> {
@@ -312,6 +327,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount-price:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDiscountPrice(
@@ -324,13 +340,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DiscountPriceCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DiscountPriceCreateResponse;
 
     throw new ShopwareError("Failed to create discount price", response);
   }
 
   /**
+   * Requires `promotion-discount-price:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDiscountPrices(
@@ -348,6 +365,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount-price:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscountPrice(
@@ -365,6 +383,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount-price:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDiscountPrice(id: string): Promise<void> {
@@ -376,6 +395,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount-price:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDiscountPrice(
@@ -396,6 +416,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-discount-price:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDiscountPriceAggregate(
@@ -415,6 +436,7 @@ class PromotionClient extends Client {
   /** Individual Codes **/
 
   /**
+   * Requires `promotion-individual-code:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIndividualCodes(query?: Criteria): Promise<IndividualCodeListResponse> {
@@ -429,6 +451,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-individual-code:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createIndividualCode(
@@ -441,13 +464,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as IndividualCodeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as IndividualCodeCreateResponse;
 
     throw new ShopwareError("Failed to create individual code", response);
   }
 
   /**
+   * Requires `promotion-individual-code:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchIndividualCodes(
@@ -465,6 +489,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-individual-code:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIndividualCode(
@@ -482,6 +507,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-individual-code:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteIndividualCode(id: string): Promise<void> {
@@ -493,6 +519,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-individual-code:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateIndividualCode(
@@ -513,6 +540,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-individual-code:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIndividualCodeAggregate(
@@ -532,6 +560,7 @@ class PromotionClient extends Client {
   /** Sales Channels **/
 
   /**
+   * Requires `promotion-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
@@ -546,6 +575,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-sales-channel:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSalesChannel(
@@ -558,13 +588,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SalesChannelCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SalesChannelCreateResponse;
 
     throw new ShopwareError("Failed to create sales channel", response);
   }
 
   /**
+   * Requires `promotion-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSalesChannels(
@@ -582,6 +613,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
@@ -596,6 +628,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-sales-channel:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSalesChannel(id: string): Promise<void> {
@@ -607,6 +640,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-sales-channel:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSalesChannel(
@@ -627,6 +661,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannelAggregate(
@@ -646,6 +681,7 @@ class PromotionClient extends Client {
   /** Set Groups **/
 
   /**
+   * Requires `promotion-setgroup:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSetGroups(query?: Criteria): Promise<SetGroupListResponse> {
@@ -660,6 +696,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-setgroup:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSetGroup(
@@ -672,13 +709,14 @@ class PromotionClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SetGroupCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SetGroupCreateResponse;
 
     throw new ShopwareError("Failed to create set group", response);
   }
 
   /**
+   * Requires `promotion-setgroup:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSetGroups(
@@ -696,6 +734,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-setgroup:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSetGroup(id: string, query?: Criteria): Promise<SetGroupSingleResponse> {
@@ -710,6 +749,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-setgroup:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSetGroup(id: string): Promise<void> {
@@ -721,6 +761,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-setgroup:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSetGroup(
@@ -741,6 +782,7 @@ class PromotionClient extends Client {
   }
 
   /**
+   * Requires `promotion-setgroup:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSetGroupAggregate(

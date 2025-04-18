@@ -18,6 +18,7 @@ import {
 
 class ScriptClient extends Client {
   /**
+   * Requires `script:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScripts(query?: Criteria): Promise<ScriptListResponse> {
@@ -32,6 +33,7 @@ class ScriptClient extends Client {
   }
 
   /**
+   * Requires `script:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createScript(
@@ -44,13 +46,14 @@ class ScriptClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ScriptCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ScriptCreateResponse;
 
     throw new ShopwareError("Failed to create script", response);
   }
 
   /**
+   * Requires `script:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchScripts(request: ScriptListSearchRequest): Promise<ScriptListSearchResponse> {
@@ -66,6 +69,7 @@ class ScriptClient extends Client {
   }
 
   /**
+   * Requires `script:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScript(id: string, query?: Criteria): Promise<ScriptSingleResponse> {
@@ -80,6 +84,7 @@ class ScriptClient extends Client {
   }
 
   /**
+   * Requires `script:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteScript(id: string): Promise<void> {
@@ -91,6 +96,7 @@ class ScriptClient extends Client {
   }
 
   /**
+   * Requires `script:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateScript(
@@ -111,6 +117,7 @@ class ScriptClient extends Client {
   }
 
   /**
+   * Requires `script:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScriptAggregate(

@@ -40,6 +40,7 @@ class DeliveryTimeClient extends Client {
   /** State Machines **/
 
   /**
+   * Requires `state-machine:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateMachines(query?: Criteria): Promise<StateMachineListResponse> {
@@ -54,6 +55,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createStateMachine(
@@ -66,13 +68,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StateMachineCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StateMachineCreateResponse;
 
     throw new ShopwareError("Failed to create state machine", response);
   }
 
   /**
+   * Requires `state-machine:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStateMachines(
@@ -90,6 +93,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateMachine(id: string, query?: Criteria): Promise<StateMachineSingleResponse> {
@@ -104,6 +108,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteStateMachine(id: string): Promise<void> {
@@ -115,6 +120,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateStateMachine(
@@ -135,6 +141,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateMachineAggregate(
@@ -154,6 +161,7 @@ class DeliveryTimeClient extends Client {
   /** States **/
 
   /**
+   * Requires `state-machine-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStates(query?: Criteria): Promise<StateListResponse> {
@@ -168,6 +176,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-state:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createState(
@@ -180,13 +189,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StateCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StateCreateResponse;
 
     throw new ShopwareError("Failed to create state", response);
   }
 
   /**
+   * Requires `state-machine-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
@@ -202,6 +212,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
@@ -216,6 +227,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-state:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteState(id: string): Promise<void> {
@@ -227,6 +239,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-state:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateState(
@@ -247,6 +260,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateAggregate(
@@ -266,6 +280,7 @@ class DeliveryTimeClient extends Client {
   /** Transitions **/
 
   /**
+   * Requires `state-machine-transition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransitions(query?: Criteria): Promise<TransitionListResponse> {
@@ -280,6 +295,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-transition:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransition(
@@ -292,13 +308,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransitionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TransitionCreateResponse;
 
     throw new ShopwareError("Failed to create transition", response);
   }
 
   /**
+   * Requires `state-machine-transition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransitions(
@@ -316,6 +333,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-transition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransition(id: string, query?: Criteria): Promise<TransitionSingleResponse> {
@@ -330,6 +348,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-transition:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransition(id: string): Promise<void> {
@@ -341,6 +360,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-transition:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransition(
@@ -361,6 +381,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `state-machine-transition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransitionAggregate(

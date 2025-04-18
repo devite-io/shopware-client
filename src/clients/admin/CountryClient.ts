@@ -30,6 +30,7 @@ class CountryClient extends Client {
   /** Countries **/
 
   /**
+   * Requires `country:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountries(query?: Criteria): Promise<CountryListResponse> {
@@ -44,6 +45,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCountry(
@@ -56,13 +58,14 @@ class CountryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CountryCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CountryCreateResponse;
 
     throw new ShopwareError("Failed to create country", response);
   }
 
   /**
+   * Requires `country:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCountries(
@@ -80,6 +83,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountry(id: string, query?: Criteria): Promise<CountrySingleResponse> {
@@ -94,6 +98,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCountry(id: string): Promise<void> {
@@ -105,6 +110,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCountry(
@@ -125,6 +131,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryAggregate(
@@ -144,6 +151,7 @@ class CountryClient extends Client {
   /** States **/
 
   /**
+   * Requires `country-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStates(query?: Criteria): Promise<StateListResponse> {
@@ -158,6 +166,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country-state:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createState(
@@ -170,13 +179,14 @@ class CountryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StateCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StateCreateResponse;
 
     throw new ShopwareError("Failed to create state", response);
   }
 
   /**
+   * Requires `country-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
@@ -192,6 +202,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
@@ -206,6 +217,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country-state:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteState(id: string): Promise<void> {
@@ -217,6 +229,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country-state:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateState(
@@ -237,6 +250,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `country-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateAggregate(

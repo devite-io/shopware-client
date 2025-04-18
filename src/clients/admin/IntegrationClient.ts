@@ -18,6 +18,7 @@ import {
 
 class IntegrationClient extends Client {
   /**
+   * Requires `integration:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIntegrations(query?: Criteria): Promise<IntegrationListResponse> {
@@ -32,6 +33,7 @@ class IntegrationClient extends Client {
   }
 
   /**
+   * Requires `integration:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createIntegration(
@@ -44,13 +46,14 @@ class IntegrationClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as IntegrationCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as IntegrationCreateResponse;
 
     throw new ShopwareError("Failed to create integration", response);
   }
 
   /**
+   * Requires `integration:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchIntegrations(
@@ -68,6 +71,7 @@ class IntegrationClient extends Client {
   }
 
   /**
+   * Requires `integration:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIntegration(id: string, query?: Criteria): Promise<IntegrationSingleResponse> {
@@ -82,6 +86,7 @@ class IntegrationClient extends Client {
   }
 
   /**
+   * Requires `integration:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteIntegration(id: string): Promise<void> {
@@ -93,6 +98,7 @@ class IntegrationClient extends Client {
   }
 
   /**
+   * Requires `integration:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateIntegration(
@@ -113,6 +119,7 @@ class IntegrationClient extends Client {
   }
 
   /**
+   * Requires `integration:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getIntegrationAggregate(

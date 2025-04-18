@@ -50,6 +50,7 @@ class UserClient extends Client {
   /** Users **/
 
   /**
+   * Requires `user:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUsers(query?: Criteria): Promise<UserListResponse> {
@@ -63,6 +64,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createUser(
@@ -75,13 +77,14 @@ class UserClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as UserCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as UserCreateResponse;
 
     throw new ShopwareError("Failed to create user", response);
   }
 
   /**
+   * Requires `user:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchUsers(request: UserListSearchRequest): Promise<UserListSearchResponse> {
@@ -97,6 +100,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUser(id: string, query?: Criteria): Promise<UserSingleResponse> {
@@ -111,6 +115,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteUser(id: string): Promise<void> {
@@ -122,6 +127,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateUser(
@@ -142,6 +148,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUserAggregate(request: UserAggregationRequest): Promise<UserAggregationResponse> {
@@ -159,6 +166,7 @@ class UserClient extends Client {
   /** Access Keys **/
 
   /**
+   * Requires `user-access-key:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAccessKeys(query?: Criteria): Promise<AccessKeyListResponse> {
@@ -173,6 +181,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-access-key:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAccessKey(
@@ -185,13 +194,14 @@ class UserClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AccessKeyCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AccessKeyCreateResponse;
 
     throw new ShopwareError("Failed to create access key", response);
   }
 
   /**
+   * Requires `user-access-key:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAccessKeys(
@@ -209,6 +219,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-access-key:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAccessKey(id: string, query?: Criteria): Promise<AccessKeySingleResponse> {
@@ -223,6 +234,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-access-key:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAccessKey(id: string): Promise<void> {
@@ -234,6 +246,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-access-key:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAccessKey(
@@ -254,6 +267,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-access-key:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAccessKeyAggregate(
@@ -273,6 +287,7 @@ class UserClient extends Client {
   /** Configs **/
 
   /**
+   * Requires `user-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigs(query?: Criteria): Promise<ConfigListResponse> {
@@ -287,6 +302,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-config:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createConfig(
@@ -299,13 +315,14 @@ class UserClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ConfigCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ConfigCreateResponse;
 
     throw new ShopwareError("Failed to create config", response);
   }
 
   /**
+   * Requires `user-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchConfigs(request: ConfigListSearchRequest): Promise<ConfigListSearchResponse> {
@@ -321,6 +338,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfig(id: string, query?: Criteria): Promise<ConfigSingleResponse> {
@@ -335,6 +353,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-config:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteConfig(id: string): Promise<void> {
@@ -346,6 +365,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-config:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateConfig(
@@ -366,6 +386,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigAggregate(
@@ -385,6 +406,7 @@ class UserClient extends Client {
   /** Recoveries **/
 
   /**
+   * Requires `user-recovery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecoveries(query?: Criteria): Promise<RecoveryListResponse> {
@@ -399,6 +421,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-recovery:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRecovery(
@@ -411,13 +434,14 @@ class UserClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RecoveryCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RecoveryCreateResponse;
 
     throw new ShopwareError("Failed to create recovery", response);
   }
 
   /**
+   * Requires `user-recovery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRecoveries(
@@ -435,6 +459,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-recovery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecovery(id: string, query?: Criteria): Promise<RecoverySingleResponse> {
@@ -449,6 +474,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-recovery:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRecovery(id: string): Promise<void> {
@@ -460,6 +486,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-recovery:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRecovery(
@@ -480,6 +507,7 @@ class UserClient extends Client {
   }
 
   /**
+   * Requires `user-recovery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecoveryAggregate(

@@ -50,6 +50,7 @@ class NumberRangeClient extends Client {
   /** Ranges **/
 
   /**
+   * Requires `number-range:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRanges(query?: Criteria): Promise<RangeListResponse> {
@@ -64,6 +65,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRange(
@@ -76,13 +78,14 @@ class NumberRangeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RangeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RangeCreateResponse;
 
     throw new ShopwareError("Failed to create range", response);
   }
 
   /**
+   * Requires `number-range:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRanges(request: RangeListSearchRequest): Promise<RangeListSearchResponse> {
@@ -98,6 +101,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRange(id: string, query?: Criteria): Promise<RangeSingleResponse> {
@@ -112,6 +116,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRange(id: string): Promise<void> {
@@ -123,6 +128,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRange(
@@ -143,6 +149,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRangeAggregate(
@@ -162,6 +169,7 @@ class NumberRangeClient extends Client {
   /** Sales Channels **/
 
   /**
+   * Requires `number-range-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
@@ -176,6 +184,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-sales-channel:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSalesChannel(
@@ -188,13 +197,14 @@ class NumberRangeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SalesChannelCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SalesChannelCreateResponse;
 
     throw new ShopwareError("Failed to create sales channel", response);
   }
 
   /**
+   * Requires `number-range-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSalesChannels(
@@ -212,6 +222,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
@@ -226,6 +237,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-sales-channel:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSalesChannel(id: string): Promise<void> {
@@ -237,6 +249,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-sales-channel:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSalesChannel(
@@ -257,6 +270,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannelAggregate(
@@ -276,6 +290,7 @@ class NumberRangeClient extends Client {
   /** States **/
 
   /**
+   * Requires `number-range-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStates(query?: Criteria): Promise<StateListResponse> {
@@ -290,6 +305,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-state:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createState(
@@ -302,13 +318,14 @@ class NumberRangeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as StateCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as StateCreateResponse;
 
     throw new ShopwareError("Failed to create state", response);
   }
 
   /**
+   * Requires `number-range-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchStates(request: StateListSearchRequest): Promise<StateListSearchResponse> {
@@ -324,6 +341,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getState(id: string, query?: Criteria): Promise<StateSingleResponse> {
@@ -338,6 +356,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-state:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteState(id: string): Promise<void> {
@@ -349,6 +368,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-state:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateState(
@@ -369,6 +389,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-state:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getStateAggregate(
@@ -388,6 +409,7 @@ class NumberRangeClient extends Client {
   /** Types **/
 
   /**
+   * Requires `number-range-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTypes(query?: Criteria): Promise<TypeListResponse> {
@@ -401,6 +423,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-type:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createType(
@@ -413,13 +436,14 @@ class NumberRangeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TypeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TypeCreateResponse;
 
     throw new ShopwareError("Failed to create type", response);
   }
 
   /**
+   * Requires `number-range-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTypes(request: TypeListSearchRequest): Promise<TypeListSearchResponse> {
@@ -435,6 +459,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getType(id: string, query?: Criteria): Promise<TypeSingleResponse> {
@@ -449,6 +474,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-type:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteType(id: string): Promise<void> {
@@ -460,6 +486,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-type:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateType(
@@ -480,6 +507,7 @@ class NumberRangeClient extends Client {
   }
 
   /**
+   * Requires `number-range-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTypeAggregate(request: TypeAggregationRequest): Promise<TypeAggregationResponse> {

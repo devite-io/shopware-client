@@ -30,6 +30,7 @@ class WebhookClient extends Client {
   /** Webhooks **/
 
   /**
+   * Requires `webhook:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWebhooks(query?: Criteria): Promise<WebhookListResponse> {
@@ -44,6 +45,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createWebhook(
@@ -56,13 +58,14 @@ class WebhookClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as WebhookCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as WebhookCreateResponse;
 
     throw new ShopwareError("Failed to create webhook", response);
   }
 
   /**
+   * Requires `webhook:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchWebhooks(
@@ -80,6 +83,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWebhook(id: string, query?: Criteria): Promise<WebhookSingleResponse> {
@@ -94,6 +98,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteWebhook(id: string): Promise<void> {
@@ -105,6 +110,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateWebhook(
@@ -125,6 +131,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWebhookAggregate(
@@ -144,6 +151,7 @@ class WebhookClient extends Client {
   /** Event Logs **/
 
   /**
+   * Requires `webhook-event-log:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getEventLogs(query?: Criteria): Promise<EventLogListResponse> {
@@ -158,6 +166,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook-event-log:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createEventLog(
@@ -170,13 +179,14 @@ class WebhookClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as EventLogCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as EventLogCreateResponse;
 
     throw new ShopwareError("Failed to create event log", response);
   }
 
   /**
+   * Requires `webhook-event-log:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchEventLogs(
@@ -194,6 +204,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook-event-log:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getEventLog(id: string, query?: Criteria): Promise<EventLogSingleResponse> {
@@ -208,6 +219,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook-event-log:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteEventLog(id: string): Promise<void> {
@@ -219,6 +231,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook-event-log:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateEventLog(
@@ -239,6 +252,7 @@ class WebhookClient extends Client {
   }
 
   /**
+   * Requires `webhook-event-log:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getEventLogAggregate(

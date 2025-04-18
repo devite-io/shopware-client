@@ -263,6 +263,7 @@ class OrderClient extends Client {
   /** Orders **/
 
   /**
+   * Requires `order:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOrders(query?: Criteria): Promise<OrderListResponse> {
@@ -277,6 +278,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createOrder(
@@ -289,13 +291,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as OrderCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as OrderCreateResponse;
 
     throw new ShopwareError("Failed to create order", response);
   }
 
   /**
+   * Requires `order:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchOrders(request: OrderListSearchRequest): Promise<OrderListSearchResponse> {
@@ -311,6 +314,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOrder(id: string, query?: Criteria): Promise<OrderSingleResponse> {
@@ -325,6 +329,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteOrder(id: string): Promise<void> {
@@ -336,6 +341,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateOrder(
@@ -356,6 +362,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getOrderAggregate(
@@ -375,6 +382,7 @@ class OrderClient extends Client {
   /** Addresses **/
 
   /**
+   * Requires `order-address:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddresses(query?: Criteria): Promise<AddressListResponse> {
@@ -389,6 +397,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-address:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAddress(
@@ -401,13 +410,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AddressCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AddressCreateResponse;
 
     throw new ShopwareError("Failed to create address", response);
   }
 
   /**
+   * Requires `order-address:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAddresses(
@@ -425,6 +435,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-address:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddress(id: string, query?: Criteria): Promise<AddressSingleResponse> {
@@ -439,6 +450,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-address:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAddress(id: string): Promise<void> {
@@ -450,6 +462,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-address:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAddress(
@@ -470,6 +483,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-address:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddressAggregate(
@@ -489,6 +503,7 @@ class OrderClient extends Client {
   /** Customers **/
 
   /**
+   * Requires `order-customer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomers(query?: Criteria): Promise<CustomerListResponse> {
@@ -503,6 +518,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-customer:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomer(
@@ -515,13 +531,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomerCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomerCreateResponse;
 
     throw new ShopwareError("Failed to create customer", response);
   }
 
   /**
+   * Requires `order-customer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomers(
@@ -539,6 +556,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-customer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomer(id: string, query?: Criteria): Promise<CustomerSingleResponse> {
@@ -553,6 +571,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-customer:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomer(id: string): Promise<void> {
@@ -564,6 +583,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-customer:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomer(
@@ -584,6 +604,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-customer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomerAggregate(
@@ -603,6 +624,7 @@ class OrderClient extends Client {
   /** Deliveries **/
 
   /**
+   * Requires `order-delivery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveries(query?: Criteria): Promise<DeliveryListResponse> {
@@ -617,6 +639,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDelivery(
@@ -629,13 +652,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DeliveryCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DeliveryCreateResponse;
 
     throw new ShopwareError("Failed to create delivery", response);
   }
 
   /**
+   * Requires `order-delivery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDeliveries(
@@ -653,6 +677,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDelivery(id: string, query?: Criteria): Promise<DeliverySingleResponse> {
@@ -667,6 +692,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDelivery(id: string): Promise<void> {
@@ -678,6 +704,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDelivery(
@@ -698,6 +725,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryAggregate(
@@ -717,6 +745,7 @@ class OrderClient extends Client {
   /** Delivery Positions **/
 
   /**
+   * Requires `order-delivery-position:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryPositions(query?: Criteria): Promise<DeliveryPositionListResponse> {
@@ -731,6 +760,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery-position:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDeliveryPosition(
@@ -743,13 +773,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DeliveryPositionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DeliveryPositionCreateResponse;
 
     throw new ShopwareError("Failed to create delivery position", response);
   }
 
   /**
+   * Requires `order-delivery-position:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDeliveryPositions(
@@ -767,6 +798,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery-position:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryPosition(
@@ -784,6 +816,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery-position:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDeliveryPosition(id: string): Promise<void> {
@@ -795,6 +828,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery-position:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDeliveryPosition(
@@ -815,6 +849,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-delivery-position:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryPositionAggregate(
@@ -834,6 +869,7 @@ class OrderClient extends Client {
   /** Line Items **/
 
   /**
+   * Requires `order-line-item:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItems(query?: Criteria): Promise<LineItemListResponse> {
@@ -848,6 +884,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLineItem(
@@ -860,13 +897,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LineItemCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LineItemCreateResponse;
 
     throw new ShopwareError("Failed to create line item", response);
   }
 
   /**
+   * Requires `order-line-item:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLineItems(
@@ -884,6 +922,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItem(id: string, query?: Criteria): Promise<LineItemSingleResponse> {
@@ -898,6 +937,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLineItem(id: string): Promise<void> {
@@ -909,6 +949,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLineItem(
@@ -929,6 +970,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItemAggregate(
@@ -948,6 +990,7 @@ class OrderClient extends Client {
   /** Line Item Downloads **/
 
   /**
+   * Requires `order-line-item-download:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItemDownloads(query?: Criteria): Promise<LineItemDownloadListResponse> {
@@ -962,6 +1005,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item-download:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLineItemDownload(
@@ -974,13 +1018,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LineItemDownloadCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LineItemDownloadCreateResponse;
 
     throw new ShopwareError("Failed to create line item download", response);
   }
 
   /**
+   * Requires `order-line-item-download:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLineItemDownloads(
@@ -998,6 +1043,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item-download:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItemDownload(
@@ -1015,6 +1061,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item-download:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLineItemDownload(id: string): Promise<void> {
@@ -1026,6 +1073,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item-download:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLineItemDownload(
@@ -1046,6 +1094,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-line-item-download:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLineItemDownloadAggregate(
@@ -1065,6 +1114,7 @@ class OrderClient extends Client {
   /** Transactions **/
 
   /**
+   * Requires `order-transaction:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactions(query?: Criteria): Promise<TransactionListResponse> {
@@ -1079,6 +1129,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransaction(
@@ -1091,13 +1142,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransactionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TransactionCreateResponse;
 
     throw new ShopwareError("Failed to create transaction", response);
   }
 
   /**
+   * Requires `order-transaction:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransactions(
@@ -1115,6 +1167,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransaction(id: string, query?: Criteria): Promise<TransactionSingleResponse> {
@@ -1129,6 +1182,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransaction(id: string): Promise<void> {
@@ -1140,6 +1194,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransaction(
@@ -1160,6 +1215,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionAggregate(
@@ -1179,6 +1235,7 @@ class OrderClient extends Client {
   /** Transaction Captures **/
 
   /**
+   * Requires `order-transaction-capture:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptures(query?: Criteria): Promise<TransactionCaptureListResponse> {
@@ -1193,6 +1250,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransactionCapture(
@@ -1205,13 +1263,14 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransactionCaptureCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TransactionCaptureCreateResponse;
 
     throw new ShopwareError("Failed to create transaction capture", response);
   }
 
   /**
+   * Requires `order-transaction-capture:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransactionCaptures(
@@ -1229,6 +1288,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCapture(
@@ -1246,6 +1306,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransactionCapture(id: string): Promise<void> {
@@ -1257,6 +1318,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransactionCapture(
@@ -1277,6 +1339,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureAggregate(
@@ -1296,6 +1359,7 @@ class OrderClient extends Client {
   /** Transaction Capture Refunds **/
 
   /**
+   * Requires `order-transaction-capture-refund:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefunds(
@@ -1312,6 +1376,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransactionCaptureRefund(
@@ -1324,13 +1389,15 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransactionCaptureRefundCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as TransactionCaptureRefundCreateResponse;
 
     throw new ShopwareError("Failed to create transaction capture refund", response);
   }
 
   /**
+   * Requires `order-transaction-capture-refund:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransactionCaptureRefunds(
@@ -1348,6 +1415,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefund(
@@ -1365,6 +1433,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransactionCaptureRefund(id: string): Promise<void> {
@@ -1376,6 +1445,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransactionCaptureRefund(
@@ -1397,6 +1467,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefundAggregate(
@@ -1416,6 +1487,7 @@ class OrderClient extends Client {
   /** Transaction Capture Refund Positions **/
 
   /**
+   * Requires `order-transaction-capture-refund-position:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefundPositions(
@@ -1435,6 +1507,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund-position:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTransactionCaptureRefundPosition(
@@ -1447,13 +1520,15 @@ class OrderClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TransactionCaptureRefundPositionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as TransactionCaptureRefundPositionCreateResponse;
 
     throw new ShopwareError("Failed to create transaction capture refund position", response);
   }
 
   /**
+   * Requires `order-transaction-capture-refund-position:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTransactionCaptureRefundPositions(
@@ -1472,6 +1547,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund-position:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefundPosition(
@@ -1492,6 +1568,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund-position:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTransactionCaptureRefundPosition(id: string): Promise<void> {
@@ -1503,6 +1580,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund-position:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTransactionCaptureRefundPosition(
@@ -1524,6 +1602,7 @@ class OrderClient extends Client {
   }
 
   /**
+   * Requires `order-transaction-capture-refund-position:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTransactionCaptureRefundPositionAggregate(

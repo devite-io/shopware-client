@@ -30,6 +30,7 @@ class RuleClient extends Client {
   /** Rules **/
 
   /**
+   * Requires `rule:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRules(query?: Criteria): Promise<RuleListResponse> {
@@ -43,6 +44,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRule(
@@ -55,13 +57,14 @@ class RuleClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RuleCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RuleCreateResponse;
 
     throw new ShopwareError("Failed to create rule", response);
   }
 
   /**
+   * Requires `rule:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRules(request: RuleListSearchRequest): Promise<RuleListSearchResponse> {
@@ -77,6 +80,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRule(id: string, query?: Criteria): Promise<RuleSingleResponse> {
@@ -91,6 +95,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRule(id: string): Promise<void> {
@@ -102,6 +107,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRule(
@@ -122,6 +128,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleAggregate(request: RuleAggregationRequest): Promise<RuleAggregationResponse> {
@@ -139,6 +146,7 @@ class RuleClient extends Client {
   /** Conditions **/
 
   /**
+   * Requires `rule-condition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConditions(query?: Criteria): Promise<ConditionListResponse> {
@@ -153,6 +161,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule-condition:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCondition(
@@ -165,13 +174,14 @@ class RuleClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ConditionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ConditionCreateResponse;
 
     throw new ShopwareError("Failed to create condition", response);
   }
 
   /**
+   * Requires `rule-condition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchConditions(
@@ -189,6 +199,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule-condition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCondition(id: string, query?: Criteria): Promise<ConditionSingleResponse> {
@@ -203,6 +214,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule-condition:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCondition(id: string): Promise<void> {
@@ -214,6 +226,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule-condition:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCondition(
@@ -234,6 +247,7 @@ class RuleClient extends Client {
   }
 
   /**
+   * Requires `rule-condition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConditionAggregate(

@@ -70,6 +70,7 @@ class ContentClient extends Client {
   /** Cms Blocks **/
 
   /**
+   * Requires `cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlocks(query?: Criteria): Promise<CmsBlockListResponse> {
@@ -84,6 +85,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-block:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsBlock(
@@ -96,13 +98,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsBlockCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsBlockCreateResponse;
 
     throw new ShopwareError("Failed to create cms block", response);
   }
 
   /**
+   * Requires `cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsBlocks(
@@ -120,6 +123,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlock(id: string, query?: Criteria): Promise<CmsBlockSingleResponse> {
@@ -134,6 +138,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-block:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsBlock(id: string): Promise<void> {
@@ -145,6 +150,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-block:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsBlock(
@@ -165,6 +171,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlockAggregate(
@@ -184,6 +191,7 @@ class ContentClient extends Client {
   /** Cms Pages **/
 
   /**
+   * Requires `cms-page:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsPages(query?: Criteria): Promise<CmsPageListResponse> {
@@ -198,6 +206,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-page:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsPage(
@@ -210,13 +219,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsPageCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsPageCreateResponse;
 
     throw new ShopwareError("Failed to create cms page", response);
   }
 
   /**
+   * Requires `cms-page:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsPages(
@@ -234,6 +244,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-page:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsPage(id: string, query?: Criteria): Promise<CmsPageSingleResponse> {
@@ -248,6 +259,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-page:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsPage(id: string): Promise<void> {
@@ -259,6 +271,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-page:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsPage(
@@ -279,6 +292,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-page:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsPageAggregate(
@@ -298,6 +312,7 @@ class ContentClient extends Client {
   /** Cms Sections **/
 
   /**
+   * Requires `cms-section:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSections(query?: Criteria): Promise<CmsSectionListResponse> {
@@ -312,6 +327,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-section:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsSection(
@@ -324,13 +340,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsSectionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsSectionCreateResponse;
 
     throw new ShopwareError("Failed to create cms section", response);
   }
 
   /**
+   * Requires `cms-section:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsSections(
@@ -348,6 +365,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-section:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSection(id: string, query?: Criteria): Promise<CmsSectionSingleResponse> {
@@ -362,6 +380,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-section:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsSection(id: string): Promise<void> {
@@ -373,6 +392,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-section:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsSection(
@@ -393,6 +413,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-section:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSectionAggregate(
@@ -412,6 +433,7 @@ class ContentClient extends Client {
   /** Cms Slots **/
 
   /**
+   * Requires `cms-slot:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSlots(query?: Criteria): Promise<CmsSlotListResponse> {
@@ -426,6 +448,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-slot:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsSlot(
@@ -438,13 +461,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsSlotCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsSlotCreateResponse;
 
     throw new ShopwareError("Failed to create cms slot", response);
   }
 
   /**
+   * Requires `cms-slot:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsSlots(
@@ -462,6 +486,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-slot:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSlot(id: string, query?: Criteria): Promise<CmsSlotSingleResponse> {
@@ -476,6 +501,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-slot:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsSlot(id: string): Promise<void> {
@@ -487,6 +513,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-slot:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsSlot(
@@ -507,6 +534,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `cms-slot:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsSlotAggregate(
@@ -526,6 +554,7 @@ class ContentClient extends Client {
   /** Landing Pages **/
 
   /**
+   * Requires `landing-page:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLandingPages(query?: Criteria): Promise<LandingPageListResponse> {
@@ -540,6 +569,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `landing-page:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLandingPage(
@@ -552,13 +582,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LandingPageCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LandingPageCreateResponse;
 
     throw new ShopwareError("Failed to create landing page", response);
   }
 
   /**
+   * Requires `landing-page:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLandingPages(
@@ -576,6 +607,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `landing-page:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLandingPage(id: string, query?: Criteria): Promise<LandingPageSingleResponse> {
@@ -590,6 +622,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `landing-page:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLandingPage(id: string): Promise<void> {
@@ -601,6 +634,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `landing-page:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLandingPage(
@@ -621,6 +655,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `landing-page:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLandingPageAggregate(
@@ -640,6 +675,7 @@ class ContentClient extends Client {
   /** Themes **/
 
   /**
+   * Requires `theme:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThemes(query?: Criteria): Promise<ThemeListResponse> {
@@ -654,6 +690,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `theme:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTheme(
@@ -666,13 +703,14 @@ class ContentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ThemeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ThemeCreateResponse;
 
     throw new ShopwareError("Failed to create theme", response);
   }
 
   /**
+   * Requires `theme:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchThemes(request: ThemeListSearchRequest): Promise<ThemeListSearchResponse> {
@@ -688,6 +726,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `theme:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTheme(id: string, query?: Criteria): Promise<ThemeSingleResponse> {
@@ -702,6 +741,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `theme:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTheme(id: string): Promise<void> {
@@ -713,6 +753,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `theme:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTheme(
@@ -733,6 +774,7 @@ class ContentClient extends Client {
   }
 
   /**
+   * Requires `theme:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThemeAggregate(

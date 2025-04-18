@@ -50,6 +50,7 @@ class SalesChannelClient extends Client {
   /** Sales Channels **/
 
   /**
+   * Requires `sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannels(query?: Criteria): Promise<SalesChannelListResponse> {
@@ -64,6 +65,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSalesChannel(
@@ -76,13 +78,14 @@ class SalesChannelClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SalesChannelCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SalesChannelCreateResponse;
 
     throw new ShopwareError("Failed to create sales channel", response);
   }
 
   /**
+   * Requires `sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSalesChannels(
@@ -100,6 +103,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannel(id: string, query?: Criteria): Promise<SalesChannelSingleResponse> {
@@ -114,6 +118,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSalesChannel(id: string): Promise<void> {
@@ -125,6 +130,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSalesChannel(
@@ -145,6 +151,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalesChannelAggregate(
@@ -164,6 +171,7 @@ class SalesChannelClient extends Client {
   /** Analytics **/
 
   /**
+   * Requires `sales-channel-analytics:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAnalyticsList(query?: Criteria): Promise<AnalyticsListResponse> {
@@ -178,6 +186,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-analytics:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAnalytics(
@@ -190,13 +199,14 @@ class SalesChannelClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AnalyticsCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AnalyticsCreateResponse;
 
     throw new ShopwareError("Failed to create analytics", response);
   }
 
   /**
+   * Requires `sales-channel-analytics:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAnalytics(
@@ -214,6 +224,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-analytics:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAnalytics(id: string, query?: Criteria): Promise<AnalyticsSingleResponse> {
@@ -228,6 +239,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-analytics:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAnalytics(id: string): Promise<void> {
@@ -239,6 +251,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-analytics:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAnalytics(
@@ -259,6 +272,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-analytics:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAnalyticsAggregate(
@@ -278,6 +292,7 @@ class SalesChannelClient extends Client {
   /** Domains **/
 
   /**
+   * Requires `sales-channel-domain:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDomains(query?: Criteria): Promise<DomainListResponse> {
@@ -292,6 +307,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-domain:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDomain(
@@ -304,13 +320,14 @@ class SalesChannelClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DomainCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DomainCreateResponse;
 
     throw new ShopwareError("Failed to create domain", response);
   }
 
   /**
+   * Requires `sales-channel-domain:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDomains(request: DomainListSearchRequest): Promise<DomainListSearchResponse> {
@@ -326,6 +343,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-domain:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDomain(id: string, query?: Criteria): Promise<DomainSingleResponse> {
@@ -340,6 +358,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-domain:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDomain(id: string): Promise<void> {
@@ -351,6 +370,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-domain:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDomain(
@@ -371,6 +391,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-domain:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDomainAggregate(
@@ -390,6 +411,7 @@ class SalesChannelClient extends Client {
   /** Types **/
 
   /**
+   * Requires `sales-channel-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTypes(query?: Criteria): Promise<TypeListResponse> {
@@ -403,6 +425,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-type:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createType(
@@ -415,13 +438,14 @@ class SalesChannelClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TypeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TypeCreateResponse;
 
     throw new ShopwareError("Failed to create type", response);
   }
 
   /**
+   * Requires `sales-channel-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTypes(request: TypeListSearchRequest): Promise<TypeListSearchResponse> {
@@ -437,6 +461,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getType(id: string, query?: Criteria): Promise<TypeSingleResponse> {
@@ -451,6 +476,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-type:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteType(id: string): Promise<void> {
@@ -462,6 +488,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-type:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateType(
@@ -482,6 +509,7 @@ class SalesChannelClient extends Client {
   }
 
   /**
+   * Requires `sales-channel-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTypeAggregate(request: TypeAggregationRequest): Promise<TypeAggregationResponse> {

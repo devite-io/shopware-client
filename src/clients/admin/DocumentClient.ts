@@ -119,6 +119,7 @@ class DocumentClient extends Client {
   /** Documents **/
 
   /**
+   * Requires `document:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocuments(query?: Criteria): Promise<DocumentListResponse> {
@@ -133,6 +134,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDocument(
@@ -145,13 +147,14 @@ class DocumentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DocumentCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DocumentCreateResponse;
 
     throw new ShopwareError("Failed to create document", response);
   }
 
   /**
+   * Requires `document:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDocuments(
@@ -169,6 +172,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocument(id: string, query?: Criteria): Promise<DocumentSingleResponse> {
@@ -183,6 +187,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDocument(id: string): Promise<void> {
@@ -194,6 +199,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDocument(
@@ -214,6 +220,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocumentAggregate(
@@ -233,6 +240,7 @@ class DocumentClient extends Client {
   /** BaseConfigs **/
 
   /**
+   * Requires `document-base-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigs(query?: Criteria): Promise<BaseConfigListResponse> {
@@ -247,6 +255,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createBaseConfig(
@@ -259,13 +268,14 @@ class DocumentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as BaseConfigCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as BaseConfigCreateResponse;
 
     throw new ShopwareError("Failed to create document base config", response);
   }
 
   /**
+   * Requires `document-base-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchBaseConfigs(
@@ -283,6 +293,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfig(id: string, query?: Criteria): Promise<BaseConfigSingleResponse> {
@@ -297,6 +308,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteBaseConfig(id: string): Promise<void> {
@@ -308,6 +320,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateBaseConfig(
@@ -328,6 +341,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigAggregate(
@@ -347,6 +361,7 @@ class DocumentClient extends Client {
   /** Base Config Sales Channels **/
 
   /**
+   * Requires `document-base-config-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigSalesChannels(
@@ -363,6 +378,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config-sales-channel:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createBaseConfigSalesChannel(
@@ -375,13 +391,15 @@ class DocumentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as BaseConfigSalesChannelCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)
+        ?.data as BaseConfigSalesChannelCreateResponse;
 
     throw new ShopwareError("Failed to create document base config sales channel", response);
   }
 
   /**
+   * Requires `document-base-config-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchBaseConfigSalesChannels(
@@ -399,6 +417,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigSalesChannel(
@@ -419,6 +438,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config-sales-channel:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteBaseConfigSalesChannel(id: string): Promise<void> {
@@ -430,6 +450,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config-sales-channel:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateBaseConfigSalesChannel(
@@ -451,6 +472,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-base-config-sales-channel:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getBaseConfigSalesChannelAggregate(
@@ -470,6 +492,7 @@ class DocumentClient extends Client {
   /** Document Types **/
 
   /**
+   * Requires `document-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocumentTypes(query?: Criteria): Promise<DocumentTypeListResponse> {
@@ -484,6 +507,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-type:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDocumentType(
@@ -496,13 +520,14 @@ class DocumentClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DocumentTypeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DocumentTypeCreateResponse;
 
     throw new ShopwareError("Failed to create document type", response);
   }
 
   /**
+   * Requires `document-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDocumentTypes(
@@ -520,6 +545,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocumentType(id: string, query?: Criteria): Promise<DocumentTypeSingleResponse> {
@@ -534,6 +560,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-type:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDocumentType(id: string): Promise<void> {
@@ -545,6 +572,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-type:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDocumentType(
@@ -565,6 +593,7 @@ class DocumentClient extends Client {
   }
 
   /**
+   * Requires `document-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDocumentTypeAggregate(

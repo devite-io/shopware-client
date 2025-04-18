@@ -46,6 +46,7 @@ class MailClient extends Client {
   /** Operations **/
 
   /**
+   * Requires `api_send_email` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async sendMail(request: MailSendRequest): Promise<MailSendResponse> {
@@ -90,6 +91,7 @@ class MailClient extends Client {
   /** Header Footers **/
 
   /**
+   * Requires `header-footer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getHeaderFooters(query?: Criteria): Promise<HeaderFooterListResponse> {
@@ -104,6 +106,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `header-footer:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createHeaderFooter(
@@ -116,13 +119,14 @@ class MailClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as HeaderFooterCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as HeaderFooterCreateResponse;
 
     throw new ShopwareError("Failed to create header footer", response);
   }
 
   /**
+   * Requires `header-footer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchHeaderFooters(
@@ -140,6 +144,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `header-footer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getHeaderFooter(id: string, query?: Criteria): Promise<HeaderFooterSingleResponse> {
@@ -154,6 +159,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `header-footer:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteHeaderFooter(id: string): Promise<void> {
@@ -165,6 +171,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `header-footer:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateHeaderFooter(
@@ -185,6 +192,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `header-footer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getHeaderFooterAggregate(
@@ -204,6 +212,7 @@ class MailClient extends Client {
   /** Templates **/
 
   /**
+   * Requires `template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplates(query?: Criteria): Promise<TemplateListResponse> {
@@ -218,6 +227,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTemplate(
@@ -230,13 +240,14 @@ class MailClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TemplateCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TemplateCreateResponse;
 
     throw new ShopwareError("Failed to create template", response);
   }
 
   /**
+   * Requires `template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTemplates(
@@ -254,6 +265,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplate(id: string, query?: Criteria): Promise<TemplateSingleResponse> {
@@ -268,6 +280,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTemplate(id: string): Promise<void> {
@@ -279,6 +292,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTemplate(
@@ -299,6 +313,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateAggregate(
@@ -318,6 +333,7 @@ class MailClient extends Client {
   /** Template Types **/
 
   /**
+   * Requires `template-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateTypes(query?: Criteria): Promise<TemplateTypeListResponse> {
@@ -332,6 +348,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template-type:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTemplateType(
@@ -344,13 +361,14 @@ class MailClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TemplateTypeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TemplateTypeCreateResponse;
 
     throw new ShopwareError("Failed to create template type", response);
   }
 
   /**
+   * Requires `template-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTemplateTypes(
@@ -368,6 +386,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateType(id: string, query?: Criteria): Promise<TemplateTypeSingleResponse> {
@@ -382,6 +401,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template-type:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTemplateType(id: string): Promise<void> {
@@ -393,6 +413,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template-type:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTemplateType(
@@ -413,6 +434,7 @@ class MailClient extends Client {
   }
 
   /**
+   * Requires `template-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateTypeAggregate(

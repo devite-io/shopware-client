@@ -143,6 +143,7 @@ class SystemClient extends Client {
   /** Operations **/
 
   /**
+   * Requires `api_action_cache_index` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async index(request: IndexRequest): Promise<void> {
@@ -264,6 +265,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `system:clear:cache` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async clearCaches(): Promise<void> {
@@ -288,6 +290,7 @@ class SystemClient extends Client {
   /** Log Entries **/
 
   /**
+   * Requires `log-entry:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogEntries(query?: Criteria): Promise<LogEntryListResponse> {
@@ -302,6 +305,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `log-entry:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLogEntry(
@@ -314,13 +318,14 @@ class SystemClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LogEntryCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LogEntryCreateResponse;
 
     throw new ShopwareError("Failed to create log entry", response);
   }
 
   /**
+   * Requires `log-entry:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLogEntries(
@@ -338,6 +343,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `log-entry:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogEntry(id: string, query?: Criteria): Promise<LogEntrySingleResponse> {
@@ -352,6 +358,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `log-entry:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLogEntry(id: string): Promise<void> {
@@ -363,6 +370,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `log-entry:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLogEntry(
@@ -383,6 +391,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `log-entry:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLogEntryAggregate(
@@ -402,6 +411,7 @@ class SystemClient extends Client {
   /** Notifications **/
 
   /**
+   * Requires `notification:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getNotifications(query?: Criteria): Promise<NotificationListResponse> {
@@ -416,6 +426,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `notification:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createNotification(
@@ -428,13 +439,14 @@ class SystemClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as NotificationCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as NotificationCreateResponse;
 
     throw new ShopwareError("Failed to create notification", response);
   }
 
   /**
+   * Requires `notification:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchNotifications(
@@ -452,6 +464,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `notification:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getNotification(id: string, query?: Criteria): Promise<NotificationSingleResponse> {
@@ -466,6 +479,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `notification:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteNotification(id: string): Promise<void> {
@@ -477,6 +491,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `notification:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateNotification(
@@ -497,6 +512,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `notification:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getNotificationAggregate(
@@ -516,6 +532,7 @@ class SystemClient extends Client {
   /** Config Entries **/
 
   /**
+   * Requires `system-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigEntries(query?: Criteria): Promise<ConfigEntryListResponse> {
@@ -530,6 +547,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `system-config:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createConfigEntry(
@@ -542,13 +560,14 @@ class SystemClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ConfigEntryCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ConfigEntryCreateResponse;
 
     throw new ShopwareError("Failed to create config entry", response);
   }
 
   /**
+   * Requires `system-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchConfigEntries(
@@ -566,6 +585,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `system-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigEntry(id: string, query?: Criteria): Promise<ConfigEntrySingleResponse> {
@@ -580,6 +600,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `system-config:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteConfigEntry(id: string): Promise<void> {
@@ -591,6 +612,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `system-config:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateConfigEntry(
@@ -611,6 +633,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `system-config:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getConfigEntryAggregate(
@@ -630,6 +653,7 @@ class SystemClient extends Client {
   /** Scheduled Tasks **/
 
   /**
+   * Requires `scheduled-task:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScheduledTasks(query?: Criteria): Promise<ScheduledTaskListResponse> {
@@ -644,6 +668,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `scheduled-task:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createScheduledTask(
@@ -656,13 +681,14 @@ class SystemClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ScheduledTaskCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ScheduledTaskCreateResponse;
 
     throw new ShopwareError("Failed to create scheduled task", response);
   }
 
   /**
+   * Requires `scheduled-task:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchScheduledTasks(
@@ -680,6 +706,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `scheduled-task:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScheduledTask(
@@ -697,6 +724,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `scheduled-task:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteScheduledTask(id: string): Promise<void> {
@@ -708,6 +736,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `scheduled-task:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateScheduledTask(
@@ -728,6 +757,7 @@ class SystemClient extends Client {
   }
 
   /**
+   * Requires `scheduled-task:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScheduledTaskAggregate(

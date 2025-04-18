@@ -30,6 +30,7 @@ class ShippingMethodClient extends Client {
   /** Shipping Methods **/
 
   /**
+   * Requires `shipping-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethods(query?: Criteria): Promise<ShippingMethodListResponse> {
@@ -44,6 +45,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createShippingMethod(
@@ -56,13 +58,14 @@ class ShippingMethodClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ShippingMethodCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ShippingMethodCreateResponse;
 
     throw new ShopwareError("Failed to create shipping method", response);
   }
 
   /**
+   * Requires `shipping-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchShippingMethods(
@@ -80,6 +83,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethod(
@@ -97,6 +101,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteShippingMethod(id: string): Promise<void> {
@@ -108,6 +113,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateShippingMethod(
@@ -128,6 +134,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethodAggregate(
@@ -147,6 +154,7 @@ class ShippingMethodClient extends Client {
   /** Prices **/
 
   /**
+   * Requires `shipping-method-price:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPrices(query?: Criteria): Promise<PriceListResponse> {
@@ -161,6 +169,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method-price:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPrice(
@@ -173,13 +182,14 @@ class ShippingMethodClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PriceCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PriceCreateResponse;
 
     throw new ShopwareError("Failed to create shipping method", response);
   }
 
   /**
+   * Requires `shipping-method-price:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPrices(request: PriceListSearchRequest): Promise<PriceListSearchResponse> {
@@ -195,6 +205,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method-price:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPrice(id: string, query?: Criteria): Promise<PriceSingleResponse> {
@@ -209,6 +220,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method-price:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePrice(id: string): Promise<void> {
@@ -220,6 +232,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method-price:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePrice(
@@ -240,6 +253,7 @@ class ShippingMethodClient extends Client {
   }
 
   /**
+   * Requires `shipping-method-price:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPriceAggregate(

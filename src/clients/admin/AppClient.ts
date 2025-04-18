@@ -110,6 +110,7 @@ class AppClient extends Client {
   /** Apps **/
 
   /**
+   * Requires `app:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getApps(query?: Criteria): Promise<AppListResponse> {
@@ -123,6 +124,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createApp(
@@ -135,13 +137,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AppCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AppCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchApps(request: AppListSearchRequest): Promise<AppListSearchResponse> {
@@ -157,6 +160,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getApp(id: string, query?: Criteria): Promise<AppSingleResponse> {
@@ -171,6 +175,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteApp(id: string): Promise<void> {
@@ -182,6 +187,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateApp(
@@ -202,6 +208,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAppAggregate(request: AppAggregationRequest): Promise<AppAggregationResponse> {
@@ -219,6 +226,7 @@ class AppClient extends Client {
   /** Action Buttons **/
 
   /**
+   * Requires `app-action-button:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getActionButtons(query?: Criteria): Promise<ActionButtonListResponse> {
@@ -233,6 +241,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-action-button:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createActionButton(
@@ -245,13 +254,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ActionButtonCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ActionButtonCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-action-button:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchActionButtons(
@@ -269,6 +279,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-action-button:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getActionButton(id: string, query?: Criteria): Promise<ActionButtonSingleResponse> {
@@ -283,6 +294,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-action-button:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteActionButton(id: string): Promise<void> {
@@ -294,6 +306,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-action-button:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateActionButton(
@@ -314,6 +327,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-action-button:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getActionButtonAggregate(
@@ -333,6 +347,7 @@ class AppClient extends Client {
   /** Admin Snippets **/
 
   /**
+   * Requires `app-administration-snippet:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAdminSnippets(query?: Criteria): Promise<AdminSnippetListResponse> {
@@ -347,6 +362,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-administration-snippet:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAdminSnippet(
@@ -359,13 +375,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AdminSnippetCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AdminSnippetCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-administration-snippet:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAdminSnippets(
@@ -383,6 +400,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-administration-snippet:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAdminSnippet(id: string, query?: Criteria): Promise<AdminSnippetSingleResponse> {
@@ -397,6 +415,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-administration-snippet:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAdminSnippet(id: string): Promise<void> {
@@ -408,6 +427,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-administration-snippet:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAdminSnippet(
@@ -428,6 +448,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-administration-snippet:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAdminSnippetAggregate(
@@ -447,6 +468,7 @@ class AppClient extends Client {
   /** Cms Blocks **/
 
   /**
+   * Requires `app-cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlocks(query?: Criteria): Promise<CmsBlockListResponse> {
@@ -461,6 +483,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-cms-block:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCmsBlock(
@@ -473,13 +496,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CmsBlockCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CmsBlockCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCmsBlocks(
@@ -497,6 +521,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlock(id: string, query?: Criteria): Promise<CmsBlockSingleResponse> {
@@ -511,6 +536,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-cms-block:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCmsBlock(id: string): Promise<void> {
@@ -522,6 +548,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-cms-block:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCmsBlock(
@@ -542,6 +569,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCmsBlockAggregate(
@@ -561,6 +589,7 @@ class AppClient extends Client {
   /** Flow Actions **/
 
   /**
+   * Requires `app-flow-action:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowActions(query?: Criteria): Promise<FlowActionListResponse> {
@@ -575,6 +604,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-action:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlowAction(
@@ -587,13 +617,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowActionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowActionCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-flow-action:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlowActions(
@@ -611,6 +642,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-action:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowAction(id: string, query?: Criteria): Promise<FlowActionSingleResponse> {
@@ -625,6 +657,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-action:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlowAction(id: string): Promise<void> {
@@ -636,6 +669,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-action:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlowAction(
@@ -656,6 +690,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-action:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowActionAggregate(
@@ -675,6 +710,7 @@ class AppClient extends Client {
   /** Flow Events **/
 
   /**
+   * Requires `app-flow-event:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowEvents(query?: Criteria): Promise<FlowEventListResponse> {
@@ -689,6 +725,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-event:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlowEvent(
@@ -701,13 +738,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowEventCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowEventCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-flow-event:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlowEvents(
@@ -725,6 +763,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-event:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowEvent(id: string, query?: Criteria): Promise<FlowEventSingleResponse> {
@@ -739,6 +778,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-event:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlowEvent(id: string): Promise<void> {
@@ -750,6 +790,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-event:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlowEvent(
@@ -770,6 +811,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-flow-event:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowEventAggregate(
@@ -789,6 +831,7 @@ class AppClient extends Client {
   /** Payment Methods **/
 
   /**
+   * Requires `app-payment-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethods(query?: Criteria): Promise<PaymentMethodListResponse> {
@@ -803,6 +846,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-payment-method:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPaymentMethod(
@@ -815,13 +859,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PaymentMethodCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PaymentMethodCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-payment-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPaymentMethods(
@@ -839,6 +884,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-payment-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethod(
@@ -856,6 +902,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-payment-method:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePaymentMethod(id: string): Promise<void> {
@@ -867,6 +914,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-payment-method:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePaymentMethod(
@@ -887,6 +935,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-payment-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethodAggregate(
@@ -906,6 +955,7 @@ class AppClient extends Client {
   /** Script Conditions **/
 
   /**
+   * Requires `app-script-condition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScriptConditions(query?: Criteria): Promise<ScriptConditionListResponse> {
@@ -920,6 +970,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-script-condition:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createScriptCondition(
@@ -932,13 +983,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ScriptConditionCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ScriptConditionCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-script-condition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchScriptConditions(
@@ -956,6 +1008,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-script-condition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScriptCondition(
@@ -973,6 +1026,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-script-condition:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteScriptCondition(id: string): Promise<void> {
@@ -984,6 +1038,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-script-condition:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateScriptCondition(
@@ -1004,6 +1059,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-script-condition:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getScriptConditionAggregate(
@@ -1023,6 +1079,7 @@ class AppClient extends Client {
   /** Shipping Methods **/
 
   /**
+   * Requires `app-shipping-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethods(query?: Criteria): Promise<ShippingMethodListResponse> {
@@ -1037,6 +1094,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-shipping-method:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createShippingMethod(
@@ -1049,13 +1107,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ShippingMethodCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ShippingMethodCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-shipping-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchShippingMethods(
@@ -1073,6 +1132,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-shipping-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethod(
@@ -1090,6 +1150,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-shipping-method:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteShippingMethod(id: string): Promise<void> {
@@ -1101,6 +1162,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-shipping-method:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateShippingMethod(
@@ -1121,6 +1183,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-shipping-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getShippingMethodAggregate(
@@ -1140,6 +1203,7 @@ class AppClient extends Client {
   /** Templates **/
 
   /**
+   * Requires `app-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplates(query?: Criteria): Promise<TemplateListResponse> {
@@ -1154,6 +1218,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-template:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTemplate(
@@ -1166,13 +1231,14 @@ class AppClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TemplateCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TemplateCreateResponse;
 
     throw new ShopwareError("Failed to create app", response);
   }
 
   /**
+   * Requires `app-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTemplates(
@@ -1190,6 +1256,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplate(id: string, query?: Criteria): Promise<TemplateSingleResponse> {
@@ -1204,6 +1271,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-template:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTemplate(id: string): Promise<void> {
@@ -1215,6 +1283,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-template:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTemplate(
@@ -1235,6 +1304,7 @@ class AppClient extends Client {
   }
 
   /**
+   * Requires `app-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTemplateAggregate(

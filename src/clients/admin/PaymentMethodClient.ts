@@ -18,6 +18,7 @@ import {
 
 class PaymentMethodClient extends Client {
   /**
+   * Requires `payment-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethods(query?: Criteria): Promise<PaymentMethodListResponse> {
@@ -32,6 +33,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
+   * Requires `payment-method:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPaymentMethod(
@@ -44,13 +46,14 @@ class PaymentMethodClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PaymentMethodCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PaymentMethodCreateResponse;
 
     throw new ShopwareError("Failed to create payment method", response);
   }
 
   /**
+   * Requires `payment-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPaymentMethods(
@@ -68,6 +71,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
+   * Requires `payment-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethod(
@@ -85,6 +89,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
+   * Requires `payment-method:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePaymentMethod(id: string): Promise<void> {
@@ -96,6 +101,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
+   * Requires `payment-method:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePaymentMethod(
@@ -116,6 +122,7 @@ class PaymentMethodClient extends Client {
   }
 
   /**
+   * Requires `payment-method:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPaymentMethodAggregate(

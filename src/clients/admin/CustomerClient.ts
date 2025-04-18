@@ -72,6 +72,7 @@ class CustomerClient extends Client {
   /** Impersonation **/
 
   /**
+   * Requires `api_proxy_imitate-customer` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomerImpersonationToken(
@@ -91,6 +92,7 @@ class CustomerClient extends Client {
   /** Customers **/
 
   /**
+   * Requires `customer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomers(query?: Criteria): Promise<CustomerListResponse> {
@@ -105,6 +107,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCustomer(
@@ -117,13 +120,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CustomerCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CustomerCreateResponse;
 
     throw new ShopwareError("Failed to create customer", response);
   }
 
   /**
+   * Requires `customer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCustomers(
@@ -141,6 +145,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomer(id: string, query?: Criteria): Promise<CustomerSingleResponse> {
@@ -155,6 +160,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCustomer(id: string): Promise<void> {
@@ -166,6 +172,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCustomer(
@@ -186,6 +193,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomerAggregate(
@@ -205,6 +213,7 @@ class CustomerClient extends Client {
   /** Addresses **/
 
   /**
+   * Requires `address:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddresses(query?: Criteria): Promise<AddressListResponse> {
@@ -219,6 +228,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `address:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createAddress(
@@ -231,13 +241,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as AddressCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as AddressCreateResponse;
 
     throw new ShopwareError("Failed to create address", response);
   }
 
   /**
+   * Requires `address:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchAddresses(
@@ -255,6 +266,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `address:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddress(id: string, query?: Criteria): Promise<AddressSingleResponse> {
@@ -269,6 +281,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `address:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteAddress(id: string): Promise<void> {
@@ -280,6 +293,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `address:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateAddress(
@@ -300,6 +314,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `address:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getAddressAggregate(
@@ -319,6 +334,7 @@ class CustomerClient extends Client {
   /** Groups **/
 
   /**
+   * Requires `customer-group:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getGroups(query?: Criteria): Promise<GroupListResponse> {
@@ -333,6 +349,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-group:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createGroup(
@@ -345,13 +362,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as GroupCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as GroupCreateResponse;
 
     throw new ShopwareError("Failed to create group", response);
   }
 
   /**
+   * Requires `customer-group:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchGroups(request: GroupListSearchRequest): Promise<GroupListSearchResponse> {
@@ -367,6 +385,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-group:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getGroup(id: string, query?: Criteria): Promise<GroupSingleResponse> {
@@ -381,6 +400,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-group:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteGroup(id: string): Promise<void> {
@@ -392,6 +412,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-group:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateGroup(
@@ -412,6 +433,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-group:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getGroupAggregate(
@@ -431,6 +453,7 @@ class CustomerClient extends Client {
   /** Recoveries **/
 
   /**
+   * Requires `customer-recovery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecoveries(query?: Criteria): Promise<RecoveryListResponse> {
@@ -445,6 +468,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-recovery:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRecovery(
@@ -457,13 +481,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RecoveryCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RecoveryCreateResponse;
 
     throw new ShopwareError("Failed to create recovery", response);
   }
 
   /**
+   * Requires `customer-recovery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRecoveries(
@@ -481,6 +506,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-recovery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecovery(id: string, query?: Criteria): Promise<RecoverySingleResponse> {
@@ -495,6 +521,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-recovery:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRecovery(id: string): Promise<void> {
@@ -506,6 +533,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-recovery:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRecovery(
@@ -526,6 +554,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-recovery:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRecoveryAggregate(
@@ -545,6 +574,7 @@ class CustomerClient extends Client {
   /** Wishlists **/
 
   /**
+   * Requires `customer-wishlist:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlists(query?: Criteria): Promise<WishlistListResponse> {
@@ -559,6 +589,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createWishlist(
@@ -571,13 +602,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as WishlistCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as WishlistCreateResponse;
 
     throw new ShopwareError("Failed to create wishlist", response);
   }
 
   /**
+   * Requires `customer-wishlist:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchWishlists(
@@ -595,6 +627,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlist(id: string, query?: Criteria): Promise<WishlistSingleResponse> {
@@ -609,6 +642,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteWishlist(id: string): Promise<void> {
@@ -620,6 +654,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateWishlist(
@@ -640,6 +675,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlistAggregate(
@@ -659,6 +695,7 @@ class CustomerClient extends Client {
   /** Wishlist Products **/
 
   /**
+   * Requires `customer-wishlist-product:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlistProducts(query?: Criteria): Promise<WishlistProductListResponse> {
@@ -673,6 +710,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist-product:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createWishlistProduct(
@@ -685,13 +723,14 @@ class CustomerClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as WishlistProductCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as WishlistProductCreateResponse;
 
     throw new ShopwareError("Failed to create wishlist product", response);
   }
 
   /**
+   * Requires `customer-wishlist-product:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchWishlistProducts(
@@ -709,6 +748,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist-product:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlistProduct(
@@ -726,6 +766,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist-product:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteWishlistProduct(id: string): Promise<void> {
@@ -737,6 +778,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist-product:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateWishlistProduct(
@@ -757,6 +799,7 @@ class CustomerClient extends Client {
   }
 
   /**
+   * Requires `customer-wishlist-product:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getWishlistProductAggregate(

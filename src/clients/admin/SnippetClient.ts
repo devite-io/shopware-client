@@ -30,6 +30,7 @@ class DeliveryTimeClient extends Client {
   /** Snippets **/
 
   /**
+   * Requires `snippet:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSnippets(query?: Criteria): Promise<SnippetListResponse> {
@@ -44,6 +45,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSnippet(
@@ -56,13 +58,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SnippetCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SnippetCreateResponse;
 
     throw new ShopwareError("Failed to create snippet", response);
   }
 
   /**
+   * Requires `snippet:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSnippets(
@@ -80,6 +83,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSnippet(id: string, query?: Criteria): Promise<SnippetSingleResponse> {
@@ -94,6 +98,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSnippet(id: string): Promise<void> {
@@ -105,6 +110,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSnippet(
@@ -125,6 +131,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSnippetAggregate(
@@ -144,6 +151,7 @@ class DeliveryTimeClient extends Client {
   /** Sets **/
 
   /**
+   * Requires `snippet-set:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSets(query?: Criteria): Promise<SetListResponse> {
@@ -157,6 +165,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet-set:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSet(
@@ -169,13 +178,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SetCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SetCreateResponse;
 
     throw new ShopwareError("Failed to create snippet set", response);
   }
 
   /**
+   * Requires `snippet-set:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSets(request: SetListSearchRequest): Promise<SetListSearchResponse> {
@@ -191,6 +201,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet-set:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSet(id: string, query?: Criteria): Promise<SetSingleResponse> {
@@ -205,6 +216,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet-set:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSet(id: string): Promise<void> {
@@ -216,6 +228,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet-set:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSet(
@@ -236,6 +249,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `snippet-set:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSetAggregate(request: SetAggregationRequest): Promise<SetAggregationResponse> {

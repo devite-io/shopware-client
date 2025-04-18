@@ -40,6 +40,7 @@ class FlowClient extends Client {
   /** Flows **/
 
   /**
+   * Requires `flow:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlows(query?: Criteria): Promise<FlowListResponse> {
@@ -53,6 +54,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlow(
@@ -65,13 +67,14 @@ class FlowClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowCreateResponse;
 
     throw new ShopwareError("Failed to create flow", response);
   }
 
   /**
+   * Requires `flow:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlows(request: FlowListSearchRequest): Promise<FlowListSearchResponse> {
@@ -87,6 +90,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlow(id: string, query?: Criteria): Promise<FlowSingleResponse> {
@@ -101,6 +105,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlow(id: string): Promise<void> {
@@ -112,6 +117,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlow(
@@ -132,6 +138,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowAggregate(request: FlowAggregationRequest): Promise<FlowAggregationResponse> {
@@ -149,6 +156,7 @@ class FlowClient extends Client {
   /** Flow Sequences **/
 
   /**
+   * Requires `flow-sequence:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowSequences(query?: Criteria): Promise<FlowSequenceListResponse> {
@@ -163,6 +171,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-sequence:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlowSequence(
@@ -175,13 +184,14 @@ class FlowClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowSequenceCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowSequenceCreateResponse;
 
     throw new ShopwareError("Failed to create flow sequence", response);
   }
 
   /**
+   * Requires `flow-sequence:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlowSequences(
@@ -199,6 +209,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-sequence:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowSequence(id: string, query?: Criteria): Promise<FlowSequenceSingleResponse> {
@@ -213,6 +224,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-sequence:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlowSequence(id: string): Promise<void> {
@@ -224,6 +236,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-sequence:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlowSequence(
@@ -244,6 +257,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-sequence:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowSequenceAggregate(
@@ -263,6 +277,7 @@ class FlowClient extends Client {
   /** Flow Templates **/
 
   /**
+   * Requires `flow-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowTemplates(query?: Criteria): Promise<FlowTemplateListResponse> {
@@ -277,6 +292,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-template:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFlowTemplate(
@@ -289,13 +305,14 @@ class FlowClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FlowTemplateCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FlowTemplateCreateResponse;
 
     throw new ShopwareError("Failed to create flow template", response);
   }
 
   /**
+   * Requires `flow-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFlowTemplates(
@@ -313,6 +330,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowTemplate(id: string, query?: Criteria): Promise<FlowTemplateSingleResponse> {
@@ -327,6 +345,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-template:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFlowTemplate(id: string): Promise<void> {
@@ -338,6 +357,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-template:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFlowTemplate(
@@ -358,6 +378,7 @@ class FlowClient extends Client {
   }
 
   /**
+   * Requires `flow-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFlowTemplateAggregate(

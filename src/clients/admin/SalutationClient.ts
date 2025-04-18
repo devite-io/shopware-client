@@ -18,6 +18,7 @@ import {
 
 class SalutationClient extends Client {
   /**
+   * Requires `salutation:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalutations(query?: Criteria): Promise<SalutationListResponse> {
@@ -32,6 +33,7 @@ class SalutationClient extends Client {
   }
 
   /**
+   * Requires `salutation:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createSalutation(
@@ -44,13 +46,14 @@ class SalutationClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as SalutationCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as SalutationCreateResponse;
 
     throw new ShopwareError("Failed to create salutation", response);
   }
 
   /**
+   * Requires `salutation:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchSalutations(
@@ -68,6 +71,7 @@ class SalutationClient extends Client {
   }
 
   /**
+   * Requires `salutation:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalutation(id: string, query?: Criteria): Promise<SalutationSingleResponse> {
@@ -82,6 +86,7 @@ class SalutationClient extends Client {
   }
 
   /**
+   * Requires `salutation:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteSalutation(id: string): Promise<void> {
@@ -93,6 +98,7 @@ class SalutationClient extends Client {
   }
 
   /**
+   * Requires `salutation:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateSalutation(
@@ -113,6 +119,7 @@ class SalutationClient extends Client {
   }
 
   /**
+   * Requires `salutation:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getSalutationAggregate(

@@ -18,6 +18,7 @@ import {
 
 class PluginClient extends Client {
   /**
+   * Requires `plugin:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPlugins(query?: Criteria): Promise<PluginListResponse> {
@@ -32,6 +33,7 @@ class PluginClient extends Client {
   }
 
   /**
+   * Requires `plugin:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createPlugin(
@@ -44,13 +46,14 @@ class PluginClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as PluginCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as PluginCreateResponse;
 
     throw new ShopwareError("Failed to create plugin", response);
   }
 
   /**
+   * Requires `plugin:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchPlugins(request: PluginListSearchRequest): Promise<PluginListSearchResponse> {
@@ -66,6 +69,7 @@ class PluginClient extends Client {
   }
 
   /**
+   * Requires `plugin:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPlugin(id: string, query?: Criteria): Promise<PluginSingleResponse> {
@@ -80,6 +84,7 @@ class PluginClient extends Client {
   }
 
   /**
+   * Requires `plugin:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deletePlugin(id: string): Promise<void> {
@@ -91,6 +96,7 @@ class PluginClient extends Client {
   }
 
   /**
+   * Requires `plugin:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updatePlugin(
@@ -111,6 +117,7 @@ class PluginClient extends Client {
   }
 
   /**
+   * Requires `plugin:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getPluginAggregate(

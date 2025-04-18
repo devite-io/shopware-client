@@ -30,6 +30,7 @@ class DeliveryTimeClient extends Client {
   /** Urls **/
 
   /**
+   * Requires `seo-url:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrls(query?: Criteria): Promise<UrlListResponse> {
@@ -43,6 +44,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createUrl(
@@ -55,13 +57,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as UrlCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as UrlCreateResponse;
 
     throw new ShopwareError("Failed to create url", response);
   }
 
   /**
+   * Requires `seo-url:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchUrls(request: UrlListSearchRequest): Promise<UrlListSearchResponse> {
@@ -77,6 +80,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrl(id: string, query?: Criteria): Promise<UrlSingleResponse> {
@@ -91,6 +95,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteUrl(id: string): Promise<void> {
@@ -102,6 +107,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateUrl(
@@ -122,6 +128,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrlAggregate(request: UrlAggregationRequest): Promise<UrlAggregationResponse> {
@@ -139,6 +146,7 @@ class DeliveryTimeClient extends Client {
   /** Url Templates **/
 
   /**
+   * Requires `seo-url-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrlTemplates(query?: Criteria): Promise<UrlTemplateListResponse> {
@@ -153,6 +161,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url-template:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createUrlTemplate(
@@ -165,13 +174,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as UrlTemplateCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as UrlTemplateCreateResponse;
 
     throw new ShopwareError("Failed to create url template", response);
   }
 
   /**
+   * Requires `seo-url-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchUrlTemplates(
@@ -189,6 +199,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrlTemplate(id: string, query?: Criteria): Promise<UrlTemplateSingleResponse> {
@@ -203,6 +214,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url-template:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteUrlTemplate(id: string): Promise<void> {
@@ -214,6 +226,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url-template:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateUrlTemplate(
@@ -234,6 +247,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `seo-url-template:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUrlTemplateAggregate(

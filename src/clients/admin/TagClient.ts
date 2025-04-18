@@ -18,6 +18,7 @@ import {
 
 class TagClient extends Client {
   /**
+   * Requires `tag:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTags(query?: Criteria): Promise<TagListResponse> {
@@ -31,6 +32,7 @@ class TagClient extends Client {
   }
 
   /**
+   * Requires `tag:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTag(
@@ -43,13 +45,14 @@ class TagClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TagCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TagCreateResponse;
 
     throw new ShopwareError("Failed to create tag", response);
   }
 
   /**
+   * Requires `tag:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTags(request: TagListSearchRequest): Promise<TagListSearchResponse> {
@@ -65,6 +68,7 @@ class TagClient extends Client {
   }
 
   /**
+   * Requires `tag:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTag(id: string, query?: Criteria): Promise<TagSingleResponse> {
@@ -79,6 +83,7 @@ class TagClient extends Client {
   }
 
   /**
+   * Requires `tag:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTag(id: string): Promise<void> {
@@ -90,6 +95,7 @@ class TagClient extends Client {
   }
 
   /**
+   * Requires `tag:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTag(
@@ -110,6 +116,7 @@ class TagClient extends Client {
   }
 
   /**
+   * Requires `tag:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTagAggregate(request: TagAggregationRequest): Promise<TagAggregationResponse> {

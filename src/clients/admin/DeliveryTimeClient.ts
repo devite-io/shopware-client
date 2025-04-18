@@ -18,6 +18,7 @@ import {
 
 class DeliveryTimeClient extends Client {
   /**
+   * Requires `delivery-time:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryTimes(query?: Criteria): Promise<DeliveryTimeListResponse> {
@@ -32,6 +33,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `delivery-time:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDeliveryTime(
@@ -44,13 +46,14 @@ class DeliveryTimeClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DeliveryTimeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DeliveryTimeCreateResponse;
 
     throw new ShopwareError("Failed to create delivery time", response);
   }
 
   /**
+   * Requires `delivery-time:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDeliveryTimes(
@@ -68,6 +71,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `delivery-time:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryTime(id: string, query?: Criteria): Promise<DeliveryTimeSingleResponse> {
@@ -82,6 +86,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `delivery-time:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDeliveryTime(id: string): Promise<void> {
@@ -93,6 +98,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `delivery-time:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDeliveryTime(
@@ -113,6 +119,7 @@ class DeliveryTimeClient extends Client {
   }
 
   /**
+   * Requires `delivery-time:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDeliveryTimeAggregate(

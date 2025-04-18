@@ -30,6 +30,7 @@ class CategoryClient extends Client {
   /** Categories **/
 
   /**
+   * Requires `category:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCategories(query?: Criteria): Promise<CategoryListResponse> {
@@ -44,6 +45,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `category:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCategory(
@@ -56,13 +58,14 @@ class CategoryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CategoryCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CategoryCreateResponse;
 
     throw new ShopwareError("Failed to create category", response);
   }
 
   /**
+   * Requires `category:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCategories(
@@ -80,6 +83,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `category:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCategory(id: string, query?: Criteria): Promise<CategorySingleResponse> {
@@ -94,6 +98,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `category:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCategory(id: string): Promise<void> {
@@ -105,6 +110,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `category:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCategory(
@@ -125,6 +131,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `category:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCategoryAggregate(
@@ -144,6 +151,7 @@ class CategoryClient extends Client {
   /** Main Categories **/
 
   /**
+   * Requires `main-category:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMainCategories(query?: Criteria): Promise<MainCategoryListResponse> {
@@ -158,6 +166,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `main-category:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createMainCategory(
@@ -170,13 +179,14 @@ class CategoryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as MainCategoryCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as MainCategoryCreateResponse;
 
     throw new ShopwareError("Failed to create main category", response);
   }
 
   /**
+   * Requires `main-category:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchMainCategories(
@@ -194,6 +204,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `main-category:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMainCategory(id: string, query?: Criteria): Promise<MainCategorySingleResponse> {
@@ -208,6 +219,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `main-category:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteMainCategory(id: string): Promise<void> {
@@ -219,6 +231,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `main-category:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateMainCategory(
@@ -239,6 +252,7 @@ class CategoryClient extends Client {
   }
 
   /**
+   * Requires `main-category:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMainCategoryAggregate(

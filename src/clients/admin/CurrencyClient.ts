@@ -30,6 +30,7 @@ class CountryClient extends Client {
   /** Currencies **/
 
   /**
+   * Requires `currency:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCurrencies(query?: Criteria): Promise<CurrencyListResponse> {
@@ -44,6 +45,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCurrency(
@@ -56,13 +58,14 @@ class CountryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CurrencyCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CurrencyCreateResponse;
 
     throw new ShopwareError("Failed to create currency", response);
   }
 
   /**
+   * Requires `currency:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCurrencies(
@@ -80,6 +83,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCurrency(id: string, query?: Criteria): Promise<CurrencySingleResponse> {
@@ -94,6 +98,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCurrency(id: string): Promise<void> {
@@ -105,6 +110,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCurrency(
@@ -125,6 +131,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `cms-block:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCurrencyAggregate(
@@ -144,6 +151,7 @@ class CountryClient extends Client {
   /** Country Roundings **/
 
   /**
+   * Requires `currency-country-rounding:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryRoundings(query?: Criteria): Promise<CountryRoundingListResponse> {
@@ -158,6 +166,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency-country-rounding:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createCountryRounding(
@@ -170,13 +179,14 @@ class CountryClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CountryRoundingCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as CountryRoundingCreateResponse;
 
     throw new ShopwareError("Failed to create country rounding", response);
   }
 
   /**
+   * Requires `currency-country-rounding:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchCountryRoundings(
@@ -194,6 +204,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency-country-rounding:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryRounding(
@@ -211,6 +222,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency-country-rounding:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteCountryRounding(id: string): Promise<void> {
@@ -222,6 +234,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency-country-rounding:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateCountryRounding(
@@ -242,6 +255,7 @@ class CountryClient extends Client {
   }
 
   /**
+   * Requires `currency-country-rounding:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCountryRoundingAggregate(

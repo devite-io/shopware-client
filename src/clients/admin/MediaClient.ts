@@ -115,6 +115,7 @@ class MediaClient extends Client {
   /** Media **/
 
   /**
+   * Requires `media:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMediaList(query?: Criteria): Promise<MediaListResponse> {
@@ -129,6 +130,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createMedia(
@@ -141,13 +143,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as MediaCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as MediaCreateResponse;
 
     throw new ShopwareError("Failed to create media", response);
   }
 
   /**
+   * Requires `media:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchMedia(request: MediaListSearchRequest): Promise<MediaListSearchResponse> {
@@ -163,6 +166,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMedia(id: string, query?: Criteria): Promise<MediaSingleResponse> {
@@ -177,6 +181,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteMedia(id: string): Promise<void> {
@@ -188,6 +193,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateMedia(
@@ -208,6 +214,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getMediaAggregate(
@@ -227,6 +234,7 @@ class MediaClient extends Client {
   /** Default Folders **/
 
   /**
+   * Requires `media-default-folder:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDefaultFolders(query?: Criteria): Promise<DefaultFolderListResponse> {
@@ -241,6 +249,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-default-folder:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createDefaultFolder(
@@ -253,13 +262,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as DefaultFolderCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as DefaultFolderCreateResponse;
 
     throw new ShopwareError("Failed to create default folder", response);
   }
 
   /**
+   * Requires `media-default-folder:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchDefaultFolders(
@@ -277,6 +287,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-default-folder:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDefaultFolder(
@@ -294,6 +305,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-default-folder:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteDefaultFolder(id: string): Promise<void> {
@@ -305,6 +317,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-default-folder:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateDefaultFolder(
@@ -325,6 +338,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-default-folder:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getDefaultFolderAggregate(
@@ -344,6 +358,7 @@ class MediaClient extends Client {
   /** Folders **/
 
   /**
+   * Requires `media-folder:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolders(query?: Criteria): Promise<FolderListResponse> {
@@ -358,6 +373,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFolder(
@@ -370,13 +386,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FolderCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FolderCreateResponse;
 
     throw new ShopwareError("Failed to create folder", response);
   }
 
   /**
+   * Requires `media-folder:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFolders(request: FolderListSearchRequest): Promise<FolderListSearchResponse> {
@@ -392,6 +409,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolder(id: string, query?: Criteria): Promise<FolderSingleResponse> {
@@ -406,6 +424,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFolder(id: string): Promise<void> {
@@ -417,6 +436,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFolder(
@@ -437,6 +457,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolderAggregate(
@@ -456,6 +477,7 @@ class MediaClient extends Client {
   /** Folder Configs **/
 
   /**
+   * Requires `media-folder-configuration:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolderConfigs(query?: Criteria): Promise<FolderConfigListResponse> {
@@ -470,6 +492,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder-configuration:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createFolderConfig(
@@ -482,13 +505,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as FolderConfigCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as FolderConfigCreateResponse;
 
     throw new ShopwareError("Failed to create folder configuration", response);
   }
 
   /**
+   * Requires `media-folder-configuration:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchFolderConfigs(
@@ -506,6 +530,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder-configuration:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolderConfig(id: string, query?: Criteria): Promise<FolderConfigSingleResponse> {
@@ -520,6 +545,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder-configuration:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteFolderConfig(id: string): Promise<void> {
@@ -531,6 +557,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder-configuration:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateFolderConfig(
@@ -551,6 +578,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-folder-configuration:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getFolderConfigAggregate(
@@ -570,6 +598,7 @@ class MediaClient extends Client {
   /** Thumbnails **/
 
   /**
+   * Requires `media-thumbnail:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnails(query?: Criteria): Promise<ThumbnailListResponse> {
@@ -584,6 +613,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createThumbnail(
@@ -596,13 +626,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ThumbnailCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ThumbnailCreateResponse;
 
     throw new ShopwareError("Failed to create thumbnail", response);
   }
 
   /**
+   * Requires `media-thumbnail:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchThumbnails(
@@ -620,6 +651,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnail(id: string, query?: Criteria): Promise<ThumbnailSingleResponse> {
@@ -634,6 +666,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteThumbnail(id: string): Promise<void> {
@@ -645,6 +678,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateThumbnail(
@@ -665,6 +699,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnailAggregate(
@@ -684,6 +719,7 @@ class MediaClient extends Client {
   /** Thumbnail Sizes **/
 
   /**
+   * Requires `media-thumbnail-size:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnailSizes(query?: Criteria): Promise<ThumbnailSizeListResponse> {
@@ -698,6 +734,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail-size:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createThumbnailSize(
@@ -710,13 +747,14 @@ class MediaClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ThumbnailSizeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ThumbnailSizeCreateResponse;
 
     throw new ShopwareError("Failed to create thumbnail size", response);
   }
 
   /**
+   * Requires `media-thumbnail-size:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchThumbnailSizes(
@@ -734,6 +772,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail-size:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnailSize(
@@ -751,6 +790,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail-size:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteThumbnailSize(id: string): Promise<void> {
@@ -762,6 +802,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail-size:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateThumbnailSize(
@@ -782,6 +823,7 @@ class MediaClient extends Client {
   }
 
   /**
+   * Requires `media-thumbnail-size:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getThumbnailSizeAggregate(

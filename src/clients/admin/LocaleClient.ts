@@ -30,6 +30,7 @@ class LocaleClient extends Client {
   /** Locales **/
 
   /**
+   * Requires `locale:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLocales(query?: Criteria): Promise<LocaleListResponse> {
@@ -44,6 +45,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `locale:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLocale(
@@ -56,13 +58,14 @@ class LocaleClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LocaleCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LocaleCreateResponse;
 
     throw new ShopwareError("Failed to create locale", response);
   }
 
   /**
+   * Requires `locale:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLocales(request: LocaleListSearchRequest): Promise<LocaleListSearchResponse> {
@@ -78,6 +81,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `locale:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLocale(id: string, query?: Criteria): Promise<LocaleSingleResponse> {
@@ -92,6 +96,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `locale:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLocale(id: string): Promise<void> {
@@ -103,6 +108,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `locale:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLocale(
@@ -123,6 +129,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `locale:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLocaleAggregate(
@@ -142,6 +149,7 @@ class LocaleClient extends Client {
   /** Languages **/
 
   /**
+   * Requires `language:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLanguages(query?: Criteria): Promise<LanguageListResponse> {
@@ -156,6 +164,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `language:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createLanguage(
@@ -168,13 +177,14 @@ class LocaleClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as LanguageCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as LanguageCreateResponse;
 
     throw new ShopwareError("Failed to create language", response);
   }
 
   /**
+   * Requires `language:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchLanguages(
@@ -192,6 +202,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `language:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLanguage(id: string, query?: Criteria): Promise<LanguageSingleResponse> {
@@ -206,6 +217,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `language:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteLanguage(id: string): Promise<void> {
@@ -217,6 +229,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `language:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateLanguage(
@@ -237,6 +250,7 @@ class LocaleClient extends Client {
   }
 
   /**
+   * Requires `language:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getLanguageAggregate(

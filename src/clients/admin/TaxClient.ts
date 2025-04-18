@@ -50,6 +50,7 @@ class TaxClient extends Client {
   /** Taxes **/
 
   /**
+   * Requires `tax:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTaxes(query?: Criteria): Promise<TaxListResponse> {
@@ -63,6 +64,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createTax(
@@ -75,13 +77,14 @@ class TaxClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as TaxCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as TaxCreateResponse;
 
     throw new ShopwareError("Failed to create tax", response);
   }
 
   /**
+   * Requires `tax:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchTaxes(request: TaxListSearchRequest): Promise<TaxListSearchResponse> {
@@ -97,6 +100,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTax(id: string, query?: Criteria): Promise<TaxSingleResponse> {
@@ -111,6 +115,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteTax(id: string): Promise<void> {
@@ -122,6 +127,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateTax(
@@ -142,6 +148,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getTaxAggregate(request: TaxAggregationRequest): Promise<TaxAggregationResponse> {
@@ -159,6 +166,7 @@ class TaxClient extends Client {
   /** Providers **/
 
   /**
+   * Requires `tax-provider:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProviders(query?: Criteria): Promise<ProviderListResponse> {
@@ -173,6 +181,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-provider:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createProvider(
@@ -185,13 +194,14 @@ class TaxClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as ProviderCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as ProviderCreateResponse;
 
     throw new ShopwareError("Failed to create provider", response);
   }
 
   /**
+   * Requires `tax-provider:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchProviders(
@@ -209,6 +219,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-provider:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProvider(id: string, query?: Criteria): Promise<ProviderSingleResponse> {
@@ -223,6 +234,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-provider:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteProvider(id: string): Promise<void> {
@@ -234,6 +246,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-provider:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateProvider(
@@ -254,6 +267,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-provider:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getProviderAggregate(
@@ -273,6 +287,7 @@ class TaxClient extends Client {
   /** Rules **/
 
   /**
+   * Requires `tax-rule:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRules(query?: Criteria): Promise<RuleListResponse> {
@@ -286,6 +301,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRule(
@@ -298,13 +314,14 @@ class TaxClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RuleCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RuleCreateResponse;
 
     throw new ShopwareError("Failed to create rule", response);
   }
 
   /**
+   * Requires `tax-rule:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRules(request: RuleListSearchRequest): Promise<RuleListSearchResponse> {
@@ -320,6 +337,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRule(id: string, query?: Criteria): Promise<RuleSingleResponse> {
@@ -334,6 +352,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRule(id: string): Promise<void> {
@@ -345,6 +364,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRule(
@@ -365,6 +385,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleAggregate(request: RuleAggregationRequest): Promise<RuleAggregationResponse> {
@@ -382,6 +403,7 @@ class TaxClient extends Client {
   /** Rule Types **/
 
   /**
+   * Requires `tax-rule-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleTypes(query?: Criteria): Promise<RuleTypeListResponse> {
@@ -396,6 +418,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule-type:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createRuleType(
@@ -408,13 +431,14 @@ class TaxClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as RuleTypeCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as RuleTypeCreateResponse;
 
     throw new ShopwareError("Failed to create rule type", response);
   }
 
   /**
+   * Requires `tax-rule-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchRuleTypes(
@@ -432,6 +456,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleType(id: string, query?: Criteria): Promise<RuleTypeSingleResponse> {
@@ -446,6 +471,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule-type:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteRuleType(id: string): Promise<void> {
@@ -457,6 +483,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule-type:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateRuleType(
@@ -477,6 +504,7 @@ class TaxClient extends Client {
   }
 
   /**
+   * Requires `tax-rule-type:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getRuleTypeAggregate(

@@ -18,6 +18,7 @@ import {
 
 class UnitClient extends Client {
   /**
+   * Requires `unit:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUnits(query?: Criteria): Promise<UnitListResponse> {
@@ -31,6 +32,7 @@ class UnitClient extends Client {
   }
 
   /**
+   * Requires `unit:create` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async createUnit(
@@ -43,13 +45,14 @@ class UnitClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as UnitCreateResponse;
+    if (response.statusCode === (responseDetails !== "detail" ? 204 : 200))
+      return (response.body as JsonPayload | undefined)?.data as UnitCreateResponse;
 
     throw new ShopwareError("Failed to create unit", response);
   }
 
   /**
+   * Requires `unit:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async searchUnits(request: UnitListSearchRequest): Promise<UnitListSearchResponse> {
@@ -65,6 +68,7 @@ class UnitClient extends Client {
   }
 
   /**
+   * Requires `unit:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUnit(id: string, query?: Criteria): Promise<UnitSingleResponse> {
@@ -79,6 +83,7 @@ class UnitClient extends Client {
   }
 
   /**
+   * Requires `unit:delete` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async deleteUnit(id: string): Promise<void> {
@@ -90,6 +95,7 @@ class UnitClient extends Client {
   }
 
   /**
+   * Requires `unit:update` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async updateUnit(
@@ -110,6 +116,7 @@ class UnitClient extends Client {
   }
 
   /**
+   * Requires `unit:read` permission.
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getUnitAggregate(request: UnitAggregationRequest): Promise<UnitAggregationResponse> {
