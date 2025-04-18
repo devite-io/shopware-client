@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.3
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.2...v1.5.3)
+
+### 🩹 Fixes
+
+- **clients/admin:** Add permissions to JSDoc + fix create status codes + responses ([4be9f40](https://github.com/devite-io/shopware-client/commit/4be9f40))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.2
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.1...v1.5.2)
