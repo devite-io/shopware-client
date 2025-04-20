@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.4
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.3...v1.5.4)
+
+### 🩹 Fixes
+
+- Allow addition of cart items without context token to create carts ([9dccec4](https://github.com/devite-io/shopware-client/commit/9dccec4))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.3
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.2...v1.5.3)
