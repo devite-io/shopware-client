@@ -54,9 +54,9 @@ class CartClient extends Client {
   public async addLineItems(request: CartAddItemsRequest): Promise<CartAddItemsResponse> {
     const response = await this.post(
       "/checkout/cart/line-item",
-      (this.client as StoreShopwareClient).withContextToken({
-        body: new JsonPayload(request)
-      })
+      this.client.authStore.getEntry(AuthenticationType.CONTEXT_TOKEN)
+        ? (this.client as StoreShopwareClient).withContextToken({ body: new JsonPayload(request) })
+        : { body: new JsonPayload(request) }
     );
 
     if (response.statusCode === 200)
