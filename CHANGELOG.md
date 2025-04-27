@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.5
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.4...v1.5.5)
+
+### 🩹 Fixes
+
+- **clients/store/CartClient:** Types and response code checks ([7796a68](https://github.com/devite-io/shopware-client/commit/7796a68))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.4
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.3...v1.5.4)
