@@ -16,7 +16,4 @@ export interface CartUpdateItemsRequest {
 }
 export type CartUpdateItemsResponse = Cart;
 
-export interface CartDeleteResponse {
-  success?: boolean;
-}
 export type CartGetOrCreateResponse = Cart;

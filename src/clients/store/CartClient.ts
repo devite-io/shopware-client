@@ -4,7 +4,6 @@ import ShopwareError from "#http/ShopwareError";
 import {
   CartAddItemsRequest,
   CartAddItemsResponse,
-  CartDeleteResponse,
   CartGetOrCreateResponse,
   CartRemoveItemsRequest,
   CartRemoveItemsResponse,
@@ -12,7 +11,6 @@ import {
   CartUpdateItemsResponse
 } from "#types/clients/store/CartClient";
 import type StoreShopwareClient from "../StoreShopwareClient";
-import AuthenticationEntry from "../../auth/entries/AuthenticationEntry";
 import AuthenticationType from "../../auth/AuthenticationType";
 
 class CartClient extends Client {
@@ -36,14 +34,13 @@ class CartClient extends Client {
   /**
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
-  public async deleteCart(): Promise<CartDeleteResponse> {
+  public async deleteCart(): Promise<void> {
     const response = await this.delete(
       "/checkout/cart",
       (this.client as StoreShopwareClient).withContextToken()
     );
 
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as CartDeleteResponse;
+    if (response.statusCode === 204) return;
 
     throw new ShopwareError("Failed to delete cart", response);
   }
