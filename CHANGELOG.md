@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.5.6
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.5...v1.5.6)
+
+### 🩹 Fixes
+
+- **clients/store:** Types ([2de6cda](https://github.com/devite-io/shopware-client/commit/2de6cda))
+
+### 🏡 Chore
+
+- Update dependencies ([9d9fbf9](https://github.com/devite-io/shopware-client/commit/9d9fbf9))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.5
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.4...v1.5.5)
