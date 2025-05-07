@@ -2,6 +2,7 @@ import { Criteria } from "#types/api/global/query/Criteria";
 import { Customer } from "#types/api/store/customer/Customer";
 import { CustomerAddress } from "#types/api/store/customer/address/CustomerAddress";
 import { CustomerGroup } from "#types/api/store";
+import { GenericRecord } from "#types/api/global";
 
 export interface AccountEmailChangeRequest {
   email: string;
@@ -67,6 +68,7 @@ export interface AccountRecoveryExpiryCheckResponse {
 }
 
 export interface AccountUpdateRequest {
+  accountType?: "private" | "business";
   salutationId?: string;
   title?: string;
   firstName: string;
@@ -75,6 +77,8 @@ export interface AccountUpdateRequest {
   birthdayDay?: number;
   birthdayMonth?: number;
   birthdayYear?: number;
+  vatIds?: Array<string>;
+  customFields?: GenericRecord;
 }
 export interface AccountUpdateResponse {
   success?: boolean;
@@ -82,7 +86,7 @@ export interface AccountUpdateResponse {
 
 export interface CustomerRegisterRequest {
   email: string;
-  password: string;
+  password?: string;
   salutationId: string;
   firstName: string;
   lastName: string;
@@ -101,6 +105,7 @@ export interface CustomerRegisterRequest {
   accountType?: "private" | "business";
   company?: string;
   vatIds?: Array<string>;
+  customFields?: GenericRecord;
 }
 export type CustomerRegisterResponse = { accountType: "private" | "business" };
 

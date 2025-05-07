@@ -1,14 +1,19 @@
 import { CalculatedPrice } from "../price/CalculatedPrice";
 import { CartError } from "./CartError";
 import { CartDelivery } from "./delivery/CartDelivery";
-import { LineItem } from "#types/api/store";
+import { CartLineItem } from "#types/api/store";
 
 export interface Cart {
   name?: string;
   token?: string;
   price?: CalculatedPrice;
-  lineItems?: Array<LineItem>;
+  lineItems?: Array<CartLineItem>;
+  source?: string;
+  states?: Array<string>;
+  hash?: string;
   errors?: Array<CartError>;
+  errorHash?: string;
+  extensions?: Record<string, any>;
   deliveries?: Array<CartDelivery>;
   transactions?: Array<{
     paymentMethodId?: string;

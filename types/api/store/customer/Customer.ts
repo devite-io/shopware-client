@@ -40,7 +40,7 @@ export interface Customer {
   readonly reviewCount?: number;
   customFields?: GenericRecord;
   readonly tagIds?: Array<string>;
-  accountType?: string;
+  accountType?: "private" | "business";
   createdById?: string;
   updatedById?: string;
   defaultPaymentMethodId: string;

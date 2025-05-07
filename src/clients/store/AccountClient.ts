@@ -163,7 +163,7 @@ class AccountClient extends Client {
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async getCustomer(request: AccountGetRequest = {}): Promise<AccountGetResponse> {
-    const response = await this.get(
+    const response = await this.post(
       `/account/customer`,
       (this.client as StoreShopwareClient).withContextToken({
         body: new JsonPayload(request)

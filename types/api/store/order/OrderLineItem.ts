@@ -1,4 +1,4 @@
-import { LineItemPayload } from "../lineItem/LineItemPayload";
+import { CartLineItemPayload } from "#types/api/store/cart/lineItem/CartLineItemPayload";
 import { CartPriceQuantity } from "../price/cart/CartPriceQuantity";
 import { GenericRecord } from "#types/api/global/GenericRecord";
 import { Media } from "../media/Media";
@@ -21,7 +21,7 @@ export interface OrderLineItem {
   referencedId?: string;
   quantity: number;
   label: string;
-  payload?: LineItemPayload;
+  payload?: CartLineItemPayload;
   good?: boolean;
   removable?: boolean;
   stackable?: boolean;

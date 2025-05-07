@@ -1,7 +1,6 @@
 export type GenericRecord =
-  | never
-  | null
+  | Record<string, string | number | null | Array<string>>
   | string
-  | Array<string>
   | number
-  | { [key: string]: GenericRecord };
+  | null
+  | Array<string>;

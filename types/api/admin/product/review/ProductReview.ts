@@ -8,6 +8,7 @@ export type ProductReview = StoreApiProductReview & {
   externalUser?: string;
   externalEmail?: string;
   product?: Product;
+  customerId?: string;
   customer?: Customer;
   salesChannel?: SalesChannel;
   language?: Language;

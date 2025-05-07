@@ -1,7 +1,11 @@
 export interface OrderPrice {
   netPrice: number;
   totalPrice: number;
-  calculatedTaxes?: object;
+  calculatedTaxes?: Array<{
+    tax: number;
+    taxRate: number;
+    price: number;
+  }>;
   taxRules?: object;
   positionPrice: number;
   rawTotal: number;

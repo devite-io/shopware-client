@@ -1,4 +1,4 @@
-export type LineItemType =
+export type CartLineItemType =
   | "product"
   | "credit"
   | "custom"

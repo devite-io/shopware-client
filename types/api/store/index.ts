@@ -4,7 +4,6 @@ export * from "./cms";
 export * from "./country";
 export * from "./customer";
 export * from "./document";
-export * from "./lineItem";
 export * from "./link";
 export * from "./locale";
 export * from "./media";

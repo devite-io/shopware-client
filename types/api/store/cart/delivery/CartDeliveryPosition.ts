@@ -1,10 +1,10 @@
 import { CartDeliveryDate } from "./CartDeliveryDate";
-import { LineItem } from "../../lineItem/LineItem";
+import { CartLineItem } from "#types/api/store/cart/lineItem/CartLineItem";
 import { CalculatedPrice } from "../../price/CalculatedPrice";
 
 export interface CartDeliveryPosition {
   deliveryDate?: CartDeliveryDate;
   identifier?: string;
-  lineItem?: LineItem;
+  lineItem?: CartLineItem;
   price?: CalculatedPrice;
 }

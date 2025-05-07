@@ -1,12 +1,13 @@
-import { Media } from "../media/Media";
-import { CartDeliveryInformation } from "../cart/delivery/CartDeliveryInformation";
-import { LineItemPayload } from "./LineItemPayload";
-import { CalculatedPrice } from "../price/CalculatedPrice";
-import { CartPriceQuantity } from "../price/cart/CartPriceQuantity";
-import { LineItemType } from "./LineItemType";
+import { Media } from "../../media/Media";
+import { CartDeliveryInformation } from "../delivery/CartDeliveryInformation";
+import { CartLineItemPayload } from "./CartLineItemPayload";
+import { CalculatedPrice } from "../../price/CalculatedPrice";
+import { CartPriceQuantity } from "../../price/cart/CartPriceQuantity";
+import { CartLineItemType } from "./CartLineItemType";
 
-export interface LineItem {
-  children?: Array<LineItem>;
+export interface CartLineItem {
+  apiAlias: "cart_line_item";
+  children?: Array<CartLineItem>;
   cover?: Media;
   dataContextHash?: string;
   dataTimestamp?: string;
@@ -17,7 +18,7 @@ export interface LineItem {
   label?: string;
   modified?: string;
   modifiedByApp?: boolean;
-  payload?: LineItemPayload;
+  payload?: CartLineItemPayload;
   price?: CalculatedPrice;
   priceDefinition?: CartPriceQuantity;
   quantity?: number;
@@ -30,6 +31,6 @@ export interface LineItem {
   removable?: boolean;
   stackable?: boolean;
   states?: Array<"is-physical" | "is-download">;
-  type: LineItemType;
+  type: CartLineItemType;
   uniqueIdentifier?: string;
 }

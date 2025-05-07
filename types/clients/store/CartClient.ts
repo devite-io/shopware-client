@@ -1,8 +1,8 @@
-import { LineItem } from "#types/api/store/lineItem/LineItem";
+import { CartLineItem } from "#types/api/store/cart/lineItem/CartLineItem";
 import { Cart } from "#types/api/store/cart/Cart";
 
 export interface CartAddItemsRequest {
-  items?: Array<LineItem>;
+  items?: Array<CartLineItem>;
 }
 export type CartAddItemsResponse = Cart;
 
@@ -12,7 +12,7 @@ export interface CartRemoveItemsRequest {
 export type CartRemoveItemsResponse = Cart;
 
 export interface CartUpdateItemsRequest {
-  items?: Array<Partial<LineItem>>;
+  items?: Array<CartLineItem>;
 }
 export type CartUpdateItemsResponse = Cart;
 
