@@ -196,12 +196,9 @@ class AccountClient extends Client {
   public async confirmRecoveryPassword(
     request: AccountPasswordRecoveryRequest
   ): Promise<AccountPasswordRecoveryResponse> {
-    const response = await this.post(
-      `/account/recovery-password-confirm`,
-      (this.client as StoreShopwareClient).withContextToken({
-        body: new JsonPayload(request)
-      })
-    );
+    const response = await this.post(`/account/recovery-password-confirm`, {
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPasswordRecoveryResponse;
@@ -215,12 +212,9 @@ class AccountClient extends Client {
   public async requestPasswordRecoveryMail(
     request: AccountPasswordRecoveryMailRequest
   ): Promise<AccountPasswordRecoveryMailResponse> {
-    const response = await this.post(
-      `/account/recovery-password`,
-      (this.client as StoreShopwareClient).withContextToken({
-        body: new JsonPayload(request)
-      })
-    );
+    const response = await this.post(`/account/recovery-password`, {
+      body: new JsonPayload(request)
+    });
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as AccountPasswordRecoveryMailResponse;
