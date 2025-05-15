@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.7
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.6...v1.5.7)
+
+### 🩹 Fixes
+
+- Don't require context token for password recovery routes ([2488cfe](https://github.com/devite-io/shopware-client/commit/2488cfe))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.6
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.5...v1.5.6)
