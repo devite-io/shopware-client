@@ -27,6 +27,10 @@ class ShopwareClient {
    * @throws {import('ofetch').FetchError} if the request is invalid
    */
   public doRequest(path: string, options?: ClientRequestOptions): Promise<ClientResponse> {
+    if (path.length > 2048) {
+      throw new Error("Path may not exceed 2048 characters");
+    }
+
     const serializedBody: any | undefined = options?.body?.serialize() || undefined;
     let cacheKey: string | null = null;
 
