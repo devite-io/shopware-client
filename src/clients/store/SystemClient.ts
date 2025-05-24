@@ -101,7 +101,8 @@ class SystemClient extends Client {
     request: ShippingMethodListRequest = {},
     onlyAvailable: boolean = false
   ): Promise<ShippingMethodListResponse> {
-    const response = await this.post(`/shipping-method?onlyAvailable=${onlyAvailable ? 1 : 0}`, {
+    const response = await this.post(`/shipping-method`, {
+      query: { onlyAvailable: onlyAvailable ? 1 : 0 },
       body: new JsonPayload(request)
     });
 
@@ -118,7 +119,8 @@ class SystemClient extends Client {
     request: PaymentMethodListRequest = {},
     onlyAvailable: boolean = false
   ): Promise<PaymentMethodListResponse> {
-    const response = await this.post(`/payment-method?onlyAvailable=${onlyAvailable ? 1 : 0}`, {
+    const response = await this.post(`/payment-method`, {
+      query: { onlyAvailable: onlyAvailable ? 1 : 0 },
       body: new JsonPayload(request)
     });
 
