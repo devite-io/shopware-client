@@ -11,8 +11,8 @@ import {
   OrderFromCartResponse,
   OrderListRequest,
   OrderListResponse,
-  OrderPaymentInitiateRequest,
-  OrderPaymentInitiateResponse,
+  OrderPaymentHandleRequest,
+  OrderPaymentHandleResponse,
   OrderUpdatePaymentMethodRequest,
   OrderUpdatePaymentMethodResponse
 } from "#types/clients/store/OrderClient";
@@ -21,17 +21,17 @@ class OrderClient extends Client {
   /**
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
-  public async initiatePayment(
-    request: OrderPaymentInitiateRequest
-  ): Promise<OrderPaymentInitiateResponse> {
+  public async handlePayment(
+    request: OrderPaymentHandleRequest
+  ): Promise<OrderPaymentHandleResponse> {
     const response = await this.post("/handle-payment", {
       body: new JsonPayload(request)
     });
 
     if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as OrderPaymentInitiateResponse;
+      return (response.body as JsonPayload).data as OrderPaymentHandleResponse;
 
-    throw new ShopwareError("Failed to initiate order payment", response);
+    throw new ShopwareError("Failed to handle order payment", response);
   }
 
   /**

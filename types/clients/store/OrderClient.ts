@@ -3,13 +3,13 @@ import { Order } from "#types/api/store/order/Order";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { EntitySearchResult } from "#types/api/store";
 
-export interface OrderPaymentInitiateRequest {
+export interface OrderPaymentHandleRequest {
   orderId: string;
   finishUrl?: string;
   errorUrl?: string;
   paymentDetails?: Record<string, any>;
 }
-export interface OrderPaymentInitiateResponse {
+export interface OrderPaymentHandleResponse {
   redirectUrl: string | null;
 }
 
