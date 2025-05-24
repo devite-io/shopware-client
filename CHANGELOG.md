@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.5.8
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.7...v1.5.8)
+
+### 🩹 Fixes
+
+- Prevent requests with too long paths ([389c35f](https://github.com/devite-io/shopware-client/commit/389c35f))
+
+### 💅 Refactors
+
+- Rename initiatePayment function to match route name ([85d31d6](https://github.com/devite-io/shopware-client/commit/85d31d6))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.7
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.6...v1.5.7)
