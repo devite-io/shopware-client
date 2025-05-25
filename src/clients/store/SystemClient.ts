@@ -17,6 +17,7 @@ import {
   ShippingMethodListRequest,
   ShippingMethodListResponse
 } from "#types/clients/store/SystemClient";
+import type StoreShopwareClient from "../StoreShopwareClient";
 
 class SystemClient extends Client {
   /**
@@ -101,10 +102,13 @@ class SystemClient extends Client {
     request: ShippingMethodListRequest = {},
     onlyAvailable: boolean = false
   ): Promise<ShippingMethodListResponse> {
-    const response = await this.post(`/shipping-method`, {
-      query: { onlyAvailable: onlyAvailable ? 1 : 0 },
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/shipping-method`,
+      (this.client as StoreShopwareClient).withContextToken({
+        query: { onlyAvailable: onlyAvailable ? 1 : 0 },
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as ShippingMethodListResponse;
@@ -119,10 +123,13 @@ class SystemClient extends Client {
     request: PaymentMethodListRequest = {},
     onlyAvailable: boolean = false
   ): Promise<PaymentMethodListResponse> {
-    const response = await this.post(`/payment-method`, {
-      query: { onlyAvailable: onlyAvailable ? 1 : 0 },
-      body: new JsonPayload(request)
-    });
+    const response = await this.post(
+      `/payment-method`,
+      (this.client as StoreShopwareClient).withContextToken({
+        query: { onlyAvailable: onlyAvailable ? 1 : 0 },
+        body: new JsonPayload(request)
+      })
+    );
 
     if (response.statusCode === 200)
       return (response.body as JsonPayload).data as PaymentMethodListResponse;
