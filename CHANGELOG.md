@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.5.9
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.8...v1.5.9)
+
+### 🩹 Fixes
+
+- Add context to shipping and payment method requests ([ec3bd95](https://github.com/devite-io/shopware-client/commit/ec3bd95))
+
+### 💅 Refactors
+
+- Use ClientOptions query for better serialization ([9878e7c](https://github.com/devite-io/shopware-client/commit/9878e7c))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.8
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.7...v1.5.8)
