@@ -7,6 +7,4 @@ export interface ClientRequestOptions {
   query?: Record<string, any>;
   headers?: Record<string, string>;
   body?: Payload<any>;
-  /** @default 0 */
-  maxAge?: number;
 }

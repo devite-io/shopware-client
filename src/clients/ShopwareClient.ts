@@ -1,9 +1,7 @@
 import AuthenticationStore from "#auth/AuthenticationStore";
-import { RequestCacheEntry } from "#types/RequestCacheEntry";
 import { ClientRequestOptions } from "#types/ClientRequestOptions";
 import { ClientResponse } from "#types/ClientResponse";
 import HTTPRequestMethod from "#http/HTTPRequestMethod";
-import { hash } from "ohash";
 import { FetchResponse, ofetch } from "ofetch";
 import Payload from "#payloads/Payload";
 import BinaryPayload from "#payloads/BinaryPayload";
@@ -14,7 +12,6 @@ class ShopwareClient {
   protected readonly baseUrl: string;
 
   public readonly authStore: AuthenticationStore = new AuthenticationStore();
-  public readonly cache: Map<string, RequestCacheEntry> = new Map<string, RequestCacheEntry>();
 
   private languageId: string | undefined;
 
@@ -32,19 +29,6 @@ class ShopwareClient {
     }
 
     const serializedBody: any | undefined = options?.body?.serialize() || undefined;
-    let cacheKey: string | null = null;
-
-    if (options?.maxAge && options.maxAge > 0) {
-      cacheKey =
-        `${options?.method || HTTPRequestMethod.GET}:${path}$` +
-        hash({ ...options?.headers, body: serializedBody });
-
-      const cacheEntry = this.cache.get(cacheKey);
-
-      if (cacheEntry && Date.now() - cacheEntry.cachedAt <= options.maxAge) {
-        return Promise.resolve(cacheEntry.response);
-      }
-    }
 
     return new Promise(async (resolve, reject) =>
       ofetch(this.baseUrl + path, {
@@ -64,13 +48,6 @@ class ShopwareClient {
             headers: response.headers,
             body: await this.parseBody(response)
           };
-
-          if (cacheKey) {
-            this.cache.set(cacheKey, {
-              cachedAt: Date.now(),
-              response: clientResponse
-            });
-          }
 
           resolve(clientResponse);
         },
