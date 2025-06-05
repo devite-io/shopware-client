@@ -1,6 +1,6 @@
 import { SalesChannel } from "./salesChannel/SalesChannel";
 
-export interface SystemConfig {
+export interface SystemConfigEntry {
   id: string;
   configurationKey: string;
   configurationValue: { _value?: string };

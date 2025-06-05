@@ -9,7 +9,7 @@ class Client {
     this.client = client;
   }
 
-  protected doRequest(method: HTTPRequestMethod, path: string, options?: ClientRequestOptions) {
+  public doRequest(method: HTTPRequestMethod, path: string, options?: ClientRequestOptions) {
     return this.client.doRequest(path, { ...options, method });
   }
 

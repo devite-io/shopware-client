@@ -40,6 +40,6 @@ export { Salutation } from "./Salutation";
 export { ScheduledTask } from "./ScheduledTask";
 export { Script } from "./Script";
 export { ShopwarePlugin } from "./ShopwarePlugin";
-export { SystemConfig } from "./SystemConfig";
+export { SystemConfigEntry } from "./SystemConfigEntry";
 export { Tag } from "./Tag";
 export { Unit } from "./Unit";

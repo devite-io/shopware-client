@@ -12,7 +12,7 @@ import { Order } from "../order/Order";
 import { Customer } from "../customer/Customer";
 import { CmsPage } from "../cms/CmsPage";
 import { SalesChannelDomain } from "./SalesChannelDomain";
-import { SystemConfig } from "../SystemConfig";
+import { SystemConfigEntry } from "../SystemConfigEntry";
 import { Category } from "../category/Category";
 import { ProductVisibility } from "../product/ProductVisibility";
 import { MailHeaderFooter } from "../mail/MailHeaderFooter";
@@ -75,7 +75,7 @@ export type SalesChannel = StoreApiSalesChannel & {
   customers?: Array<Customer>;
   homeCmsPage?: CmsPage;
   domains?: Array<SalesChannelDomain>;
-  systemConfigs?: Array<SystemConfig>;
+  systemConfigs?: Array<SystemConfigEntry>;
   navigationCategory?: Category;
   footerCategory?: Category;
   serviceCategory?: Category;
