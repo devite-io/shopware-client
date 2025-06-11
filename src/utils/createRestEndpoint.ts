@@ -60,7 +60,7 @@ export default function createRestEndpoint<T>(
       requestEndpoint<{ total: number; data: Array<T> }>(
         client,
         HTTPRequestMethod.POST,
-        `/${resourceIdentifier}/search`,
+        `/search/${resourceIdentifier}`,
         200,
         `search ${dataName}`,
         undefined,
