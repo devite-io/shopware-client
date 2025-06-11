@@ -1,7 +1,7 @@
 import Payload from "./Payload";
 
 class HtmlPayload extends Payload<string> {
-  public static CONTENT_TYPE: string = "text/html";
+  public static CONTENT_TYPES: string[] = ["text/html"];
   public data?: string;
 
   constructor(data?: string) {
@@ -9,8 +9,8 @@ class HtmlPayload extends Payload<string> {
     this.data = data;
   }
 
-  public contentType(): string {
-    return HtmlPayload.CONTENT_TYPE;
+  public contentTypes(): string[] {
+    return HtmlPayload.CONTENT_TYPES;
   }
 
   /**

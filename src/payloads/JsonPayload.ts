@@ -1,7 +1,7 @@
 import Payload from "./Payload";
 
 class JsonPayload extends Payload<string> {
-  public static CONTENT_TYPE: string = "application/json";
+  public static CONTENT_TYPES: string[] = ["application/json"];
   public data?: object;
 
   constructor(data?: object) {
@@ -9,8 +9,8 @@ class JsonPayload extends Payload<string> {
     this.data = data;
   }
 
-  public contentType(): string {
-    return JsonPayload.CONTENT_TYPE;
+  public contentTypes(): string[] {
+    return JsonPayload.CONTENT_TYPES;
   }
 
   /**

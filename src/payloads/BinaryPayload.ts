@@ -1,7 +1,7 @@
 import Payload from "./Payload";
 
 class BinaryPayload extends Payload<Blob> {
-  public static CONTENT_TYPE: string = "application/octet-stream";
+  public static CONTENT_TYPES: string[] = ["application/octet-stream", "application/pdf"];
   public data?: Blob;
 
   constructor(data?: Blob) {
@@ -9,8 +9,8 @@ class BinaryPayload extends Payload<Blob> {
     this.data = data;
   }
 
-  public contentType(): string {
-    return BinaryPayload.CONTENT_TYPE;
+  public contentTypes(): string[] {
+    return BinaryPayload.CONTENT_TYPES;
   }
 
   /**

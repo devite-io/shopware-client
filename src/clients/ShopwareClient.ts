@@ -35,7 +35,7 @@ class ShopwareClient {
         method: options?.method || HTTPRequestMethod.GET,
         query: options?.query,
         headers: {
-          ...(options?.body ? { "Content-Type": options.body.contentType() } : {}),
+          ...(options?.body ? { "Content-Type": options.body.contentTypes()[0] } : {}),
           ...(this.languageId ? { "sw-language-id": this.languageId } : {}),
           ...options?.headers
         },
@@ -68,16 +68,14 @@ class ShopwareClient {
     const contentType = response.headers.get("Content-Type")?.split(";")[0];
     let payload = undefined;
 
-    switch (contentType) {
-      case BinaryPayload.CONTENT_TYPE:
+    if (contentType) {
+      if (BinaryPayload.CONTENT_TYPES.includes(contentType)) {
         payload = new BinaryPayload();
-        break;
-      case JsonPayload.CONTENT_TYPE:
+      } else if (JsonPayload.CONTENT_TYPES.includes(contentType)) {
         payload = new JsonPayload();
-        break;
-      case HtmlPayload.CONTENT_TYPE:
+      } else if (HtmlPayload.CONTENT_TYPES.includes(contentType)) {
         payload = new HtmlPayload();
-        break;
+      }
     }
 
     if (payload && response._data) await payload.deserialize(response._data);
