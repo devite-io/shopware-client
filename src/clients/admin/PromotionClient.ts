@@ -8,8 +8,8 @@ import { PromotionSetGroup } from "#types/api/admin/promotion/PromotionSetGroup"
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class PromotionClient extends Client {
-  public promotions = createRestEndpoint<Promotion>(this, "/promotion", "promotion");
-  public discounts = createRestEndpoint<PromotionDiscount>(this, "/promotion-discount", "discount");
+  public promotions = createRestEndpoint<Promotion>(this, "promotion", "promotion");
+  public discounts = createRestEndpoint<PromotionDiscount>(this, "promotion-discount", "discount");
   public discountPrices = createRestEndpoint<PromotionDiscountPrice>(
     this,
     "promotion-discount-price",

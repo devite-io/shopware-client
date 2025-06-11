@@ -6,10 +6,10 @@ import { UserRecovery } from "#types/api/admin/user/UserRecovery";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class UserClient extends Client {
-  public users = createRestEndpoint<User>(this, "/user", "user");
+  public users = createRestEndpoint<User>(this, "user", "user");
   public accessKeys = createRestEndpoint<UserAccessKey>(this, "user-access-key", "user access key");
-  public userConfigs = createRestEndpoint<UserConfig>(this, "/user-config", "user config");
-  public userRecoveries = createRestEndpoint<UserRecovery>(this, "/user-recovery", "user recovery");
+  public userConfigs = createRestEndpoint<UserConfig>(this, "user-config", "user config");
+  public userRecoveries = createRestEndpoint<UserRecovery>(this, "user-recovery", "user recovery");
 }
 
 export default UserClient;

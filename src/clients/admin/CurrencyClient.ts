@@ -4,7 +4,7 @@ import { CurrencyCountryRounding } from "#types/api/admin/currency/CurrencyCount
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class CountryClient extends Client {
-  public currencies = createRestEndpoint<Currency>(this, "/currency", "currency");
+  public currencies = createRestEndpoint<Currency>(this, "currency", "currency");
   public currencyRoundings = createRestEndpoint<CurrencyCountryRounding>(
     this,
     "currency-country-rounding",

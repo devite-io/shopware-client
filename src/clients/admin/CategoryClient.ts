@@ -4,8 +4,8 @@ import { MainCategory } from "#types/api/admin/category/MainCategory";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class CategoryClient extends Client {
-  public categories = createRestEndpoint<Category>(this, "/category", "category");
-  public mainCategories = createRestEndpoint<MainCategory>(this, "/main-category", "main category");
+  public categories = createRestEndpoint<Category>(this, "category", "category");
+  public mainCategories = createRestEndpoint<MainCategory>(this, "main-category", "main category");
 }
 
 export default CategoryClient;

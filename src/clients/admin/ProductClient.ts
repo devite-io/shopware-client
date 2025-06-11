@@ -21,7 +21,7 @@ import { ProductVisibility } from "#types/api/admin/product/ProductVisibility";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class ProductClient extends Client {
-  public products = createRestEndpoint<Product>(this, "/product", "product");
+  public products = createRestEndpoint<Product>(this, "product", "product");
   public configuratorSettings = createRestEndpoint<ProductConfiguratorSetting>(
     this,
     "product-configurator-setting",
@@ -42,7 +42,7 @@ class ProductClient extends Client {
     "product-download",
     "product download"
   );
-  public exports = createRestEndpoint<ProductExport>(this, "/product-export", "product export");
+  public exports = createRestEndpoint<ProductExport>(this, "product-export", "product export");
   public featureSets = createRestEndpoint<ProductFeatureSet>(
     this,
     "product-feature-set",
@@ -58,9 +58,9 @@ class ProductClient extends Client {
     "product-manufacturer",
     "product manufacturer"
   );
-  public media = createRestEndpoint<ProductMedia>(this, "/product-media", "product media");
-  public prices = createRestEndpoint<ProductPrice>(this, "/product-price", "product price");
-  public reviews = createRestEndpoint<ProductReview>(this, "/product-review", "product review");
+  public media = createRestEndpoint<ProductMedia>(this, "product-media", "product media");
+  public prices = createRestEndpoint<ProductPrice>(this, "product-price", "product price");
+  public reviews = createRestEndpoint<ProductReview>(this, "product-review", "product review");
   public searchConfigs = createRestEndpoint<ProductSearchConfig>(
     this,
     "product-search-config",
@@ -76,8 +76,8 @@ class ProductClient extends Client {
     "product-search-keyword",
     "product search keyword"
   );
-  public sortings = createRestEndpoint<ProductSorting>(this, "/product-sorting", "product sorting");
-  public streams = createRestEndpoint<ProductStream>(this, "/product-stream", "product stream");
+  public sortings = createRestEndpoint<ProductSorting>(this, "product-sorting", "product sorting");
+  public streams = createRestEndpoint<ProductStream>(this, "product-stream", "product stream");
   public streamFilters = createRestEndpoint<ProductStreamFilter>(
     this,
     "product-stream-filter",

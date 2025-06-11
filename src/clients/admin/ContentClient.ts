@@ -8,11 +8,11 @@ import { Theme } from "#types/api/admin/theme/Theme";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class ContentClient extends Client {
-  public cmsBlocks = createRestEndpoint<CmsBlock>(this, "/cms-block", "cms block");
-  public cmsPages = createRestEndpoint<CmsPage>(this, "/cms-page", "cms page");
-  public cmsSections = createRestEndpoint<CmsSection>(this, "/cms-section", "cms section");
-  public cmsSlots = createRestEndpoint<CmsSlot>(this, "/cms-slot", "cms slot");
-  public landingPages = createRestEndpoint<LandingPage>(this, "/landing-page", "landing page");
-  public themes = createRestEndpoint<Theme>(this, "/theme", "theme");
+  public cmsBlocks = createRestEndpoint<CmsBlock>(this, "cms-block", "cms block");
+  public cmsPages = createRestEndpoint<CmsPage>(this, "cms-page", "cms page");
+  public cmsSections = createRestEndpoint<CmsSection>(this, "cms-section", "cms section");
+  public cmsSlots = createRestEndpoint<CmsSlot>(this, "cms-slot", "cms slot");
+  public landingPages = createRestEndpoint<LandingPage>(this, "landing-page", "landing page");
+  public themes = createRestEndpoint<Theme>(this, "theme", "theme");
 }
 export default ContentClient;

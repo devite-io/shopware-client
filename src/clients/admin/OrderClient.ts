@@ -6,7 +6,6 @@ import {
   DocumentListCreateRequest,
   DownloadMergedRequest,
   DownloadMergedResponse,
-  DownloadResponse,
   StateTransitionRequest,
   StateTransitionResponse
 } from "#types/clients/admin/OrderClient";
@@ -38,7 +37,7 @@ class OrderClient extends Client {
     if (response.statusCode === 200)
       return (response.body as BinaryPayload).data as DownloadMergedResponse;
 
-    throw new ShopwareError("Failed to download merged document", response);
+    throw new ShopwareError("Failed to download merged documents", response);
   }
 
   /**
@@ -57,25 +56,6 @@ class OrderClient extends Client {
     if (response.statusCode === 200) return;
 
     throw new ShopwareError("Failed to create documents", response);
-  }
-
-  /**
-   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
-   */
-  public async download(
-    id: string,
-    deepLinkCode: string,
-    download?: boolean
-  ): Promise<DownloadResponse> {
-    const response = await this.get(`/_action/document/${id}/download/${deepLinkCode}`, {
-      query: { download },
-      headers: { Accept: "application/octet-stream" }
-    });
-
-    if (response.statusCode === 200)
-      return (response.body as BinaryPayload).data as DownloadResponse;
-
-    throw new ShopwareError("Failed to download merged document", response);
   }
 
   /** Order Management **/
@@ -162,16 +142,16 @@ class OrderClient extends Client {
 
   /** Rest Endpoints **/
 
-  public orders = createRestEndpoint<Order>(this, "/order", "order");
-  public addresses = createRestEndpoint<OrderAddress>(this, "/order-address", "order address");
-  public customers = createRestEndpoint<OrderCustomer>(this, "/order-customer", "order customer");
-  public deliveries = createRestEndpoint<OrderDelivery>(this, "/order-delivery", "order delivery");
+  public orders = createRestEndpoint<Order>(this, "order", "order");
+  public addresses = createRestEndpoint<OrderAddress>(this, "order-address", "order address");
+  public customers = createRestEndpoint<OrderCustomer>(this, "order-customer", "order customer");
+  public deliveries = createRestEndpoint<OrderDelivery>(this, "order-delivery", "order delivery");
   public deliveryPositions = createRestEndpoint<OrderDeliveryPosition>(
     this,
     "order-delivery-position",
     "order delivery position"
   );
-  public lineItems = createRestEndpoint<OrderLineItem>(this, "/order-line-item", "order line item");
+  public lineItems = createRestEndpoint<OrderLineItem>(this, "order-line-item", "order line item");
   public lineItemDownloads = createRestEndpoint<OrderLineItemDownload>(
     this,
     "order-line-item-download",

@@ -12,7 +12,7 @@ import { AppTemplate } from "#types/api/admin/app/AppTemplate";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class AppClient extends Client {
-  public apps = createRestEndpoint<App>(this, "/app", "app");
+  public apps = createRestEndpoint<App>(this, "app", "app");
   public actionButtons = createRestEndpoint<AppActionButton>(
     this,
     "app-action-button",
@@ -23,13 +23,13 @@ class AppClient extends Client {
     "app-administration-snippet",
     "app administration snippet"
   );
-  public cmsBlocks = createRestEndpoint<AppCmsBlock>(this, "/app-cms-block", "app cms block");
+  public cmsBlocks = createRestEndpoint<AppCmsBlock>(this, "app-cms-block", "app cms block");
   public flowActions = createRestEndpoint<AppFlowAction>(
     this,
     "app-flow-action",
     "app flow action"
   );
-  public flowEvents = createRestEndpoint<AppFlowEvent>(this, "/app-flow-event", "app flow event");
+  public flowEvents = createRestEndpoint<AppFlowEvent>(this, "app-flow-event", "app flow event");
   public paymentMethods = createRestEndpoint<AppPaymentMethod>(
     this,
     "app-payment-method",
@@ -45,7 +45,7 @@ class AppClient extends Client {
     "app-shipping-method",
     "app shipping method"
   );
-  public templates = createRestEndpoint<AppTemplate>(this, "/app-template", "app template");
+  public templates = createRestEndpoint<AppTemplate>(this, "app-template", "app template");
 }
 
 export default AppClient;

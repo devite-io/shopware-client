@@ -252,8 +252,8 @@ class SystemClient extends Client {
 
   /** Rest Endpoints **/
 
-  public logsEntries = createRestEndpoint<LogEntry>(this, "/log-entry", "log entry");
-  public notifications = createRestEndpoint<Notification>(this, "/notification", "notification");
+  public logsEntries = createRestEndpoint<LogEntry>(this, "log-entry", "log entry");
+  public notifications = createRestEndpoint<Notification>(this, "notification", "notification");
   public configEntries = createRestEndpoint<SystemConfigEntry>(
     this,
     "system-config",

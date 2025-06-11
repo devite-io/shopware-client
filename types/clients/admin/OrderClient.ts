@@ -17,8 +17,6 @@ export type DocumentListCreateRequest = Array<{
   config?: ShopwareDocumentBaseConfig;
 }>;
 
-export type DownloadResponse = Blob;
-
 /** Order Management **/
 
 export interface StateTransitionRequest {

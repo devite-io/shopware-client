@@ -57,13 +57,13 @@ class MediaClient extends Client {
 
   /** Rest Endpoints **/
 
-  public media = createRestEndpoint<Media>(this, "/media", "media");
+  public media = createRestEndpoint<Media>(this, "media", "media");
   public defaultFolders = createRestEndpoint<MediaDefaultFolder>(
     this,
     "media-default-folder",
     "default media folder"
   );
-  public folders = createRestEndpoint<MediaFolder>(this, "/media-folder", "media folder");
+  public folders = createRestEndpoint<MediaFolder>(this, "media-folder", "media folder");
   public folderConfigs = createRestEndpoint<MediaFolderConfiguration>(
     this,
     "media-folder-configuration",

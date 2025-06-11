@@ -6,7 +6,7 @@ import { CustomField } from "#types/api/admin/custom/field/CustomField";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class CustomDataClient extends Client {
-  public entities = createRestEndpoint<CustomEntity>(this, "/custom-entity", "custom entity");
+  public entities = createRestEndpoint<CustomEntity>(this, "custom-entity", "custom entity");
   public fieldSets = createRestEndpoint<CustomFieldSet>(
     this,
     "custom-field-set",
@@ -17,7 +17,7 @@ class CustomDataClient extends Client {
     "custom-field-set-relation",
     "custom field set relation"
   );
-  public fields = createRestEndpoint<CustomField>(this, "/custom-field", "custom field");
+  public fields = createRestEndpoint<CustomField>(this, "custom-field", "custom field");
 }
 
 export default CustomDataClient;

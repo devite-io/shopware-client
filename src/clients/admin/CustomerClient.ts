@@ -36,9 +36,9 @@ class CustomerClient extends Client {
 
   /** Rest Endpoints **/
 
-  public customers = createRestEndpoint<Customer>(this, "/customer", "customer");
-  public addresses = createRestEndpoint<CustomerAddress>(this, "/address", "customer address");
-  public groups = createRestEndpoint<CustomerGroup>(this, "/customer-group", "customer group");
+  public customers = createRestEndpoint<Customer>(this, "customer", "customer");
+  public addresses = createRestEndpoint<CustomerAddress>(this, "address", "customer address");
+  public groups = createRestEndpoint<CustomerGroup>(this, "customer-group", "customer group");
   public recoveries = createRestEndpoint<CustomerRecovery>(
     this,
     "customer-recovery",

@@ -6,7 +6,7 @@ import { NumberRangeType } from "#types/api/admin/numberRange/NumberRangeType";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class NumberRangeClient extends Client {
-  public numberRanges = createRestEndpoint<NumberRange>(this, "/number-range", "number range");
+  public numberRanges = createRestEndpoint<NumberRange>(this, "number-range", "number range");
   public numberRangeSalesChannels = createRestEndpoint<NumberRangeSalesChannel>(
     this,
     "number-range-sales-channel",

@@ -4,8 +4,8 @@ import { RuleCondition } from "#types/api/admin/rule/RuleCondition";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class RuleClient extends Client {
-  public rules = createRestEndpoint<Rule>(this, "/rule", "rule");
-  public conditions = createRestEndpoint<RuleCondition>(this, "/rule-condition", "rule condition");
+  public rules = createRestEndpoint<Rule>(this, "rule", "rule");
+  public conditions = createRestEndpoint<RuleCondition>(this, "rule-condition", "rule condition");
 }
 
 export default RuleClient;

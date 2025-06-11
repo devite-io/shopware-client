@@ -1,7 +1,11 @@
 import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import ShopwareError from "#http/ShopwareError";
-import { NumberReservationResponse, UploadResponse } from "#types/clients/admin/DocumentClient";
+import {
+  NumberReservationResponse,
+  UploadResponse,
+  DownloadResponse
+} from "#types/clients/admin/DocumentClient";
 import BinaryPayload from "../../payloads/BinaryPayload";
 import { ShopwareDocument } from "#types/api/admin/document/ShopwareDocument";
 import { ShopwareDocumentType } from "#types/api/admin/document/ShopwareDocumentType";
@@ -76,9 +80,36 @@ class DocumentClient extends Client {
     throw new ShopwareError("Failed to upload file from url", response);
   }
 
+  /**
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
+   */
+  public async download(
+    id: string,
+    deepLinkCode: string,
+    download?: boolean,
+    fileType?: string
+  ): Promise<DownloadResponse> {
+    const response = await this.get(`/_action/document/${id}/${deepLinkCode}`, {
+      query: { download, fileType },
+      headers: {
+        Accept:
+          fileType === "pdf"
+            ? "application/pdf"
+            : fileType === "html"
+              ? "text/html"
+              : "application/octet-stream"
+      }
+    });
+
+    if (response.statusCode === 200)
+      return (response.body as BinaryPayload).data as DownloadResponse;
+
+    throw new ShopwareError("Failed to download document", response);
+  }
+
   /** Rest Endpoints **/
 
-  public documents = createRestEndpoint<ShopwareDocument>(this, "/document", "document");
+  public documents = createRestEndpoint<ShopwareDocument>(this, "document", "document");
   public documentTypes = createRestEndpoint<ShopwareDocumentType>(
     this,
     "document-type",

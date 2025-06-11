@@ -4,7 +4,7 @@ import { SeoUrlTemplate } from "#types/api/admin/seo/SeoUrlTemplate";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class SeoClient extends Client {
-  public urls = createRestEndpoint<SeoUrl>(this, "/seo-url", "seo url");
+  public urls = createRestEndpoint<SeoUrl>(this, "seo-url", "seo url");
   public urlTemplates = createRestEndpoint<SeoUrlTemplate>(
     this,
     "seo-url-template",

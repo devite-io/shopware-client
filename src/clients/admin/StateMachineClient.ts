@@ -5,7 +5,7 @@ import { StateMachineTransition } from "#types/api/admin/stateMachine/StateMachi
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class StateMachineClient extends Client {
-  public stateMachines = createRestEndpoint<StateMachine>(this, "/state-machine", "state machine");
+  public stateMachines = createRestEndpoint<StateMachine>(this, "state-machine", "state machine");
   public states = createRestEndpoint<StateMachineState>(
     this,
     "state-machine-state",

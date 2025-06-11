@@ -6,7 +6,7 @@ import { SalesChannelType } from "#types/api/admin/salesChannel/SalesChannelType
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class SalesChannelClient extends Client {
-  public salesChannels = createRestEndpoint<SalesChannel>(this, "/sales-channel", "sales channel");
+  public salesChannels = createRestEndpoint<SalesChannel>(this, "sales-channel", "sales channel");
   public analytics = createRestEndpoint<SalesChannelAnalytics>(
     this,
     "sales-channel-analytics",
