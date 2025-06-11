@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.6.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.6.0...v1.6.1)
+
+### 🩹 Fixes
+
+- Document download routes ([d8f161e](https://github.com/devite-io/shopware-client/commit/d8f161e))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.6.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.9...v1.6.0)
