@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.6.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.9...v1.6.0)
+
+### 🚀 Enhancements
+
+- Remove caching ([93e6545](https://github.com/devite-io/shopware-client/commit/93e6545))
+
+### 🩹 Fixes
+
+- Add authentication + fix parameter order + fix payload creation ([98bdcc6](https://github.com/devite-io/shopware-client/commit/98bdcc6))
+
+### 💅 Refactors
+
+- Unify rest endpoint code ([86894c7](https://github.com/devite-io/shopware-client/commit/86894c7))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.5.9
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.5.8...v1.5.9)
