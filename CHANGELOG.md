@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.7.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.6.1...v1.7.0)
+
+### 🚀 Enhancements
+
+- Add guest download route ([4260334](https://github.com/devite-io/shopware-client/commit/4260334))
+
+### 🩹 Fixes
+
+- Search routes ([0f52d8e](https://github.com/devite-io/shopware-client/commit/0f52d8e))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.6.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.6.0...v1.6.1)
