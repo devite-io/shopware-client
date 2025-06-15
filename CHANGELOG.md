@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.7.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.0...v1.7.1)
+
+### 🩹 Fixes
+
+- Remove context token from guest request ([e278478](https://github.com/devite-io/shopware-client/commit/e278478))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.6.1...v1.7.0)
