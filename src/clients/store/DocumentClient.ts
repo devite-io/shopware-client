@@ -30,15 +30,12 @@ class DocumentClient extends Client {
     email: string,
     billingAddressZipCode: string
   ): Promise<DocumentDownloadResponse> {
-    const response = await this.post(
-      `/document/download/${id}/${deepLinkCode}`,
-      (this.client as StoreShopwareClient).withContextToken({
-        body: new JsonPayload({
-          email,
-          zipcode: billingAddressZipCode
-        })
+    const response = await this.post(`/document/download/${id}/${deepLinkCode}`, {
+      body: new JsonPayload({
+        email,
+        zipcode: billingAddressZipCode
       })
-    );
+    });
 
     if (response.statusCode === 200)
       return (response.body as BinaryPayload).data as DocumentDownloadResponse;
