@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.7.2
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.1...v1.7.2)
+
+### 🩹 Fixes
+
+- Expected response codes ([69f3e32](https://github.com/devite-io/shopware-client/commit/69f3e32))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.0...v1.7.1)
