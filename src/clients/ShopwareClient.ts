@@ -60,7 +60,7 @@ class ShopwareClient {
             body: await this.parseBody(response)
           });
         }
-      })
+      }).catch(() => undefined)
     );
   }
 
