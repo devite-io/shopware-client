@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.7.3
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.2...v1.7.3)
+
+### 🩹 Fixes
+
+- Unhandled rejections ([d91ee61](https://github.com/devite-io/shopware-client/commit/d91ee61))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.2
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.1...v1.7.2)
