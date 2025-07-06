@@ -78,7 +78,7 @@ export default function createRestEndpoint<T>(
         client,
         HTTPRequestMethod.POST,
         `/${resourceIdentifier}`,
-        201,
+        responseDetails === "detail" ? 200 : 204,
         `create ${dataName}`,
         { _response: responseDetails },
         new JsonPayload(data)
@@ -110,7 +110,7 @@ export default function createRestEndpoint<T>(
         client,
         HTTPRequestMethod.PATCH,
         `/${resourceIdentifier}/${id}`,
-        200,
+        responseDetails === "detail" ? 200 : 204,
         `update ${dataName} with id ${id}`,
         { _response: responseDetails },
         new JsonPayload(data)
