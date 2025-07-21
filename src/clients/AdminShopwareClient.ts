@@ -3,6 +3,7 @@ import { ClientRequestOptions } from "#types/ClientRequestOptions";
 import { ClientResponse } from "#types/ClientResponse";
 import { OAuthScope } from "#types/OAuthScope";
 import HTTPRequestMethod from "#http/HTTPRequestMethod";
+import ShopwareError from "#http/ShopwareError";
 import JsonPayload from "#payloads/JsonPayload";
 import OAuthEntry from "#auth/entries/OAuthEntry";
 import AuthenticationType from "#auth/AuthenticationType";
@@ -74,6 +75,9 @@ class AdminShopwareClient extends ShopwareClient {
       })
     });
 
+    if (authResponse.statusCode !== 200)
+      throw new ShopwareError("Authentication as client failed", authResponse);
+
     this.authStore.getOrCreateEntry(new OAuthEntry()).save(authResponse);
   }
 
@@ -94,6 +98,9 @@ class AdminShopwareClient extends ShopwareClient {
         password
       })
     });
+
+    if (authResponse.statusCode !== 200)
+      throw new ShopwareError("Authentication as user failed", authResponse);
 
     this.authStore.getOrCreateEntry(new OAuthEntry()).save(authResponse);
   }
