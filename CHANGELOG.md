@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.7.4
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.3...v1.7.4)
+
+### 🩹 Fixes
+
+- Throw error if auth failed ([0459796](https://github.com/devite-io/shopware-client/commit/0459796))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.3
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.2...v1.7.3)
