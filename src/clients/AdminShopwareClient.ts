@@ -48,29 +48,25 @@ import UserClient from "./admin/UserClient";
 import WebhookClient from "./admin/WebhookClient";
 
 class AdminShopwareClient extends ShopwareClient {
-  private clientId: string | null = null;
+  public clientId: string | "administration";
 
-  constructor(baseUrl: string) {
+  constructor(baseUrl: string, clientId: string | "administration") {
     super(baseUrl + "/api");
+
+    this.clientId = clientId;
   }
 
   public async doRequest(path: string, options?: ClientRequestOptions): Promise<ClientResponse> {
     return await super.doRequest(path, await this.withOAuth(options));
   }
 
-  public async authenticateAsClient(
-    clientId: string,
-    clientSecret: string,
-    scopes: OAuthScope
-  ): Promise<void> {
-    this.clientId = clientId;
-
+  public async authenticateAsClient(clientSecret: string, scope: OAuthScope): Promise<void> {
     const authResponse = await super.doRequest("/oauth/token", {
       method: HTTPRequestMethod.POST,
       body: new JsonPayload({
         grant_type: "client_credentials",
-        scopes,
-        client_id: clientId,
+        scope,
+        client_id: this.clientId,
         client_secret: clientSecret
       })
     });
@@ -84,7 +80,7 @@ class AdminShopwareClient extends ShopwareClient {
   public async authenticateAsUser(
     username: string,
     password: string,
-    scopes: OAuthScope
+    scope: OAuthScope
   ): Promise<void> {
     this.clientId = "administration";
 
@@ -93,7 +89,7 @@ class AdminShopwareClient extends ShopwareClient {
       body: new JsonPayload({
         grant_type: "password",
         client_id: this.clientId,
-        scopes,
+        scope,
         username,
         password
       })
