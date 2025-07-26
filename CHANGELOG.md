@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.7.5
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.4...v1.7.5)
+
+### 🩹 Fixes
+
+- Oauth client id and scope ([da189ff](https://github.com/devite-io/shopware-client/commit/da189ff))
+
+### 🏡 Chore
+
+- Update dependencies ([e4594fd](https://github.com/devite-io/shopware-client/commit/e4594fd))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.4
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.3...v1.7.4)
