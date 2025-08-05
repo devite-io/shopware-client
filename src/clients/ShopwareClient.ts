@@ -75,6 +75,8 @@ class ShopwareClient {
         payload = new JsonPayload();
       } else if (HtmlPayload.CONTENT_TYPES.includes(contentType)) {
         payload = new HtmlPayload();
+      } else {
+        console.warn("Unsupported content type:", contentType);
       }
     }
 

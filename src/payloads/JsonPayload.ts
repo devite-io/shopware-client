@@ -1,7 +1,7 @@
 import Payload from "./Payload";
 
 class JsonPayload extends Payload<string> {
-  public static CONTENT_TYPES: string[] = ["application/json"];
+  public static CONTENT_TYPES: string[] = ["application/json", "application/vnd.api+json"];
   public data?: object;
 
   constructor(data?: object) {
