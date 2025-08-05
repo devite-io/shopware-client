@@ -121,9 +121,12 @@ class AdminShopwareClient extends ShopwareClient {
           })
         });
 
-        entry.save(refreshResponse);
-
-        entryHeaders = entry.load().headers;
+        if (refreshResponse.statusCode === 200) {
+          entry.save(refreshResponse);
+          entryHeaders = entry.load().headers;
+        } else {
+          entry.clear();
+        }
       } else throw error;
     }
 
