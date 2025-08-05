@@ -2,9 +2,9 @@ export interface RangeFilter {
   type: "range";
   field: string;
   parameters: {
-    gte?: number;
-    gt?: number;
-    lte?: number;
-    lt?: number;
+    gte?: number | string;
+    gt?: number | string;
+    lte?: number | string;
+    lt?: number | string;
   };
 }
