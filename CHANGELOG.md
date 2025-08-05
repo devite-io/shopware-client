@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v1.7.6
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.5...v1.7.6)
+
+### 🩹 Fixes
+
+- Also accept vnd.api+json content type for json responses ([fb174bb](https://github.com/devite-io/shopware-client/commit/fb174bb))
+- Allow string values for range filter ([918e6c2](https://github.com/devite-io/shopware-client/commit/918e6c2))
+- Prevent errors if refresh request fails ([12ea2e7](https://github.com/devite-io/shopware-client/commit/12ea2e7))
+
+### 🏡 Chore
+
+- Add qs types ([f7bb2ef](https://github.com/devite-io/shopware-client/commit/f7bb2ef))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.5
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.4...v1.7.5)
