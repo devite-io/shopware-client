@@ -64,13 +64,13 @@ class MailClient extends Client {
 
   public headerFooters = createRestEndpoint<MailHeaderFooter>(
     this,
-    "header-footer",
+    "mail-header-footer",
     "mail header/footer"
   );
-  public templates = createRestEndpoint<MailTemplate>(this, "template", "mail template");
+  public templates = createRestEndpoint<MailTemplate>(this, "mail-template", "mail template");
   public templateTypes = createRestEndpoint<MailTemplateType>(
     this,
-    "template-type",
+    "mail-template-type",
     "mail template type"
   );
 }
