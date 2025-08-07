@@ -26,7 +26,7 @@ import { CalculatedPrice } from "#types/api/store/price/CalculatedPrice";
 
 export type Product = StoreApiProduct & {
   featureSetId?: string;
-  price?: CalculatedPrice;
+  price?: Array<CalculatedPrice>;
   readonly autoIncrement?: number;
   variantRestrictions?: object;
   purchasePrices?: Array<CalculatedPrice>;
