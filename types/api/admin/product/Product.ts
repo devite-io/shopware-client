@@ -23,10 +23,11 @@ import { ProductStream } from "./stream/ProductStream";
 import { Tag } from "../Tag";
 import { CustomFieldSet } from "../custom/field/set/CustomFieldSet";
 import { CalculatedPrice } from "#types/api/store/price/CalculatedPrice";
+import { Price } from "#types/api/global";
 
 export type Product = StoreApiProduct & {
   featureSetId?: string;
-  price?: Array<CalculatedPrice>;
+  price?: Array<Price>;
   readonly autoIncrement?: number;
   variantRestrictions?: object;
   purchasePrices?: Array<CalculatedPrice>;
