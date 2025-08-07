@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.7.8
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.7...v1.7.8)
+
+### 🩹 Fixes
+
+- Customer address resource name ([449f9de](https://github.com/devite-io/shopware-client/commit/449f9de))
+- Product prices field type ([c4f1b29](https://github.com/devite-io/shopware-client/commit/c4f1b29))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.7
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.6...v1.7.7)
