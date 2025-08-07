@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.7.7
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.6...v1.7.7)
+
+### 🩹 Fixes
+
+- Mail template resources ([feafcd7](https://github.com/devite-io/shopware-client/commit/feafcd7))
+- Product type ([d67b3a0](https://github.com/devite-io/shopware-client/commit/d67b3a0))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.6
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.5...v1.7.6)
