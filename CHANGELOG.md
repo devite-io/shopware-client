@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.7.9
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.8...v1.7.9)
+
+### 🩹 Fixes
+
+- Types + reserveNumber request method ([fff3273](https://github.com/devite-io/shopware-client/commit/fff3273))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.8
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.7...v1.7.8)
