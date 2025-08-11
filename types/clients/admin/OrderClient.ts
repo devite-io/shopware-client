@@ -10,12 +10,18 @@ export type DownloadMergedResponse = Blob;
 
 export type DocumentListCreateRequest = Array<{
   orderId: string;
-  type: string;
   fileType?: string;
-  static: boolean;
+  documentNumber?: string;
+  documentDate?: string;
   referencedDocumentId?: string;
   config?: ShopwareDocumentBaseConfig;
+  custom?: Record<string, any>;
 }>;
+
+export type DocumentListCreateResponse = {
+  data: Array<{ documentId: string; a11yDocumentId?: string }>;
+  errors: Array<{ code?: string; detail?: string }>;
+};
 
 /** Order Management **/
 

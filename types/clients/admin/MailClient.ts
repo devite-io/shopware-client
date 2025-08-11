@@ -18,6 +18,8 @@ export interface MailSendRequest {
   recipientsCc?: Record<string, string>;
   replyTo?: Record<string, string>;
   returnPath?: Record<string, string>;
+  documentIds?: Array<string>;
+  mailTemplateData?: Record<string, any>;
 }
 export interface MailSendResponse {
   size?: number;

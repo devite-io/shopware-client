@@ -4,6 +4,7 @@ import Client from "../Client";
 import ShopwareError from "#http/ShopwareError";
 import {
   DocumentListCreateRequest,
+  DocumentListCreateResponse,
   DownloadMergedRequest,
   DownloadMergedResponse,
   StateTransitionRequest,
@@ -48,12 +49,13 @@ class OrderClient extends Client {
   public async createDocuments(
     documentTypeName: string,
     request: DocumentListCreateRequest
-  ): Promise<void> {
+  ): Promise<DocumentListCreateResponse> {
     const response = await this.post(`/_action/order/document/${documentTypeName}/create`, {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200) return;
+    if (response.statusCode === 200)
+      return (response.body as JsonPayload).data as DocumentListCreateResponse;
 
     throw new ShopwareError("Failed to create documents", response);
   }

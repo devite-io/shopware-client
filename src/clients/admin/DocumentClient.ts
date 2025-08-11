@@ -27,7 +27,7 @@ class DocumentClient extends Client {
     type: string,
     preview?: boolean
   ): Promise<NumberReservationResponse> {
-    const response = await this.post(`/_action/number-range/reserve/${type}/${salesChannelId}`, {
+    const response = await this.get(`/_action/number-range/reserve/${type}/${salesChannelId}`, {
       query: { preview },
       headers: { Accept: "application/json" }
     });
