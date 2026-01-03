@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.8.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.9...v1.8.0)
+
+### 🚀 Enhancements
+
+- Add order tag routes ([df664ba](https://github.com/devite-io/shopware-client/commit/df664ba))
+
+### 🩹 Fixes
+
+- Add missing 'internalComment' field to Order type ([03cffc9](https://github.com/devite-io/shopware-client/commit/03cffc9))
+
+### 🏡 Chore
+
+- Update dependencies ([d5a9f53](https://github.com/devite-io/shopware-client/commit/d5a9f53))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.7.9
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.8...v1.7.9)
