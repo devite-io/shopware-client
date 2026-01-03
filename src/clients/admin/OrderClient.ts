@@ -60,7 +60,7 @@ class OrderClient extends Client {
     throw new ShopwareError("Failed to create documents", response);
   }
 
-  /** Order Management **/
+  /** Order State Management **/
 
   /**
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
@@ -140,6 +140,32 @@ class OrderClient extends Client {
       return (response.body as JsonPayload).data as StateTransitionResponse;
 
     throw new ShopwareError("Failed to transition delivery state", response);
+  }
+
+  /** Order Tags Management **/
+
+  /**
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
+   */
+  public async addTag(orderId: string, tagId: string): Promise<void> {
+    const response = await this.post(`/order/${orderId}/tags`, {
+      body: new JsonPayload({ id: tagId })
+    });
+
+    if (response.statusCode === 204) return;
+
+    throw new ShopwareError("Failed to add tag to order", response);
+  }
+
+  /**
+   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
+   */
+  public async removeTag(orderId: string, tagId: string): Promise<void> {
+    const response = await this.delete(`/order/${orderId}/tags/${tagId}`);
+
+    if (response.statusCode === 204) return;
+
+    throw new ShopwareError("Failed to remove tag from order", response);
   }
 
   /** Rest Endpoints **/
