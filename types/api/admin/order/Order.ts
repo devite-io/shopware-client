@@ -31,4 +31,5 @@ export type Order = StoreApiOrder & {
   tags?: Array<Tag>;
   createdBy?: User;
   updatedBy?: User;
+  internalComment?: string;
 };
