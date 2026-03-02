@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.9.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.8.0...v1.9.0)
+
+### 🚀 Enhancements
+
+- Remove redundant clients and update types ([48b84a3](https://github.com/devite-io/shopware-client/commit/48b84a3))
+
+### 🏡 Chore
+
+- Update dependencies ([ff4be11](https://github.com/devite-io/shopware-client/commit/ff4be11))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.8.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.7.9...v1.8.0)
