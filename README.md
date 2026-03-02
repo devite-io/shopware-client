@@ -30,20 +30,20 @@ import { ShopwareClient } from '@devite/shopware-client';
 
   ```bash
   # Install dependencies
-  pnpm install
+  bun install --frozen-lockfile
   
   # Generate module types and build the module
-  pnpm build
+  bun run build
   
   # Run ESLint
-  pnpm lint
+  bun run lint
   
   # Run Vitest
-  pnpm test
-  pnpm test:watch
+  bun run test
+  bun run test:watch
   
   # Release new version
-  pnpm release
+  bun run release
   ```
 </details>
 
