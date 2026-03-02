@@ -1,3 +1,5 @@
+export * from "./delivery";
+export * from "./transaction";
 export { Order } from "./Order";
 export { OrderAddress } from "./OrderAddress";
 export { OrderCustomer } from "./OrderCustomer";

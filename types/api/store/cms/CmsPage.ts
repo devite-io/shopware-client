@@ -7,17 +7,17 @@ export interface CmsPage {
   apiAlias: "cms_page";
   id: string;
   versionId?: string;
-  name?: string;
-  type: "landingpage" | "page" | "product_list" | "product_detail";
-  entity?: string;
-  cssClass?: string;
-  config?: { backgroundColor?: string };
-  previewMediaId?: string;
-  customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: object;
+  name?: string;
+  type: "landingpage" | "page" | "product_list" | "product_detail";
+  config?: { backgroundColor?: string };
+  cssClass?: string;
+  entity?: string;
   sections?: Array<CmsSection>;
+  previewMediaId?: string;
   previewMedia?: Media;
   landingPages?: Array<LandingPage>;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

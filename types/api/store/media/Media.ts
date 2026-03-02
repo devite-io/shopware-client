@@ -1,26 +1,24 @@
 import { GenericRecord } from "#types/api/global/GenericRecord";
 import { MediaThumbnail } from "./MediaThumbnail";
+import { Tag } from "../Tag";
 
 export interface Media {
   apiAlias: "media";
   id: string;
-  readonly mimeType?: string;
-  readonly fileExtension: string;
-  readonly uploadedAt?: string;
-  readonly fileName: string;
-  readonly fileSize?: number;
-  readonly metaData?: object;
-  config?: object;
-  alt?: string;
-  title?: string;
-  url: string;
-  path: string;
-  hasFile: boolean;
-  private: boolean;
-  customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated: object;
+  readonly uploadedAt?: string;
+  url: string;
+  path: string;
+  readonly fileName: string;
+  readonly fileExtension: string;
+  alt?: string;
+  title?: string;
+  readonly mimeType?: string;
+  readonly metaData?: { width: number; height: number };
+  readonly fileSize?: number;
   thumbnails?: Array<MediaThumbnail>;
-  extensions?: any;
+  tags?: Array<Tag>;
+  customFields?: GenericRecord;
+  translated: Record<string, string>;
 }

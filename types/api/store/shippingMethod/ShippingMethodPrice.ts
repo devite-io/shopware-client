@@ -1,16 +1,17 @@
 import { Price } from "#types/api/global/price/Price";
 import { GenericRecord } from "#types/api/global/GenericRecord";
+import { Rule } from "../Rule";
 
 export interface ShippingMethodPrice {
   id: string;
-  shippingMethodId: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   ruleId?: string;
   calculation?: number;
-  calculationRuleId?: string;
   quantityStart?: number;
   quantityEnd?: number;
   currencyPrice: Array<Price>;
   customFields?: GenericRecord;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
+  calculationRuleId?: string;
+  calculationRule?: Rule;
 }

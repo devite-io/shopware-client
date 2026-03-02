@@ -8,9 +8,6 @@ import {
 import { Customer } from "#types/api/admin/customer/Customer";
 import { CustomerAddress } from "#types/api/admin/customer/CustomerAddress";
 import { CustomerGroup } from "#types/api/admin/customer/group/CustomerGroup";
-import { CustomerRecovery } from "#types/api/admin/customer/CustomerRecovery";
-import { CustomerWishlist } from "#types/api/admin/customer/wishlist/CustomerWishlist";
-import { CustomerWishlistProduct } from "#types/api/admin/customer/wishlist/CustomerWishlistProduct";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class CustomerClient extends Client {
@@ -43,21 +40,6 @@ class CustomerClient extends Client {
     "customer address"
   );
   public groups = createRestEndpoint<CustomerGroup>(this, "customer-group", "customer group");
-  public recoveries = createRestEndpoint<CustomerRecovery>(
-    this,
-    "customer-recovery",
-    "customer recovery"
-  );
-  public wishlists = createRestEndpoint<CustomerWishlist>(
-    this,
-    "customer-wishlist",
-    "customer wishlist"
-  );
-  public wishlistProducts = createRestEndpoint<CustomerWishlistProduct>(
-    this,
-    "customer-wishlist-product",
-    "customer wishlist product"
-  );
 }
 
 export default CustomerClient;

@@ -1,5 +1,5 @@
 export interface SimpleFilter {
-  type: "contains" | "equalsAny" | "prefix" | "suffix";
   field: string;
+  type: "contains" | "equalsAny" | "prefix" | "suffix";
   value: string | string[];
 }

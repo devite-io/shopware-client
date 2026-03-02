@@ -5,7 +5,7 @@ export interface ProductStreamMapping {
   id?: string;
   productId: string;
   productVersionId?: string;
-  productStreamId: string;
   product?: Product;
+  productStreamId: string;
   productStream?: ProductStream;
 }

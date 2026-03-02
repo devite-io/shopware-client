@@ -8,22 +8,22 @@ import { CmsBlock } from "./CmsBlock";
 export interface CmsSection {
   apiAlias: "cms_section";
   id?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   position: number;
   type: "sidebar" | "fullwidth";
   name?: string;
   sizingMode?: "boxed" | "full_width";
   mobileBehavior?: string;
+  visibility?: Visibility;
   backgroundColor?: string;
   backgroundMediaId?: string;
   backgroundMediaMode?: BackgroundMediaMode;
+  backgroundMedia?: Media;
   cssClass?: string;
   pageId: string;
-  visibility?: Visibility;
-  customFields?: GenericRecord;
   cmsPageVersionId?: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
   page?: CmsPage;
-  backgroundMedia?: Media;
   blocks?: Array<CmsBlock>;
+  customFields?: GenericRecord;
 }

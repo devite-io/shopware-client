@@ -4,7 +4,7 @@ import { Rule } from "../../rule/Rule";
 export interface PromotionSetGroupRule {
   id?: string;
   setgroupId: string;
-  ruleId: string;
   setgroup: PromotionSetGroup;
+  ruleId: string;
   rule?: Rule;
 }

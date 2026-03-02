@@ -4,13 +4,13 @@ import { Language } from "../../locale/Language";
 export interface ProductSearchKeyword {
   id: string;
   versionId?: string;
-  languageId: string;
-  productId: string;
-  productVersionId?: string;
-  keyword: string;
-  ranking: number;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  keyword: string;
+  ranking: number;
+  productId: string;
+  productVersionId?: string;
   product?: Product;
+  languageId: string;
   language?: Language;
 }

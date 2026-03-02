@@ -4,6 +4,8 @@ import { CmsBlock } from "./CmsBlock";
 export interface CmsSlot {
   id: string;
   versionId?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   type:
     | "image"
     | "text"
@@ -15,15 +17,12 @@ export interface CmsSlot {
     | "sidebar-filter";
   slot: string;
   locked?: boolean;
-  config?: object;
-  customFields?: GenericRecord;
   readonly data?: object;
-  blockId: string;
+  config?: object;
   fieldConfig?: object;
+  blockId: string;
   cmsBlockVersionId?: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  translated?: object;
   block?: CmsBlock;
-  VersionId?: string;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

@@ -7,20 +7,20 @@ import { OrderDeliveryPosition } from "./OrderDeliveryPosition";
 export interface OrderDelivery {
   id: string;
   versionId?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   orderId: string;
   orderVersionId?: string;
   shippingOrderAddressId: string;
   shippingOrderAddressVersionId?: string;
+  shippingOrderAddress?: OrderAddress;
   shippingMethodId: string;
+  shippingMethod?: ShippingMethod;
+  shippingCosts?: CalculatedPrice;
   stateId: string;
+  stateMachineState?: StateMachineState;
+  positions?: Array<OrderDeliveryPosition>;
   trackingCodes?: Array<string>;
   shippingDateEarliest: string;
   shippingDateLatest: string;
-  shippingCosts?: CalculatedPrice;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  stateMachineState?: StateMachineState;
-  shippingOrderAddress?: OrderAddress;
-  shippingMethod?: ShippingMethod;
-  positions?: Array<OrderDeliveryPosition>;
 }

@@ -5,16 +5,16 @@ import { PropertyGroup } from "./PropertyGroup";
 export interface PropertyGroupOption {
   apiAlias: "property_group_option";
   id: string;
-  groupId: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   name: string;
+  option: string;
   position?: number;
   colorHexCode?: string;
   mediaId?: string;
-  customFields?: GenericRecord;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  translated?: object;
   media?: Media;
+  groupId: string;
   group: PropertyGroup;
-  option: string;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

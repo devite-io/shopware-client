@@ -2,10 +2,10 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface ShopwareDocumentType {
   id: string;
-  name: string;
-  technicalName: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  name: string;
+  technicalName: string;
   customFields?: GenericRecord;
-  translated?: object;
+  translated?: Record<string, string>;
 }

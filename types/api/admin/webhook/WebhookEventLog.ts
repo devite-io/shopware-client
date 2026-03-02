@@ -2,20 +2,16 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface WebhookEventLog {
   id: string;
-  appName?: string;
-  webhookName: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  readonly timestamp?: string;
   eventName: string;
-  deliveryStatus: string;
-  timestamp?: string;
+  webhookName: string;
   processingTime?: number;
-  appVersion?: string;
   requestContent?: object;
   responseContent?: object;
   responseStatusCode?: number;
   responseReasonPhrase?: string;
   url: string;
-  onlyLiveVersion?: boolean;
   customFields?: GenericRecord;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
 }

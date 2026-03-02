@@ -3,23 +3,20 @@ import { Media } from "./media/Media";
 
 export interface PaymentMethod {
   id: string;
-  name: string;
-  readonly distinguishableName?: string;
-  description?: string;
-  position?: number;
-  active?: boolean;
-  afterOrderEnabled?: boolean;
-  customFields?: GenericRecord;
-  mediaId?: string;
-  readonly synchronous?: boolean;
-  readonly asynchronous?: boolean;
-  readonly prepared?: boolean;
-  readonly refundable?: boolean;
-  readonly recurring?: boolean;
-  shortName?: string;
-  technicalName?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: object;
+  active?: boolean;
+  name: string;
+  description?: string;
+  position?: number;
+  afterOrderEnabled?: boolean;
+  readonly synchronous?: boolean;
+  readonly asynchronous?: boolean;
+  readonly refundable?: boolean;
+  shortName?: string;
+  technicalName?: string;
+  mediaId?: string;
   media?: Media;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

@@ -4,10 +4,10 @@ import { Media } from "../media/Media";
 import { Order } from "../order/Order";
 
 export type ShopwareDocument = StoreApiShopwareDocument & {
+  order?: Order;
   documentType?: ShopwareDocumentType;
   referencedDocument?: ShopwareDocument;
   dependantDocuments?: Array<ShopwareDocument>;
   documentMediaFile?: Media;
   documentA11yMediaFile?: Media;
-  order?: Order;
 };

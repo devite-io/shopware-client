@@ -1,13 +1,13 @@
 export interface ProductCrossSelling {
   id: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  active?: boolean;
+  type?: string;
+  limit?: number;
   name: string;
   position?: number;
   sortBy?: string;
   sortDirection?: string;
-  type?: string;
-  active?: boolean;
-  limit?: number;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  translated?: object;
+  translated?: Record<string, string>;
 }

@@ -32,7 +32,7 @@ export interface Promotion {
   customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: object;
+  translated?: Record<string, string>;
   setgroups?: Array<PromotionSetGroup>;
   salesChannels?: Array<PromotionSalesChannel>;
   discounts?: Array<PromotionDiscount>;

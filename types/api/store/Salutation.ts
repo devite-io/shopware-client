@@ -8,5 +8,5 @@ export interface Salutation {
   customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: object;
+  translated?: Record<string, string>;
 }

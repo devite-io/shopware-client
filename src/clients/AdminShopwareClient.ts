@@ -17,9 +17,6 @@ import CustomDataClient from "./admin/CustomDataClient";
 import CustomerClient from "./admin/CustomerClient";
 import DeliveryTimeClient from "./admin/DeliveryTimeClient";
 import DocumentClient from "./admin/DocumentClient";
-import FlowClient from "./admin/FlowClient";
-import ImportExportClient from "./admin/ImportExportClient";
-import IntegrationClient from "./admin/IntegrationClient";
 import LocaleClient from "./admin/LocaleClient";
 import MailClient from "./admin/MailClient";
 import MediaClient from "./admin/MediaClient";
@@ -34,11 +31,9 @@ import PropertyGroupClient from "./admin/PropertyGroupClient";
 import RuleClient from "./admin/RuleClient";
 import SalesChannelClient from "./admin/SalesChannelClient";
 import SalutationClient from "./admin/SalutationClient";
-import ScriptClient from "./admin/ScriptClient";
 import SecurityClient from "./admin/SecurityClient";
 import SeoClient from "./admin/SeoClient";
 import ShippingMethodClient from "./admin/ShippingMethodClient";
-import SnippetClient from "./admin/SnippetClient";
 import StateMachineClient from "./admin/StateMachineClient";
 import SystemClient from "./admin/SystemClient";
 import TagClient from "./admin/TagClient";
@@ -175,18 +170,6 @@ class AdminShopwareClient extends ShopwareClient {
     return new DocumentClient(this);
   }
 
-  public forFlow(): FlowClient {
-    return new FlowClient(this);
-  }
-
-  public forImportExport(): ImportExportClient {
-    return new ImportExportClient(this);
-  }
-
-  public forIntegration(): IntegrationClient {
-    return new IntegrationClient(this);
-  }
-
   public forLocale(): LocaleClient {
     return new LocaleClient(this);
   }
@@ -243,10 +226,6 @@ class AdminShopwareClient extends ShopwareClient {
     return new SalutationClient(this);
   }
 
-  public forScript(): ScriptClient {
-    return new ScriptClient(this);
-  }
-
   public forSecurity(): SecurityClient {
     return new SecurityClient(this);
   }
@@ -257,10 +236,6 @@ class AdminShopwareClient extends ShopwareClient {
 
   public forShippingMethod(): ShippingMethodClient {
     return new ShippingMethodClient(this);
-  }
-
-  public forSnippet(): SnippetClient {
-    return new SnippetClient(this);
   }
 
   public forStateMachine(): StateMachineClient {

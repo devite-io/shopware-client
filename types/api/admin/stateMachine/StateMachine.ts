@@ -5,14 +5,14 @@ import { StateMachineHistory } from "./StateMachineHistory";
 
 export interface StateMachine {
   id: string;
-  technicalName: string;
-  name: string;
-  customFields?: GenericRecord;
-  initialStateId?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: object;
+  technicalName: string;
+  name: string;
+  initialStateId?: string;
   states?: Array<StateMachineState>;
   transitions?: Array<StateMachineTransition>;
   historyEntries?: Array<StateMachineHistory>;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

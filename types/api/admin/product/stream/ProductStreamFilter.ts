@@ -1,20 +1,17 @@
 import { GenericRecord } from "#types/api/global/GenericRecord";
-import { ProductStream } from "./ProductStream";
 
 export interface ProductStreamFilter {
   id: string;
-  productStreamId: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   parentId?: string;
+  parent?: ProductStreamFilter;
   type: "static" | "stream";
   field?: string;
   operator?: ">" | "<" | ">=" | "<=" | "==";
   value?: string;
-  parameters?: object;
+  parameters?: { gte?: number; lte?: number; gt?: number; lt?: number };
   position?: number;
-  customFields?: GenericRecord;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  productStream?: ProductStream;
-  parent?: ProductStreamFilter;
   queries?: Array<ProductStreamFilter>;
+  customFields?: GenericRecord;
 }

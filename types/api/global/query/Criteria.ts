@@ -1,24 +1,20 @@
 import { Filters } from "../filter/Filters";
-import { Query } from "./Query";
 import { Sort } from "./Sort";
 import { Aggregation } from "../aggregation/Aggregation";
 import { TotalCountMode } from "./TotalCountMode";
-import { Includes } from "./Includes";
 
 export interface Criteria {
-  page?: number;
   term?: string;
-  limit?: number;
-  filter?: Filters;
-  ids?: Array<string>;
-  query?: Array<Query>;
-  associations?: Record<string, Criteria>;
-  "post-filter"?: Filters;
-  sort?: Array<Sort>;
-  aggregations?: Array<Aggregation>;
-  fields?: Array<string>;
-  grouping?: Array<string>;
   /** @default "none" */
   "total-count-mode"?: TotalCountMode;
-  includes?: Includes;
+  page?: number;
+  limit?: number;
+  ids?: Array<string>;
+  filter?: Filters;
+  "post-filter"?: Filters;
+  sort?: Array<Sort>;
+  fields?: Array<string>;
+  includes?: Record<string, Array<string>>;
+  associations?: Record<string, Criteria>;
+  aggregations?: Array<Aggregation>;
 }

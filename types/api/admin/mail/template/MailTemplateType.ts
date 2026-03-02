@@ -1,14 +1,14 @@
 import { MailTemplate } from "./MailTemplate";
+import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface MailTemplateType {
   id: string;
-  name: string;
-  technicalName: string;
-  availableEntities?: object;
-  customFields?: object;
-  templateData?: object;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: object;
+  technicalName: string;
+  name: string;
+  templateData?: object;
   mailTemplates?: Array<MailTemplate>;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

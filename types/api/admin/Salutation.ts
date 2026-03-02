@@ -7,6 +7,6 @@ import { NewsletterRecipient } from "./newsletterRecipient/NewsletterRecipient";
 export type Salutation = StoreApiSalutation & {
   customers?: Array<Customer>;
   customerAddresses?: Array<CustomerAddress>;
-  orderAddresses?: Array<OrderAddress>;
   newsletterRecipients?: Array<NewsletterRecipient>;
+  orderAddresses?: Array<OrderAddress>;
 };

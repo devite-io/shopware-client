@@ -6,19 +6,19 @@ export interface LandingPage {
   apiAlias: "landing_page";
   id: string;
   versionId?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   active?: boolean;
   name: string;
-  customFields?: GenericRecord;
-  slotConfig?: object;
+  url: string;
+  seoUrls?: Array<SeoUrlEntity>;
   metaTitle?: string;
   metaDescription?: string;
   keywords?: string;
-  url: string;
+  slotConfig?: object;
   cmsPageId?: string;
   cmsPageVersionId?: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  translated?: object;
   cmsPage?: CmsPage;
-  seoUrls?: Array<SeoUrlEntity>;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

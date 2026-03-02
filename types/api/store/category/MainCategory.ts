@@ -1,10 +1,13 @@
+import { SalesChannel } from "../salesChannel/SalesChannel";
+
 export interface MainCategory {
   id: string;
-  productId: string;
-  productVersionId?: string;
-  categoryId: string;
-  categoryVersionId?: string;
-  salesChannelId: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  salesChannelId: string;
+  salesChannel?: SalesChannel;
+  categoryId: string;
+  categoryVersionId?: string;
+  productId: string;
+  productVersionId?: string;
 }

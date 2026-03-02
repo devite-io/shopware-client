@@ -2,11 +2,11 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface Locale {
   id: string;
-  code: string;
-  name: string;
-  territory: string;
-  customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: object;
+  name: string;
+  code: string;
+  territory: string;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

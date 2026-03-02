@@ -6,13 +6,13 @@ import { Media } from "../media/Media";
 export type ProductDownload = StoreApiProductDownload & {
   id: string;
   versionId?: string;
-  productId: string;
-  productVersionId?: string;
-  mediaId: string;
-  position?: number;
-  customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  position?: number;
+  productId: string;
+  productVersionId?: string;
   product?: Product;
+  mediaId: string;
   media?: Media;
+  customFields?: GenericRecord;
 };

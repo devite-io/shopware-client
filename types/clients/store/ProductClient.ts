@@ -1,9 +1,8 @@
 import { EntitySearchResult } from "#types/api/store/EntitySearchResult";
 import { Criteria } from "#types/api/global/query/Criteria";
 import { Product } from "#types/api/store/product/Product";
-import { ProductReview } from "#types/api/store/product/review/ProductReview";
+import { ProductReview } from "#types/api/store/product/ProductReview";
 import { ProductListingCriteria } from "#types/api/global/query/product/ProductListingCriteria";
-import { ProductListingFlags } from "#types/api/global/query/product/ProductListingFlags";
 import { ProductListingResult } from "#types/api/store/product/ProductListingResult";
 import { PropertyGroup } from "#types/api/store/propertyGroup/PropertyGroup";
 import { CrossSellingElement } from "#types/api/store/product/crossSelling/CrossSellingElement";
@@ -22,12 +21,12 @@ export type ProductReviewSaveRequest = {
   points: number;
 };
 
-export interface ProductSearchRequest extends ProductListingCriteria, ProductListingFlags {
+export interface ProductSearchRequest extends ProductListingCriteria {
   search: string;
 }
 export type ProductSearchResponse = ProductListingResult;
 
-export interface ProductSearchSuggestionListRequest extends ProductListingFlags {
+export interface ProductSearchSuggestionListRequest {
   search: string;
 }
 export type ProductSearchSuggestionListResponse = ProductListingResult;
@@ -56,7 +55,7 @@ export interface ProductVariantWithOptionsResponse {
   };
 }
 
-export type ProductListingListWithCategoryRequest = ProductListingCriteria & ProductListingFlags;
+export type ProductListingListWithCategoryRequest = ProductListingCriteria;
 export type ProductListingListWithCategoryResponse = ProductListingResult;
 
 export type ProductCrossSellingGroupListResponse = Array<CrossSellingElement>;

@@ -4,12 +4,12 @@ import { Country } from "../country/Country";
 
 export interface CurrencyCountryRounding {
   id: string;
-  currencyId: string;
-  countryId: string;
-  itemRounding: Rounding;
-  totalRounding: Rounding;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  currencyId: string;
   currency?: Currency;
+  countryId: string;
   country?: Country;
+  itemRounding: Rounding;
+  totalRounding: Rounding;
 }

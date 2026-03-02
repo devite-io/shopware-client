@@ -3,12 +3,12 @@ import { ProductSearchConfigField } from "./ProductSearchConfigField";
 
 export interface ProductSearchConfig {
   id: string;
-  languageId: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   andLogic?: boolean;
   minSearchLength?: number;
   excludedTerms?: Array<string>;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  language?: Language;
   configFields?: Array<ProductSearchConfigField>;
+  languageId: string;
+  language?: Language;
 }

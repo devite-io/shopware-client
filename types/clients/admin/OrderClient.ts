@@ -1,4 +1,4 @@
-import { ShopwareDocumentBaseConfig } from "#types/api/admin/document/baseConfig/ShopwareDocumentBaseConfig";
+import { ShopwareDocumentBaseConfig } from "#types/api/admin/document/ShopwareDocumentBaseConfig";
 import { StateMachineTransition } from "#types/api/admin/stateMachine/StateMachineTransition";
 
 /** Document Management **/

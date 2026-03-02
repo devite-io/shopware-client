@@ -3,39 +3,31 @@ import { CountryState } from "./CountryState";
 
 export interface Country {
   id: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   name: string;
-  iso?: string;
-  position?: number;
   active?: boolean;
-  shippingAvailable?: boolean;
+  iso?: string;
   iso3?: string;
+  position?: number;
   displayStateInRegistration?: boolean;
   forceStateInRegistration?: boolean;
   checkVatIdPattern?: boolean;
   vatIdRequired?: boolean;
   vatIdPattern?: string;
-  customFields?: GenericRecord;
-  customerTax?: {
-    enabled: boolean;
-    currencyId: string;
-    amount: number;
-  };
-  companyTax?: {
-    enabled: boolean;
-    currencyId: string;
-    amount: number;
-  };
+  customerTax?: { enabled: boolean; currencyId: string; amount: number };
+  companyTax?: { enabled: boolean; currencyId: string; amount: number };
   postalCodeRequired?: boolean;
   checkPostalCodePattern?: boolean;
+  defaultPostalCodePattern?: string;
   checkAdvancedPostalCodePattern?: boolean;
   advancedPostalCodePattern?: string;
   addressFormat: string;
-  defaultPostalCodePattern?: string;
   isEu?: boolean;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  translated?: object;
-  states?: Array<CountryState>;
   taxFree?: boolean;
   companyTaxFree?: boolean;
+  shippingAvailable?: boolean;
+  customFields?: GenericRecord;
+  states?: Array<CountryState>;
+  translated?: Record<string, string>;
 }

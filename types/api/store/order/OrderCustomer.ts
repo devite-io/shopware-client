@@ -4,16 +4,16 @@ import { Salutation } from "../Salutation";
 export interface OrderCustomer {
   id: string;
   versionId?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  customerNumber?: string;
   email: string;
   salutationId?: string;
+  salutation?: Salutation;
+  title?: string;
   firstName: string;
   lastName: string;
   company?: string;
-  title?: string;
   vatIds?: Array<string>;
-  customerNumber?: string;
   customFields?: GenericRecord;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  salutation?: Salutation;
 }

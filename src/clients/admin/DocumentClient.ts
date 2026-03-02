@@ -2,15 +2,14 @@ import JsonPayload from "#payloads/JsonPayload";
 import Client from "../Client";
 import ShopwareError from "#http/ShopwareError";
 import {
+  DownloadResponse,
   NumberReservationResponse,
-  UploadResponse,
-  DownloadResponse
+  UploadResponse
 } from "#types/clients/admin/DocumentClient";
 import BinaryPayload from "../../payloads/BinaryPayload";
 import { ShopwareDocument } from "#types/api/admin/document/ShopwareDocument";
 import { ShopwareDocumentType } from "#types/api/admin/document/ShopwareDocumentType";
-import { ShopwareDocumentBaseConfig } from "#types/api/admin/document/baseConfig/ShopwareDocumentBaseConfig";
-import { ShopwareDocumentBaseConfigSalesChannel } from "#types/api/admin/document/baseConfig/ShopwareDocumentBaseConfigSalesChannel";
+import { ShopwareDocumentBaseConfig } from "#types/api/admin/document/ShopwareDocumentBaseConfig";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class DocumentClient extends Client {
@@ -119,11 +118,6 @@ class DocumentClient extends Client {
     this,
     "document-base-config",
     "document base config"
-  );
-  public baseConfigSalesChannels = createRestEndpoint<ShopwareDocumentBaseConfigSalesChannel>(
-    this,
-    "document-base-config-sales-channel",
-    "document base config sales channel"
   );
 }
 

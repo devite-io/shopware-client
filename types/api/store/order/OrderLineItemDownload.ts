@@ -5,14 +5,13 @@ import { Media } from "../media/Media";
 export interface OrderLineItemDownload {
   id: string;
   versionId?: string;
-  orderLineItemId: string;
-  orderLineItemVersionId?: string;
-  mediaId: string;
-  position: number;
-  accessGranted: boolean;
-  customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  position: number;
+  orderLineItemId: string;
+  orderLineItemVersionId?: string;
   orderLineItem?: OrderLineItem;
+  mediaId: string;
   media?: Media;
+  customFields?: GenericRecord;
 }

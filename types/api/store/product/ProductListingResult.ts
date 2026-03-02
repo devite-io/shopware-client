@@ -1,10 +1,10 @@
 import { Product } from "./Product";
+import { Aggregation } from "#types/api/global";
 
 export type ProductListingResult = {
   apiAlias: "product_listing";
-  entity?: "product";
+  aggregations?: Array<Aggregation>;
   total?: number;
-  aggregations?: Array<object>;
   page?: number;
   limit?: number;
   currentFilters: Array<{
@@ -16,13 +16,13 @@ export type ProductListingResult = {
     properties: Array<string>;
     search: string;
   }>;
+  sorting?: string;
   availableSortings: Array<{
     apiAlias: "product_sorting";
     label: string;
-    translated: { label: string };
     key: string;
     priority: number;
+    translated: Record<string, string>;
   }>;
-  sorting?: string;
   elements: Array<Product>;
 };

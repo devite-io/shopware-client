@@ -71,8 +71,8 @@ export interface AccountUpdateRequest {
   accountType?: "private" | "business";
   salutationId?: string;
   title?: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   company?: string;
   birthdayDay?: number;
   birthdayMonth?: number;

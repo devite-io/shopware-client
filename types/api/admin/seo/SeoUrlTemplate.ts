@@ -3,13 +3,13 @@ import { SalesChannel } from "../salesChannel/SalesChannel";
 
 export interface SeoUrlTemplate {
   id: string;
-  salesChannelId?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  isValid?: boolean;
   entityName: string;
   routeName: string;
   template?: string;
-  isValid?: boolean;
-  customFields?: GenericRecord;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
+  salesChannelId?: string;
   salesChannel?: SalesChannel;
+  customFields?: GenericRecord;
 }

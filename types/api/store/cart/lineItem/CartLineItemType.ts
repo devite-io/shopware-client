@@ -1,8 +1,1 @@
-export type CartLineItemType =
-  | "product"
-  | "credit"
-  | "custom"
-  | "promotion"
-  | "discount"
-  | "container"
-  | "quantity";
+export type CartLineItemType = "product" | "credit" | "promotion" | "discount" | "quantity";

@@ -3,9 +3,6 @@ import Client from "../Client";
 import ShopwareError from "#http/ShopwareError";
 import BinaryPayload from "../../payloads/BinaryPayload";
 import { Media } from "#types/api/admin/media/Media";
-import { MediaDefaultFolder } from "#types/api/admin/media/folder/MediaDefaultFolder";
-import { MediaFolder } from "#types/api/admin/media/folder/MediaFolder";
-import { MediaFolderConfiguration } from "#types/api/admin/media/folder/configuration/MediaFolderConfiguration";
 import { MediaThumbnail } from "#types/api/admin/media/thumbnail/MediaThumbnail";
 import { MediaThumbnailSize } from "#types/api/admin/media/thumbnail/MediaThumbnailSize";
 import createRestEndpoint from "../../utils/createRestEndpoint";
@@ -58,17 +55,6 @@ class MediaClient extends Client {
   /** Rest Endpoints **/
 
   public media = createRestEndpoint<Media>(this, "media", "media");
-  public defaultFolders = createRestEndpoint<MediaDefaultFolder>(
-    this,
-    "media-default-folder",
-    "default media folder"
-  );
-  public folders = createRestEndpoint<MediaFolder>(this, "media-folder", "media folder");
-  public folderConfigs = createRestEndpoint<MediaFolderConfiguration>(
-    this,
-    "media-folder-configuration",
-    "media folder configuration"
-  );
   public thumbnails = createRestEndpoint<MediaThumbnail>(
     this,
     "media-thumbnail",

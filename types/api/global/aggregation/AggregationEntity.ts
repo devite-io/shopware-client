@@ -1,6 +1,6 @@
 export interface AggregationEntity {
-  name: string;
   type: "entity";
+  name: string;
   field: string;
   definition: string;
 }

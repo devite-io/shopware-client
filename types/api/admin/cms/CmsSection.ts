@@ -6,7 +6,7 @@ import { CmsBlock } from "./CmsBlock";
 export type CmsSection = StoreApiCmsSection & {
   id: string;
   versionId: string;
-  page?: CmsPage;
   backgroundMedia?: Media;
+  page?: CmsPage;
   blocks?: Array<CmsBlock>;
 };

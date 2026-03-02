@@ -4,14 +4,14 @@ import { StateMachineState } from "./StateMachineState";
 
 export interface StateMachineTransition {
   id: string;
-  actionName: string;
-  stateMachineId: string;
-  fromStateId: string;
-  toStateId: string;
-  customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  actionName: string;
+  stateMachineId: string;
   stateMachine?: StateMachine;
+  fromStateId: string;
   fromStateMachineState?: StateMachineState;
+  toStateId: string;
   toStateMachineState?: StateMachineState;
+  customFields?: GenericRecord;
 }

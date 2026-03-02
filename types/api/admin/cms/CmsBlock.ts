@@ -5,7 +5,7 @@ import { CmsSlot } from "./CmsSlot";
 export interface CmsBlock {
   id: string;
   locked?: boolean;
-  section?: CmsSection;
   backgroundMedia?: Media;
+  section?: CmsSection;
   slots?: Array<CmsSlot>;
 }

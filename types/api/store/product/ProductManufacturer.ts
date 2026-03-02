@@ -4,13 +4,13 @@ import { Media } from "../media/Media";
 export interface ProductManufacturer {
   id: string;
   versionId?: string;
-  mediaId?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   link?: string;
   name: string;
   description?: string;
-  customFields?: GenericRecord;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  translated?: object;
+  mediaId?: string;
   media?: Media;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

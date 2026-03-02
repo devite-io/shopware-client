@@ -1,5 +1,5 @@
 export interface EqualsFilter {
-  type: "equals";
   field: string;
+  type: "equals";
   value: string | number | boolean | null;
 }

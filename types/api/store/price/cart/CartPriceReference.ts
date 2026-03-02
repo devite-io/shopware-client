@@ -3,12 +3,12 @@ import { CartRegulationPrice } from "./CartRegulationPrice";
 
 export interface CartPriceReference {
   apiAlias: "cart_price_reference";
+  unitName: string;
+  variantId?: string;
   purchaseUnit?: number;
   referenceUnit?: number;
-  unitName: string;
+  hasRange: boolean;
   price?: number;
   listPrice: CartListPrice | null;
   regulationPrice: CartRegulationPrice | null;
-  hasRange: boolean;
-  variantId?: string;
 }

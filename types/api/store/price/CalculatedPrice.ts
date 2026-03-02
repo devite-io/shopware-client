@@ -3,27 +3,21 @@ import { CartListPrice } from "./cart/CartListPrice";
 import { CartRegulationPrice } from "./cart/CartRegulationPrice";
 
 export interface CalculatedPrice {
-  unitPrice: number;
+  apiAlias: "calculated_price";
+  variantId?: string;
   quantity: number;
-  rawTotal?: number;
-  totalPrice: number;
-  calculatedTaxes: Array<{
-    apiAlias: "cart_tax_calculated";
-    tax: number;
-    taxRate: number;
-    price: number;
-  }>;
-  referencePrice?: CartPriceReference;
-  listPrice: CartListPrice | null;
+  hasRange: boolean;
   positionPrice: number;
   netPrice: number;
+  unitPrice: number;
+  totalPrice: number;
+  listPrice: CartListPrice | null;
   regulationPrice?: CartRegulationPrice;
-  hasRange: boolean;
-  variantId?: string | null;
-  apiAlias: "calculated_price";
-  taxRules: Array<{
-    percentage?: number;
-    taxRate?: number;
-    name?: string;
+  referencePrice?: CartPriceReference;
+  calculatedTaxes: Array<{
+    apiAlias: "cart_tax_calculated";
+    taxRate: number;
+    tax: number;
+    price: number;
   }>;
 }

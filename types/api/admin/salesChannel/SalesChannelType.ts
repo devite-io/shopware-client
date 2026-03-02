@@ -1,18 +1,15 @@
 import { GenericRecord } from "#types/api/global/GenericRecord";
-import { SalesChannel } from "./SalesChannel";
 
 export interface SalesChannelType {
   id: string;
-  coverUrl?: string;
-  iconName?: string;
-  screenshotUrls?: Array<string>;
-  name: string;
-  manufacturer?: string;
-  description?: string;
-  descriptionLong?: string;
-  customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: object;
-  salesChannels: Array<SalesChannel>;
+  name: string;
+  description?: string;
+  descriptionLong?: string;
+  iconName?: string;
+  coverUrl?: string;
+  screenshotUrls?: Array<string>;
+  customFields?: GenericRecord;
+  translated?: Record<string, string>;
 }

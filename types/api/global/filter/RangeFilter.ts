@@ -1,6 +1,6 @@
 export interface RangeFilter {
-  type: "range";
   field: string;
+  type: "range";
   parameters: {
     gte?: number | string;
     gt?: number | string;

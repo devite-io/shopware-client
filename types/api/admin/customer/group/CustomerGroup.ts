@@ -5,5 +5,4 @@ import { SalesChannel } from "../../salesChannel/SalesChannel";
 export type CustomerGroup = StoreApiCustomerGroup & {
   customers?: Array<Customer>;
   salesChannels?: Array<SalesChannel>;
-  registrationSalesChannels?: Array<SalesChannel>;
 };

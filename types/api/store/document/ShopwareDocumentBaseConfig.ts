@@ -1,18 +1,19 @@
 import { GenericRecord } from "#types/api/global/GenericRecord";
 import { Media } from "../media/Media";
+import { ShopwareDocumentType } from "../document/ShopwareDocumentType";
 
 export interface ShopwareDocumentBaseConfig {
   id: string;
-  documentTypeId: string;
-  logoId?: string;
-  name: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
   filenamePrefix?: string;
   filenameSuffix?: string;
-  global?: boolean;
   documentNumber?: string;
+  documentTypeId: string;
+  documentType?: ShopwareDocumentType;
+  name: string;
   config?: object;
-  readonly createdAt?: string;
-  customFields?: GenericRecord;
-  readonly updatedAt?: string;
+  logoId?: string;
   logo?: Media;
+  customFields?: GenericRecord;
 }

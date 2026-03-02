@@ -5,23 +5,23 @@ import { Media } from "../media/Media";
 
 export interface ShopwareDocument {
   id: string;
-  documentTypeId: string;
-  fileType: string;
-  referenceDocumentId?: string;
-  orderId: string;
-  documentMediaFileId?: string;
-  orderVersionId?: string;
-  config: { name: string; title: string };
-  sent?: boolean;
-  static?: boolean;
-  deepLinkCode: string;
-  documentNumber?: string;
-  customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  documentType?: ShopwareDocumentType;
+  orderId: string;
+  orderVersionId?: string;
   order?: Order;
+  sent?: boolean;
+  deepLinkCode: string;
+  fileType: string;
+  documentNumber?: string;
+  documentTypeId: string;
+  documentType?: ShopwareDocumentType;
+  referenceDocumentId?: string;
   referencedDocument?: ShopwareDocument;
   dependantDocuments?: Array<ShopwareDocument>;
+  documentMediaFileId?: string;
   documentMediaFile?: Media;
+  documentA11yMediaFileId?: string;
+  documentA11yMediaFile?: Media;
+  customFields?: GenericRecord;
 }

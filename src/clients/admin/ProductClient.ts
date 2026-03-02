@@ -1,32 +1,22 @@
 import Client from "../Client";
 import { Product } from "#types/api/admin/product/Product";
-import { ProductConfiguratorSetting } from "#types/api/admin/product/ProductConfiguratorSetting";
 import { ProductCrossSelling } from "#types/api/admin/product/crossSelling/ProductCrossSelling";
 import { ProductCrossSellingAssignedProduct } from "#types/api/admin/product/crossSelling/ProductCrossSellingAssignedProduct";
 import { ProductDownload } from "#types/api/admin/product/ProductDownload";
-import { ProductExport } from "#types/api/admin/product/ProductExport";
-import { ProductFeatureSet } from "#types/api/admin/product/ProductFeatureSet";
-import { ProductKeywordDictionary } from "#types/api/admin/product/ProductKeywordDictionary";
 import { ProductManufacturer } from "#types/api/admin/product/ProductManufacturer";
 import { ProductMedia } from "#types/api/admin/product/ProductMedia";
 import { ProductPrice } from "#types/api/admin/product/ProductPrice";
-import { ProductReview } from "#types/api/admin/product/review/ProductReview";
+import { ProductReview } from "#types/api/admin/product/ProductReview";
 import { ProductSearchConfig } from "#types/api/admin/product/search/config/ProductSearchConfig";
 import { ProductSearchConfigField } from "#types/api/admin/product/search/config/ProductSearchConfigField";
 import { ProductSearchKeyword } from "#types/api/admin/product/search/ProductSearchKeyword";
 import { ProductSorting } from "#types/api/admin/product/ProductSorting";
 import { ProductStream } from "#types/api/admin/product/stream/ProductStream";
 import { ProductStreamFilter } from "#types/api/admin/product/stream/ProductStreamFilter";
-import { ProductVisibility } from "#types/api/admin/product/ProductVisibility";
 import createRestEndpoint from "../../utils/createRestEndpoint";
 
 class ProductClient extends Client {
   public products = createRestEndpoint<Product>(this, "product", "product");
-  public configuratorSettings = createRestEndpoint<ProductConfiguratorSetting>(
-    this,
-    "product-configurator-setting",
-    "product configurator setting"
-  );
   public crossSellings = createRestEndpoint<ProductCrossSelling>(
     this,
     "product-cross-selling",
@@ -41,17 +31,6 @@ class ProductClient extends Client {
     this,
     "product-download",
     "product download"
-  );
-  public exports = createRestEndpoint<ProductExport>(this, "product-export", "product export");
-  public featureSets = createRestEndpoint<ProductFeatureSet>(
-    this,
-    "product-feature-set",
-    "product feature set"
-  );
-  public keywordDictionaries = createRestEndpoint<ProductKeywordDictionary>(
-    this,
-    "product-keyword-dictionary",
-    "product keyword dictionary"
   );
   public manufacturers = createRestEndpoint<ProductManufacturer>(
     this,
@@ -82,11 +61,6 @@ class ProductClient extends Client {
     this,
     "product-stream-filter",
     "product stream filter"
-  );
-  public visibilities = createRestEndpoint<ProductVisibility>(
-    this,
-    "product-visibility",
-    "product visibility"
   );
 }
 
