@@ -10,5 +10,5 @@ export interface MailTemplateType {
   templateData?: object;
   mailTemplates?: Array<MailTemplate>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

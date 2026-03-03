@@ -4,8 +4,7 @@ import { CartDelivery } from "./delivery/CartDelivery";
 import { CartLineItem } from "#types/api/store";
 
 export interface Cart {
-  token?: string;
-  name?: string;
+  token: string;
   price?: CalculatedPrice;
   lineItems?: Array<CartLineItem>;
   errors?: Array<CartError>;

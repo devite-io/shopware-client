@@ -14,5 +14,5 @@ export interface NumberRange {
   type?: NumberRangeType;
   state?: NumberRangeState;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

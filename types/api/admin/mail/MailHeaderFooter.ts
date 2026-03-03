@@ -8,5 +8,5 @@ export interface MailHeaderFooter {
   headerPlain?: string;
   footerHtml?: string;
   footerPlain?: string;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

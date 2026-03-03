@@ -7,5 +7,5 @@ export interface ShopwareDocumentType {
   name: string;
   technicalName: string;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

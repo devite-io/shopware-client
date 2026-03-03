@@ -11,5 +11,5 @@ export interface SalesChannelType {
   coverUrl?: string;
   screenshotUrls?: Array<string>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

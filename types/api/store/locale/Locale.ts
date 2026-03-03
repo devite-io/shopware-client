@@ -8,5 +8,5 @@ export interface Locale {
   code: string;
   territory: string;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

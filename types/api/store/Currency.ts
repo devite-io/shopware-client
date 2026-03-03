@@ -14,5 +14,5 @@ export interface Currency {
   itemRounding: Rounding;
   totalRounding: Rounding;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

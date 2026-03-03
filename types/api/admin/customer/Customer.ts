@@ -1,5 +1,5 @@
 import { Customer as StoreApiCustomer } from "#types/api/store/customer/Customer";
-import { CustomerGroup } from "./group/CustomerGroup";
+import { CustomerGroup } from "./CustomerGroup";
 import { SalesChannel } from "../salesChannel/SalesChannel";
 import { Language } from "../locale/Language";
 import { PaymentMethod } from "../paymentMethod/PaymentMethod";
@@ -9,7 +9,18 @@ import { Tag } from "../Tag";
 import { ProductReview } from "../product/ProductReview";
 import { User } from "../user/User";
 
-export type Customer = StoreApiCustomer & {
+export type Customer = Omit<
+  StoreApiCustomer,
+  | "group"
+  | "lastPaymentMethod"
+  | "salutation"
+  | "addresses"
+  | "defaultBillingAddress"
+  | "activeBillingAddress"
+  | "defaultShippingAddress"
+  | "activeShippingAddress"
+  | "productReviews"
+> & {
   readonly autoIncrement?: number;
   createdById?: string;
   createdBy?: User;

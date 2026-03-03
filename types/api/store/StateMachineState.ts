@@ -7,5 +7,5 @@ export interface StateMachineState {
   technicalName: string;
   name: string;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

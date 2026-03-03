@@ -31,5 +31,5 @@ export interface SalesChannel {
   shippingMethodIds?: Array<string>;
   shippingMethods?: Array<ShippingMethod>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

@@ -10,5 +10,5 @@ export interface DeliveryTime {
   customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

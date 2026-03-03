@@ -14,5 +14,5 @@ export interface StateMachine {
   transitions?: Array<StateMachineTransition>;
   historyEntries?: Array<StateMachineHistory>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

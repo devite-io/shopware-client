@@ -8,5 +8,5 @@ export interface TaxRuleType {
   position: number;
   typeName: string;
   rules?: Array<TaxRule>;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

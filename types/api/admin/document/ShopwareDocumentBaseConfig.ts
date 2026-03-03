@@ -2,7 +2,10 @@ import { ShopwareDocumentBaseConfig as StoreApiShopwareDocumentBaseConfig } from
 import { ShopwareDocumentType } from "./ShopwareDocumentType";
 import { Media } from "../media/Media";
 
-export type ShopwareDocumentBaseConfig = StoreApiShopwareDocumentBaseConfig & {
+export type ShopwareDocumentBaseConfig = Omit<
+  StoreApiShopwareDocumentBaseConfig,
+  "documentType" | "logo"
+> & {
   documentType?: ShopwareDocumentType;
   logo?: Media;
 };

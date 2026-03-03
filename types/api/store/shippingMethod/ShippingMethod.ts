@@ -21,5 +21,5 @@ export interface ShippingMethod {
   availabilityRuleId?: string;
   availabilityRule?: Rule;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

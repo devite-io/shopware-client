@@ -5,7 +5,7 @@ import { Country } from "../country/Country";
 import { PaymentMethod } from "../paymentMethod/PaymentMethod";
 import { ShippingMethod } from "../shippingMethod/ShippingMethod";
 import { SalesChannelType } from "./SalesChannelType";
-import { CustomerGroup } from "../customer/group/CustomerGroup";
+import { CustomerGroup } from "../customer/CustomerGroup";
 import { CmsPage } from "../cms/CmsPage";
 import { SalesChannelDomain } from "./SalesChannelDomain";
 import { SystemConfigEntry } from "../SystemConfigEntry";
@@ -13,7 +13,17 @@ import { MailHeaderFooter } from "../mail/MailHeaderFooter";
 import { MainCategory } from "../category/MainCategory";
 import { LandingPage } from "../cms/landingPage/LandingPage";
 
-export type SalesChannel = StoreApiSalesChannel & {
+export type SalesChannel = Omit<
+  StoreApiSalesChannel,
+  | "language"
+  | "languages"
+  | "countries"
+  | "currencies"
+  | "paymentMethod"
+  | "paymentMethods"
+  | "shippingMethod"
+  | "shippingMethods"
+> & {
   readonly accessKey: string;
   type?: SalesChannelType;
   taxCalculationType?: "horizontal" | "vertical";

@@ -2,7 +2,10 @@ import { OrderLineItemDownload as StoreApiOrderLineItemDownload } from "#types/a
 import { OrderLineItem } from "./OrderLineItem";
 import { Media } from "../../media/Media";
 
-export type OrderLineItemDownload = StoreApiOrderLineItemDownload & {
+export type OrderLineItemDownload = Omit<
+  StoreApiOrderLineItemDownload,
+  "orderLineItem" | "media"
+> & {
   orderLineItem?: OrderLineItem;
   media?: Media;
 };

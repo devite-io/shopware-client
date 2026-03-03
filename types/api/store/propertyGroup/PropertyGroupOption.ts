@@ -16,5 +16,5 @@ export interface PropertyGroupOption {
   groupId: string;
   group: PropertyGroup;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

@@ -23,5 +23,5 @@ export interface App {
   appShippingMethods?: Array<AppShippingMethod>;
   webhooks?: Array<Webhook>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

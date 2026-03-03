@@ -14,7 +14,7 @@ export interface TaxProvider {
   customFields?: GenericRecord;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
   availabilityRule?: Rule;
   app?: App;
 }

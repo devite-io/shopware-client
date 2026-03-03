@@ -17,7 +17,7 @@ export interface CustomerAddressBody {
   additionalAddressLine1?: string;
   additionalAddressLine2?: string;
   countryId: string;
-  country: Country;
+  country?: Country;
   countryStateId?: string;
   countryState?: CountryState;
   phoneNumber?: string;

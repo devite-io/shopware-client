@@ -5,5 +5,5 @@ export interface AppActionButton {
   action: string;
   label: string;
   url: string;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

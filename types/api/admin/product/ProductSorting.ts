@@ -8,5 +8,5 @@ export interface ProductSorting {
   key: string;
   priority: number;
   fields: object;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

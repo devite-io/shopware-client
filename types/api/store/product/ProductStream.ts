@@ -7,5 +7,5 @@ export interface ProductStream {
   name: string;
   description?: string;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

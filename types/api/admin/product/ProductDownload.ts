@@ -3,7 +3,7 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 import { Product } from "./Product";
 import { Media } from "../media/Media";
 
-export type ProductDownload = StoreApiProductDownload & {
+export type ProductDownload = Omit<StoreApiProductDownload, "product" | "media"> & {
   id: string;
   versionId?: string;
   readonly createdAt?: string;

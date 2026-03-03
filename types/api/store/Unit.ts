@@ -7,5 +7,5 @@ export interface Unit {
   name: string;
   shortCode: string;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

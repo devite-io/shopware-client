@@ -9,5 +9,5 @@ export interface ProductCrossSelling {
   position?: number;
   sortBy?: string;
   sortDirection?: string;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

@@ -20,5 +20,5 @@ export interface Media {
   thumbnails?: Array<MediaThumbnail>;
   tags?: Array<Tag>;
   customFields?: GenericRecord;
-  translated: Record<string, string>;
+  translated?: Record<string, string>;
 }

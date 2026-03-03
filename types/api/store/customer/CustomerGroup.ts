@@ -11,6 +11,6 @@ export interface CustomerGroup {
   registrationSeoMetaDescription?: string;
   registrationIntroduction?: string;
   registrationOnlyCompanyRegistration?: boolean;
-  translated: Record<string, string>;
+  translated?: Record<string, string>;
   customFields?: GenericRecord;
 }

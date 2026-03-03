@@ -2,7 +2,7 @@ import { PaymentMethod as StoreApiPaymentMethod } from "#types/api/store/Payment
 import { Media } from "../media/Media";
 import { Rule } from "../rule/Rule";
 
-export type PaymentMethod = StoreApiPaymentMethod & {
+export type PaymentMethod = Omit<StoreApiPaymentMethod, "media"> & {
   handlerIdentifier?: string;
   readonly formattedHandlerIdentifier?: string;
   availabilityRuleId?: string;

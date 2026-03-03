@@ -10,5 +10,5 @@ export interface CountryState {
   active?: boolean;
   countryId: string;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

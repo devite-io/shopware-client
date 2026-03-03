@@ -22,7 +22,7 @@ export type ProductListingResult = {
     label: string;
     key: string;
     priority: number;
-    translated: Record<string, string>;
+    translated?: Record<string, string>;
   }>;
   elements: Array<Product>;
 };

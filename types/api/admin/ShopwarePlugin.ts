@@ -20,5 +20,5 @@ export interface ShopwarePlugin {
   author?: string;
   paymentMethods?: Array<PaymentMethod>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

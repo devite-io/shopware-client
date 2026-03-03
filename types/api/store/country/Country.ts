@@ -29,5 +29,5 @@ export interface Country {
   shippingAvailable?: boolean;
   customFields?: GenericRecord;
   states?: Array<CountryState>;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

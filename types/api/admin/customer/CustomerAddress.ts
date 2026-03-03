@@ -3,7 +3,10 @@ import { Country } from "../country/Country";
 import { CountryState } from "../country/CountryState";
 import { Salutation } from "../Salutation";
 
-export type CustomerAddress = StoreApiCustomerAddress & {
+export type CustomerAddress = Omit<
+  StoreApiCustomerAddress,
+  "salutation" | "country" | "countryState"
+> & {
   salutation?: Salutation;
   country?: Country;
   countryState?: CountryState;

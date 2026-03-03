@@ -24,5 +24,5 @@ export interface CmsSlot {
   cmsBlockVersionId?: string;
   block?: CmsBlock;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

@@ -20,5 +20,5 @@ export interface LandingPage {
   cmsPageVersionId?: string;
   cmsPage?: CmsPage;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

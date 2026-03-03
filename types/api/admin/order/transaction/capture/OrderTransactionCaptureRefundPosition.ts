@@ -2,8 +2,10 @@ import { OrderTransactionCaptureRefundPosition as StoreApiOrderTransactionCaptur
 import { OrderLineItem } from "../../lineItem/OrderLineItem";
 import { OrderTransactionCaptureRefund } from "./OrderTransactionCaptureRefund";
 
-export type OrderTransactionCaptureRefundPosition =
-  StoreApiOrderTransactionCaptureRefundPosition & {
-    orderTransactionCaptureRefund?: OrderTransactionCaptureRefund;
-    orderLineItem?: OrderLineItem;
-  };
+export type OrderTransactionCaptureRefundPosition = Omit<
+  StoreApiOrderTransactionCaptureRefundPosition,
+  "orderTransactionCaptureRefund" | "orderLineItem"
+> & {
+  orderTransactionCaptureRefund?: OrderTransactionCaptureRefund;
+  orderLineItem?: OrderLineItem;
+};

@@ -7,5 +7,5 @@ export interface NumberRangeType {
   technicalName?: string;
   typeName: string;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

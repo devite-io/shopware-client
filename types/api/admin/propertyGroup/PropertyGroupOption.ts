@@ -2,7 +2,7 @@ import { PropertyGroupOption as StoreApiPropertyGroupOption } from "#types/api/s
 import { Media } from "../media/Media";
 import { PropertyGroup } from "./PropertyGroup";
 
-export type PropertyGroupOption = StoreApiPropertyGroupOption & {
+export type PropertyGroupOption = Omit<StoreApiPropertyGroupOption, "media" | "group"> & {
   media?: Media;
   group?: PropertyGroup;
 };

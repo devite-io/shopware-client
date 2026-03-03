@@ -18,5 +18,5 @@ export interface PaymentMethod {
   mediaId?: string;
   media?: Media;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

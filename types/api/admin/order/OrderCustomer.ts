@@ -2,7 +2,7 @@ import { OrderCustomer as StoreApiOrderCustomer } from "#types/api/store/order/O
 import { Customer } from "../customer/Customer";
 import { Salutation } from "../Salutation";
 
-export type OrderCustomer = StoreApiOrderCustomer & {
+export type OrderCustomer = Omit<StoreApiOrderCustomer, "salutation"> & {
   remoteAddress?: string;
   salutation: Salutation;
   customerId?: string;

@@ -19,5 +19,5 @@ export interface CmsPage {
   previewMedia?: Media;
   landingPages?: Array<LandingPage>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }
