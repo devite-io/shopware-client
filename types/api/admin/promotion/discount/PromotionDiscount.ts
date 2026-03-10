@@ -3,7 +3,7 @@ import { PromotionDiscountPrice } from "./PromotionDiscountPrice";
 
 export interface PromotionDiscount {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   type: "absolute" | "percentage";
   scope: string;

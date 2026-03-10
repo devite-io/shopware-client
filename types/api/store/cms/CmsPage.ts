@@ -7,7 +7,7 @@ export interface CmsPage {
   apiAlias: "cms_page";
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   name?: string;
   type: "landingpage" | "page" | "product_list" | "product_detail";
@@ -19,5 +19,5 @@ export interface CmsPage {
   previewMedia?: Media;
   landingPages?: Array<LandingPage>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

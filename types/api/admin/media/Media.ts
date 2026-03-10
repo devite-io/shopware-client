@@ -3,6 +3,6 @@ import { User } from "../user/User";
 
 export type Media = StoreApiMedia & {
   userId?: string;
-  user: User;
+  user?: User;
   mediaFolderId?: string;
 };

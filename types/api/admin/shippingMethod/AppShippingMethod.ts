@@ -3,7 +3,7 @@ import { Media } from "../media/Media";
 
 export interface AppShippingMethod {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   appName: string;
   identifier: string;

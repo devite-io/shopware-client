@@ -7,7 +7,7 @@ import { OrderTransactionCaptureRefund } from "./OrderTransactionCaptureRefund";
 export interface OrderTransactionCapture {
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   externalReference?: string;
   stateId: string;

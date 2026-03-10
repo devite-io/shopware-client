@@ -7,11 +7,10 @@ import { SeoUrlEntity } from "../seo/SeoUrlEntity";
 export interface Category {
   apiAlias: "category";
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   versionId?: string;
   parentId?: string;
-  parent?: Category;
   parentVersionId?: string;
   afterCategoryId?: string;
   afterCategoryVersionId?: string;
@@ -20,10 +19,10 @@ export interface Category {
   readonly level?: number;
   readonly path?: string;
   readonly childCount: number;
-  children: Array<Category>;
-  type: "page" | "folder" | "link";
+  children?: Array<Category>;
+  type: "folder" | "page" | "link";
   productAssignmentType?: "product_stream" | "product";
-  linkType?: "external" | "castegory" | "product" | "landing_page";
+  linkType?: "external" | "category" | "product" | "landing_page";
   media?: Media;
   active?: boolean;
   displayNestedProducts?: boolean;
@@ -44,5 +43,5 @@ export interface Category {
   seoUrls?: Array<SeoUrlEntity>;
   tags?: Array<Tag>;
   customFields?: GenericRecord;
-  translated: Record<string, string>;
+  translated?: Record<string, string>;
 }

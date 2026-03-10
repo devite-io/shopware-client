@@ -3,7 +3,7 @@ import { Country } from "../../country/Country";
 
 export interface TaxRule {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   taxRuleTypeId: string;
   type?: TaxRuleType;

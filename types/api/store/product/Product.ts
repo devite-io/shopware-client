@@ -2,7 +2,6 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 import { CalculatedPrice } from "../price/CalculatedPrice";
 import { ProductDownload } from "./ProductDownload";
 import { DeliveryTime } from "../DeliveryTime";
-import { ProductManufacturer } from "./ProductManufacturer";
 import { ProductMedia } from "../media/ProductMedia";
 import { CmsPage } from "../cms/CmsPage";
 import { ProductCrossSelling } from "./crossSelling/ProductCrossSelling";
@@ -18,17 +17,14 @@ export interface Product {
   apiAlias: "product";
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   parentId?: string;
   parentVersionId?: string;
   readonly childCount?: number;
   children?: Array<Product>;
   active?: boolean;
-  manufacturerId?: string;
-  productManufacturerVersionId?: string;
-  manufacturer?: ProductManufacturer;
-  manufacturerNumber?: string;
+  type: "physical" | "digital";
   productNumber: string;
   readonly displayGroup?: string;
   markAsTopseller?: boolean;
@@ -64,7 +60,7 @@ export interface Product {
   productReviews?: Array<ProductReview>;
   crossSellings?: Array<ProductCrossSelling>;
   readonly categoryIds?: Array<string>;
-  categories?: Array<MainCategory>;
+  categories?: Array<Category>;
   mainCategories?: Array<MainCategory>;
   metaTitle?: string;
   metaDescription?: string;
@@ -79,5 +75,5 @@ export interface Product {
   cmsPageVersionId?: string;
   cmsPage?: CmsPage;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

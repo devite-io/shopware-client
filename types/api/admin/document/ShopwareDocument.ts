@@ -3,7 +3,15 @@ import { ShopwareDocumentType } from "./ShopwareDocumentType";
 import { Media } from "../media/Media";
 import { Order } from "../order/Order";
 
-export type ShopwareDocument = StoreApiShopwareDocument & {
+export type ShopwareDocument = Omit<
+  StoreApiShopwareDocument,
+  | "order"
+  | "documentType"
+  | "referencedDocument"
+  | "dependantDocuments"
+  | "documentMediaFile"
+  | "documentA11yMediaFile"
+> & {
   order?: Order;
   documentType?: ShopwareDocumentType;
   referencedDocument?: ShopwareDocument;

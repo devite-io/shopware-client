@@ -4,7 +4,7 @@ import { Currency } from "../currency/Currency";
 
 export interface SalesChannelDomain {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   url: string;
   hreflangUseOnlyLocale?: boolean;

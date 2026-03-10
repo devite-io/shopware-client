@@ -4,7 +4,7 @@ import { Salutation } from "../Salutation";
 
 export interface NewsletterRecipient {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   readonly confirmedAt?: string;
   status: string;

@@ -7,7 +7,7 @@ import { AclRole } from "../acl/AclRole";
 
 export interface User {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   timeZone?: string;

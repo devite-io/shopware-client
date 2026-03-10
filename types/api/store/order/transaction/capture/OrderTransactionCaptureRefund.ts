@@ -7,7 +7,7 @@ import { OrderTransactionCaptureRefundPosition } from "./OrderTransactionCapture
 export interface OrderTransactionCaptureRefund {
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   externalReference?: string;
   reason?: string;

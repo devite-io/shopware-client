@@ -8,10 +8,12 @@ export interface CartLineItem {
   apiAlias: "cart_line_item";
   id: string;
   referencedId?: string;
+  promotionId?: string;
   type: CartLineItemType;
   label?: string;
   description?: string;
   cover?: Media;
+  position?: number;
   good?: boolean;
   removable?: boolean;
   stackable?: boolean;
@@ -24,5 +26,6 @@ export interface CartLineItem {
     purchaseSteps?: number;
   };
   payload?: CartLineItemPayload;
+  productId?: string;
   states?: Array<"is-physical" | "is-download">;
 }

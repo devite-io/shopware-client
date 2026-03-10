@@ -10,7 +10,7 @@ import { ProductReview } from "../product/ProductReview";
 export interface Customer {
   apiAlias: "customer";
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   guest?: boolean;
   accountType?: "private" | "business";

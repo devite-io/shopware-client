@@ -3,7 +3,7 @@ import { Rounding } from "#types/api/global/Rounding";
 
 export interface Currency {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   shortName: string;
   name: string;
@@ -14,5 +14,5 @@ export interface Currency {
   itemRounding: Rounding;
   totalRounding: Rounding;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

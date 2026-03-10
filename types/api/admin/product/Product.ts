@@ -1,38 +1,62 @@
-import { Product as StoreApiProduct } from "#types/api/store/product/Product";
-import { ProductDownload } from "./ProductDownload";
+import { CalculatedPrice } from "#types/api/store/price/CalculatedPrice";
+import { Category } from "../category/Category";
+import { CmsPage } from "../cms/CmsPage";
 import { DeliveryTime } from "../DeliveryTime";
+import { MainCategory } from "../category/MainCategory";
+import { Price } from "#types/api/global";
+import { Product as StoreApiProduct } from "#types/api/store/product/Product";
+import { ProductCrossSelling } from "./crossSelling/ProductCrossSelling";
+import { ProductDownload } from "./ProductDownload";
 import { ProductManufacturer } from "./ProductManufacturer";
 import { ProductMedia } from "./ProductMedia";
-import { CmsPage } from "../cms/CmsPage";
-import { ProductCrossSelling } from "./crossSelling/ProductCrossSelling";
-import { ProductSearchKeyword } from "./search/ProductSearchKeyword";
 import { ProductReview } from "./ProductReview";
-import { MainCategory } from "../category/MainCategory";
-import { SeoUrl } from "../seo/SeoUrl";
+import { ProductSearchKeyword } from "./search/ProductSearchKeyword";
+import { ProductStream } from "./stream/ProductStream";
 import { PropertyGroupOption } from "../propertyGroup/PropertyGroupOption";
-import { Category } from "../category/Category";
+import { SeoUrl } from "../seo/SeoUrl";
 import { Tag } from "../Tag";
-import { CalculatedPrice } from "#types/api/store/price/CalculatedPrice";
-import { Price } from "#types/api/global";
 
-export type Product = StoreApiProduct & {
+export type Product = Omit<
+  StoreApiProduct,
+  | "children"
+  | "deliveryTime"
+  | "cover"
+  | "media"
+  | "tags"
+  | "properties"
+  | "options"
+  | "streams"
+  | "productReviews"
+  | "crossSellings"
+  | "categories"
+  | "mainCategories"
+  | "seoUrls"
+  | "seoCategory"
+  | "downloads"
+  | "cmsPage"
+> & {
   readonly autoIncrement?: number;
   children?: Array<Product>;
+  manufacturerId?: string;
+  productManufacturerVersionId?: string;
   manufacturer?: ProductManufacturer;
+  manufacturerNumber?: string;
   deliveryTime?: DeliveryTime;
   cover?: ProductMedia;
   media?: Array<ProductMedia>;
   tags?: Array<Tag>;
   searchKeywords?: Array<ProductSearchKeyword>;
   customSearchKeywords?: Array<string>;
-  options?: Array<PropertyGroupOption>;
   properties?: Array<PropertyGroupOption>;
+  options?: Array<PropertyGroupOption>;
+  streams?: Array<ProductStream>;
   productReviews?: Array<ProductReview>;
   crossSellings?: Array<ProductCrossSelling>;
   categories?: Array<Category>;
   categoriesRo?: Array<Category>;
   mainCategories?: Array<MainCategory>;
   seoUrls?: Array<SeoUrl>;
+  seoCategory: Category;
   price?: Array<Price>;
   purchasePrices?: Array<CalculatedPrice>;
   downloads?: Array<ProductDownload>;

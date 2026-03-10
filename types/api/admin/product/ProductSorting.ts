@@ -1,6 +1,6 @@
 export interface ProductSorting {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   label: string;
@@ -8,5 +8,5 @@ export interface ProductSorting {
   key: string;
   priority: number;
   fields: object;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

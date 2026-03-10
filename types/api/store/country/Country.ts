@@ -3,7 +3,7 @@ import { CountryState } from "./CountryState";
 
 export interface Country {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   name: string;
   active?: boolean;
@@ -29,5 +29,5 @@ export interface Country {
   shippingAvailable?: boolean;
   customFields?: GenericRecord;
   states?: Array<CountryState>;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

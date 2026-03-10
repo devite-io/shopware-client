@@ -4,7 +4,7 @@ import { ShopwareDocumentType } from "../document/ShopwareDocumentType";
 
 export interface ShopwareDocumentBaseConfig {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   filenamePrefix?: string;
   filenameSuffix?: string;

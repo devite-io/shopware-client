@@ -3,7 +3,7 @@ import { Media } from "./media/Media";
 
 export interface PaymentMethod {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   name: string;
@@ -18,5 +18,5 @@ export interface PaymentMethod {
   mediaId?: string;
   media?: Media;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

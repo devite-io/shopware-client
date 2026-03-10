@@ -1,13 +1,11 @@
 import { Category as StoreApiCategory } from "#types/api/store/category/Category";
 import { Media } from "../media/Media";
 import { CmsPage } from "../cms/CmsPage";
-import { SeoUrlEntity } from "#types/api/store";
+import { SeoUrl } from "../seo/SeoUrl";
 
-export type Category = StoreApiCategory & {
-  parent?: Category;
+export type Category = Omit<StoreApiCategory, "children" | "seoUrls" | "cmsPage" | "media"> & {
   children?: Array<Category>;
-  seoUrls?: Array<SeoUrlEntity>;
+  seoUrls?: Array<SeoUrl>;
   cmsPage?: CmsPage;
   media?: Media;
-  translated?: Record<string, string>;
 };

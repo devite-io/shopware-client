@@ -4,7 +4,7 @@ import { MailTemplateMedia } from "./MailTemplateMedia";
 
 export interface MailTemplate {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   senderName?: string;
   subject: string;
@@ -15,5 +15,5 @@ export interface MailTemplate {
   mailTemplateType?: MailTemplateType;
   media?: Array<MailTemplateMedia>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

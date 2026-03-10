@@ -4,7 +4,10 @@ import { ShippingMethodPrice } from "./ShippingMethodPrice";
 import { Media } from "../media/Media";
 import { Tag } from "../Tag";
 
-export type ShippingMethod = StoreApiShippingMethod & {
+export type ShippingMethod = Omit<
+  StoreApiShippingMethod,
+  "media" | "tags" | "prices" | "availabilityRule"
+> & {
   media?: Media;
   tags?: Array<Tag>;
   prices?: Array<ShippingMethodPrice>;

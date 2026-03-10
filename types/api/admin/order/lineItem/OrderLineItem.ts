@@ -2,7 +2,10 @@ import { OrderLineItem as StoreApiOrderLineItem } from "#types/api/store/order/O
 import { Media } from "../../media/Media";
 import { OrderLineItemDownload } from "./OrderLineItemDownload";
 
-export type OrderLineItem = StoreApiOrderLineItem & {
+export type OrderLineItem = Omit<
+  StoreApiOrderLineItem,
+  "parent" | "children" | "cover" | "downloads"
+> & {
   parent?: OrderLineItem;
   children: Array<OrderLineItem>;
   cover?: Media;

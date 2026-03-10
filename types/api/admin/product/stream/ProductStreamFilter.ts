@@ -2,7 +2,7 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface ProductStreamFilter {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   parentId?: string;
   parent?: ProductStreamFilter;

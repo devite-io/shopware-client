@@ -4,7 +4,7 @@ import { Rule } from "../Rule";
 
 export interface ShippingMethodPrice {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   ruleId?: string;
   calculation?: number;

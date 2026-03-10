@@ -3,7 +3,7 @@ import { Rule } from "./Rule";
 
 export interface RuleCondition {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   parentId?: string;
   parent?: RuleCondition;

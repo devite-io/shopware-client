@@ -3,7 +3,7 @@ import { Language } from "../locale/Language";
 
 export interface SeoUrl {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   error?: string;
   url?: string;

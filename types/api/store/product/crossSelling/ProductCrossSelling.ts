@@ -1,6 +1,6 @@
 export interface ProductCrossSelling {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   type?: string;
@@ -9,5 +9,5 @@ export interface ProductCrossSelling {
   position?: number;
   sortBy?: string;
   sortDirection?: string;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

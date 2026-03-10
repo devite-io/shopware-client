@@ -5,7 +5,7 @@ import { OrderLineItem } from "../OrderLineItem";
 export interface OrderDeliveryPosition {
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   quantity?: number;
   unitPrice?: number;

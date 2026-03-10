@@ -12,8 +12,21 @@ import { ShopwareDocument } from "../document/ShopwareDocument";
 import { Tag } from "../Tag";
 import { User } from "../user/User";
 
-export type Order = StoreApiOrder & {
-  readonly createdAt?: string;
+export type Order = Omit<
+  StoreApiOrder,
+  | "currency"
+  | "lineItems"
+  | "stateMachineState"
+  | "addresses"
+  | "billingAddress"
+  | "orderCustomer"
+  | "deliveries"
+  | "transactions"
+  | "documents"
+  | "language"
+  | "tags"
+> & {
+  readonly createdAt: string;
   createdBy?: User;
   readonly updatedAt?: string;
   updatedBy?: User;

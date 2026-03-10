@@ -4,7 +4,7 @@ import { CmsBlock } from "./CmsBlock";
 export interface CmsSlot {
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   type:
     | "image"
@@ -24,5 +24,5 @@ export interface CmsSlot {
   cmsBlockVersionId?: string;
   block?: CmsBlock;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

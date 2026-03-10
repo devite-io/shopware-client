@@ -6,7 +6,7 @@ export interface LandingPage {
   apiAlias: "landing_page";
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   name: string;
@@ -20,5 +20,5 @@ export interface LandingPage {
   cmsPageVersionId?: string;
   cmsPage?: CmsPage;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

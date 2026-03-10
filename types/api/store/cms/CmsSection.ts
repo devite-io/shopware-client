@@ -7,8 +7,9 @@ import { CmsBlock } from "./CmsBlock";
 
 export interface CmsSection {
   apiAlias: "cms_section";
-  id?: string;
-  readonly createdAt?: string;
+  id: string;
+  versionId: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   position: number;
   type: "sidebar" | "fullwidth";

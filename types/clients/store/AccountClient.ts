@@ -1,6 +1,6 @@
 import { Criteria } from "#types/api/global/query/Criteria";
 import { Customer } from "#types/api/store/customer/Customer";
-import { CustomerAddress } from "#types/api/store/customer/address/CustomerAddress";
+import { CustomerAddressBody } from "#types/api/store/customer/address/CustomerAddressBody";
 import { CustomerGroup } from "#types/api/store";
 import { GenericRecord } from "#types/api/global";
 
@@ -92,8 +92,8 @@ export interface CustomerRegisterRequest {
   lastName: string;
   acceptedDataProtection: boolean;
   storefrontUrl: string;
-  billingAddress: CustomerAddress;
-  shippingAddress?: CustomerAddress;
+  billingAddress: CustomerAddressBody;
+  shippingAddress?: CustomerAddressBody;
   guest?: boolean;
   birthdayDay?: number;
   birthdayMonth?: number;

@@ -5,7 +5,7 @@ import { Media } from "../media/Media";
 
 export interface ShopwareDocument {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   orderId: string;
   orderVersionId?: string;

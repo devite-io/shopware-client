@@ -3,7 +3,7 @@ import { AclRole } from "./AclRole";
 
 export interface AclUserRole {
   id?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   userId: string;
   user?: User;

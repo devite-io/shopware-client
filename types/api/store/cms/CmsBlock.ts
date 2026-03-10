@@ -8,7 +8,7 @@ export interface CmsBlock {
   apiAlias: "cms_block";
   id?: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   type: "image" | "text" | "product-listing" | "image-two-column";
   position: number;

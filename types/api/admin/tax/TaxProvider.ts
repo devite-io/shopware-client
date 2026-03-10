@@ -12,9 +12,9 @@ export interface TaxProvider {
   availabilityRuleId?: string;
   appId?: string;
   customFields?: GenericRecord;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
   availabilityRule?: Rule;
   app?: App;
 }

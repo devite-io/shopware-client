@@ -4,7 +4,7 @@ import { Country } from "../country/Country";
 
 export interface CurrencyCountryRounding {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   currencyId: string;
   currency?: Currency;

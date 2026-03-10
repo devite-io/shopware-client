@@ -4,7 +4,7 @@ import { NumberRangeState } from "./NumberRangeState";
 
 export interface NumberRange {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   name: string;
   description?: string;
@@ -14,5 +14,5 @@ export interface NumberRange {
   type?: NumberRangeType;
   state?: NumberRangeState;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

@@ -2,7 +2,7 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface SeoUrlEntity {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   url?: string;
   pathInfo: string;

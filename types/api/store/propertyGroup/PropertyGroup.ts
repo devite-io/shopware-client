@@ -3,7 +3,7 @@ import { PropertyGroupOption } from "./PropertyGroupOption";
 
 export interface PropertyGroup {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   displayType?: "text" | "image" | "dropdown" | "color";
   position?: number;
@@ -12,5 +12,5 @@ export interface PropertyGroup {
   description?: string;
   customFields?: GenericRecord;
   options?: Array<PropertyGroupOption>;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

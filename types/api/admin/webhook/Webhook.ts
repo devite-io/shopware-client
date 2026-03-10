@@ -1,6 +1,6 @@
 export interface Webhook {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   eventName: string;

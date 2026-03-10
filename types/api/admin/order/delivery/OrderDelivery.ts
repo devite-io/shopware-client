@@ -4,7 +4,10 @@ import { StateMachineState } from "#types/api/store";
 import { OrderAddress } from "../OrderAddress";
 import { OrderDeliveryPosition } from "./OrderDeliveryPosition";
 
-export type OrderDelivery = StoreApiOrderDelivery & {
+export type OrderDelivery = Omit<
+  StoreApiOrderDelivery,
+  "shippingOrderAddress" | "stateMachineState" | "positions"
+> & {
   shippingOrderAddress?: OrderAddress;
   stateMachineState?: StateMachineState;
   positions?: Array<OrderDeliveryPosition>;

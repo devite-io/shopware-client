@@ -2,7 +2,7 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface CustomerGroup {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   name: string;
   displayGross?: boolean;
@@ -11,6 +11,6 @@ export interface CustomerGroup {
   registrationSeoMetaDescription?: string;
   registrationIntroduction?: string;
   registrationOnlyCompanyRegistration?: boolean;
-  translated: Record<string, string>;
+  translated?: Record<string, string>;
   customFields?: GenericRecord;
 }

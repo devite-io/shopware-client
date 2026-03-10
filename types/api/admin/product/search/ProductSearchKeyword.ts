@@ -4,7 +4,7 @@ import { Language } from "../../locale/Language";
 export interface ProductSearchKeyword {
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   keyword: string;
   ranking: number;

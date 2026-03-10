@@ -2,7 +2,7 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface CountryState {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   name: string;
   shortCode: string;
@@ -10,5 +10,5 @@ export interface CountryState {
   active?: boolean;
   countryId: string;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

@@ -5,7 +5,7 @@ import { Media } from "../media/Media";
 export interface OrderLineItemDownload {
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   position: number;
   orderLineItemId: string;

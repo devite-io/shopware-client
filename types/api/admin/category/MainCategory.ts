@@ -3,7 +3,7 @@ import { Product } from "../product/Product";
 import { Category } from "./Category";
 import { SalesChannel } from "../salesChannel/SalesChannel";
 
-export type MainCategory = StoreApiMainCategory & {
+export type MainCategory = Omit<StoreApiMainCategory, "salesChannel"> & {
   product?: Product;
   category?: Category;
   salesChannel?: SalesChannel;

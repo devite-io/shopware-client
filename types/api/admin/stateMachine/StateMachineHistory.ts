@@ -4,7 +4,7 @@ import { User } from "../user/User";
 
 export interface StateMachineHistory {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   referencedId: string;
   referencedVersionId: string;

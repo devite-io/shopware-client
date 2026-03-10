@@ -1,6 +1,6 @@
 export interface ScheduledTask {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   readonly lastExecutionTime: string;
   readonly nextExecutionTime: string;

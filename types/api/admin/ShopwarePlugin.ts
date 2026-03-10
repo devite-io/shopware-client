@@ -3,7 +3,7 @@ import { PaymentMethod } from "./paymentMethod/PaymentMethod";
 
 export interface ShopwarePlugin {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   readonly installedAt?: string;
   active?: boolean;
@@ -20,5 +20,5 @@ export interface ShopwarePlugin {
   author?: string;
   paymentMethods?: Array<PaymentMethod>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

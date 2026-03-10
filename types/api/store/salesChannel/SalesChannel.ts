@@ -8,7 +8,7 @@ import { Language } from "../locale/Language";
 
 export interface SalesChannel {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   name: string;
@@ -31,5 +31,5 @@ export interface SalesChannel {
   shippingMethodIds?: Array<string>;
   shippingMethods?: Array<ShippingMethod>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

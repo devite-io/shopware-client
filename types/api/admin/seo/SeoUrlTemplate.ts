@@ -3,7 +3,7 @@ import { SalesChannel } from "../salesChannel/SalesChannel";
 
 export interface SeoUrlTemplate {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   isValid?: boolean;
   entityName: string;

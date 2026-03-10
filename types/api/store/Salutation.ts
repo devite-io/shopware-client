@@ -6,7 +6,7 @@ export interface Salutation {
   displayName: string;
   letterName: string;
   customFields?: GenericRecord;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

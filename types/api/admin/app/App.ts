@@ -7,7 +7,7 @@ import { AppShippingMethod } from "../shippingMethod/AppShippingMethod";
 
 export interface App {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   allowDisable?: boolean;
@@ -23,5 +23,5 @@ export interface App {
   appShippingMethods?: Array<AppShippingMethod>;
   webhooks?: Array<Webhook>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

@@ -5,7 +5,7 @@ import { PropertyGroup } from "./PropertyGroup";
 export interface PropertyGroupOption {
   apiAlias: "property_group_option";
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   name: string;
   option: string;
@@ -16,5 +16,5 @@ export interface PropertyGroupOption {
   groupId: string;
   group: PropertyGroup;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

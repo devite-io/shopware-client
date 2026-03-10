@@ -3,7 +3,7 @@ import { Locale } from "./Locale";
 
 export interface Language {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   parentId?: string;
   parent?: Language;

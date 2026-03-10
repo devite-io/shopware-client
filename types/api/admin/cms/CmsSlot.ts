@@ -1,6 +1,6 @@
 import { CmsSlot as StoreApiCmsSlot } from "#types/api/store/cms/CmsSlot";
 import { CmsBlock } from "./CmsBlock";
 
-export type CmsSlot = StoreApiCmsSlot & {
+export type CmsSlot = Omit<StoreApiCmsSlot, "block"> & {
   block?: CmsBlock;
 };

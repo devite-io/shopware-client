@@ -3,7 +3,7 @@ import { Media } from "../media/Media";
 
 export interface MediaThumbnail {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   readonly width: number;
   readonly height: number;

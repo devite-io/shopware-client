@@ -2,7 +2,7 @@ import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface SalesChannelType {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   name: string;
   description?: string;
@@ -11,5 +11,5 @@ export interface SalesChannelType {
   coverUrl?: string;
   screenshotUrls?: Array<string>;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

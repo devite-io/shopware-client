@@ -6,7 +6,7 @@ import { Tag } from "../Tag";
 
 export interface ShippingMethod {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   active?: boolean;
   technicalName?: string;
@@ -21,5 +21,5 @@ export interface ShippingMethod {
   availabilityRuleId?: string;
   availabilityRule?: Rule;
   customFields?: GenericRecord;
-  translated?: Record<string, string>;
+  translated?: Record<string, any>;
 }

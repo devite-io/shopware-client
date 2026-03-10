@@ -3,7 +3,7 @@ import { ProductSearchConfigField } from "./ProductSearchConfigField";
 
 export interface ProductSearchConfig {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   andLogic?: boolean;
   minSearchLength?: number;

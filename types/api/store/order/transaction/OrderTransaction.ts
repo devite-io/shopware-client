@@ -7,7 +7,7 @@ import { OrderTransactionCapture } from "./capture/OrderTransactionCapture";
 export interface OrderTransaction {
   id: string;
   versionId?: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   orderId: string;
   orderVersionId?: string;

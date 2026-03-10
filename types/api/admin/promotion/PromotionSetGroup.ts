@@ -3,7 +3,7 @@ import { PromotionSetGroupRule } from "./rule/PromotionSetGroupRule";
 
 export interface PromotionSetGroup {
   id: string;
-  readonly createdAt?: string;
+  readonly createdAt: string;
   readonly updatedAt?: string;
   value: number;
   packagerKey: string;
