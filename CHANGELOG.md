@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.9.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.0...v1.9.1)
+
+### 🩹 Fixes
+
+- Api types ([90b790a](https://github.com/devite-io/shopware-client/commit/90b790a))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.9.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.8.0...v1.9.0)
