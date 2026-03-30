@@ -49,13 +49,13 @@
     "release": "bun run lint && bun run test && bun run build && git push && changelogen --release && bun publish --access=public && git push --follow-tags"
   },
   "devDependencies": {
-    "@types/node": "^25.3.3",
-    "@types/qs": "^6.14.0",
+    "@types/node": "^25.5.0",
+    "@types/qs": "^6.15.0",
     "changelogen": "^0.6.2",
-    "eslint": "^9.39.3",
+    "eslint": "^9.39.4",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1",
+    "typescript-eslint": "^8.58.0",
     "unbuild": "^3.6.1",
     "vitest": "^3.2.4"
   },
