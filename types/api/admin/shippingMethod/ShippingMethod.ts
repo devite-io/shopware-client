@@ -1,7 +1,8 @@
-import { ShippingMethod as StoreApiShippingMethod } from "#types/api/store/shippingMethod/ShippingMethod";
-import { Rule } from "../rule/Rule";
-import { ShippingMethodPrice } from "./ShippingMethodPrice";
+import { DeliveryTime } from "../DeliveryTime";
 import { Media } from "../media/Media";
+import { Rule } from "../rule/Rule";
+import { ShippingMethod as StoreApiShippingMethod } from "#types/api/store/shippingMethod/ShippingMethod";
+import { ShippingMethodPrice } from "./ShippingMethodPrice";
 import { Tag } from "../Tag";
 
 export type ShippingMethod = Omit<
@@ -12,4 +13,5 @@ export type ShippingMethod = Omit<
   tags?: Array<Tag>;
   prices?: Array<ShippingMethodPrice>;
   availabilityRule?: Rule;
+  deliveryTime?: DeliveryTime;
 };

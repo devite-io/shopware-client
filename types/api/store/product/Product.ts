@@ -12,6 +12,7 @@ import { PropertyGroupOption } from "#types/api/store/propertyGroup/PropertyGrou
 import { ProductStream } from "./ProductStream";
 import { Category } from "../category/Category";
 import { Tag } from "../Tag";
+import { Tax } from "../Tax";
 
 export interface Product {
   apiAlias: "product";
@@ -43,6 +44,8 @@ export interface Product {
   weight?: number;
   deliveryTimeId?: string;
   deliveryTime?: DeliveryTime;
+  taxId?: string;
+  tax?: Tax;
   name: string;
   description?: string;
   coverId?: string;
