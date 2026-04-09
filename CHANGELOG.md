@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.9.2
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.1...v1.9.2)
+
+### 🩹 Fixes
+
+- Adjust api types for storefront integration ([1c7a6e4](https://github.com/devite-io/shopware-client/commit/1c7a6e4))
+
+### 🏡 Chore
+
+- Update dependencies ([5632920](https://github.com/devite-io/shopware-client/commit/5632920))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.9.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.0...v1.9.1)
