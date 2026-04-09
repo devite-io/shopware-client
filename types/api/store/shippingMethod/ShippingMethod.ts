@@ -1,7 +1,8 @@
+import { DeliveryTime } from "../DeliveryTime";
 import { GenericRecord } from "#types/api/global/GenericRecord";
+import { Media } from "../media/Media";
 import { Rule } from "../Rule";
 import { ShippingMethodPrice } from "./ShippingMethodPrice";
-import { Media } from "../media/Media";
 import { Tag } from "../Tag";
 
 export interface ShippingMethod {
@@ -20,6 +21,8 @@ export interface ShippingMethod {
   prices?: Array<ShippingMethodPrice>;
   availabilityRuleId?: string;
   availabilityRule?: Rule;
+  deliveryTimeId?: string;
+  deliveryTime?: DeliveryTime;
   customFields?: GenericRecord;
   translated?: Record<string, any>;
 }

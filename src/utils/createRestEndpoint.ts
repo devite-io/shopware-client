@@ -43,7 +43,7 @@ export default function createRestEndpoint<T>(
      * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
      */
     getList: (query?: Criteria) =>
-      requestEndpoint<{ total: number; data: T[] }>(
+      requestEndpoint<{ total: number; data: Array<T> }>(
         client,
         HTTPRequestMethod.GET,
         `/${resourceIdentifier}${buildQuery(query)}`,
@@ -135,8 +135,8 @@ export default function createRestEndpoint<T>(
      * @param {Array<Aggregation>} aggregations
      * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
      */
-    aggregate: (aggregations: Array<Aggregation>) =>
-      requestEndpoint<{ total: number; data: Array<T> }>(
+    aggregate: (aggregations: Criteria) =>
+      requestEndpoint<{ aggregations: Record<string, any> }>(
         client,
         HTTPRequestMethod.POST,
         `/aggregate/${resourceIdentifier}`,

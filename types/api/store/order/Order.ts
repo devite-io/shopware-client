@@ -1,16 +1,17 @@
 import { OrderPrice } from "./OrderPrice";
 import { CalculatedPrice } from "../price/CalculatedPrice";
-import { GenericRecord } from "#types/api/global/GenericRecord";
-import { StateMachineState } from "../StateMachineState";
-import { OrderCustomer } from "./OrderCustomer";
 import { Currency } from "../Currency";
-import { Language } from "../locale/Language";
-import { OrderAddress } from "./OrderAddress";
-import { OrderDelivery } from "./delivery/OrderDelivery";
 import { OrderLineItem } from "./OrderLineItem";
+import { StateMachineState } from "../StateMachineState";
+import { OrderAddress } from "./OrderAddress";
+import { OrderCustomer } from "./OrderCustomer";
+import { OrderDelivery } from "./delivery/OrderDelivery";
 import { OrderTransaction } from "./transaction/OrderTransaction";
 import { ShopwareDocument } from "#types/api/store/document/ShopwareDocument";
+import { SalesChannel } from "../salesChannel/SalesChannel";
+import { Language } from "../locale/Language";
 import { Tag } from "../Tag";
+import { GenericRecord } from "#types/api/global/GenericRecord";
 
 export interface Order {
   id: string;
@@ -45,7 +46,9 @@ export interface Order {
   transactions?: Array<OrderTransaction>;
   documents: Array<ShopwareDocument>;
   salesChannelId: string;
+  salesChannel: SalesChannel;
   language?: Language;
+  tagIds?: Array<string>;
   tags?: Array<Tag>;
   customFields?: GenericRecord;
 }

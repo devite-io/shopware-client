@@ -1,4 +1,3 @@
-import { CalculatedPrice } from "#types/api/store/price/CalculatedPrice";
 import { Category } from "../category/Category";
 import { CmsPage } from "../cms/CmsPage";
 import { DeliveryTime } from "../DeliveryTime";
@@ -58,7 +57,7 @@ export type Product = Omit<
   seoUrls?: Array<SeoUrl>;
   seoCategory: Category;
   price?: Array<Price>;
-  purchasePrices?: Array<CalculatedPrice>;
+  purchasePrices?: Array<Price>;
   downloads?: Array<ProductDownload>;
   cmsPage?: CmsPage;
 };
