@@ -66,9 +66,10 @@ class ShopwareClient {
 
   private async parseBody(response: FetchResponse<Blob>): Promise<Payload<any> | undefined> {
     const contentType = response.headers.get("Content-Type")?.split(";")[0];
-    let payload = undefined;
 
     if (contentType) {
+      let payload = undefined;
+
       if (BinaryPayload.CONTENT_TYPES.includes(contentType)) {
         payload = new BinaryPayload();
       } else if (JsonPayload.CONTENT_TYPES.includes(contentType)) {
@@ -78,11 +79,11 @@ class ShopwareClient {
       } else {
         console.warn("Unsupported content type:", contentType);
       }
+
+      if (payload && response._data) await payload.deserialize(response._data);
+
+      return payload;
     }
-
-    if (payload && response._data) await payload.deserialize(response._data);
-
-    return payload;
   }
 
   public setLanguageId(id: string | undefined) {

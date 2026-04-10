@@ -185,7 +185,7 @@ class AccountClient extends Client {
       (this.client as StoreShopwareClient).withContextToken()
     );
 
-    if (response.statusCode === 200) return undefined;
+    if (response.statusCode === 204) return undefined;
 
     throw new ShopwareError("Failed to delete customer", response);
   }
