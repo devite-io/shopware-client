@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.9.3
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.2...v1.9.3)
+
+### 🩹 Fixes
+
+- Account deletion status code check ([e337a7f](https://github.com/devite-io/shopware-client/commit/e337a7f))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.9.2
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.1...v1.9.2)
