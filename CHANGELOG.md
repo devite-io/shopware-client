@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.9.4
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.3...v1.9.4)
+
+### 🏡 Chore
+
+- Update dependencies and Shopware entity schemes ([34dc31f](https://github.com/devite-io/shopware-client/commit/34dc31f))
+- Update types and dependencies ([2a01cda](https://github.com/devite-io/shopware-client/commit/2a01cda))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.9.3
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.2...v1.9.3)
