@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.9.5
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.4...v1.9.5)
+
+### 🩹 Fixes
+
+- Use esm version of "qs" package for better compatibility ([fa1c223](https://github.com/devite-io/shopware-client/commit/fa1c223))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.9.4
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.3...v1.9.4)
