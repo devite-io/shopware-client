@@ -13,7 +13,7 @@ import { ProductSearchKeyword } from "#types/api/admin/product/search/ProductSea
 import { ProductSorting } from "#types/api/admin/product/ProductSorting";
 import { ProductStream } from "#types/api/admin/product/stream/ProductStream";
 import { ProductStreamFilter } from "#types/api/admin/product/stream/ProductStreamFilter";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class ProductClient extends Client {
   public products = createRestEndpoint<Product>(this, "product", "product");

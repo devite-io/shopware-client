@@ -1,6 +1,6 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   SeoRouteListRequest,
   SeoRouteListResponse,

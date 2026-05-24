@@ -1,11 +1,11 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import BinaryPayload from "../../payloads/BinaryPayload";
 import { Media } from "#types/api/admin/media/Media";
 import { MediaThumbnail } from "#types/api/admin/media/thumbnail/MediaThumbnail";
 import { MediaThumbnailSize } from "#types/api/admin/media/thumbnail/MediaThumbnailSize";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class MediaClient extends Client {
   /** Asset Management **/

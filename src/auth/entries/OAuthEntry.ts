@@ -1,8 +1,8 @@
-import AuthenticationEntry from "#auth/entries/AuthenticationEntry";
-import AuthenticationType from "#auth/AuthenticationType";
-import JsonPayload from "#payloads/JsonPayload";
-import NotSavedError from "#auth/errors/NotSavedError";
-import ExpiredError from "#auth/errors/ExpiredError";
+import AuthenticationEntry from "@auth/entries/AuthenticationEntry";
+import AuthenticationType from "@auth/AuthenticationType";
+import JsonPayload from "@payloads/JsonPayload";
+import NotSavedError from "@auth/errors/NotSavedError";
+import ExpiredError from "@auth/errors/ExpiredError";
 import { ClientResponse } from "#types/ClientResponse";
 import { OAuthResponseBody } from "#types/auth/OAuthResponseBody";
 

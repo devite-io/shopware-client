@@ -1,14 +1,14 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   ImpersonationTokenRequest,
   ImpersonationTokenResponse
 } from "#types/clients/admin/CustomerClient";
 import { Customer } from "#types/api/admin/customer/Customer";
 import { CustomerAddress } from "#types/api/admin/customer/CustomerAddress";
-import { CustomerGroup } from "#types/api/admin/customer/group/CustomerGroup";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import { CustomerGroup } from "#types/api/admin/customer/CustomerGroup";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class CustomerClient extends Client {
   /** Impersonation **/

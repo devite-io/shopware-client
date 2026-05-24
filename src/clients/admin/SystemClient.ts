@@ -1,6 +1,6 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   ApiConfigResponse,
   BusinessEventsResponse,
@@ -20,7 +20,7 @@ import { LogEntry } from "#types/api/admin/LogEntry";
 import { Notification } from "#types/api/admin/Notification";
 import { SystemConfigEntry } from "#types/api/admin/SystemConfigEntry";
 import { ScheduledTask } from "#types/api/admin/ScheduledTask";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class SystemClient extends Client {
   /** Info & Health **/

@@ -1,7 +1,7 @@
 import Client from "../Client";
 import { Webhook } from "#types/api/admin/webhook/Webhook";
 import { WebhookEventLog } from "#types/api/admin/webhook/WebhookEventLog";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class WebhookClient extends Client {
   public webhooks = createRestEndpoint<Webhook>(this, "webhook", "webhook");

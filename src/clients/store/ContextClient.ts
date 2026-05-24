@@ -1,9 +1,9 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
-import AuthenticationEntry from "#auth/entries/AuthenticationEntry";
-import AuthenticationType from "#auth/AuthenticationType";
+import AuthenticationEntry from "@auth/entries/AuthenticationEntry";
+import AuthenticationType from "@auth/AuthenticationType";
 import type StoreShopwareClient from "../StoreShopwareClient";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   ContextGetResponse,
   ContextUpdateRequest,

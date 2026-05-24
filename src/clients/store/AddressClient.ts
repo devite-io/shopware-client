@@ -1,7 +1,7 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   AddressCreateRequest,
   AddressCreateResponse,

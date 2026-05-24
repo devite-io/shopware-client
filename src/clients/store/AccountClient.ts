@@ -1,7 +1,7 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   AccountEmailChangeRequest,
   AccountEmailChangeResponse,
@@ -27,7 +27,7 @@ import {
   CustomerRegisterResponse,
   CustomerRegistrationConfirmRequest
 } from "#types/clients/store/AccountClient";
-import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
+import ContextTokenEntry from "@auth/entries/ContextTokenEntry";
 
 class AccountClient extends Client {
   /**

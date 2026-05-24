@@ -1,6 +1,6 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   NewsletterConfirmRequest,
   NewsletterUnsubscribeRequest,
@@ -16,7 +16,12 @@ class NewsletterClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 204) return;
+    if (
+      response.statusCode === 200 &&
+      ((response.body as JsonPayload).data as any | undefined)?.success
+    ) {
+      return;
+    }
 
     throw new ShopwareError("Failed to confirm newsletter subscription", response);
   }
@@ -29,7 +34,12 @@ class NewsletterClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 204) return;
+    if (
+      response.statusCode === 200 &&
+      ((response.body as JsonPayload).data as any | undefined)?.success
+    ) {
+      return;
+    }
 
     throw new ShopwareError("Failed to update newsletter subscription", response);
   }
@@ -42,7 +52,12 @@ class NewsletterClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 204) return;
+    if (
+      response.statusCode === 200 &&
+      ((response.body as JsonPayload).data as any | undefined)?.success
+    ) {
+      return;
+    }
 
     throw new ShopwareError("Failed to unsubscribe newsletter subscription", response);
   }

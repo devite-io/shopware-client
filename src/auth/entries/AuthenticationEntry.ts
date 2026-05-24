@@ -1,4 +1,4 @@
-import AuthenticationType from "#auth/AuthenticationType";
+import AuthenticationType from "@auth/AuthenticationType";
 import { ClientResponse } from "#types/ClientResponse";
 import { ClientRequestOptions } from "#types/ClientRequestOptions";
 

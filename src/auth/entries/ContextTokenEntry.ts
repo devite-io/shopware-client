@@ -1,6 +1,6 @@
-import NotSavedError from "#auth/errors/NotSavedError";
-import AuthenticationType from "#auth/AuthenticationType";
-import AuthenticationEntry from "#auth/entries/AuthenticationEntry";
+import NotSavedError from "@auth/errors/NotSavedError";
+import AuthenticationType from "@auth/AuthenticationType";
+import AuthenticationEntry from "@auth/entries/AuthenticationEntry";
 import { ClientResponse } from "#types/ClientResponse";
 import { ClientRequestOptions } from "#types/ClientRequestOptions";
 

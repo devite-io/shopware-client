@@ -1,6 +1,6 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   DownloadResponse,
   NumberReservationResponse,
@@ -10,7 +10,7 @@ import BinaryPayload from "../../payloads/BinaryPayload";
 import { ShopwareDocument } from "#types/api/admin/document/ShopwareDocument";
 import { ShopwareDocumentType } from "#types/api/admin/document/ShopwareDocumentType";
 import { ShopwareDocumentBaseConfig } from "#types/api/admin/document/ShopwareDocumentBaseConfig";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class DocumentClient extends Client {
   /** Document Management **/

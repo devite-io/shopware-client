@@ -5,7 +5,7 @@ import { PromotionDiscountPrice } from "#types/api/admin/promotion/discount/Prom
 import { PromotionIndividualCode } from "#types/api/admin/promotion/PromotionIndividualCode";
 import { PromotionSalesChannel } from "#types/api/admin/promotion/PromotionSalesChannel";
 import { PromotionSetGroup } from "#types/api/admin/promotion/PromotionSetGroup";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class PromotionClient extends Client {
   public promotions = createRestEndpoint<Promotion>(this, "promotion", "promotion");

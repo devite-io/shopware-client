@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
-import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
-import NotSavedError from "#auth/errors/NotSavedError";
+import ContextTokenEntry from "@auth/entries/ContextTokenEntry";
+import NotSavedError from "@auth/errors/NotSavedError";
 
 function saveTestToken(entry: ContextTokenEntry) {
   entry.save({

@@ -1,8 +1,8 @@
-import JsonPayload from "#payloads/JsonPayload";
-import BinaryPayload from "#payloads/BinaryPayload";
+import JsonPayload from "@payloads/JsonPayload";
+import BinaryPayload from "@payloads/BinaryPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   OrderCancelRequest,
   OrderCancelResponse,

@@ -1,7 +1,7 @@
-import JsonPayload from "#payloads/JsonPayload";
-import BinaryPayload from "#payloads/BinaryPayload";
+import JsonPayload from "@payloads/JsonPayload";
+import BinaryPayload from "@payloads/BinaryPayload";
 import Client from "../Client";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   DocumentListCreateRequest,
   DocumentListCreateResponse,
@@ -21,7 +21,7 @@ import { OrderTransaction } from "#types/api/admin/order/transaction/OrderTransa
 import { OrderTransactionCapture } from "#types/api/admin/order/transaction/capture/OrderTransactionCapture";
 import { OrderTransactionCaptureRefund } from "#types/api/admin/order/transaction/capture/OrderTransactionCaptureRefund";
 import { OrderTransactionCaptureRefundPosition } from "#types/api/admin/order/transaction/capture/OrderTransactionCaptureRefundPosition";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class OrderClient extends Client {
   /** Document Management **/

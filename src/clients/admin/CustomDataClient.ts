@@ -3,7 +3,7 @@ import { CustomEntity } from "#types/api/admin/custom/CustomEntity";
 import { CustomFieldSet } from "#types/api/admin/custom/field/set/CustomFieldSet";
 import { CustomFieldSetRelation } from "#types/api/admin/custom/field/set/CustomFieldSetRelation";
 import { CustomField } from "#types/api/admin/custom/field/CustomField";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class CustomDataClient extends Client {
   public entities = createRestEndpoint<CustomEntity>(this, "custom-entity", "custom entity");

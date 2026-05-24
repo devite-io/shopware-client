@@ -1,7 +1,7 @@
-import JsonPayload from "#payloads/JsonPayload";
-import HtmlPayload from "#payloads/HtmlPayload";
+import JsonPayload from "@payloads/JsonPayload";
+import HtmlPayload from "@payloads/HtmlPayload";
 import Client from "../Client";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   ContentValidationRequest,
   MailSendRequest,
@@ -12,7 +12,7 @@ import {
 import { MailHeaderFooter } from "#types/api/admin/mail/MailHeaderFooter";
 import { MailTemplate } from "#types/api/admin/mail/template/MailTemplate";
 import { MailTemplateType } from "#types/api/admin/mail/template/MailTemplateType";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class MailClient extends Client {
   /** Operations **/

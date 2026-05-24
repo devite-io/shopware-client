@@ -1,6 +1,6 @@
 import Client from "../Client";
 import { PaymentMethod } from "#types/api/admin/paymentMethod/PaymentMethod";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class PaymentMethodClient extends Client {
   public paymentMethods = createRestEndpoint<PaymentMethod>(

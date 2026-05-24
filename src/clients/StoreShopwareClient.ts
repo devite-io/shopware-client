@@ -1,8 +1,8 @@
 import ShopwareClient from "./ShopwareClient";
 import { ClientRequestOptions } from "#types/ClientRequestOptions";
 import { ClientResponse } from "#types/ClientResponse";
-import AuthenticationEntry from "#auth/entries/AuthenticationEntry";
-import AuthenticationType from "#auth/AuthenticationType";
+import AuthenticationEntry from "@auth/entries/AuthenticationEntry";
+import AuthenticationType from "@auth/AuthenticationType";
 import AccountClient from "./store/AccountClient";
 import AddressClient from "./store/AddressClient";
 import CartClient from "./store/CartClient";

@@ -9,6 +9,9 @@ export interface CustomField {
   name: string;
   allowCustomerWrite?: boolean;
   allowCartExpose?: boolean;
+  storeApiAware?: boolean;
+  includeInSearch?: boolean;
   customFieldSetId?: string;
   customFieldSet?: CustomFieldSet;
+  config?: Record<string, any>;
 }

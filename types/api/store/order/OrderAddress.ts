@@ -5,5 +5,6 @@ export type OrderAddress = CustomerAddressBody & {
   versionId?: string;
   readonly createdAt: string;
   readonly updatedAt?: string;
+  orderId: string;
   vatId?: string;
 };

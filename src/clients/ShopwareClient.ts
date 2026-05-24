@@ -1,11 +1,11 @@
-import AuthenticationStore from "#auth/AuthenticationStore";
+import AuthenticationStore from "@auth/AuthenticationStore";
 import { ClientRequestOptions } from "#types/ClientRequestOptions";
 import { ClientResponse } from "#types/ClientResponse";
-import HTTPRequestMethod from "#http/HTTPRequestMethod";
+import HTTPRequestMethod from "@http/HTTPRequestMethod";
 import { FetchResponse, ofetch } from "ofetch";
-import Payload from "#payloads/Payload";
-import BinaryPayload from "#payloads/BinaryPayload";
-import JsonPayload from "#payloads/JsonPayload";
+import Payload from "@payloads/Payload";
+import BinaryPayload from "@payloads/BinaryPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import HtmlPayload from "../payloads/HtmlPayload";
 
 class ShopwareClient {

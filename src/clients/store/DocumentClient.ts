@@ -1,8 +1,8 @@
-import BinaryPayload from "#payloads/BinaryPayload";
-import JsonPayload from "#payloads/JsonPayload";
+import BinaryPayload from "@payloads/BinaryPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import { DocumentDownloadResponse } from "#types/clients/store/DocumentClient";
 
 class DocumentClient extends Client {

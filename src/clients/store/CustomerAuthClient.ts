@@ -1,7 +1,7 @@
-import JsonPayload from "#payloads/JsonPayload";
+import JsonPayload from "@payloads/JsonPayload";
 import Client from "../Client";
 import type StoreShopwareClient from "../StoreShopwareClient";
-import ShopwareError from "#http/ShopwareError";
+import ShopwareError from "@http/ShopwareError";
 import {
   CustomerLoginImitateRequest,
   CustomerLoginImitateResponse,
@@ -9,8 +9,8 @@ import {
   CustomerLoginResponse,
   CustomerLogoutResponse
 } from "#types/clients/store/CustomerAuthClient";
-import ContextTokenEntry from "#auth/entries/ContextTokenEntry";
-import AuthenticationType from "#auth/AuthenticationType";
+import ContextTokenEntry from "@auth/entries/ContextTokenEntry";
+import AuthenticationType from "@auth/AuthenticationType";
 
 class CustomerAuthClient extends Client {
   /**

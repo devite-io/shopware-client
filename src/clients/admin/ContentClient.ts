@@ -4,7 +4,7 @@ import { CmsPage } from "#types/api/admin/cms/CmsPage";
 import { CmsSection } from "#types/api/admin/cms/CmsSection";
 import { CmsSlot } from "#types/api/admin/cms/CmsSlot";
 import { LandingPage } from "#types/api/admin/cms/LandingPage";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class ContentClient extends Client {
   public cmsBlocks = createRestEndpoint<CmsBlock>(this, "cms-block", "cms block");

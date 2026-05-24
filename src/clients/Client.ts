@@ -1,5 +1,5 @@
 import ShopwareClient from "./ShopwareClient";
-import HTTPRequestMethod from "#http/HTTPRequestMethod";
+import HTTPRequestMethod from "@http/HTTPRequestMethod";
 import { ClientRequestOptions } from "#types/ClientRequestOptions";
 
 class Client {

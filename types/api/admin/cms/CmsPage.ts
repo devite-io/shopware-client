@@ -1,7 +1,7 @@
 import { CmsPage as StoreApiCmsPage } from "#types/api/store/cms/CmsPage";
 import { CmsSection } from "./CmsSection";
 import { Media } from "../media/Media";
-import { LandingPage } from "./landingPage/LandingPage";
+import { LandingPage } from "./LandingPage";
 import { Product } from "../product/Product";
 import { SeoUrl } from "../seo/SeoUrl";
 import { Tag } from "../Tag";

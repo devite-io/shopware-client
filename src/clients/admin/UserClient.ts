@@ -2,7 +2,7 @@ import Client from "../Client";
 import { User } from "#types/api/admin/user/User";
 import { UserAccessKey } from "#types/api/admin/user/UserAccessKey";
 import { UserConfig } from "#types/api/admin/user/UserConfig";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class UserClient extends Client {
   public users = createRestEndpoint<User>(this, "user", "user");

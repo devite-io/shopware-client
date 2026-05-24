@@ -1,4 +1,4 @@
-import Payload from "#payloads/Payload";
+import Payload from "@payloads/Payload";
 
 export interface ClientResponse {
   statusCode: number;

@@ -2,7 +2,7 @@ import { CartLineItem } from "#types/api/store/cart/lineItem/CartLineItem";
 import { Cart } from "#types/api/store/cart/Cart";
 
 export interface CartAddItemsRequest {
-  items?: Array<CartLineItem>;
+  items?: Array<CartLineItem & { id: string | undefined }>;
 }
 export type CartAddItemsResponse = Cart;
 

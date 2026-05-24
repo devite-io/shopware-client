@@ -2,7 +2,7 @@ import Client from "../Client";
 import { NumberRange } from "#types/api/admin/numberRange/NumberRange";
 import { NumberRangeState } from "#types/api/admin/numberRange/NumberRangeState";
 import { NumberRangeType } from "#types/api/admin/numberRange/NumberRangeType";
-import createRestEndpoint from "../../utils/createRestEndpoint";
+import createRestEndpoint from "@utils/createRestEndpoint";
 
 class NumberRangeClient extends Client {
   public numberRanges = createRestEndpoint<NumberRange>(this, "number-range", "number range");

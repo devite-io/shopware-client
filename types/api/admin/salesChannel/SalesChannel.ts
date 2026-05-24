@@ -11,7 +11,7 @@ import { SalesChannelDomain } from "./SalesChannelDomain";
 import { SystemConfigEntry } from "../SystemConfigEntry";
 import { MailHeaderFooter } from "../mail/MailHeaderFooter";
 import { MainCategory } from "../category/MainCategory";
-import { LandingPage } from "../cms/landingPage/LandingPage";
+import { LandingPage } from "../cms/LandingPage";
 
 export type SalesChannel = Omit<
   StoreApiSalesChannel,
