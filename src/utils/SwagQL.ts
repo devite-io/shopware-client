@@ -1,5 +1,5 @@
 import { Criteria } from "#types/api/global/query/Criteria";
-import { stringify } from "qs";
+import { stringify } from "qs-esm";
 
 /**
  * Builds a query string from a criteria object.
