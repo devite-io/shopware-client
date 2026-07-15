@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.10.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.5...v1.10.0)
+
+### 🚀 Enhancements
+
+- Adjust clients for Shopware v6.7.12.1 ([af5a99e](https://github.com/devite-io/shopware-client/commit/af5a99e))
+
+### 🏡 Chore
+
+- Update dependencies ([5f9a9d8](https://github.com/devite-io/shopware-client/commit/5f9a9d8))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.9.5
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.4...v1.9.5)
