@@ -3,6 +3,8 @@
 import tseslint from "typescript-eslint";
 
 export default tseslint.config({
+  files: ["./src/**/*.ts", "./types/**/*.ts"],
+  extends: [tseslint.configs.recommended],
   rules: {
     "no-multiple-empty-lines": ["error", { max: 2, maxEOF: 1 }],
     "arrow-parens": ["error", "as-needed"],
