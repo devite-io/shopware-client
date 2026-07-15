@@ -43,7 +43,7 @@ class OAuthEntry implements AuthenticationEntry {
   }
 
   /** @throws {ExpiredError} if the authentication data has expired */
-  load(): any {
+  load(): { headers: Record<string, string> } {
     if (!this.isSaved()) {
       throw new NotSavedError("OAuth tokens are not saved");
     }

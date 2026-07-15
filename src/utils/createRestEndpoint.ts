@@ -3,7 +3,6 @@ import HTTPRequestMethod from "../http/HTTPRequestMethod";
 import JsonPayload from "../payloads/JsonPayload";
 import ShopwareError from "../http/ShopwareError";
 import { Criteria } from "#types/api/global/query/Criteria";
-import { Aggregation } from "#types/api/global/aggregation/Aggregation";
 import { buildQuery } from "./SwagQL";
 
 async function requestEndpoint<T>(
@@ -136,7 +135,7 @@ export default function createRestEndpoint<T>(
      * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
      */
     aggregate: (aggregations: Criteria) =>
-      requestEndpoint<{ aggregations: Record<string, any> }>(
+      requestEndpoint<{ aggregations: Record<string, unknown> }>(
         client,
         HTTPRequestMethod.POST,
         `/aggregate/${resourceIdentifier}`,

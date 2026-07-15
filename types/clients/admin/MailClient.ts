@@ -30,6 +30,8 @@ export interface ContentValidationRequest {
 }
 
 export interface TemplatePreviewRequest {
+  salesChannelId: string;
+  includeHeaderFooter?: boolean;
   mailTemplateType: {
     templateData?: object;
   };

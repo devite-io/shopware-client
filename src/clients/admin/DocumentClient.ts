@@ -1,41 +1,15 @@
-import JsonPayload from "@payloads/JsonPayload";
-import Client from "../Client";
-import ShopwareError from "@http/ShopwareError";
-import {
-  DownloadResponse,
-  NumberReservationResponse,
-  UploadResponse
-} from "#types/clients/admin/DocumentClient";
 import BinaryPayload from "../../payloads/BinaryPayload";
-import { ShopwareDocument } from "#types/api/admin/document/ShopwareDocument";
-import { ShopwareDocumentType } from "#types/api/admin/document/ShopwareDocumentType";
-import { ShopwareDocumentBaseConfig } from "#types/api/admin/document/ShopwareDocumentBaseConfig";
+import Client from "../Client";
+import JsonPayload from "@payloads/JsonPayload";
+import ShopwareError from "@http/ShopwareError";
 import createRestEndpoint from "@utils/createRestEndpoint";
+import { DownloadResponse, UploadResponse } from "#types/clients/admin/DocumentClient";
+import { ShopwareDocument } from "#types/api/admin/document/ShopwareDocument";
+import { ShopwareDocumentBaseConfig } from "#types/api/admin/document/ShopwareDocumentBaseConfig";
+import { ShopwareDocumentType } from "#types/api/admin/document/ShopwareDocumentType";
 
 class DocumentClient extends Client {
   /** Document Management **/
-
-  /**
-   * @param salesChannelId
-   * @param type - The `technicalName` of the document type.
-   * @param preview - If `true`, the document number range will not be incremented.
-   * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
-   */
-  public async reserveNumber(
-    salesChannelId: string,
-    type: string,
-    preview?: boolean
-  ): Promise<NumberReservationResponse> {
-    const response = await this.get(`/_action/number-range/reserve/${type}/${salesChannelId}`, {
-      query: { preview },
-      headers: { Accept: "application/json" }
-    });
-
-    if (response.statusCode === 200)
-      return (response.body as JsonPayload).data as NumberReservationResponse;
-
-    throw new ShopwareError("Failed to reserve number", response);
-  }
 
   /**
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed

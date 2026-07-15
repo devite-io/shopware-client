@@ -28,7 +28,8 @@ class ShopwareClient {
       throw new Error("Path may not exceed 2048 characters");
     }
 
-    const serializedBody: any | undefined = options?.body?.serialize() || undefined;
+    const serializedBody: Record<string, unknown> | ArrayBuffer | undefined =
+      options?.body?.serialize() || undefined;
 
     return new Promise(async (resolve, reject) =>
       ofetch(this.baseUrl + path, {
@@ -64,7 +65,7 @@ class ShopwareClient {
     );
   }
 
-  private async parseBody(response: FetchResponse<Blob>): Promise<Payload<any> | undefined> {
+  private async parseBody(response: FetchResponse<Blob>): Promise<Payload<unknown> | undefined> {
     const contentType = response.headers.get("Content-Type")?.split(";")[0];
 
     if (contentType) {

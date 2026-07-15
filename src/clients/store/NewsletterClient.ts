@@ -18,7 +18,7 @@ class NewsletterClient extends Client {
 
     if (
       response.statusCode === 200 &&
-      ((response.body as JsonPayload).data as any | undefined)?.success
+      ((response.body as JsonPayload).data as Record<string, unknown> | undefined)?.success
     ) {
       return;
     }
@@ -36,7 +36,7 @@ class NewsletterClient extends Client {
 
     if (
       response.statusCode === 200 &&
-      ((response.body as JsonPayload).data as any | undefined)?.success
+      ((response.body as JsonPayload).data as Record<string, unknown> | undefined)?.success
     ) {
       return;
     }
@@ -54,7 +54,7 @@ class NewsletterClient extends Client {
 
     if (
       response.statusCode === 200 &&
-      ((response.body as JsonPayload).data as any | undefined)?.success
+      ((response.body as JsonPayload).data as Record<string, unknown> | undefined)?.success
     ) {
       return;
     }
