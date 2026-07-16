@@ -37,6 +37,7 @@ export interface TemplatePreviewRequest {
   };
   mailTemplate: {
     contentHtml?: string;
+    contentPlain?: string;
   };
 }
 export type TemplatePreviewResponse = string;

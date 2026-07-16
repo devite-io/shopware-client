@@ -49,7 +49,7 @@ class MailClient extends Client {
    * @throws {ShopwareError | import('ofetch').FetchError} if the request failed
    */
   public async previewTemplate(request: TemplatePreviewRequest): Promise<TemplatePreviewResponse> {
-    const response = await this.post(`/api/_action/mail-template/preview`, {
+    const response = await this.post(`/_action/mail-template/preview`, {
       headers: { Accept: "text/html" },
       body: new JsonPayload(request)
     });
