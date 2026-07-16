@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.10.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.10.0...v1.10.1)
+
+### 🩹 Fixes
+
+- Mail template preview function ([db87a34](https://github.com/devite-io/shopware-client/commit/db87a34))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.10.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.9.5...v1.10.0)
