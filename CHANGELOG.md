@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.11.0
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.10.1...v1.11.0)
+
+### 🚀 Enhancements
+
+- Add refresh promise map to support concurrent client creations ([04e42a3](https://github.com/devite-io/shopware-client/commit/04e42a3))
+
+### 🏡 Chore
+
+- Update dependencies and reformat source files ([96e3f77](https://github.com/devite-io/shopware-client/commit/96e3f77))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.10.1
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.10.0...v1.10.1)
