@@ -42,6 +42,8 @@ import UnitClient from "./admin/UnitClient";
 import UserClient from "./admin/UserClient";
 import WebhookClient from "./admin/WebhookClient";
 
+const refreshPromises = new Map<string, Promise<ClientResponse>>();
+
 class AdminShopwareClient extends ShopwareClient {
   public clientId: string | "administration";
 
@@ -107,14 +109,26 @@ class AdminShopwareClient extends ShopwareClient {
       entryHeaders = entry.load().headers;
     } catch (error) {
       if (error instanceof ExpiredError && entry.refreshToken) {
-        const refreshResponse = await super.doRequest("/oauth/token", {
-          method: HTTPRequestMethod.POST,
-          body: new JsonPayload({
-            grant_type: "refresh_token",
-            client_id: this.clientId,
-            refresh_token: entry.refreshToken
-          })
-        });
+        const refreshKey = this.clientId + ":" + entry.refreshToken;
+        const refreshPromise =
+          refreshPromises.get(refreshKey) ||
+          super.doRequest("/oauth/token", {
+            method: HTTPRequestMethod.POST,
+            body: new JsonPayload({
+              grant_type: "refresh_token",
+              client_id: this.clientId,
+              refresh_token: entry.refreshToken
+            })
+          });
+
+        if (!refreshPromises.has(refreshKey)) {
+          refreshPromises.set(refreshKey, refreshPromise);
+
+          // clean up promise after default refresh token lifetime
+          setTimeout(() => refreshPromises.delete(refreshKey), 1_000 * 60 * 15 /* 15 minutes */);
+        }
+
+        const refreshResponse = await refreshPromise;
 
         if (refreshResponse.statusCode === 200) {
           entry.save(refreshResponse);
