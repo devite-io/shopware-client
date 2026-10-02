@@ -14,11 +14,10 @@ npx install @devite/shopware-client
 
 That's it! You can now use the Shopware API in your project ✨
 
-
 ## Getting started
 
 ```javascript
-import { ShopwareClient } from '@devite/shopware-client';
+import { ShopwareClient } from "@devite/shopware-client";
 
 // TODO: Add examples
 ```
