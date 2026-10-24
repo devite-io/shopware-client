@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.11.1
+
+[compare changes](https://github.com/devite-io/shopware-client/compare/v1.11.0...v1.11.1)
+
+### 🩹 Fixes
+
+- Customer imitation login ([d735b55](https://github.com/devite-io/shopware-client/commit/d735b55))
+
+### ❤️ Contributors
+
+- Justus Geramb <admin@justix.dev>
+
 ## v1.11.0
 
 [compare changes](https://github.com/devite-io/shopware-client/compare/v1.10.1...v1.11.0)
