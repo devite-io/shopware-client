@@ -40,8 +40,11 @@ class CustomerAuthClient extends Client {
       body: new JsonPayload(request)
     });
 
-    if (response.statusCode === 200)
+    if (response.statusCode === 200) {
+      this.client.authStore.getOrCreateEntry(new ContextTokenEntry()).save(response);
+
       return (response.body as JsonPayload).data as CustomerLoginImitateResponse;
+    }
 
     throw new ShopwareError("Failed to imitate login", response);
   }
